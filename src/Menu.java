@@ -47,7 +47,22 @@ public class Menu {
             BufferedReader br = new BufferedReader(fr);
             String buffor = br.readLine();
             while (buffor != null){
-                if (buffor.contains("[Urgent]") && answer1 == "y"){
+                if (buffor.contains("[Urgent]") && answer1.contains("y")){
+                    buffor = br.readLine();
+                    do {
+                        System.out.println(buffor);
+                        buffor = br.readLine();
+                    } while (buffor != null && buffor != " ");
+                }
+                if (buffor.contains("[Private]") && answer2.contains("y")){
+                    buffor = br.readLine();
+                    do {
+                        System.out.println(buffor);
+                        buffor = br.readLine();
+                    } while (buffor != null && buffor != " ");
+                }
+                if (buffor.contains("[Business]") && answer3.contains("y")){
+                    buffor = br.readLine();
                     do {
                         System.out.println(buffor);
                         buffor = br.readLine();
