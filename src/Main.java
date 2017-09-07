@@ -6,7 +6,7 @@ import java.util.logging.FileHandler;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        OpenFile openFile = new OpenFile();
+        openFiletest openFiletest = new openFiletest();
 
     }
 }

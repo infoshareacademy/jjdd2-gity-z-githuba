@@ -14,6 +14,7 @@ public class OpenFile {
             System.out.println(textLine);
 
             textLine = bufferedReader.readLine();
+            continue;
         } while (textLine != null);
 
         bufferedReader.close();
