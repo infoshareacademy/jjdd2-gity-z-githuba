@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
-
 public class Main {
     public static void main(String[] args) {
+        FileMan.OpenFile();
         Scanner in = new Scanner(System.in);
 
         // handle user commands
@@ -15,7 +15,7 @@ public class Main {
             switch (menuItem) {
                 case 1:
                     System.out.println("You've chosen item #1");
-                    // do something...
+                    Menu.PrintMenuKeywords();
                     break;
                 case 2:
                     System.out.println("You've chosen item #2");
