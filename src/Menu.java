@@ -41,9 +41,25 @@ public class Menu {
         String answer2 = scanner.nextLine().toLowerCase();
         System.out.format("%-60s - UNAVALIBLE%n", "3. Is it bussines related correspondance? (Y/N):");
         String answer3 = scanner.nextLine().toLowerCase();
+        String path = "/home/sowatheking/Database.txt";
+        try {
+            FileReader fr = new FileReader(path);
+            BufferedReader br = new BufferedReader(fr);
+            String buffor = br.readLine();
+            while (buffor != null){
+                if (buffor.contains("[Urgent]") && answer1 == "y"){
+                    do {
+                        System.out.println(buffor);
+                        buffor = br.readLine();
+                    } while (buffor != null && buffor != " ");
+                }
+                buffor = br.readLine();
+            } br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         if (answer1 == "y") {
-            // Odszukaj w pliku linie "[Urgent], wylistuj wszystko do pustej lini
         }
 
         if (answer2 == "y") {
@@ -57,11 +73,10 @@ public class Menu {
     }
 
     public static void PrintMenuAnalyze(){
-        System.out.format("%-60s - UNAVALIBLE%n", "Please enter ABSOLUTE path to e-mail to analyze: ");
+        System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
         System.out.println("Example: /home/user/mail.txt");
         Scanner scanner = new Scanner(System.in);
         String path = scanner.nextLine();
-        // Potrzeba kodu do otwarcia e-mail, spróbuje zrobić to na stałym pliku
         try {
             FileReader fr = new FileReader(path);
             BufferedReader br = new BufferedReader(fr);
@@ -76,6 +91,4 @@ public class Menu {
             e.printStackTrace();
         }
     }
-
-    public static
 }
