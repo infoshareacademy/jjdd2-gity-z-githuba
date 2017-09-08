@@ -1,11 +1,34 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class Main {
     public static void main(String[] args) {
-    
+        {
+            System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
+            System.out.println("Example: /home/user/mail.txt");
+            Scanner scanner = new Scanner(System.in);
+            String path = scanner.nextLine();
+            try {
+                FileReader fr = new FileReader(path);
+                BufferedReader br = new BufferedReader(fr);
+                String buffor = br.readLine();
+                while (buffor != null){
+                    if (buffor.contains("@")){
+                        String bufforsplitResult = String.split(" ");
+                        buffor.toString();
+                        System.out.println(buffor);
+                    }
+                    buffor = br.readLine();
+                } br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
             public static String _split(String string){
                 String result_spl[] = string.split(" ");
                 for (int i = 0; i < result_spl.length; i++){
@@ -16,7 +39,7 @@ public class Main {
                 return "succes";
             }
         }
-}}
+
 
         /*// handle user commands
         boolean quit = false;
