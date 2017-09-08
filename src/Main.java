@@ -5,20 +5,16 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-
-        String text    =
-                "John writes about this in his email john@gmail.com, and John writes about that," +
-                        " and John writes about everything. "
-                ;
-
-        String patternString1 = "(\\b.@.\\b)" ;
-
-        Pattern pattern = Pattern.compile(patternString1);
-        Matcher matcher = pattern.matcher(text);
-
-        while(matcher.find()) {
-            System.out.println("found: " + matcher.group(1) );
+    
+            public static String _split(String string){
+                String result_spl[] = string.split(" ");
+                for (int i = 0; i < result_spl.length; i++){
+                    if (result_spl[i].contains("@")){
+                        return result_spl[i];
+                    }
+                }
+                return "succes";
+            }
         }
 }}
 
