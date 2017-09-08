@@ -23,8 +23,8 @@ public class Menu {
 
         System.out.println("Welcome @User! How i can help you?");
         System.out.println("");
-        System.out.format("%-60s - UNAVALIBLE%n","1. What keywords should i use to find mine email?");
-        System.out.format("%-60s - UNAVALIBLE%n","2. Analyze contact data from mine e-mail");
+        System.out.format("%-60s - AVALIBLE%n","1. What keywords should i use to find mine email?");
+        System.out.format("%-60s - AVALIBLE%n","2. Analyze contact data from mine e-mail");
         System.out.format("%-60s - UNAVALIBLE%n","3. Show me mine top 10 customer's");
         System.out.format("%-60s - UNAVALIBLE%n","4. Filter mine contact's (Single .mbox file)");
         System.out.format("%-60s - UNAVALIBLE%n","5. Filter mine contact's (Multiple .mbox file)");
@@ -35,11 +35,12 @@ public class Menu {
 
     public static void PrintMenuKeywords() {
         Scanner scanner = new Scanner(System.in);
-        System.out.format("%-60s - UNAVALIBLE%n", "1. Is this urgent correspondance?? (Y/N):");
+        System.out.format("%-60s%n", "1. Is this urgent correspondance?? (Y/N):");
         String answer1 = scanner.nextLine().toLowerCase();
-        System.out.format("%-60s - UNAVALIBLE%n", "2. Is it private correspondence? (Y/N):");
+        System.out.format("%-60s%n", "2. Is it private correspondence? (Y/N):");
         String answer2 = scanner.nextLine().toLowerCase();
-        System.out.format("%-60s - UNAVALIBLE%n", "3. Is it bussines related correspondance? (Y/N):");
+        System.out.format("%-60s%n", "3. Is it bus" +
+                "sines related correspondance? (Y/N):");
         String answer3 = scanner.nextLine().toLowerCase();
         String path = "/home/sowatheking/Database.txt";
         try {
@@ -49,24 +50,24 @@ public class Menu {
             while (buffor != null){
                 if (buffor.contains("[Urgent]") && answer1.contains("y")){
                     buffor = br.readLine();
-                    do {
+                    while (buffor != null || buffor.isEmpty()){
                         System.out.println(buffor);
                         buffor = br.readLine();
-                    } while (buffor != null && buffor != " ");
+                    }
                 }
                 if (buffor.contains("[Private]") && answer2.contains("y")){
                     buffor = br.readLine();
-                    do {
+                    while (buffor != null || buffor.isEmpty()){
                         System.out.println(buffor);
                         buffor = br.readLine();
-                    } while (buffor != null && buffor != " ");
+                    }
                 }
                 if (buffor.contains("[Business]") && answer3.contains("y")){
                     buffor = br.readLine();
-                    do {
+                    while (buffor != null || buffor.isEmpty()){
                         System.out.println(buffor);
                         buffor = br.readLine();
-                    } while (buffor != null && buffor != " ");
+                    }
                 }
                 buffor = br.readLine();
             } br.close();
@@ -97,8 +98,8 @@ public class Menu {
             BufferedReader br = new BufferedReader(fr);
             String buffor = br.readLine();
             while (buffor != null){
-                if (buffor.contains("@")){
-                    System.out.println(buffor);
+                if (buffor.contains("@") || (buffor.matches("[0-9+]+")) && buffor.length() == 9){
+                    System.out.println(_split(buffor));
                 }
                 buffor = br.readLine();
             } br.close();
@@ -106,4 +107,14 @@ public class Menu {
             e.printStackTrace();
         }
     }
-}
+    public static String _split(String string){
+        String result_spl[] = string.split(" ");
+        for (int i = 0; i < result_spl.length; i++){
+            if (result_spl[i].contains("@") || result_spl[i].matches("[0-9+]+")){
+                return result_spl[i];
+            }
+            }
+    return "succes";
+    }
+
+    }
