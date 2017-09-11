@@ -5,63 +5,69 @@ import java.util.List;
 
 public class QuestionsAndAnswers {
 
-    private String question1 = "Czy email jest pilny? (T)ak/(N)ie";
-    private String question2 = "Czy jest to email służbowy? (T)ak/(N)ie";
-    private String question3 = "Czy ten email jest ważny? (T)ak/(N)ie";
-    private List<String> question;
+    private final String question1 = "Is this an urgent message? (Y)es/(N)o";
+    private final String question2 = "Is this a formal message? (Y)es/(No)";
+    private final String question3 = "Is this an important message (Y)es/(No)";
 
-    public String listOfQuestions(int x) {
-        question = new ArrayList <String>();
+    private final List<String> questions = initQuestionsList();
+
+    private final String answerIfYes1 = "These keywords might be helpful for you:" +
+            "\n" + "-urgent" + "\n" + "-fast" + "\n" + "-yesterday" + "\n" +
+            "-today" + "\n" + "-ASAP" + "\n" + "-immediately";
+    private final String answerIfYes2 = "These keywords might be helpful for you:" +
+            "\n" + "-good morning" + "\n" + "-dear" + "\n" + "-sir" +
+            "\n" + "-madam" + "\n" + "-faithfully" + "\n" + "-sincerely";
+    private final String answerIfYes3 = "These keywords might be helpful for you:" +
+            "\n" + "-crucial" + "\n" + "-essential" + "\n" + "-important" +
+            "\n" + "-vital" + "\n" + "-mandatory";
+
+    private final List<String> listOfAnswersIfYes = initListOfAnswersIfYes();
+
+    private final String answerIfNo1 = "These keywords might be helpful for you:" +
+            "\n" + "-irrelevant" + "\n" + "-next" + "\n" + "-tomorrow" + "\n" + "-later";
+    private final String answerIfNo2 = "These keywords might be helpful for you:" +
+            "\n" + "-bye" + "\n" + "-hi" + "\n" + "-thx" + "\n" + "-peace out";
+    private final String answerIfNo3 = "These keywords might be helpful for you:" +
+            "\n" + "-moment" + "\n" +"-leisure"+ "\n" +"-btw";
+
+    private final List<String> listOfAnswersIfNo = initListOfAnswersIfNo();
+
+
+    private final List<String> initQuestionsList() {
+        List<String> question = new ArrayList <>();
         question.add(question1);
         question.add(question2);
         question.add(question3);
-        return question.get(x);
-    }
-
-    public List<String> getQuestion() {
         return question;
     }
 
-    private String answerIfYes1 = "Słowa kluczowe, które mogą być dla Ciebie pomocne to:" +
-            "\n" + "-pilny" + "\n" + "-szybko" + "\n" + "-wczoraj" + "\n" +
-            "-dzisiaj" + "\n" + "-ASAP" + "\n" + "-bezzwłocznie";
-    private String answerIfYes2 = "Słowa kluczowe, które mogą być dla Ciebie pomocne to:" +
-            "\n" + "-dzień dobry" + "\n" + "-witam" + "\n" + "-pozdrawiam" +
-            "\n" + "-żegnam" + "\n" + "-do widzenia";
-    private String answerIfYes3 = "Słowa kluczowe, które mogą być dla Ciebie pomocne to:" +
-            "\n" + "-ważne" + "\n" + "-istotne" + "\n" + "-koniecznie" +
-            "\n" + "-obowiazkowo" + "\n" + "-obligatoryjnie";
-    private List<String> answerIfYes;
 
-    public String listOfAnswersIfYes(int x) {
-        List<String> answerIfYes = new ArrayList <String>();
+    private  final List<String> initListOfAnswersIfYes() {
+        List<String> answerIfYes = new ArrayList <>();
         answerIfYes.add(answerIfYes1);
         answerIfYes.add(answerIfYes2);
         answerIfYes.add(answerIfYes3);
-        return answerIfYes.get(x);
-    }
-
-    public List<String> getAnswerIfYes() {
         return answerIfYes;
     }
 
-    private String answerIfNo1 = "Słowa kluczowe, które mogą być dla Ciebie pomocne to:" +
-            "\n" + "-nieważne" + "\n" + "-dawno" + "\n" + "-jutro" + "\n" + "-później";
-    private String answerIfNo2 = "Słowa kluczowe, które mogą być dla Ciebie pomocne to:" +
-            "\n" + "-cześć" + "\n" + "-hej" + "\n" + "-dzięki" + "\n" + "-na razie";
-    private String answerIfNo3 = "Słowa kluczowe, które mogą być dla Ciebie pomocne to:" +
-            "\n" + "-nieważne" + "\n" +"-nieistotne"+ "\n" +"-btw"+ "\n" +"-przy okazji";
-    private List<String> answerIfNo;
 
-    public String listOfAnswersIfNo(int x) {
-        List<String> answerIfNo = new ArrayList <String>();
+    private final List<String> initListOfAnswersIfNo() {
+        List<String> answerIfNo = new ArrayList <>();
         answerIfNo.add(answerIfNo1);
         answerIfNo.add(answerIfNo2);
         answerIfNo.add(answerIfNo3);
-        return answerIfNo.get(x);
+        return answerIfNo;
     }
 
-    public List<String> getAnswerIfNo() {
-        return answerIfNo;
+    public List<String> getQuestions() {
+        return questions;
+    }
+
+    public List<String> getListOfAnswersIfYes() {
+        return listOfAnswersIfYes;
+    }
+
+    public List<String> getListOfAnswersIfNo() {
+        return listOfAnswersIfNo;
     }
 }
