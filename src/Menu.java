@@ -1,8 +1,9 @@
+import error.CannotLoadMailDataException;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 
 public class Menu {
     public static void PrintMenu(){
@@ -93,28 +94,91 @@ public class Menu {
         System.out.println("Example: /home/user/mail.txt");
         Scanner scanner = new Scanner(System.in);
         String path = scanner.nextLine();
+        int splitCounter = 0;
         try {
             FileReader fr = new FileReader(path);
             BufferedReader br = new BufferedReader(fr);
             String buffor = br.readLine();
             while (buffor != null){
                 if (buffor.contains("@") || (buffor.matches("[0-9+]+")) && buffor.length() == 9){
-                    System.out.println(_split(buffor));
+                    splitCounter++;
+                    _split(buffor, splitCounter);
+
+                    //TODO: Jeżeli 2 mache w jednej linijce, błędnie interpretuje counter
+
                 }
                 buffor = br.readLine();
             } br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        try {
+            loadMailToCollection("/home/sowatheking/test.txt");
+        } catch (CannotLoadMailDataException ex) {
+            System.out.println("Nie mozna bylo zaladowac danych z powodu bledu.");
+        }
+        filterMaches(true, true, loadMailToCollection("/home/sowatheking/test.txt"));
     }
-    public static String _split(String string){
+    public static void _split(String string, int splitCounter){
         String result_spl[] = string.split(" ");
         for (int i = 0; i < result_spl.length; i++){
             if (result_spl[i].contains("@") || result_spl[i].matches("[0-9+]+")){
-                return result_spl[i];
+                System.out.println("Split complete! Found[" +splitCounter+ "Matches.  Returned: " + result_spl[i]);
             }
-            }
-    return "succes";
+        }
     }
 
+    public static ArrayList<String> loadMailToCollection(String path){
+        int i = 0;
+        try {
+            ArrayList<String> mailContent = new ArrayList<String>();
+            FileReader fr = new FileReader(path);
+            BufferedReader br = new BufferedReader(fr);
+            String buffor = br.readLine();
+            while (buffor != null){
+                i++;
+                mailContent.add(buffor);
+                buffor = br.readLine();
+            }
+            System.out.println("Test jednostkowy: wypisz załadowaną listę. ");
+            System.out.println("Załadowano plik do pamięci!" + i + "Lini załadowane!");
+            br.close();
+            return mailContent;
+        } catch (IOException e) {
+            throw new CannotLoadMailDataException("Could not load data from file " + path, e);
+        }
+
     }
+
+    public static void filterMaches(boolean mail, boolean phone, ArrayList<String> mailContent){
+        /*Iterator<String> iterator = mailContent.iterator();
+        String s = "@";
+        while(iterator.hasNext()){
+            if (mailContent.contains(s)){
+                System.out.println("Mamy dopasowanie!");
+            }
+        }*/
+        /*for (String f : mailContent){
+            if (mailContent.get(s).contains("@") || mailContent.get(i).matches("[0-9+]+")){
+                System.out.println("Mamy dopasowanie!");
+            }
+        }*/
+        for (int i = 0; i < mailContent.size(); i++){
+            if (mailContent.get(i).contains("@")) {
+                System.out.println("Znaleziono dopasowanie! " + mailContent.get(i));
+                String[] splitResult = mailContent.get(i).split(" ");
+                for (int j = 0; j < splitResult.length; j++){
+                    
+                }
+            } else if (mailContent.get(i).matches("[0-9+]+")){
+                    System.out.println("Znaleziono numer! " + mailContent.get(i));
+            }
+        }
+
+
+    }
+}
+
