@@ -93,7 +93,7 @@ public class Menu {
         System.out.println("Example: /home/user/mail.txt");
         Scanner scanner = new Scanner(System.in);
         String path = scanner.nextLine();
-        try {
+        /*try {
             FileReader fr = new FileReader(path);
             BufferedReader br = new BufferedReader(fr);
             String buffor = br.readLine();
@@ -105,7 +105,7 @@ public class Menu {
             } br.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
     public static String _split(String string){
         String result_spl[] = string.split(" ");
