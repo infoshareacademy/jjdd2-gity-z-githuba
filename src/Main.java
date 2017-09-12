@@ -5,9 +5,11 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Messanger msg = new Messanger();
+        msg.scannerIntChecker();
         FileMan.OpenFile();
         Scanner in = new Scanner(System.in);
-
+        System.out.println();
         // handle user commands
         boolean quit = false;
         int menuItem;
