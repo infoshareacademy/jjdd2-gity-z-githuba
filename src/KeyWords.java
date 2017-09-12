@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class KeyWords {
 
-    static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
     public static String getUserInput() {
         return scanner.nextLine().trim().toLowerCase();
@@ -17,8 +17,8 @@ public class KeyWords {
         for (int i = 0; i < question.getQuestions().size(); i++) {
             System.out.println();
             System.out.println(question.getQuestions().get(i));
-            String wyborUzytkownika;
-            wyborUzytkownika = getUserInput();
+            String wyborUzytkownika = getUserInput();
+
             while (!(wyborUzytkownika.equals("y") || wyborUzytkownika.equals("n"))) {
                 System.out.println("Please enter (Y)es or (N)o");
                 wyborUzytkownika = scanner.nextLine().toLowerCase();
@@ -26,10 +26,12 @@ public class KeyWords {
             switch (wyborUzytkownika) {
                 case "y":
                     System.out.println();
+                    System.out.println("These keywords might be helpful for you:");
                     System.out.println(question.getListOfAnswersIfYes().get(i));
                     break;
                 case "n":
                     System.out.println();
+                    System.out.println("These keywords might be helpful for you:");
                     System.out.println(question.getListOfAnswersIfNo().get(i));
                     break;
             }
