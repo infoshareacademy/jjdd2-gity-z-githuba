@@ -1,16 +1,12 @@
-import com.sun.org.apache.xpath.internal.operations.String;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 
 public class contactFinder {
 
-                public java.lang.String PrintMenuAnalyze(java.lang.String string){
+                public void PrintMenuAnalyze(java.lang.String string){
                 System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
                 System.out.println("Example: /home/user/mail.txt");
                 Scanner scanner = new Scanner(System.in);
@@ -21,10 +17,11 @@ public class contactFinder {
                     BufferedReader br = new BufferedReader(fr);
                     java.lang.String buffor = br.readLine();
                     while (buffor != null){
-                        if (buffor.contains("@") || (buffor.matches("[0-9+]+")) && buffor.length() == 9) {
-                            System.out.println(_split(buffor));
-                        }
                         buffor = br.readLine();
+                        if (buffor.contains("@") || (buffor.matches("[0-9+]+")) && buffor.length() == 9) {
+                            System.out.println();
+                        }
+
                     } br.close();
                 } catch (IOException e) {
                     e.printStackTrace();
