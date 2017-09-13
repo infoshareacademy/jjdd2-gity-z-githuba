@@ -31,12 +31,12 @@ public class openFiletest {
 //        }
 
 //        Pattern regex = Pattern.compile("From");
-//        Matcher line = regex.matcher(wholembox);
+//        Matcher line) = regex.matcher(wholembox);
 //        //System.out.println(line.group("From"));
 //        boolean t = line.matches();
 //        System.out.println(t);
 //
-//        Pattern p = Pattern.compile("a");
+//        Pattern p = Pattern.compile("From(.+)");
 //        Matcher m = p.("a aaaab");
 //        boolean b = m.matches();
 //        System.out.println(b);
