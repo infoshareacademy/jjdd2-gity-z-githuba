@@ -48,17 +48,24 @@ public class openFiletest {
     }
 
     public void splitMessage() {
-        for (Scanner e : maillist) {
-
-            sc =new Scanner(e.);
-            sc.useDelimiter("\\n{3}");
+        for (SeperateWholeMail mail : maillist) {
+            sc = new Scanner(mail.getMessage());
+            sc.useDelimiter("\\n{2}");
+            int i=1;
             while (sc.hasNext()) {
-                maillist.add(sc.next());
+                String message =sc.next();
+                if (i == 2) {
+                    mail.setMessagecontent(message);
+                    System.out.println(message);
+                }
+                i++;
             }
+        }
+    }
+    public void splitMessage1() {
 
-
+        System.out.println(maillist.get(1).getMessagecontent());
+            }
         }
 
 
-    }
-}

@@ -1,14 +1,21 @@
-import java.io.*;
-import java.util.Scanner;
-import java.util.Scanner;
-import java.util.logging.FileHandler;
+import java.io.FileNotFoundException;
 
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws Exception {
+
+        String sampleMailHeaders = "From: Angus W Hardie <Angus.Hardie@malcolmhardie.com>";
+
         openFiletest openFiletest = new openFiletest("/home/michalrichert/Downloads/testlist.mbox");
         openFiletest.message();
-        System.out.println(openFiletest.maillist.get(3));
+        // System.out.println(openFiletest.maillist.get(0).toString());
+        openFiletest.splitMessage();
+        openFiletest.splitMessage1();
 
+
+
+        MailProcessor mp = new MailProcessor(openFiletest.maillist.get(0).getMessage());
+        ParsedMail result = mp.process();
+        System.out.println(result);
     }
 }
