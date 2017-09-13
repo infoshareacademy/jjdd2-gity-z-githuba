@@ -22,7 +22,7 @@ public class Main {
 /*
                     Menu.PrintMenuAnalyze();
 */
-                    ContactFinder.FindMailAndPhone();
+                    ContactFinder.FindMail();
                     break;
                 case 3:
                     System.out.println("You've chosen item #3");

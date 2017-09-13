@@ -1,12 +1,13 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Collections;
 
 
 public class ContactFinder {
 
-                public static void FindMailAndPhone() {
+                public static void FindMail() {
                     System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
                     System.out.println("Example: /home/user/mail.txt");
                     Scanner scanner = new Scanner(System.in);
@@ -21,15 +22,6 @@ public class ContactFinder {
                             buffor = br.readLine();
                         }
                         br.close();
-
-                    FileReader fr2 = new FileReader(path);
-                    BufferedReader br2 = new BufferedReader(fr2);
-                    java.lang.String buffor2 = br2.readLine();
-                    while (buffor2 != null) {
-                        notSplitted(buffor2);
-                        buffor2 = br2.readLine();
-                    }
-                    br2.close();
                 }catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -38,15 +30,35 @@ public class ContactFinder {
     public static void splitter(java.lang.String string){
         java.lang.String splitterResult[] = string.split("\\s");
         for (int i = 0; i < splitterResult.length; i++){
-            if (splitterResult[i].contains("@") || splitterResult[i].matches("[\\d+\\-)(]+?")){
+            if (splitterResult[i].matches("\\w+@\\w+\\.\\w+")
+                    || splitterResult[i].matches("([\\d\\ +\\-)(])+?")
+                    && splitterResult[i].length() >= 7) {
                 System.out.println("Email contact found: " + splitterResult[i]);
+            }
+        }
+    }
+    //TODO Wyrzuca listę stringów z emailami lub telefonami do wyboru
+
+    public class FindPhone {
+        File mboxfile;
+        Scanner sc;
+        ArrayList<String> maillist = new ArrayList();
+        public FindPhone(String FilePath) {
+            mboxfile = new File(FilePath);
+        }
+        public void message() throws FileNotFoundException {
+            sc = new Scanner(mboxfile);
+            sc.useDelimiter("\\n{3}");
+            while (sc.hasNext()) {
+                maillist.add(sc.next());
+            
             }
         }
     }
     public static void notSplitted(String string){
         String lineByLineText[] = string.split("$");
         for (int i = 0; i < lineByLineText.length; i++){
-            if (lineByLineText[i].matches("[\\d+\\-)(]+?")){
+            if (lineByLineText[i].matches("[\\d+\\s \\-)(]+?")){
                 System.out.println("Email contact found: " + lineByLineText[i]);
             }
         }
