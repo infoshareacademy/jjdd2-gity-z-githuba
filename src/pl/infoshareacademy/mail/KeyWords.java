@@ -1,17 +1,16 @@
-import src.QuestionsAndAnswers;
+package pl.infoshareacademy.mail;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class KeyWords {
 
-    private static Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
-    public static String getUserInput() {
+    private String getUserInput() {
         return scanner.nextLine().trim().toLowerCase();
     }
 
-    public static void main(String[] args) {
+    public void KeyWordsIdentification() {
         QuestionsAndAnswers question = new QuestionsAndAnswers();
 
         for (int i = 0; i < question.getQuestions().size(); i++) {
@@ -36,7 +35,6 @@ public class KeyWords {
                     break;
             }
         }
-
         System.out.println();
         System.out.println("Have a nice day!");
         }
