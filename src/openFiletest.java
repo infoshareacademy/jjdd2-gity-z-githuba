@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class openFiletest {
     File mboxfile;
     Scanner sc;
-    List maillist = new ArrayList();
+    ArrayList<SeperateWholeMail> maillist = new ArrayList();
 
 
     public openFiletest(String FilePath) {
@@ -23,7 +23,9 @@ public class openFiletest {
         sc =new Scanner(mboxfile);
         sc.useDelimiter("\\n{3}");
         while (sc.hasNext()) {
-            maillist.add(sc.next());
+            SeperateWholeMail mail = new SeperateWholeMail();
+            mail.setMessage(sc.next());
+            maillist.add(mail);
         }
 
 //        while (sc.hasNext()) {

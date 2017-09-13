@@ -1,7 +1,8 @@
 public class SeperateWholeMail {
     String message;
-    public SeperateWholeMail(String message) {
-        this.message= message;
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getMessage() {
