@@ -18,7 +18,8 @@ public class Main {
             Menu.PrintMenu();
             System.out.print("Choose menu item: ");
             while (!in.hasNextInt()) {
-                System.out.println("This is invalid choice!");
+                msg.warningErrorReport("Please provide number!");
+                Menu.PrintMenu();
                 in.next();
             }
             menuItem = in.nextInt();
