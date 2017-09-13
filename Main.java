@@ -50,10 +50,7 @@ public class Main {
                 default:
                     System.out.println("Invalid choice.");
             }
-
-
         } while (!quit);
-
         System.out.println("Exiting main loop!");
     }
 }
