@@ -1,8 +1,9 @@
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Scanner in = new Scanner(System.in);
 
         // handle user commands
@@ -23,6 +24,9 @@ public class Main {
                     Menu.PrintMenuAnalyze();
 */
                     ContactFinder.FindMail();
+
+                    /*FindPhone phone = new FindPhone();
+                    phone.message();*/
                     break;
                 case 3:
                     System.out.println("You've chosen item #3");

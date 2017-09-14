@@ -22,16 +22,16 @@ public class ContactFinder {
                             buffor = br.readLine();
                         }
                         br.close();
-                }catch (IOException e) {
-                    e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
 
     public static void splitter(java.lang.String string){
         java.lang.String splitterResult[] = string.split("\\s");
         for (int i = 0; i < splitterResult.length; i++){
             if (splitterResult[i].matches("\\w+@\\w+\\.\\w+")
-                    || splitterResult[i].matches("([\\d\\ +\\-)(])+?")
+                    || splitterResult[i].matches("([\\d\\s+\\-)(])+?")
                     && splitterResult[i].length() >= 7) {
                 System.out.println("Email contact found: " + splitterResult[i]);
             }
@@ -39,7 +39,7 @@ public class ContactFinder {
     }
     //TODO Wyrzuca listę stringów z emailami lub telefonami do wyboru
 
-    public class FindPhone {
+    public static class FindPhone {
         File mboxfile;
         Scanner sc;
         ArrayList<String> maillist = new ArrayList();
@@ -51,14 +51,18 @@ public class ContactFinder {
             sc.useDelimiter("\\n{3}");
             while (sc.hasNext()) {
                 maillist.add(sc.next());
-            
+                for (int i = 0; i < maillist.size(); i++) {
+                    if (maillist.toString().matches("[\\d+\\s\\-)(]+?")){
+                        System.out.println("Phone found: " + maillist);
+                    }
+                }
             }
         }
     }
     public static void notSplitted(String string){
         String lineByLineText[] = string.split("$");
         for (int i = 0; i < lineByLineText.length; i++){
-            if (lineByLineText[i].matches("[\\d+\\s \\-)(]+?")){
+            if (lineByLineText[i].matches("[\\d+\\s\\-)(]+?")){
                 System.out.println("Email contact found: " + lineByLineText[i]);
             }
         }
