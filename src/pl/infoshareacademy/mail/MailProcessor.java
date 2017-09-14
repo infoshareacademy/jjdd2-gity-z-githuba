@@ -1,11 +1,11 @@
-/* Class for string operations on email header */
+package pl.infoshareacademy.mail;/* Class for string operations on email header */
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class MailProcessor {
     private static final String LINE_DELIMITER = ":";
-    private static final String NEWLINE_TAG = "\\r?\\n";
+    private static final String NEWLINE_TAG = "\\r\\n";
     private static final String FROM_TAG = "Content-Type";
     private static final String MIMEVERSION_TAG = "Mime-Version";
     ;
@@ -26,6 +26,7 @@ public class MailProcessor {
         String[] splittedHeaders = mailHeadersUnparsed.split(NEWLINE_TAG);
         for (String line : splittedHeaders) {
             parseLine(line);
+            System.out.println(line+"......................................");
         }
 
         ParsedMail pm = new ParsedMail(result.get(FROM_TAG), result.get(MIMEVERSION_TAG), null);

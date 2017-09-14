@@ -1,3 +1,5 @@
+package pl.infoshareacademy.mail;
+
 public class ParsedMail {
     private String from;
     private String mimeType;

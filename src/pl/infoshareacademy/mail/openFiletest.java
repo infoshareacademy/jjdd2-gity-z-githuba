@@ -1,12 +1,8 @@
-import com.sun.org.apache.xerces.internal.impl.xs.SchemaNamespaceSupport;
+package pl.infoshareacademy.mail;
 
 import java.io.*;
-import java.nio.file.FileSystemNotFoundException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class openFiletest {
     File mboxfile;

@@ -1,4 +1,4 @@
-import java.io.FileNotFoundException;
+package pl.infoshareacademy.mail;
 
 
 public class Main {
@@ -15,6 +15,7 @@ public class Main {
 
 
         MailProcessor mp = new MailProcessor(openFiletest.maillist.get(0).getMessage());
+
         ParsedMail result = mp.process();
         System.out.println(result);
     }

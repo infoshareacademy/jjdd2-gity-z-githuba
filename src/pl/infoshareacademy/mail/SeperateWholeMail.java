@@ -1,3 +1,5 @@
+package pl.infoshareacademy.mail;
+
 public class SeperateWholeMail {
     String message;
     String messagecontent;
