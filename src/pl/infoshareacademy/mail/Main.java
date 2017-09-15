@@ -1,8 +1,4 @@
 package pl.infoshareacademy.mail;
-
-import com.sun.org.apache.xpath.internal.SourceTree;
-
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -34,15 +30,15 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("You've chosen item #3");
-                    // do something...
+                    msg.criticalErrorRaport("Function no implemented yet!");
                     break;
                 case 4:
                     System.out.println("You've chosen item #4");
-                    // do something...
+                    msg.criticalErrorRaport("Function no implemented yet!");
                     break;
                 case 5:
                     System.out.println("You've chosen item #5");
-                    // do something...
+                    msg.criticalErrorRaport("Function no implemented yet!");
                     break;
                 case 0:
                     quit = true;

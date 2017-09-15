@@ -17,10 +17,4 @@ public class Messenger {
         System.out.println(ColorList.YELLOW + "=================================================");
         System.out.println(ColorList.GREEN + "Additional info: " + msg + ColorList.RESET);
     }
-
-    public void printResult(ArrayList<String> in) {
-        for (String s : in) {
-
-        }
-    }
 }
