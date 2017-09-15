@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Messenger msg = new Messenger();
         Scanner in = new Scanner(System.in);
+        Messenger msg = new Messenger();
         System.out.println();
         // handle user commands
         boolean quit = false;
@@ -25,7 +25,8 @@ public class Main {
             switch (menuItem) {
                 case 1:
                     System.out.println("You've chosen item #1");
-                    Menu.PrintMenuKeywords();
+                    KeyWords keyWords = new KeyWords();
+                    keyWords.KeyWordsIdentification();
                     break;
                 case 2:
                     System.out.println("You've chosen item #2");

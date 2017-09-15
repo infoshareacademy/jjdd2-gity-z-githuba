@@ -1,6 +1,6 @@
 package pl.infoshareacademy.mail;
 
-public enum colorList {
+public enum ColorList {
     RED("\u001B[31m"),
     YELLOW("\u001B[33m"),
     GREEN("\u001B[32m"),
@@ -13,7 +13,7 @@ public enum colorList {
 
     private final String color;
 
-    colorList(String color){
+    ColorList(String color){
         this.color = color;
     }
 
@@ -26,4 +26,3 @@ public enum colorList {
         return getColor();
     }
 }
-
