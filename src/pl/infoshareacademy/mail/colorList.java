@@ -1,4 +1,4 @@
-package com.company;
+package pl.infoshareacademy.mail;
 
 public enum colorList {
     RED("\u001B[31m"),

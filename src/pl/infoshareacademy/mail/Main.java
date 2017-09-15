@@ -1,6 +1,5 @@
-package com.company;
+package pl.infoshareacademy.mail;
 
-import com.company.Messenger;
 import com.sun.org.apache.xpath.internal.SourceTree;
 
 import java.util.InputMismatchException;
