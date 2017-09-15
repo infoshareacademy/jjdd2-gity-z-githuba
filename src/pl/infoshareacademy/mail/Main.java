@@ -1,26 +1,36 @@
 package pl.infoshareacademy.mail;
-import java.util.Scanner;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-
+        Messenger msg = new Messenger();
+        System.out.println();
         // handle user commands
         boolean quit = false;
         int menuItem;
         do {
-            System.out.print("Choose menu item: ");
             Menu.PrintMenu();
+            System.out.print("Choose menu item: ");
+            while (!in.hasNextInt()) {
+                msg.warningErrorReport("Please provide number!");
+                Menu.PrintMenu();
+                in.next();
+            }
             menuItem = in.nextInt();
             switch (menuItem) {
                 case 1:
                     System.out.println("You've chosen item #1");
-                    // do something...
+                    KeyWords keyWords = new KeyWords();
+                    keyWords.KeyWordsIdentification();
                     break;
                 case 2:
                     System.out.println("You've chosen item #2");
-                    // do something...
+                    Menu.PrintMenuAnalyze();
                     break;
                 case 3:
                     System.out.println("You've chosen item #3");
@@ -43,5 +53,4 @@ public class Main {
         } while (!quit);
         System.out.println("Exiting main loop!");
     }
-
 }
