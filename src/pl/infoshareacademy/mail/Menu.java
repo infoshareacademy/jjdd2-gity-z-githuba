@@ -1,3 +1,5 @@
+package pl.infoshareacademy.mail;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.io.BufferedReader;

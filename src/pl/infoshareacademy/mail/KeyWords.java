@@ -1,6 +1,5 @@
-import src.QuestionsAndAnswers;
+package pl.infoshareacademy.mail;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class KeyWords {

@@ -1,3 +1,5 @@
+package pl.infoshareacademy.mail;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,3 +1,5 @@
+package pl.infoshareacademy.mail;
+
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 

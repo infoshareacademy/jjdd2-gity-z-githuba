@@ -1,4 +1,4 @@
-package src;
+package pl.infoshareacademy.mail;
 
 import java.util.ArrayList;
 import java.util.List;
