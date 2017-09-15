@@ -1,3 +1,5 @@
+package pl.infoshareacademy.mail;
+
 public enum ColorList {
     RED("\u001B[31m"),
     YELLOW("\u001B[33m"),
