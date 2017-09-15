@@ -1,3 +1,4 @@
+package pl.infoshareacademy.mail;
 public class Menu {
     public static void PrintMenu(){
         /*Zastosowane formatowanie stringów dla łatdniejszego wyglądu.

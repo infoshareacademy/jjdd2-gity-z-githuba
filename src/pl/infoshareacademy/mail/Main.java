@@ -1,3 +1,4 @@
+package pl.infoshareacademy.mail;
 import java.util.Scanner;
 
 
