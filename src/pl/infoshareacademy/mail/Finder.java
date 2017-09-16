@@ -1,9 +1,8 @@
 package pl.infoshareacademy.mail;
-        import java.io.BufferedReader;
-        import java.io.FileReader;
-        import java.io.IOException;
+        import java.io.*;
         import java.util.ArrayList;
         import java.util.List;
+        import java.util.Scanner;
         import java.util.regex.Matcher;
         import java.util.regex.Pattern;
 
@@ -11,17 +10,17 @@ package pl.infoshareacademy.mail;
 public class Finder {
 
     private List<Email> emailList ;
-    private ArrayList<String> wholemail =new ArrayList<>();
-    private ArrayList<String> splitMessage = new ArrayList<>();
+    public ArrayList<String> wholemail =new ArrayList<>();
+    public ArrayList<String> splitMessage = new ArrayList<>();
     private String fileName;
 
 
-    public Finder(String file ) {
+    public Finder(String fileName ) {
         emailList = new ArrayList<>();
-        this.file=fileName;
+        this.fileName=fileName;
 
     }
-    public void runable() {
+    public void runable() throws IOException {
         findEmailAndDescription();
         message();
         splitMessage();
@@ -72,7 +71,8 @@ public class Finder {
 
     public void message() throws FileNotFoundException {
 
-        sc = new Scanner(fileName);
+        File file = new File(fileName);
+        Scanner sc = new Scanner(file);
         sc.useDelimiter("\\n{3}");
         while (sc.hasNext()) {
             wholemail.add(sc.next());
@@ -81,7 +81,7 @@ public class Finder {
 
     public void splitMessage() {
         for (String e : wholemail) {
-            sc = new Scanner(e);
+            Scanner sc = new Scanner(e);
             sc.useDelimiter("\\n{2}");
             int i=1;
             while (sc.hasNext()) {
@@ -97,7 +97,11 @@ public class Finder {
     }
 
     public void addMessagetoObject() {
-        for (int i = 0; i <emailList.size ; i++) {
+        if (wholemail.isEmpty()) {
+            System.out.println("Exception");
+            throw new IllegalStateException();
+        }
+        for (int i = 0; i <emailList.size()-1 ; i++) {
             emailList.get(i).setMessage(splitMessage.get(i));
         }
     }
