@@ -14,12 +14,10 @@ public class Main {
 //        MailProcessor mp = new MailProcessor(openFiletest.maillist.get(0).getMessage());
 //        ParsedMail result = mp.process();
 //        System.out.println(result);
-        Finder mail = new Finder("/home/mr/testlist.mbox");
-        mail.findEmailAndDescription();
-        mail.message();
-        mail.splitMessage();
+        Finder mail = new Finder();
+        mail.runable();
         mail.displayAllEmails();
-        System.out.println(mail.splitMessage.get(3));
-        // mail.addMessagetoObject();
+
+
     }
 }

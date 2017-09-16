@@ -10,21 +10,30 @@ package pl.infoshareacademy.mail;
 public class Finder {
 
     private List<Email> emailList ;
-    public ArrayList<String> wholemail =new ArrayList<>();
-    public ArrayList<String> splitMessage = new ArrayList<>();
+    private ArrayList<String> wholemail =new ArrayList<>();
+    private ArrayList<String> splitMessage = new ArrayList<>();
     private String fileName;
 
 
-    public Finder(String fileName ) {
+    public Finder() {
         emailList = new ArrayList<>();
-        this.fileName=fileName;
 
     }
     public void runable() throws IOException {
-        findEmailAndDescription();
-        message();
-        splitMessage();
-        addMessagetoObject();
+
+        System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
+        System.out.println("Example: /home/user/mail.txt");
+        Scanner scanner = new Scanner(System.in);
+        try {
+            fileName = scanner.nextLine();
+            findEmailAndDescription();
+            message();
+            splitMessage();
+            addMessagetoObject();
+
+        } catch (IOException ex) {
+            System.out.println("Zły plik");
+        }
     }
 
     public void findEmailAndDescription() throws IOException {
@@ -84,15 +93,15 @@ public class Finder {
             Scanner sc = new Scanner(e);
             sc.useDelimiter("\\n{2}");
             int i=1;
+            String wholecontent = "";
             while (sc.hasNext()) {
                 String message =sc.next();
-                if (i == 2) {
-                    splitMessage.add(message);
-                    //mail.setMessagecontent(message);
-                    System.out.println(message);
+                if (i >= 2) {
+                    wholecontent =wholecontent+System.lineSeparator() +message;
                 }
                 i++;
             }
+            splitMessage.add(wholecontent);
         }
     }
 
@@ -101,7 +110,7 @@ public class Finder {
             System.out.println("Exception");
             throw new IllegalStateException();
         }
-        for (int i = 0; i <emailList.size()-1 ; i++) {
+        for (int i = 0; i <emailList.size() ; i++) {
             emailList.get(i).setMessage(splitMessage.get(i));
         }
     }
@@ -154,4 +163,5 @@ public class Finder {
     public void setEmailList(List<Email> emailList) {
         this.emailList = emailList;
     }
+
 }
