@@ -11,15 +11,28 @@ package pl.infoshareacademy.mail;
 public class Finder {
 
     private List<Email> emailList ;
+    private ArrayList<String> wholemail =new ArrayList<>();
+    private ArrayList<String> splitMessage = new ArrayList<>();
+    private String fileName;
 
-    public Finder() {
+
+    public Finder(String file ) {
         emailList = new ArrayList<>();
+        this.file=fileName;
+
+    }
+    public void runable() {
+        findEmailAndDescription();
+        message();
+        splitMessage();
+        addMessagetoObject();
     }
 
-    public void findEmailAndDescription(final String fileName) throws IOException {
+    public void findEmailAndDescription() throws IOException {
         BufferedReader file = null;
         String from = null;
         String description = null;
+
 
         final Pattern compiledPattern = Pattern.compile("[A-za-z.]+@[A-za-z]+\\.com");
         try {
@@ -57,6 +70,40 @@ public class Finder {
         }
     }
 
+    public void message() throws FileNotFoundException {
+
+        sc = new Scanner(fileName);
+        sc.useDelimiter("\\n{3}");
+        while (sc.hasNext()) {
+            wholemail.add(sc.next());
+        }
+    }
+
+    public void splitMessage() {
+        for (String e : wholemail) {
+            sc = new Scanner(e);
+            sc.useDelimiter("\\n{2}");
+            int i=1;
+            while (sc.hasNext()) {
+                String message =sc.next();
+                if (i == 2) {
+                    splitMessage.add(message);
+                    //mail.setMessagecontent(message);
+                    System.out.println(message);
+                }
+                i++;
+            }
+        }
+    }
+
+    public void addMessagetoObject() {
+        for (int i = 0; i <emailList.size ; i++) {
+            emailList.get(i).setMessage(splitMessage.get(i));
+        }
+    }
+
+
+
     public void addEmailToArrayList(final List<Email> list,final String from,final String description) {
         Email email = new Email();
         email.setFrom(from);
@@ -72,6 +119,7 @@ public class Finder {
             System.out.println("Number: "+number);
             System.out.println("From: " + iter.getFrom());
             System.out.println("Description: " + iter.getDescription());
+            System.out.println("Content: " + iter.getMessage());
             System.out.println("_______________________________________________________________");
         }
     }
