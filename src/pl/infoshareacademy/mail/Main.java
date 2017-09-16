@@ -1,8 +1,9 @@
 package pl.infoshareacademy.mail;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner in = new Scanner(System.in);
         Messenger msg = new Messenger();
         System.out.println();
@@ -26,7 +27,10 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("You've chosen item #2");
-                    Menu.PrintMenuAnalyze();
+                   // Menu.PrintMenuAnalyze();
+                    Finder mail = new Finder();
+                    mail.runable();
+                    mail.displayAllEmails();
                     break;
                 case 3:
                     System.out.println("You've chosen item #3");
