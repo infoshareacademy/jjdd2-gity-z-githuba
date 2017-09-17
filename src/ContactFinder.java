@@ -38,7 +38,7 @@ public class ContactFinder {
     public static void splitter(java.lang.String string){
         java.lang.String splitterResult[] = string.split("\\s");
         for (int i = 0; i < splitterResult.length; i++){
-            if (splitterResult[i].contains("@") || splitterResult[i].matches("[\\d+\\-)(]+?")){
+            if (splitterResult[i].contains("@") || splitterResult[i].matches("([\\d+\\-)(]+?)(^\\d)(^\\d\\d\\-\\d\\d\\d)")){
                 System.out.println("Email contact found: " + splitterResult[i]);
             }
         }
@@ -46,7 +46,7 @@ public class ContactFinder {
     public static void notSplitted(String string){
         String lineByLineText[] = string.split("$");
         for (int i = 0; i < lineByLineText.length; i++){
-            if (lineByLineText[i].matches("[\\d+\\-)(]+?")){
+            if (lineByLineText[i].matches("([\\d+\\-)(]+?)(^\\d)(^\\d\\d\\-\\d\\d\\d)")){
                 System.out.println("Email contact found: " + lineByLineText[i]);
             }
         }
