@@ -1,10 +1,17 @@
 package pl.infoshareacademy.mail;
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+
 
 
 public class Finder {
@@ -15,18 +22,13 @@ public class Finder {
     private String fileName;
 
 
-    public Finder() {
+    public Finder(String fileName) {
         emailList = new ArrayList<>();
+        this.fileName=fileName;
 
     }
     public void runable() {
-
-        System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
-        System.out.println("Example: /home/user/mail.txt");
-        Scanner scanner = new Scanner(System.in);
         try {
-            fileName = scanner.nextLine();
-            fileName =fileName.toLowerCase();
             findEmailAndDescription();
             message();
             splitMessage();

@@ -35,8 +35,13 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("You've chosen item #2");
-                    Finder mail = new Finder();
+                    System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
+                    System.out.println("Example: /home/user/mail.txt");
+                    String filename= in.next();
+                    filename =filename.toLowerCase();
+                    Finder mail = new Finder(filename);
                     mail.runable();
+
                     // Only for 1 Sprint
                     mail.displayAllEmails();
                     break;

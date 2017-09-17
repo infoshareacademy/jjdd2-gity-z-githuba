@@ -1,7 +1,9 @@
 package pl.infoshareacademy.mail;
 
-public class EmptyFileException extends Throwable {
-    public EmptyFileException(String empty_file) {
-        System.out.println(empty_file);
+public class EmptyFileException extends Exception {
+    public EmptyFileException() {
+    }
+    public EmptyFileException(String msg) {
+        super(msg);
     }
 }
