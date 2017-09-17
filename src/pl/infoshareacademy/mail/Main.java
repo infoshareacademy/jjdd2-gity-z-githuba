@@ -1,12 +1,9 @@
 package pl.infoshareacademy.mail;
-
-import com.sun.org.apache.xpath.internal.SourceTree;
-
-import java.util.InputMismatchException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner in = new Scanner(System.in);
         Messenger msg = new Messenger();
         System.out.println();
@@ -37,18 +34,22 @@ public class Main {
 
                     /*FindPhone phone = new FindPhone();
                     phone.message();*/
+                   // Menu.PrintMenuAnalyze();
+                    Finder mail = new Finder();
+                    mail.runable();
+                    mail.displayAllEmails();
                     break;
                 case 3:
                     System.out.println("You've chosen item #3");
-                    // do something...
+                    msg.criticalErrorRaport("Function no implemented yet!");
                     break;
                 case 4:
                     System.out.println("You've chosen item #4");
-                    // do something...
+                    msg.criticalErrorRaport("Function no implemented yet!");
                     break;
                 case 5:
                     System.out.println("You've chosen item #5");
-                    // do something...
+                    msg.criticalErrorRaport("Function no implemented yet!");
                     break;
                 case 0:
                     quit = true;
