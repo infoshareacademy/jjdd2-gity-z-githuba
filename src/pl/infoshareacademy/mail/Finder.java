@@ -19,7 +19,7 @@ public class Finder {
         emailList = new ArrayList<>();
 
     }
-    public void runable() throws IOException {
+    public void runable() {
 
         System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
         System.out.println("Example: /home/user/mail.txt");
