@@ -1,35 +1,91 @@
 package pl.infoshareacademy.mail;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Collections;
+import java.util.*;
 
 
 public class ContactFinder {
 
-                public static void FindMail() {
-                    System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
-                    System.out.println("Example: /home/user/mail.txt");
-                    Scanner scanner = new Scanner(System.in);
-                    java.lang.String path = scanner.nextLine();
+    public static void FindMail(Finder finder) {
 
-                    try {
-                        FileReader fr = new FileReader(path);
-                        BufferedReader br = new BufferedReader(fr);
-                        java.lang.String buffor = br.readLine();
-                        while (buffor != null) {
-                            splitter(buffor);
-                            buffor = br.readLine();
-                        }
-                        br.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+        List<Email> list = finder.getEmailList();
+        Set<String> eFound = new HashSet<String>();
+
+        for (Email e : list) {
+            e.getMessage();
+            String splitterResult[] = e.getMessage().split("\\s");
+            for (int i = 0; i < splitterResult.length; i++) {
+                if (splitterResult[i].matches("\\w+@\\w+\\.\\w+")) {
+                    eFound.add(splitterResult[i]);
                 }
+            }
+        }
+        for (String emails : eFound) {
+            System.out.println("Email contacts found: " + emails);
+        }
+    }
 
-    public static void splitter(java.lang.String string){
+    public static void FindPhoneNo(Finder finder) {
+
+        List<Email> list = finder.getEmailList();
+        Set<String> pFound = new HashSet<String>();
+        for (Email e : list) {
+            e.getMessage();
+            String splitterResult[] = e.getMessage().split("\\s");
+            for (int i = 0; i < splitterResult.length; i++) {
+                if (splitterResult[i].matches("([\\d\\s+\\-)(])+?")
+                        && splitterResult[i].length() >= 7) {
+                    pFound.add(splitterResult[i]);
+                }
+            }
+        }
+        for (String phones : pFound) {
+            System.out.println("Phone numbers found: " + phones);
+        }
+    }
+    public static void FindWebsite(Finder finder) {
+
+        List<Email> list = finder.getEmailList();
+        Set<String> wFound = new HashSet<String>();
+        for (Email e : list) {
+            e.getMessage();
+            String splitterResult[] = e.getMessage().split("\\s");
+            for (int i = 0; i < splitterResult.length; i++) {
+                if (splitterResult[i].matches("(http).+")
+                        || splitterResult[i].matches("(www).+")) {
+                    wFound.add(splitterResult[i]);
+                }
+            }
+        }
+        for (String websites : wFound) {
+            System.out.println("Websites or Links found: " + websites);
+        }
+    }
+}
+   /* public static void FindMail(Finder finder) {
+
+        String messageText;
+        List<Email> list = finder.getEmailList();
+        for (Email e : list) {
+            messageText = e.getDescription();
+            BufferedReader br = new BufferedReader(new StringReader(messageText));
+            try {
+                String messages = br.readLine();
+                while (messages != null) {
+                    splitter(messages);
+                    messages = br.readLine();
+                    System.out.println(messages);
+                }
+                br.close();
+            } catch (IOException error) {
+                error.printStackTrace();
+            }
+            System.out.println(messageText);
+        }
+
+    }*/
+
+   /* public static void splitter(java.lang.String string){
         java.lang.String splitterResult[] = string.split("\\s");
         for (int i = 0; i < splitterResult.length; i++){
             if (splitterResult[i].matches("\\w+@\\w+\\.\\w+")
@@ -41,11 +97,11 @@ public class ContactFinder {
     }
     //TODO Wyrzuca listę stringów z emailami lub telefonami do wyboru
 
-    public static class FindPhone {
+    public static class findPhone {
         File mboxfile;
         Scanner sc;
         ArrayList<String> maillist = new ArrayList();
-        public FindPhone(String FilePath) {
+        public findPhone(String FilePath) {
             mboxfile = new File(FilePath);
         }
         public void message() throws FileNotFoundException {
@@ -60,14 +116,14 @@ public class ContactFinder {
                 }
             }
         }
-    }
-    public static void notSplitted(String string){
-        String lineByLineText[] = string.split("$");
-        for (int i = 0; i < lineByLineText.length; i++){
-            if (lineByLineText[i].matches("[\\d+\\s\\-)(]+?")){
-                System.out.println("Email contact found: " + lineByLineText[i]);
-            }
-        }
-    }
-}
+    }*/
+    //public static void notSplitted(String string){
+       // String lineByLineText[] = string.split("$");
+        //for (int i = 0; i < lineByLineText.length; i++){
+          //  if (lineByLineText[i].matches("[\\d+\\s\\-)(]+?")){
+             //   System.out.println("Email contact found: " + lineByLineText[i]);
+
+       // }
+  //  }
+//}
 

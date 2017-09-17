@@ -27,17 +27,7 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("You've chosen item #2");
-/*
-                    Menu.PrintMenuAnalyze();
-*/
-                    ContactFinder.FindMail();
-
-                    /*FindPhone phone = new FindPhone();
-                    phone.message();*/
-                   // Menu.PrintMenuAnalyze();
-                    Finder mail = new Finder();
-                    mail.runable();
-                    mail.displayAllEmails();
+                    msg.criticalErrorRaport("Function no implemented yet!");
                     break;
                 case 3:
                     System.out.println("You've chosen item #3");
@@ -45,7 +35,14 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("You've chosen item #4");
-                    msg.criticalErrorRaport("Function no implemented yet!");
+
+                    Finder mail = new Finder();
+                    mail.runable();
+                    ContactFinder searchmail = new ContactFinder();
+                    searchmail.FindMail(mail);
+                    searchmail.FindPhoneNo(mail);
+                    searchmail.FindWebsite(mail);
+
                     break;
                 case 5:
                     System.out.println("You've chosen item #5");
