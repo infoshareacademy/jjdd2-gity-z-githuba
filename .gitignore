@@ -1,6 +1,8 @@
 .idea
 *.iml
+*.idea
 out/
+*.out/
 .class
-src/Main.class
-src/Menu.class
+src/pl/infoshareacademy/mail/Main.class
+src/pl/infoshareacademy/mail/Menu.class
