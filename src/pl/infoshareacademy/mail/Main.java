@@ -27,18 +27,18 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("You've chosen item #2");
-                   // Menu.PrintMenuAnalyze();
-                    Finder mail = new Finder();
-                    mail.runable();
-                    mail.displayAllEmails();
+                    Menu.PrintMenuAnalyze();
                     break;
                 case 3:
                     System.out.println("You've chosen item #3");
                     msg.criticalErrorRaport("Function no implemented yet!");
                     break;
                 case 4:
-                    System.out.println("You've chosen item #4");
-                    msg.criticalErrorRaport("Function no implemented yet!");
+                    System.out.println("You've chosen item #2");
+                    Finder mail = new Finder();
+                    mail.runable();
+                    // Only for 1 Sprint
+                    mail.displayAllEmails();
                     break;
                 case 5:
                     System.out.println("You've chosen item #5");

@@ -26,12 +26,13 @@ public class Finder {
         Scanner scanner = new Scanner(System.in);
         try {
             fileName = scanner.nextLine();
+            fileName =fileName.toLowerCase();
             findEmailAndDescription();
             message();
             splitMessage();
             addMessagetoObject();
 
-        } catch (EmptyFile ex) {
+        } catch (EmptyFileException ex) {
         } catch (IOException ex) {
             System.out.println("Wrong file path !");
         }
@@ -42,8 +43,7 @@ public class Finder {
         String from = null;
         String description = null;
 
-
-        final Pattern compiledPattern = Pattern.compile("[A-za-z.]+@[A-za-z]+\\.com");
+        final Pattern compiledPattern = Pattern.compile("([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})");
         try {
             file = new BufferedReader(new FileReader(fileName));
             String singleLine = file.readLine();
@@ -106,9 +106,9 @@ public class Finder {
         }
     }
 
-    public void addMessagetoObject() throws EmptyFile {
+    public void addMessagetoObject() throws EmptyFileException {
         if (wholemail.isEmpty()) {
-            throw new EmptyFile("Empty file");
+            throw new EmptyFileException("Empty file");
         }
         for (int i = 0; i <emailList.size() ; i++) {
             emailList.get(i).setMessage(splitMessage.get(i));
@@ -131,7 +131,7 @@ public class Finder {
             System.out.println("_______________________________________________________________");
             System.out.println("Number: "+number);
             System.out.println("From: " + iter.getFrom());
-            System.out.println("Description: " + iter.getDescription());
+            System.out.println("Subject: " + iter.getDescription());
             System.out.println("Content: " + iter.getMessage());
             System.out.println("_______________________________________________________________");
         }
