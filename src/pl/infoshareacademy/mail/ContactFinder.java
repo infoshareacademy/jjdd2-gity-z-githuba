@@ -1,12 +1,11 @@
 package pl.infoshareacademy.mail;
-
-import java.io.*;
-import java.util.*;
-
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class ContactFinder {
 
-    public static void FindMail(Finder finder) {
+    public void FindMail(Finder finder) {
 
         List<Email> list = finder.getEmailList();
         Set<String> eFound = new HashSet<String>();
@@ -24,7 +23,7 @@ public class ContactFinder {
         }
     }
 
-    public static void FindPhoneNo(Finder finder) {
+    public void FindPhoneNo(Finder finder) {
 
         List<Email> list = finder.getEmailList();
         Set<String> pFound = new HashSet<String>();
@@ -41,7 +40,7 @@ public class ContactFinder {
             System.out.println("Phone numbers found: " + phones);
         }
     }
-    public static void FindWebsite(Finder finder) {
+    public void FindWebsite(Finder finder) {
 
         List<Email> list = finder.getEmailList();
         Set<String> wFound = new HashSet<String>();

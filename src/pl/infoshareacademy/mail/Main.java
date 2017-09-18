@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         Messenger msg = new Messenger();
         System.out.println();
@@ -35,14 +35,18 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("You've chosen item #4");
-
-                    Finder mail = new Finder();
+                    System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
+                    System.out.println("Example: /home/user/mail.mbox");
+                    String filename= in.next();
+                    filename =filename.toLowerCase();
+                    Finder mail = new Finder(filename);
                     mail.runable();
                     ContactFinder searchmail = new ContactFinder();
                     searchmail.FindMail(mail);
                     searchmail.FindPhoneNo(mail);
                     searchmail.FindWebsite(mail);
-
+                    // Only for 1 Sprint
+                    mail.displayAllEmails();
                     break;
                 case 5:
                     System.out.println("You've chosen item #5");

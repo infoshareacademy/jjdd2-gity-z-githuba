@@ -1,10 +1,17 @@
 package pl.infoshareacademy.mail;
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+
 
 
 public class Finder {
@@ -15,23 +22,19 @@ public class Finder {
     private String fileName;
 
 
-    public Finder() {
+    public Finder(String fileName) {
         emailList = new ArrayList<>();
+        this.fileName=fileName;
 
     }
-    public void runable() throws IOException {
-
-        System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
-        System.out.println("Example: /home/user/mail.txt");
-        Scanner scanner = new Scanner(System.in);
+    public void runable() {
         try {
-            fileName = scanner.nextLine();
             findEmailAndDescription();
             message();
             splitMessage();
             addMessagetoObject();
 
-        } catch (EmptyFile ex) {
+        } catch (EmptyFileException ex) {
         } catch (IOException ex) {
             System.out.println("Wrong file path !");
         }
@@ -42,8 +45,7 @@ public class Finder {
         String from = null;
         String description = null;
 
-
-        final Pattern compiledPattern = Pattern.compile("[A-za-z.]+@[A-za-z]+\\.com");
+        final Pattern compiledPattern = Pattern.compile("([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})");
         try {
             file = new BufferedReader(new FileReader(fileName));
             String singleLine = file.readLine();
@@ -106,9 +108,9 @@ public class Finder {
         }
     }
 
-    public void addMessagetoObject() throws EmptyFile {
+    public void addMessagetoObject() throws EmptyFileException {
         if (wholemail.isEmpty()) {
-            throw new EmptyFile("Empty file");
+            throw new EmptyFileException("Empty file");
         }
         for (int i = 0; i <emailList.size() ; i++) {
             emailList.get(i).setMessage(splitMessage.get(i));
@@ -131,7 +133,7 @@ public class Finder {
             System.out.println("_______________________________________________________________");
             System.out.println("Number: "+number);
             System.out.println("From: " + iter.getFrom());
-            System.out.println("Description: " + iter.getDescription());
+            System.out.println("Subject: " + iter.getDescription());
             System.out.println("Content: " + iter.getMessage());
             System.out.println("_______________________________________________________________");
         }
