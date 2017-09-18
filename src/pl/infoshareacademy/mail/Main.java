@@ -1,8 +1,5 @@
 package pl.infoshareacademy.mail;
-
-import com.sun.org.apache.xpath.internal.SourceTree;
-
-import java.util.InputMismatchException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -34,15 +31,22 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("You've chosen item #3");
-                    // do something...
+                    msg.criticalErrorRaport("Function no implemented yet!");
                     break;
                 case 4:
                     System.out.println("You've chosen item #4");
-                    // do something...
+                    System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
+                    System.out.println("Example: /home/user/mail.mbox");
+                    String filename= in.next();
+                    filename =filename.toLowerCase();
+                    Finder mail = new Finder(filename);
+                    mail.runable();
+                    // Only for 1 Sprint
+                    mail.displayAllEmails();
                     break;
                 case 5:
                     System.out.println("You've chosen item #5");
-                    // do something...
+                    msg.criticalErrorRaport("Function no implemented yet!");
                     break;
                 case 0:
                     quit = true;
