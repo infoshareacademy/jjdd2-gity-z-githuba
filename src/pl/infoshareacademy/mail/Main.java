@@ -1,4 +1,5 @@
 package pl.infoshareacademy.mail;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -34,7 +35,14 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("You've chosen item #4");
-                    msg.criticalErrorRaport("Function no implemented yet!");
+                    System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
+                    System.out.println("Example: /home/user/mail.mbox");
+                    String filename= in.next();
+                    filename =filename.toLowerCase();
+                    Finder mail = new Finder(filename);
+                    mail.runable();
+                    // Only for 1 Sprint
+                    mail.displayAllEmails();
                     break;
                 case 5:
                     System.out.println("You've chosen item #5");

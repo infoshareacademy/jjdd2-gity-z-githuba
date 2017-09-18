@@ -8,7 +8,7 @@ public class Menu {
         System.out.format("%-60s - AVALIBLE%n","1. What keywords should i use to find mine email?");
         System.out.format("%-60s - AVALIBLE%n","2. Analyze contact data from mine e-mail");
         System.out.format("%-60s - UNAVALIBLE%n","3. Show me mine top 10 customer's");
-        System.out.format("%-60s - UNAVALIBLE%n","4. Filter mine contact's (Single .mbox file)");
+        System.out.format("%-60s - AVALIBLE%n","4. Filter mine contact's (Single .mbox file)");
         System.out.format("%-60s - UNAVALIBLE%n","5. Filter mine contact's (Multiple .mbox file)");
         System.out.format("%-60s - UNAVALIBLE%n","6. Show me abandoned customers");
         System.out.println();
