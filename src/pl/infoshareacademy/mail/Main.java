@@ -27,7 +27,7 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("You've chosen item #2");
-                    msg.criticalErrorRaport("Function no implemented yet!");
+                    Menu.PrintMenuAnalyze();
                     break;
                 case 3:
                     System.out.println("You've chosen item #3");
