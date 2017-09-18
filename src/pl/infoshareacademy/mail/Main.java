@@ -41,6 +41,10 @@ public class Main {
                     filename =filename.toLowerCase();
                     Finder mail = new Finder(filename);
                     mail.runable();
+                    ContactFinder searchmail = new ContactFinder();
+                    searchmail.FindMail(mail);
+                    searchmail.FindPhoneNo(mail);
+                    searchmail.FindWebsite(mail);
                     // Only for 1 Sprint
                     mail.displayAllEmails();
                     break;

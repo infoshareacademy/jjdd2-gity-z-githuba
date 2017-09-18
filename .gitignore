@@ -3,3 +3,7 @@
 out
 *.idea
 out/
+*.out/
+.class
+src/pl/infoshareacademy/mail/Main.class
+src/pl/infoshareacademy/mail/Menu.class
