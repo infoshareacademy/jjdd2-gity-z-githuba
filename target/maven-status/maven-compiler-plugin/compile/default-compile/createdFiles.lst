@@ -1,0 +1,11 @@
+pl/infoshareacademy/mail/Messenger.class
+pl/infoshareacademy/mail/Menu.class
+pl/infoshareacademy/mail/Email.class
+pl/infoshareacademy/mail/Main.class
+pl/infoshareacademy/mail/ColorList.class
+pl/infoshareacademy/mail/EmptyFile.class
+pl/infoshareacademy/mail/EmptyFileException.class
+pl/infoshareacademy/mail/QuestionsAndAnswers.class
+pl/infoshareacademy/mail/Finder.class
+pl/infoshareacademy/mail/ContactFinder.class
+pl/infoshareacademy/mail/KeyWords.class
