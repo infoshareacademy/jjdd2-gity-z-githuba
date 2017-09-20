@@ -29,12 +29,13 @@ public class MboxParser {
                 System.out.println("Please supply a path to an mbox file to parse");
             }
 
-            final File mbox = new File(args[0]);
+            final File mbox = new File("/home/mr/1.mbox");
             long start = System.currentTimeMillis();
             int count = 0;
 
             for (CharBufferWrapper message : MboxIterator.fromFile(mbox).charset(ENCODER.charset()).build()) {
                 // saveMessageToFile(count, buf);
+
                 System.out.println(messageSummary(message.asInputStream(ENCODER.charset())));
                 count++;
             }
@@ -68,6 +69,8 @@ public class MboxParser {
                             "To:\t%s\n",
                     message.getSubject(),
                     message.getSender(),
-                    message.getTo());
+                    message.getTo(),
+                    message.getDate());
+
         }
     }
