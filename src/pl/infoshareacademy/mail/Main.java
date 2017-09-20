@@ -31,7 +31,7 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("You've chosen item #3");
-                    msg.criticalErrorRaport("Function no implemented yet!");
+                    msg.criticalErrorRaport("Function not implemented yet!");
                     break;
                 case 4:
                     System.out.println("You've chosen item #4");
@@ -50,7 +50,7 @@ public class Main {
                     break;
                 case 5:
                     System.out.println("You've chosen item #5");
-                    msg.criticalErrorRaport("Function no implemented yet!");
+                    msg.criticalErrorRaport("Function not implemented yet!");
                     break;
                 case 0:
                     quit = true;

@@ -27,13 +27,14 @@ public class Menu {
 
     public static void filterMaches(boolean mail, boolean phone, ArrayList<String> mailContent){
         for (int i = 0; i < mailContent.size(); i++){
-            if (mailContent.get(i).contains("@")) {
-                System.out.println("Znaleziono dopasowanie! " + mailContent.get(i));
-                String[] splitResult = mailContent.get(i).split(" ");
+            if (mailContent.get(i).contains("\\w+@\\w+\\.\\w+")) {
+                System.out.println("Email address found: " + mailContent.get(i));
+                String[] splitResult = mailContent.get(i).split("\\s");
                 for (int j = 0; j < splitResult.length; j++){
                 }
-            } else if (mailContent.get(i).matches("[0-9+]+")){
-                System.out.println("Znaleziono numer! " + mailContent.get(i));
+            } else if (mailContent.get(i).matches("([\\d\\s+\\-)(])+?")
+                    && mailContent.get(i).length() >= 7){
+                System.out.println("Mobile number found: " + mailContent.get(i));
             }
         }
     }
