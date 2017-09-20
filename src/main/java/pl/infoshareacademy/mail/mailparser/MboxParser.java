@@ -3,6 +3,7 @@ import org.apache.james.mime4j.MimeException;
 import org.apache.james.mime4j.dom.Message;
 import org.apache.james.mime4j.dom.MessageBuilder;
 import org.apache.james.mime4j.message.DefaultMessageBuilder;
+import pl.infoshareacademy.mail.Email;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -36,7 +37,7 @@ public class MboxParser {
             for (CharBufferWrapper message : MboxIterator.fromFile(mbox).charset(ENCODER.charset()).build()) {
                 // saveMessageToFile(count, buf);
 
-                System.out.println(messageSummary(message.asInputStream(ENCODER.charset())));
+                messageSummary(message.asInputStream(ENCODER.charset()));
                 count++;
             }
             System.out.println("Found " + count + " messages");
@@ -61,16 +62,14 @@ public class MboxParser {
          * @throws IOException
          * @throws MimeException
          */
-        private static String messageSummary(InputStream messageBytes) throws IOException, MimeException {
+        private static void messageSummary(InputStream messageBytes) throws IOException, MimeException {
             MessageBuilder builder = new DefaultMessageBuilder();
             Message message = builder.parseMessage(messageBytes);
-            return String.format("\nMessage %s \n" +
-                            "Sent by:\t%s\n" +
-                            "To:\t%s\n",
-                    message.getSubject(),
-                    message.getSender(),
-                    message.getTo(),
-                    message.getDate());
+            Email email = new Email();
+                    email.setMessage(message.getSubject());
+                    message.getSender();
+                    message.getTo();
+                    message.getDate();
 
         }
     }

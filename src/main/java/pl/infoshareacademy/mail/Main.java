@@ -1,4 +1,6 @@
 package pl.infoshareacademy.mail;
+import pl.infoshareacademy.mail.mailparser.MboxParser;
+
 import java.io.IOException;
 import java.util.Scanner;
 
