@@ -19,6 +19,7 @@
             </plugin>
         </plugins>
     </build>
+    <dependencies>
     <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-core</artifactId>
@@ -29,4 +30,11 @@
         <artifactId>log4j-api</artifactId>
         <version>2.9.0</version>
     </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.james/apache-mime4j-james-utils -->
+        <dependency>
+            <groupId>org.apache.james</groupId>
+            <artifactId>apache-mime4j-james-utils</artifactId>
+            <version>0.8.1</version>
+        </dependency>
+    </dependencies>
 </project>
