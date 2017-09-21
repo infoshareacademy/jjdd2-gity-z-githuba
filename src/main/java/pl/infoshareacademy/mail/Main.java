@@ -22,27 +22,27 @@ public class Main {
             System.out.print("Choose menu item: ");
             while (!in.hasNextInt()) {
                 msg.warningErrorReport("Please provide number!");
-                logger.warn("Input missmach! Expected INT got {0}");
+                logger.warn("Input missmach! Expected INT got other value!");
                 Menu.PrintMenu();
                 in.next();
             }
             menuItem = in.nextInt();
             switch (menuItem) {
                 case 1:
-                    logger.info("Im in Menu {0} right now!", menuItem);
+                    logger.info("Im in Menu {} right now!", menuItem);
                     KeyWords keyWords = new KeyWords();
                     keyWords.KeyWordsIdentification();
                     break;
                 case 2:
-                    logger.info("Im in Menu {0} right now!", menuItem);
+                    logger.info("Im in Menu {} right now!", menuItem);
                     Menu.PrintMenuAnalyze();
                     break;
                 case 3:
-                    logger.info("Im in Menu {0} right now!", menuItem);
+                    logger.info("Im in Menu {} right now!", menuItem);
                     msg.criticalErrorRaport("Function no implemented yet!");
                     break;
                 case 4:
-                    logger.info("Im in Menu {0} right now!", menuItem);
+                    logger.info("Im in Menu {} right now!", menuItem);
                     System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
                     System.out.println("Example: /home/user/mail.mbox");
                     String filename= in.next();
@@ -57,7 +57,7 @@ public class Main {
                     mail.displayAllEmails();
                     break;
                 case 5:
-                    logger.info("Im in Menu {0} right now!", menuItem);
+                    logger.info("Im in Menu {} right now!", menuItem);
                     msg.criticalErrorRaport("Function no implemented yet!");
                     break;
                 case 0:
