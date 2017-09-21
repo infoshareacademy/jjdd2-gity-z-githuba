@@ -2,6 +2,7 @@ package pl.infoshareacademy.mail.mailparser;
 import org.apache.james.mime4j.MimeException;
 import org.apache.james.mime4j.dom.Message;
 import org.apache.james.mime4j.dom.MessageBuilder;
+import org.apache.james.mime4j.dom.address.Mailbox;
 import org.apache.james.mime4j.message.DefaultMessageBuilder;
 import pl.infoshareacademy.mail.Email;
 
@@ -14,14 +15,11 @@ import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
+import java.util.ArrayList;
 
 public class MboxParser {
 
-    /**
-     * Simple example of how to use Apache Mime4j Mbox Iterator. We split one mbox file file into
-     * individual email messages.
-     */
-
+    public static ArrayList<Email> Skrzynka = new ArrayList<>();
         private final static CharsetEncoder ENCODER = Charset.forName("UTF-8").newEncoder();
 
         // simple example of how to split an mbox into individual files
@@ -30,46 +28,32 @@ public class MboxParser {
                 System.out.println("Please supply a path to an mbox file to parse");
             }
 
-            final File mbox = new File("/home/mr/1.mbox");
+            final File mbox = new File("/home/michalrichert/1.mbox");
             long start = System.currentTimeMillis();
             int count = 0;
-
+            MailBox mailbox=new MailBox();
             for (CharBufferWrapper message : MboxIterator.fromFile(mbox).charset(ENCODER.charset()).build()) {
-                // saveMessageToFile(count, buf);
-
-                messageSummary(message.asInputStream(ENCODER.charset()));
+                messageSummary(message.asInputStream(ENCODER.charset()),mailbox);
                 count++;
             }
+            mailbox.getMailbox().forEach(email1 -> System.out.println(email1));
             System.out.println("Found " + count + " messages");
             long end = System.currentTimeMillis();
             System.out.println("Done in: " + (end - start) + " milis");
         }
 
-        private static void saveMessageToFile(int count, CharBuffer buf) throws IOException {
-            FileOutputStream fout = new FileOutputStream(new File("target/messages/msg-" + count));
-            FileChannel fileChannel = fout.getChannel();
-            ByteBuffer buf2 = ENCODER.encode(buf);
-            fileChannel.write(buf2);
-            fileChannel.close();
-            fout.close();
-        }
-
-        /**
-         * Parse a message and return a simple {@link String} representation of some important fields.
-         *
-         * @param messageBytes the message as {@link java.io.InputStream}
-         * @return String
-         * @throws IOException
-         * @throws MimeException
-         */
-        private static void messageSummary(InputStream messageBytes) throws IOException, MimeException {
+        private static void messageSummary(InputStream messageBytes,MailBox mailbox) throws IOException, MimeException {
             MessageBuilder builder = new DefaultMessageBuilder();
             Message message = builder.parseMessage(messageBytes);
             Email email = new Email();
+                    email.setMessage(message.getMessageId());
+                    email.setFrom(message.getFrom().toString());
+ //TO DO OPTIONAL NA NULLA                  // email.setSender(message.getSender().toString());
+                    email.setDate(message.getDate());
                     email.setMessage(message.getSubject());
-                    message.getSender();
-                    message.getTo();
-                    message.getDate();
+                  //  email.setSubject(message.getSender().toString());
+            ArrayList<Email> mailboxsupport = mailbox.getMailbox();
+            mailboxsupport.add(email);
 
         }
     }

@@ -122,7 +122,7 @@ public class Finder {
     public void addEmailToArrayList(final List<Email> list,final String from,final String description) {
         Email email = new Email();
         email.setFrom(from);
-        email.setDescription(description);
+        email.setFrom(from);;
         list.add(email);
     }
 
@@ -133,7 +133,7 @@ public class Finder {
             System.out.println("_______________________________________________________________");
             System.out.println("Number: "+number);
             System.out.println("From: " + iter.getFrom());
-            System.out.println("Subject: " + iter.getDescription());
+            System.out.println("Subject: ");
             System.out.println("Content: " + iter.getMessage());
             System.out.println("_______________________________________________________________");
         }
