@@ -1,8 +1,10 @@
 package pl.infoshareacademy.mail;
+import com.sun.deploy.util.StringUtils;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 
 public class ContactFinder {
 
@@ -19,9 +21,8 @@ public class ContactFinder {
                 }
             }
         }
-        for (String emails : eFound) {
-            System.out.println("Email contacts found: " + emails);
-        }
+        String str = StringUtils.join(eFound, ", ");
+        System.out.println("Email contacts found: " + str);
     }
 
     public void FindPhoneNo(Finder finder) {
