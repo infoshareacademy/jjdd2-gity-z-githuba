@@ -62,13 +62,13 @@ public class ContactFinder {
     public static void filterMatches(boolean mail, boolean phone, ArrayList<String> mailContent){
         for (int i = 0; i < mailContent.size(); i++){
             if (mailContent.get(i).contains("\\w+@\\w+\\.\\w+")) {
-                System.out.println("Email address found: " + mailContent.get(i));
+                System.out.println("Email contacts found: " + mailContent.get(i));
                 String[] splitResult = mailContent.get(i).split("\\s");
                 for (int j = 0; j < splitResult.length; j++){
                 }
             } else if (mailContent.get(i).matches("([\\d\\s+\\-)(])+?")
                     && mailContent.get(i).length() >= 7){
-                System.out.println("Mobile number found: " + mailContent.get(i));
+                System.out.println("Phone numbers found: " + mailContent.get(i));
             }
         }
     }
