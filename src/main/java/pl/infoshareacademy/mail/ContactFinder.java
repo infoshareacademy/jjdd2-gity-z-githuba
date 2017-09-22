@@ -4,10 +4,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class ContactFinder {
+    private static final Logger logger = LogManager.getLogger(ContactFinder.class.getName());
+
+
 
     public void FindMail(Finder finder) {
-
+        logger.info("Trying to find email from findMail method");
         List<Email> list = finder.getEmailList();
         Set<String> eFound = new HashSet<String>();
 
@@ -21,6 +28,7 @@ public class ContactFinder {
         }
         for (String emails : eFound) {
             System.out.println("Email contacts found: " + emails);
+            logger.info("Found E-Mail!");
         }
     }
 
@@ -39,6 +47,7 @@ public class ContactFinder {
         }
         for (String phones : pFound) {
             System.out.println("Phone numbers found: " + phones);
+            logger.info("Found Phone Number!");
         }
     }
     public void FindWebsite(Finder finder) {
@@ -55,20 +64,8 @@ public class ContactFinder {
             }
         }
         for (String websites : wFound) {
-            System.out.println("Websites or links found: " + websites);
-        }
-    }
-    public static void filterMatches(boolean mail, boolean phone, ArrayList<String> mailContent){
-        for (int i = 0; i < mailContent.size(); i++){
-            if (mailContent.get(i).contains("\\w+@\\w+\\.\\w+")) {
-                System.out.println("Email contacts found: " + mailContent.get(i));
-                String[] splitResult = mailContent.get(i).split("\\s");
-                for (int j = 0; j < splitResult.length; j++){
-                }
-            } else if (mailContent.get(i).matches("([\\d\\s+\\-)(])+?")
-                    && mailContent.get(i).length() >= 7){
-                System.out.println("Phone numbers found: " + mailContent.get(i));
-            }
+            System.out.println("Websites or Links found: " + websites);
+            logger.info("Found Website!");
         }
     }
 }
