@@ -16,6 +16,8 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Optional;
 
 public class MboxParser {
 
@@ -43,15 +45,28 @@ public class MboxParser {
         }
 
         private static void messageSummary(InputStream messageBytes,MailBox mailbox) throws IOException, MimeException {
-            MessageBuilder builder = new DefaultMessageBuilder();
-            Message message = builder.parseMessage(messageBytes);
+
+                MessageBuilder builder = new DefaultMessageBuilder();
+                Message message = builder.parseMessage(messageBytes);
+
+
             Email email = new Email();
-                    email.setMessage(message.getMessageId());
-                    email.setFrom(message.getFrom().toString());
- //TO DO OPTIONAL NA NULLA                  // email.setSender(message.getSender().toString());
-                    email.setDate(message.getDate());
-                    email.setMessage(message.getSubject());
-                  //  email.setSubject(message.getSender().toString());
+            Optional<String> from =Optional.ofNullable((message.getFrom().toString()));
+            Optional<String> to =Optional.ofNullable((message.getTo().toString()));
+            Optional<Mailbox> senderObject =Optional.ofNullable(message.getSender()).;
+            Optional<String> sender =Optional.ofNullable(senderObject.toString());
+
+            Optional<Date> date =Optional.ofNullable(message.getDate());
+            Optional<String> contentMessage =Optional.ofNullable(message.getSubject());
+            Optional<String> subject =Optional.ofNullable(message.getSubject());
+
+
+                    email.setFrom(from.orElse("Not found"));
+                    email.setTo(to.orElse("Not found"));
+                    email.setSender(sender.orElse("Not found"));
+                    email.setDate(date.orElse(new Date()));
+                    email.setMessage(contentMessage.orElse("Not found"));
+                    email.setSubject(subject.orElse("Not found"));
             ArrayList<Email> mailboxsupport = mailbox.getMailbox();
             mailboxsupport.add(email);
 

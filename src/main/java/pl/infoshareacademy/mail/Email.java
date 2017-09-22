@@ -10,6 +10,7 @@ public class Email {
     private Date date;
     private String message;
     private String subject;
+    private String to;
 
     public Email(){}
 
@@ -86,5 +87,13 @@ public class Email {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
     }
 }
