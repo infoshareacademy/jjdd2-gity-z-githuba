@@ -1,30 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="warn">
-    <Properties>
-        <Property name="basePath">/home/sowatheking</Property>
-    </Properties>
-
+<Configuration status="warn" name="MyApp" packages="">
     <Appenders>
-        <RollingFile name="fileLogger" fileName="${basePath}/app-info.log" filePattern="${basePath}/app-info-%d{yyyy-MM-dd}.log">
+        <File name="MyFile" fileName="app.log">
             <PatternLayout>
-                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
             </PatternLayout>
-            <Policies>
-                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
-            </Policies>
-        </RollingFile>
-
-        <Console name="console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t]
-      %highlight{%level}{FATAL=bg_red, ERROR=red, WARN=yellow, INFO=green, DEBUG=blue} - %msg%n" />
-        </Console>
+        </File>
+        <Async name="Async">
+            <AppenderRef ref="MyFile"/>
+        </Async>
     </Appenders>
     <Loggers>
-        <Logger name="pl.infoshareacademy" level="debug" additivity="true">
-            <appender-ref ref="fileLogger" level="debug" />
-        </Logger>
-        <Root level="debug" additivity="false">
-            <appender-ref ref="console" />
+        <Root level="info">
+            <AppenderRef ref="Async"/>
         </Root>
     </Loggers>
 </Configuration>
