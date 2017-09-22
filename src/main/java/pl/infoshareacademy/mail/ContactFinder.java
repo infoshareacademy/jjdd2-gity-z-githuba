@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
 public class ContactFinder {
 
     public void FindMail(Finder finder) {
@@ -21,8 +20,9 @@ public class ContactFinder {
                 }
             }
         }
-        String str = StringUtils.join(eFound, ", ");
-        System.out.println("Email contacts found: " + str);
+        for (String emails : eFound) {
+            System.out.println("Email contacts found: " + emails);
+        }
     }
 
     public void FindPhoneNo(Finder finder) {
