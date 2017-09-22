@@ -1,5 +1,4 @@
 package pl.infoshareacademy.mail;
-import com.sun.deploy.util.StringUtils;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
