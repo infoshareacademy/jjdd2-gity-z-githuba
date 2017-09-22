@@ -46,7 +46,7 @@ public class Main {
                     searchmail.FindPhoneNo(mail);
                     searchmail.FindWebsite(mail);
                     // Only for 1 Sprint
-                    mail.displayAllEmails();
+                    //mail.displayAllEmails();
                     break;
                 case 5:
                     System.out.println("You've chosen item #5");
