@@ -31,11 +31,11 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("You've chosen item #3");
-                    msg.criticalErrorRaport("Function not implemented yet!");
+                    Menu.PrintMenuAnalyze();
                     break;
                 case 4:
                     System.out.println("You've chosen item #4");
-                    System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
+                    System.out.println("Please enter ABSOLUTE path to email file to analyze: ");
                     System.out.println("Example: /home/user/mail.mbox");
                     String filename= in.next();
                     filename =filename.toLowerCase();
@@ -50,7 +50,7 @@ public class Main {
                     break;
                 case 5:
                     System.out.println("You've chosen item #5");
-                    msg.criticalErrorRaport("Function not implemented yet!");
+                    Menu.PrintMenuAnalyze();
                     break;
                 case 0:
                     quit = true;

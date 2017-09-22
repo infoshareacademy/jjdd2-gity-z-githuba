@@ -1,4 +1,5 @@
 package pl.infoshareacademy.mail;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -54,7 +55,20 @@ public class ContactFinder {
             }
         }
         for (String websites : wFound) {
-            System.out.println("Websites or Links found: " + websites);
+            System.out.println("Websites or links found: " + websites);
+        }
+    }
+    public static void filterMatches(boolean mail, boolean phone, ArrayList<String> mailContent){
+        for (int i = 0; i < mailContent.size(); i++){
+            if (mailContent.get(i).contains("\\w+@\\w+\\.\\w+")) {
+                System.out.println("Email address found: " + mailContent.get(i));
+                String[] splitResult = mailContent.get(i).split("\\s");
+                for (int j = 0; j < splitResult.length; j++){
+                }
+            } else if (mailContent.get(i).matches("([\\d\\s+\\-)(])+?")
+                    && mailContent.get(i).length() >= 7){
+                System.out.println("Mobile number found: " + mailContent.get(i));
+            }
         }
     }
 }
