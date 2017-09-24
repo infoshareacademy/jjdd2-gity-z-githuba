@@ -1,0 +1,72 @@
+2017-09-24 19:54:21,978 INFO p.i.m.Main [main] Aplication startup.
+2017-09-24 19:57:31,283 INFO p.i.m.Main [main] Aplication startup.
+2017-09-24 19:57:37,794 INFO p.i.m.Main [main] Im in Menu 1 right now!
+2017-09-24 20:02:15,166 INFO p.i.m.Main [main] Aplication startup.
+2017-09-24 20:05:35,334 INFO p.i.m.Main [main] Aplication startup.
+2017-09-24 20:05:39,887 INFO p.i.m.Main [main] Im in Menu 1 right now!
+2017-09-24 20:05:44,288 INFO p.i.m.KeyWords [main] User answered Yes to question 0
+2017-09-24 20:05:45,876 INFO p.i.m.KeyWords [main] User answered Yes to question 1
+2017-09-24 20:05:46,402 INFO p.i.m.KeyWords [main] User answered Yes to question 2
+2017-09-24 20:08:38,237 INFO p.i.m.Main [main] Aplication startup.
+2017-09-24 20:08:41,530 INFO p.i.m.Main [main] Im in Menu 1 right now!
+2017-09-24 20:08:44,360 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 0
+2017-09-24 20:08:45,606 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 1
+2017-09-24 20:08:47,785 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 2
+2017-09-24 20:08:50,406 INFO p.i.m.KeyWords [main] User answered Yes to question 3
+2017-09-24 20:10:10,622 INFO p.i.m.Main [main] Aplication startup.
+2017-09-24 20:10:13,699 INFO p.i.m.Main [main] Im in Menu 1 right now!
+2017-09-24 20:10:16,543 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 1
+2017-09-24 20:10:17,690 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 1
+2017-09-24 20:10:18,624 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 1
+2017-09-24 20:10:20,501 INFO p.i.m.KeyWords [main] User answered Yes to question 1
+2017-09-24 20:10:22,336 INFO p.i.m.KeyWords [main] User answered No to question 2
+2017-09-24 20:10:24,018 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 3
+2017-09-24 20:10:25,271 INFO p.i.m.KeyWords [main] User answered No to question 3
+2017-09-24 20:11:34,739 INFO p.i.m.Main [main] Aplication startup.
+2017-09-24 20:11:37,327 INFO p.i.m.Main [main] Im in Menu 1 right now!
+2017-09-24 20:11:38,938 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 1
+2017-09-24 20:11:53,563 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 1
+2017-09-24 20:11:57,199 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 1
+2017-09-24 20:12:04,214 INFO p.i.m.KeyWords [main] User answered Yes to question 1
+2017-09-24 20:13:01,932 INFO p.i.m.Main [main] Aplication startup.
+2017-09-24 20:13:04,514 INFO p.i.m.Main [main] Im in Menu 1 right now!
+2017-09-24 20:13:07,845 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 1
+2017-09-24 20:13:10,289 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 1
+2017-09-24 20:13:11,056 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 1
+2017-09-24 20:13:12,140 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 1
+2017-09-24 20:13:12,669 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 1
+2017-09-24 20:13:13,327 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 1
+2017-09-24 20:13:18,633 INFO p.i.m.KeyWords [main] User answered Yes to question 1
+2017-09-24 20:13:21,997 INFO p.i.m.KeyWords [main] User answered No to question 2
+2017-09-24 20:13:24,017 INFO p.i.m.KeyWords [main] User answered No to question 3
+2017-09-24 20:15:44,401 INFO p.i.m.Main [main] Im in Menu 1 right now!
+2017-09-24 20:15:57,830 INFO p.i.m.KeyWords [main] User answered Yes to question 1
+2017-09-24 20:15:59,380 INFO p.i.m.KeyWords [main] User answered No to question 2
+2017-09-24 20:16:01,086 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 3
+2017-09-24 20:16:11,321 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 3
+2017-09-24 20:16:11,972 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 3
+2017-09-24 20:16:13,261 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to question 3
+2017-09-24 20:16:16,182 INFO p.i.m.KeyWords [main] User answered Yes to question 3
+2017-09-24 20:16:44,006 INFO p.i.m.Main [main] Aplication startup.
+2017-09-24 20:16:46,464 INFO p.i.m.Main [main] Im in Menu 1 right now!
+2017-09-24 20:16:47,703 INFO p.i.m.KeyWords [main] User answered Yes to the question #1
+2017-09-24 20:16:48,263 INFO p.i.m.KeyWords [main] User answered Yes to the question #2
+2017-09-24 20:16:49,321 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to the question #3
+2017-09-24 20:16:49,956 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to the question #3
+2017-09-24 20:16:50,625 INFO p.i.m.KeyWords [main] User didn't answer Yes or No to the question #3
+2017-09-24 20:16:51,188 INFO p.i.m.KeyWords [main] User answered No to the question #3
+2017-09-24 20:34:19,982 INFO p.i.m.Main [main] Aplication startup.
+2017-09-24 20:34:21,950 INFO p.i.m.Main [main] Im in Menu 1 right now!
+2017-09-24 20:34:22,881 WARN p.i.m.KeyWords [main] Input mismatch to question #1! Expected Y or N; got other value!
+2017-09-24 20:34:23,291 WARN p.i.m.KeyWords [main] Input mismatch to question #1! Expected Y or N; got other value!
+2017-09-24 20:34:23,696 WARN p.i.m.KeyWords [main] Input mismatch to question #1! Expected Y or N; got other value!
+2017-09-24 20:34:24,256 WARN p.i.m.KeyWords [main] Input mismatch to question #1! Expected Y or N; got other value!
+2017-09-24 20:34:26,535 INFO p.i.m.KeyWords [main] User answered Yes to the question #1
+2017-09-24 20:34:28,867 INFO p.i.m.KeyWords [main] User answered No to the question #2
+2017-09-24 20:34:29,743 INFO p.i.m.KeyWords [main] User answered No to the question #3
+2017-09-24 20:37:14,559 INFO p.i.m.Main [main] Aplication startup.
+2017-09-24 20:37:19,519 INFO p.i.m.Main [main] Im in Menu 1 right now!
+2017-09-24 20:37:20,908 WARN p.i.m.KeyWords [main] Question #1. Input mismatch! Expected Y or N got other value!
+2017-09-24 20:37:22,811 INFO p.i.m.KeyWords [main] User answered Yes to the question #1
+2017-09-24 20:37:23,506 INFO p.i.m.KeyWords [main] User answered Yes to the question #2
+2017-09-24 20:37:24,144 INFO p.i.m.KeyWords [main] User answered Yes to the question #3
