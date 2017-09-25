@@ -30,11 +30,15 @@
         <artifactId>log4j-api</artifactId>
         <version>2.9.0</version>
     </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.james/apache-mime4j-james-utils -->
         <dependency>
             <groupId>org.apache.james</groupId>
             <artifactId>apache-mime4j-james-utils</artifactId>
             <version>0.8.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.surefire</groupId>
+            <artifactId>maven-surefire-common</artifactId>
+            <version>2.20</version>
         </dependency>
     </dependencies>
 </project>
