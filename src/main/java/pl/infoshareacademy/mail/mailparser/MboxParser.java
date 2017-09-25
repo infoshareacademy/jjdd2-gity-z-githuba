@@ -30,7 +30,7 @@ public class MboxParser {
                 System.out.println("Please supply a path to an mbox file to parse");
             }
 
-            final File mbox = new File("/home/michalrichert/1.mbox");
+            final File mbox = new File("/home/artur/test.mbox");
             long start = System.currentTimeMillis();
             int count = 0;
             MailBox mailbox=new MailBox();
@@ -54,16 +54,17 @@ public class MboxParser {
             Optional<String> from =Optional.ofNullable((message.getFrom().toString()));
             Optional<String> to =Optional.ofNullable((message.getTo().toString()));
             Optional<Mailbox> senderObject =Optional.ofNullable(message.getSender());
-            Optional<String> sender = Optional.ofNullable(Optional.ofNullable(senderObject.toString()).orElse("Not Found"));
+
 
             Optional<Date> date =Optional.ofNullable(message.getDate());
             Optional<String> contentMessage =Optional.ofNullable(message.getSubject());
             Optional<String> subject =Optional.ofNullable(message.getSubject());
+            Optional<String> sender = Optional.ofNullable(message.getSender().toString());
 
-
+//does not work
+                    email.setSender(sender.orElse("fuck you"));
                     email.setFrom(from.orElse("Not found"));
                     email.setTo(to.orElse("Not found"));
-                    email.setSender(sender.orElse("Not found"));
                     email.setDate(date.orElse(new Date()));
                     email.setMessage(contentMessage.orElse("Not found"));
                     email.setSubject(subject.orElse("Not found"));
