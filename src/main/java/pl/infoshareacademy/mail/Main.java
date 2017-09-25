@@ -32,7 +32,7 @@ public class Main {
                 case 2:
                     System.out.println("You've chosen item #2");
                     MailBox mailbox=new MailBox();
-                    MboxParser parser = new MboxParser("/home/michalrichert/1.mbox");
+                    MboxParser parser = new MboxParser("/home/mr/1.mbox");
                     parser.run();
 
 

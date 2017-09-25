@@ -8,7 +8,7 @@ public class Email {
     private String from;
     private String sender;
     private Date date;
-    private String message;
+    private String message="";
     private String subject;
     private String to;
 
