@@ -21,30 +21,43 @@ import java.util.Optional;
 
 public class MboxParser {
 
-    public static ArrayList<Email> Skrzynka = new ArrayList<>();
-        private final static CharsetEncoder ENCODER = Charset.forName("UTF-8").newEncoder();
+    private final static CharsetEncoder ENCODER = Charset.forName("UTF-8").newEncoder();
+    File mbox;
 
-        // simple example of how to split an mbox into individual files
-        public static void main(String[] args) throws Exception {
-            if (args.length != 1) {
-                System.out.println("Please supply a path to an mbox file to parse");
-            }
+    public MboxParser(String path) {
+        mbox= new File(path);
+    }
+//    MailBox mailbox=new MailBox();
 
-            final File mbox = new File("/home/michalrichert/1.mbox");
-            long start = System.currentTimeMillis();
-            int count = 0;
+//        public static void main(String[] args) throws Exception {
+//            if (args.length != 1) {
+//                System.out.println("Please supply a path to an mbox file to parse");
+//            }
+//
+//            final File mbox = new File("/home/michalrichert/1.mbox");
+//            long start = System.currentTimeMillis();
+//            int count = 0;
+//            MailBox mailbox=new MailBox();
+//            for (CharBufferWrapper message : MboxIterator.fromFile(mbox).charset(ENCODER.charset()).build()) {
+//                messageSummary(message.asInputStream(ENCODER.charset()),mailbox);
+//                count++;
+//            }
+//            mailbox.getMailbox().forEach(email1 -> System.out.println(email1));
+//            System.out.println("Found " + count + " messages");
+//            long end = System.currentTimeMillis();
+//            System.out.println("Done in: " + (end - start) + " milis");
+//        }
+        public  void run() throws IOException, MimeException {
             MailBox mailbox=new MailBox();
-            for (CharBufferWrapper message : MboxIterator.fromFile(mbox).charset(ENCODER.charset()).build()) {
-                messageSummary(message.asInputStream(ENCODER.charset()),mailbox);
-                count++;
-            }
+           for (CharBufferWrapper message : MboxIterator.fromFile(mbox).charset(ENCODER.charset()).build()) {
+              messageSummary(message.asInputStream(ENCODER.charset()),mailbox);
+          }
             mailbox.getMailbox().forEach(email1 -> System.out.println(email1));
-            System.out.println("Found " + count + " messages");
-            long end = System.currentTimeMillis();
-            System.out.println("Done in: " + (end - start) + " milis");
         }
 
-        private static void messageSummary(InputStream messageBytes,MailBox mailbox) throws IOException, MimeException {
+
+
+        private void messageSummary(InputStream messageBytes,MailBox mailbox) throws IOException, MimeException {
 
                 MessageBuilder builder = new DefaultMessageBuilder();
                 Message message = builder.parseMessage(messageBytes);

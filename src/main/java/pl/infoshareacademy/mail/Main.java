@@ -1,11 +1,13 @@
 package pl.infoshareacademy.mail;
+import org.apache.james.mime4j.MimeException;
+import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, MimeException {
         Scanner in = new Scanner(System.in);
         Messenger msg = new Messenger();
         System.out.println();
@@ -29,7 +31,12 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("You've chosen item #2");
-                    Menu.PrintMenuAnalyze();
+                    MailBox mailbox=new MailBox();
+                    MboxParser parser = new MboxParser("/home/michalrichert/1.mbox");
+                    parser.run();
+
+
+
                     break;
                 case 3:
                     System.out.println("You've chosen item #3");
