@@ -1,4 +1,7 @@
 package pl.infoshareacademy.mail;
+import pl.infoshareacademy.mail.mailparser.MailBox;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -56,5 +59,8 @@ public class ContactFinder {
         for (String websites : wFound) {
             System.out.println("Websites or Links found: " + websites);
         }
+    }
+    public void FindAll (){
+       
     }
 }
