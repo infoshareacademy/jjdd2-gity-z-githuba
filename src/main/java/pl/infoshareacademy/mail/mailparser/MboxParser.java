@@ -27,26 +27,6 @@ public class MboxParser {
     public MboxParser(String path) {
         mbox= new File(path);
     }
-//    MailBox mailbox=new MailBox();
-
-//        public static void main(String[] args) throws Exception {
-//            if (args.length != 1) {
-//                System.out.println("Please supply a path to an mbox file to parse");
-//            }
-//
-//            final File mbox = new File("/home/michalrichert/1.mbox");
-//            long start = System.currentTimeMillis();
-//            int count = 0;
-//            MailBox mailbox=new MailBox();
-//            for (CharBufferWrapper message : MboxIterator.fromFile(mbox).charset(ENCODER.charset()).build()) {
-//                messageSummary(message.asInputStream(ENCODER.charset()),mailbox);
-//                count++;
-//            }
-//            mailbox.getMailbox().forEach(email1 -> System.out.println(email1));
-//            System.out.println("Found " + count + " messages");
-//            long end = System.currentTimeMillis();
-//            System.out.println("Done in: " + (end - start) + " milis");
-//        }
         public  void run() throws IOException, MimeException {
             MailBox mailbox=new MailBox();
            for (CharBufferWrapper message : MboxIterator.fromFile(mbox).charset(ENCODER.charset()).build()) {
@@ -54,7 +34,6 @@ public class MboxParser {
           }
             mailbox.getMailbox().forEach(email1 -> System.out.println(email1));
         }
-
 
 
         private void messageSummary(InputStream messageBytes,MailBox mailbox) throws IOException, MimeException {
@@ -68,16 +47,18 @@ public class MboxParser {
             Optional<String> to =Optional.ofNullable((message.getTo().toString()));
             Optional<Mailbox> senderObject =Optional.ofNullable(message.getSender());
             String sender = senderObject.map(v -> v.toString()).orElse("Not found");
+
             Optional<Date> date =Optional.ofNullable(message.getDate());
-            Optional<String> contentMessage =Optional.ofNullable(message.getSubject());
+            String contentMessage =message.getBody().toString();
             Optional<String> subject =Optional.ofNullable(message.getSubject());
+
 
 
                     email.setFrom(from.orElse("Not found"));
                     email.setTo(to.orElse("Not found"));
                     email.setSender(sender);
                     email.setDate(date.orElse(new Date()));
-                    email.setMessage(contentMessage.orElse("Not found"));
+                    email.setMessage(contentMessage);
                     email.setSubject(subject.orElse("Not found"));
 
             ArrayList<Email> mailboxsupport = mailbox.getMailbox();
