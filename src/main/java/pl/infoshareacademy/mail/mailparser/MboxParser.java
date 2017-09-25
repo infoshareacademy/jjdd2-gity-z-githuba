@@ -54,8 +54,7 @@ public class MboxParser {
             Optional<String> from =Optional.ofNullable((message.getFrom().toString()));
             Optional<String> to =Optional.ofNullable((message.getTo().toString()));
             Optional<Mailbox> senderObject =Optional.ofNullable(message.getSender());
-            Optional<String> sender = Optional.ofNullable(Optional.ofNullable(senderObject.toString()).orElse("Not Found"));
-
+            String sender = senderObject.map(v -> v.toString()).orElse("Not found");
             Optional<Date> date =Optional.ofNullable(message.getDate());
             Optional<String> contentMessage =Optional.ofNullable(message.getSubject());
             Optional<String> subject =Optional.ofNullable(message.getSubject());
@@ -63,7 +62,7 @@ public class MboxParser {
 
                     email.setFrom(from.orElse("Not found"));
                     email.setTo(to.orElse("Not found"));
-                    email.setSender(sender.orElseGet("Not found"));
+                    email.setSender(sender);
                     email.setDate(date.orElse(new Date()));
                     email.setMessage(contentMessage.orElse("Not found"));
                     email.setSubject(subject.orElse("Not found"));
