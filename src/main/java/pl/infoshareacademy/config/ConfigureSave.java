@@ -1,4 +1,5 @@
 package pl.infoshareacademy.config;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.io.FileInputStream;
@@ -10,10 +11,6 @@ import java.util.Properties;
 public class ConfigureSave {
     private static final Logger logger = LogManager.getLogger(ConfigureSave.class.getName());
     private static String configPath = "src/main/resources/config.properties";
-
-    public static void main(String[] args) {
-        setSettingsValue("pedal", "iwan");
-    }
 
     public static void setSettingsValue(String key, String value) {
         Properties prop = new Properties();
