@@ -8,21 +8,22 @@ import java.util.Set;
 
 public class ContactFinder {
 
-    public void FindMail(Finder finder) {
+    public void FindMail(MailBox emails) {
 
-        List<Email> list = finder.getEmailList();
-        Set<String> eFound = new HashSet<String>();
+        ArrayList<Email> list = emails.getMailbox();
+
+        Set<String> eFound = new HashSet<>();
 
         for (Email e : list) {
             String splitterResult[] = e.getMessage().split("\\s");
             for (int i = 0; i < splitterResult.length; i++) {
-                if (splitterResult[i].matches("\\w+@\\w+\\.\\w+")) {
+                if (splitterResult[i]..matches("\\w+@\\w+\\.\\w+")) {
                     eFound.add(splitterResult[i]);
                 }
             }
         }
-        for (String emails : eFound) {
-            System.out.println("Email contacts found: " + emails);
+        for (String emailResult : eFound) {
+            System.out.println("Email contacts found: " + emailResult);
         }
     }
 
@@ -60,7 +61,7 @@ public class ContactFinder {
             System.out.println("Websites or Links found: " + websites);
         }
     }
-    public void FindAll (){
-       
+    public void FindQA (){
+
     }
 }

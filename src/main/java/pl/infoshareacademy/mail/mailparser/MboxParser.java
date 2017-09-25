@@ -31,17 +31,10 @@ public class MboxParser {
             }
 
             final File mbox = new File("/home/artur/test.mbox");
-            long start = System.currentTimeMillis();
-            int count = 0;
             MailBox mailbox=new MailBox();
             for (CharBufferWrapper message : MboxIterator.fromFile(mbox).charset(ENCODER.charset()).build()) {
                 messageSummary(message.asInputStream(ENCODER.charset()),mailbox);
-                count++;
             }
-            mailbox.getMailbox().forEach(email1 -> System.out.println(email1));
-            System.out.println("Found " + count + " messages");
-            long end = System.currentTimeMillis();
-            System.out.println("Done in: " + (end - start) + " milis");
         }
 
         private static void messageSummary(InputStream messageBytes,MailBox mailbox) throws IOException, MimeException {

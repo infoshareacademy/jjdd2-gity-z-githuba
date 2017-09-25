@@ -1,7 +1,9 @@
 package pl.infoshareacademy.mail;
+import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -41,14 +43,17 @@ public class Main {
                     System.out.println("Example: /home/user/mail.mbox");
                     String filename= in.next();
                     filename =filename.toLowerCase();
-                    Finder mail = new Finder(filename);
+                    MailBox mail = new MailBox();
                     mail.runable();
+                    MailBox emails = new MailBox();
+                    ArrayList<Email> emaillista =emails.getMailbox();
+                    emaillista.forEach(e->e.getMessage());
                     ContactFinder searchmail = new ContactFinder();
-                    searchmail.FindMail(mail);
+                    searchmail.FindMail(emails);
                     searchmail.FindPhoneNo(mail);
                     searchmail.FindWebsite(mail);
                     // Only for 1 Sprint
-                    mail.displayAllEmails();
+                    //mail.displayAllEmails();
                     break;
                 case 5:
                     System.out.println("You've chosen item #5");
