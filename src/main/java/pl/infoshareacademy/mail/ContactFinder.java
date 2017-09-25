@@ -17,7 +17,7 @@ public class ContactFinder {
         for (Email e : list) {
             String splitterResult[] = e.getMessage().split("\\s");
             for (int i = 0; i < splitterResult.length; i++) {
-                if (splitterResult[i]..matches("\\w+@\\w+\\.\\w+")) {
+                if (splitterResult[i].matches("\\w+@\\w+\\.\\w+")) {
                     eFound.add(splitterResult[i]);
                 }
             }
