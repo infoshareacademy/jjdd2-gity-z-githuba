@@ -44,6 +44,7 @@ public class Main {
                 case 4:
                     logger.info("Im in Menu {} right now!", menuItem);
                     System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
+
                     System.out.println("Example: /home/user/mail.mbox");
                     String filename= in.next();
                     filename =filename.toLowerCase();
@@ -54,11 +55,12 @@ public class Main {
                     searchmail.FindPhoneNo(mail);
                     searchmail.FindWebsite(mail);
                     // Only for 1 Sprint
-                    mail.displayAllEmails();
+                    //mail.displayAllEmails();
                     break;
                 case 5:
                     logger.info("Im in Menu {} right now!", menuItem);
                     msg.criticalErrorRaport("Function no implemented yet!");
+
                     break;
                 case 0:
                     quit = true;
