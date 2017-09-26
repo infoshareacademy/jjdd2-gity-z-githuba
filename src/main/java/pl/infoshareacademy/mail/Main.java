@@ -32,13 +32,15 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("You've chosen item #2");
-                    MailBox emails = new MailBox();
-                    ArrayList<Email> emaillista =emails.getMailbox();
-                    emaillista.forEach(e->e.getMessage());
-                    MboxParser parser = new MboxParser("/home/artur/test.mbox");
+                    MailBox mailbox=new MailBox();
+                    MboxParser parser = new MboxParser("/home/mr/1.mbox");
+                    //MailBox emails = new MailBox();
+                    //ArrayList<Email> emaillista =emails.getMailbox();
+                    //emaillista.forEach(e->e.getMessage());
+                    //MboxParser parser = new MboxParser("/home/artur/test.mbox");
                     parser.run();
                     ContactFinder searchmail = new ContactFinder();
-                    searchmail.FindMail(emails);
+                    searchmail.FindMail(mailbox);
 
 
                     break;
