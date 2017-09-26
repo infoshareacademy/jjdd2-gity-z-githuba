@@ -43,7 +43,7 @@ public class MboxParserMessage {
             while (sc.hasNext()) {
                 String message =sc.next();
                 if (i >= 2) {
-                    wholecontent =wholecontent+System.lineSeparator() +message;
+                    wholecontent =wholecontent+" "+message;
                 }
                 i++;
             }
@@ -59,6 +59,9 @@ public class MboxParserMessage {
             supportmail.get(i).setMessage(supportmessageextract.get(i));
         }
         supportmail.forEach(e-> System.out.println(e.toString()));
+    }
+    public void addWholetoMailbox(MailBox mail) {
+        mail.getMailbox()=supportmail.toArray();
     }
 
 }
