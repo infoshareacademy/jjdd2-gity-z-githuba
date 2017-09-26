@@ -30,14 +30,20 @@ public class MboxParser {
         mbox= new File(path);
 
     }
-        public  void run() throws IOException, MimeException {
+        public  void run(MailBox mailBox) throws IOException, MimeException {
            for (CharBufferWrapper message : MboxIterator.fromFile(mbox).charset(ENCODER.charset()).build()) {
               messageSummary(message.asInputStream(ENCODER.charset()));
           }
             try {
-                addMessage();
+                addMessage(mailBox);
             } catch (EmptyFileException e) {
+                System.out.println("Empty");
+
+                //
+            }catch (IOException e) {
                 e.printStackTrace();
+                System.out.println("i");
+                //
             }
         }
 
@@ -67,8 +73,8 @@ public class MboxParser {
 
 
         }
-        private void addMessage() throws FileNotFoundException, EmptyFileException {
+        private void addMessage(MailBox mailBox) throws FileNotFoundException, EmptyFileException {
         MboxParserMessage message = new MboxParserMessage(path,supportmailbox);
-        message.run();
+        message.run(mailBox);
         }
     }
