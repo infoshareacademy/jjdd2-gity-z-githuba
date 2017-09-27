@@ -5,8 +5,11 @@ import org.apache.james.mime4j.dom.Message;
 import org.apache.james.mime4j.dom.MessageBuilder;
 import org.apache.james.mime4j.dom.address.Mailbox;
 import org.apache.james.mime4j.message.DefaultMessageBuilder;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.EmptyFileException;
+import pl.infoshareacademy.mail.Main;
 import pl.infoshareacademy.mail.mailparser.mail.util.CharBufferWrapper;
 import pl.infoshareacademy.mail.mailparser.mail.util.MboxIterator;
 
@@ -21,7 +24,7 @@ import java.util.Date;
 import java.util.Optional;
 
 public class MboxParser {
-
+    private static final Logger logger = LogManager.getLogger(Main.class.getName());
     private final static CharsetEncoder ENCODER = Charset.forName("UTF-8").newEncoder();
     String path;
     File mbox;
@@ -41,24 +44,20 @@ public class MboxParser {
                 addMessage(mailBox);
             }
         } catch (EmptyFileException e) {
-            e.printStackTrace();
+            logger.warn("Empty file");
         } catch (MimeException e) {
-            e.printStackTrace();
-            System.out.println("Pusty plik");
+            logger.warn("Incorrect structure of file");
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            System.out.println("dfs plik");
+            logger.warn("Incorrect structure of file");
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("Pusty plik");
+            logger.warn("File not found");
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Pusty plik");
-        }catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("cd");
+            logger.error("Stream error");
+        } catch (Exception e) {
+            logger.fatal("Can't parse file");
         }
     }
+
     private void messageSummary(InputStream messageBytes) throws IOException, MimeException {
 
         MessageBuilder builder = new DefaultMessageBuilder();

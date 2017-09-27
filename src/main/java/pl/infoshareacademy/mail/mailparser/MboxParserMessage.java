@@ -1,7 +1,10 @@
 package pl.infoshareacademy.mail.mailparser;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.EmptyFileException;
+import pl.infoshareacademy.mail.Main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MboxParserMessage {
+    private static final Logger logger = LogManager.getLogger(Main.class.getName());
     String path;
     ArrayList<Email> arrayWithObject;
     ArrayList<String> arrayCointainsSeprateWholeMessage = new ArrayList<>();
@@ -60,13 +64,13 @@ public class MboxParserMessage {
         }
     }
 
-    public void addMessagetoEmailClass()  {
+    public void addMessagetoEmailClass() {
 
         if (arrayContainsOnlyMessage.isEmpty()) {
             try {
                 throw new EmptyFileException("Empty file");
             } catch (EmptyFileException e) {
-                e.printStackTrace();
+                logger.warn("Empty file");
             }
         }
         for (int i = 0; i < arrayWithObject.size(); i++) {
@@ -76,7 +80,7 @@ public class MboxParserMessage {
 
     public void addEmailObjecttoMailBoxclass(MailBox mailBox) {
         ArrayList<Email> emptyarray = mailBox.getMailbox();
-        for (int i = 0; i < arrayWithObject.size() ; i++) {
+        for (int i = 0; i < arrayWithObject.size(); i++) {
             emptyarray.add(arrayWithObject.get(i));
         }
 

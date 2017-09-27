@@ -1,20 +1,22 @@
 package pl.infoshareacademy.mail.mailparser;
 
-import org.apache.james.mime4j.dom.address.Mailbox;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import pl.infoshareacademy.mail.Email;
+import pl.infoshareacademy.mail.Main;
 
 import javax.mail.Address;
 import javax.mail.MessagingException;
 import javax.mail.Session;
-import java.io.File;
-import java.io.InputStream;
-import java.util.*;
+import javax.mail.internet.MimeMessage;
 import java.io.*;
-import javax.mail.internet.*;
+import java.util.Optional;
+import java.util.Properties;
 
 public class EmlParser {
+    private static final Logger logger = LogManager.getLogger(Main.class.getName());
 
-    public static void parseEml(File emlFile,MailBox mailBox) {
+    public static void parseEml(File emlFile, MailBox mailBox) {
         try {
             Properties props = System.getProperties();
             Session mailSession = Session.getDefaultInstance(props, null);
@@ -26,20 +28,20 @@ public class EmlParser {
             email.setSubject(message.getSubject());
             email.setDate(message.getSentDate());
 
-            Optional<Address> senderObject =Optional.ofNullable(message.getSender());
+            Optional<Address> senderObject = Optional.ofNullable(message.getSender());
             String sender = senderObject.map(v -> v.toString()).orElse("Not found");
             email.setSender(sender);
             email.setFrom(message.getFrom()[0].toString());
             mailBox.getMailbox().add(email);
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            logger.warn("File not found");
         } catch (MessagingException e) {
-            e.printStackTrace();
+            logger.warn("Incorrect structure of file");
         } catch (IOException e) {
-            e.printStackTrace();
-        }catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Stream error");
+        } catch (Exception e) {
+            logger.fatal("Can't parse file");
         }
 
     }
