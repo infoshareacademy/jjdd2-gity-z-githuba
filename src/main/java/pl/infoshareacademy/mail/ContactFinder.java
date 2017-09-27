@@ -1,5 +1,6 @@
 package pl.infoshareacademy.mail;
 import pl.infoshareacademy.mail.mailparser.MailBox;
+import pl.infoshareacademy.mail.mailparser.MboxParser;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -8,9 +9,9 @@ import java.util.Set;
 
 public class ContactFinder {
 
-    public void FindMail(MailBox emails) {
+    public void FindMail(MboxParser parser) {
 
-        ArrayList<Email> list = emails.getMailbox();
+        ArrayList<Email> list = parser.getMailbox();
 
         Set<String> eFound = new HashSet<>();
 
