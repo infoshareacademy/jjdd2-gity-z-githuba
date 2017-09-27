@@ -70,3 +70,22 @@
 2017-09-24 20:37:22,811 INFO p.i.m.KeyWords [main] User answered Yes to the question #1
 2017-09-24 20:37:23,506 INFO p.i.m.KeyWords [main] User answered Yes to the question #2
 2017-09-24 20:37:24,144 INFO p.i.m.KeyWords [main] User answered Yes to the question #3
+2017-09-25 16:01:59,825 INFO p.i.m.Main [main] Aplication startup.
+2017-09-25 16:02:18,440 INFO p.i.m.Main [main] Im in Menu 1 right now!
+2017-09-25 16:02:19,537 WARN p.i.m.KeyWords [main] Question #1. Input mismatch! Expected Y or N got other value!
+2017-09-25 16:02:20,183 WARN p.i.m.KeyWords [main] Question #1. Input mismatch! Expected Y or N got other value!
+2017-09-25 16:02:20,473 WARN p.i.m.KeyWords [main] Question #1. Input mismatch! Expected Y or N got other value!
+2017-09-25 16:02:20,713 WARN p.i.m.KeyWords [main] Question #1. Input mismatch! Expected Y or N got other value!
+2017-09-25 16:02:21,063 WARN p.i.m.KeyWords [main] Question #1. Input mismatch! Expected Y or N got other value!
+2017-09-25 16:02:21,319 WARN p.i.m.KeyWords [main] Question #1. Input mismatch! Expected Y or N got other value!
+2017-09-25 16:02:22,095 INFO p.i.m.KeyWords [main] User answered Yes to the question #1
+2017-09-25 16:02:22,369 INFO p.i.m.KeyWords [main] User answered Yes to the question #2
+2017-09-25 16:02:22,577 INFO p.i.m.KeyWords [main] User answered Yes to the question #3
+2017-09-25 16:02:22,785 WARN p.i.m.Main [main] Input missmach! Expected INT got other value!
+2017-09-25 16:08:16,808 INFO p.i.m.Main [main] Aplication startup.
+2017-09-25 16:13:40,312 INFO p.i.m.Main [main] Aplication startup.
+2017-09-25 16:13:42,690 INFO p.i.m.Main [main] Im in Menu 1 right now!
+2017-09-25 16:13:44,575 INFO p.i.m.KeyWords [main] User answered Yes to the question #1
+2017-09-25 16:13:45,959 INFO p.i.m.KeyWords [main] User answered No to the question #2
+2017-09-25 16:13:46,903 INFO p.i.m.KeyWords [main] User answered No to the question #3
+2017-09-25 16:50:20,610 INFO p.i.m.Main [main] Aplication startup.
