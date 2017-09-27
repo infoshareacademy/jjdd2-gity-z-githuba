@@ -4,6 +4,7 @@ import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -33,8 +34,13 @@ public class Main {
                     System.out.println("You've chosen item #2");
                     MailBox mailbox=new MailBox();
                     MboxParser parser = new MboxParser("/home/mr/1.mbox");
+                    //MailBox emails = new MailBox();
+                    //ArrayList<Email> emaillista =emails.getMailbox();
+                    //emaillista.forEach(e->e.getMessage());
+                    //MboxParser parser = new MboxParser("/home/artur/test.mbox");
                     parser.run();
-
+                    ContactFinder searchmail = new ContactFinder();
+                    searchmail.FindMail(mailbox);
 
 
                     break;
@@ -50,10 +56,10 @@ public class Main {
                     filename =filename.toLowerCase();
                     Finder mail = new Finder(filename);
                     mail.runable();
-                    ContactFinder searchmail = new ContactFinder();
-                    searchmail.FindMail(mail);
-                    searchmail.FindPhoneNo(mail);
-                    searchmail.FindWebsite(mail);
+                    //ContactFinder searchmail = new ContactFinder();
+                    //searchmail.FindMail(mail);
+                    //searchmail.FindPhoneNo(mail);
+                    //searchmail.FindWebsite(mail);
                     // Only for 1 Sprint
                     mail.displayAllEmails();
                     break;
