@@ -7,6 +7,8 @@ import org.apache.james.mime4j.dom.address.Mailbox;
 import org.apache.james.mime4j.message.DefaultMessageBuilder;
 import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.EmptyFileException;
+import pl.infoshareacademy.mail.mailparser.mail.util.CharBufferWrapper;
+import pl.infoshareacademy.mail.mailparser.mail.util.MboxIterator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,55 +28,59 @@ public class MboxParser {
     ArrayList<Email> supportmailbox = new ArrayList<>();
 
     public MboxParser(String path) {
-        this.path=path;
-        mbox= new File(path);
+        this.path = path;
+        mbox = new File(path);
 
     }
-        public  void run(MailBox mailBox) throws IOException, MimeException {
-           for (CharBufferWrapper message : MboxIterator.fromFile(mbox).charset(ENCODER.charset()).build()) {
-              messageSummary(message.asInputStream(ENCODER.charset()));
-          }
-            try {
+
+    public void run(MailBox mailBox) {
+
+        try {
+            for (CharBufferWrapper message : MboxIterator.fromFile(mbox).charset(ENCODER.charset()).build()) {
+                messageSummary(message.asInputStream(ENCODER.charset()));
                 addMessage(mailBox);
-            } catch (EmptyFileException e) {
-                System.out.println("Empty");
-
-                //
-            }catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("i");
-                //
             }
-        }
-
-
-        private void messageSummary(InputStream messageBytes) throws IOException, MimeException {
-
-                MessageBuilder builder = new DefaultMessageBuilder();
-                Message message = builder.parseMessage(messageBytes);
-
-            Email email = new Email();
-            Optional<String> from =Optional.ofNullable((message.getFrom().toString()));
-            Optional<String> to =Optional.ofNullable((message.getTo().toString()));
-            Optional<Mailbox> senderObject =Optional.ofNullable(message.getSender());
-            String sender = senderObject.map(v -> v.toString()).orElse("Not found");
-
-
-            Optional<Date> date =Optional.ofNullable(message.getDate());
-            Optional<String> subject =Optional.ofNullable(message.getSubject());
-
-
-                    email.setFrom(from.orElse("Not found"));
-                    email.setTo(to.orElse("Not found"));
-                    email.setSender(sender);
-                    email.setDate(date.orElse(new Date()));
-                    email.setSubject(subject.orElse("Not found"));
-                    supportmailbox.add(email);
-
-
-        }
-        private void addMessage(MailBox mailBox) throws FileNotFoundException, EmptyFileException {
-        MboxParserMessage message = new MboxParserMessage(path,supportmailbox);
-        message.run(mailBox);
+        } catch (EmptyFileException e) {
+            e.printStackTrace();
+        } catch (MimeException e) {
+            e.printStackTrace();
+            System.out.println("Pusty plik");
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            System.out.println("dfs plik");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("Pusty plik");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Pusty plik");
+        }catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("cd");
         }
     }
+    private void messageSummary(InputStream messageBytes) throws IOException, MimeException {
+
+        MessageBuilder builder = new DefaultMessageBuilder();
+        Message message = builder.parseMessage(messageBytes);
+        Email email = new Email();
+        Optional<String> from = Optional.ofNullable((message.getFrom().toString()));
+        Optional<String> to = Optional.ofNullable((message.getTo().toString()));
+        Optional<Mailbox> senderObject = Optional.ofNullable(message.getSender());
+        String sender = senderObject.map(v -> v.toString()).orElse("Not found");
+        Optional<Date> date = Optional.ofNullable(message.getDate());
+        Optional<String> subject = Optional.ofNullable(message.getSubject());
+        email.setFrom(from.orElse("Not found"));
+        email.setTo(to.orElse("Not found"));
+        email.setSender(sender);
+        email.setDate(date.orElse(new Date()));
+        email.setSubject(subject.orElse("Not found"));
+        supportmailbox.add(email);
+
+    }
+
+    private void addMessage(MailBox mailBox) throws FileNotFoundException, EmptyFileException {
+        MboxParserMessage message = new MboxParserMessage(path, supportmailbox);
+        message.run(mailBox);
+    }
+}

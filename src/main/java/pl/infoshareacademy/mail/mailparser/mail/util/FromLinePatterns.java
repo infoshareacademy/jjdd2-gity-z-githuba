@@ -1,4 +1,4 @@
-package pl.infoshareacademy.mail.mailparser;
+package pl.infoshareacademy.mail.mailparser.mail.util;
 
 /****************************************************************
  * Licensed to the Apache Software Foundation (ASF) under one   *

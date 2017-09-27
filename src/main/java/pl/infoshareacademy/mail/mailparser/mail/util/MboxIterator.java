@@ -1,4 +1,4 @@
-package pl.infoshareacademy.mail.mailparser;
+package pl.infoshareacademy.mail.mailparser.mail.util;
 
 /****************************************************************
  * Licensed to the Apache Software Foundation (ASF) under one   *
@@ -150,7 +150,7 @@ public class MboxIterator implements Iterable<CharBufferWrapper>, Closeable {
         }
 
         /**
-         * Returns a CharBuffer instance that contains a message between position and limit.
+         * Returns a CharBuffer instance that contains a splitMessagetoWholeMessage between position and limit.
          * The array that backs this instance is the whole block of decoded messages.
          *
          * @return CharBuffer instance
@@ -222,7 +222,7 @@ public class MboxIterator implements Iterable<CharBufferWrapper>, Closeable {
         private String regexpPattern = FromLinePatterns.DEFAULT;
         private int flags = Pattern.MULTILINE;
         /**
-         * Default max message size in chars: ~ 10MB chars. If the mbox file contains larger messages they
+         * Default max splitMessagetoWholeMessage size in chars: ~ 10MB chars. If the mbox file contains larger messages they
          * will not be decoded correctly.
          */
         private int maxMessageSize = 10 * 1024 * 1024;

@@ -10,9 +10,9 @@ public class QuestionsAndAnswers {
     private final List<String> listOfAnswersIfNo = initListOfAnswersIfNo();
 
     private final List<String> getQuestionsList() {
-        String question1 = "Is this an urgent message? Y/N";
-        String question2 = "Is this a formal message? Y/N";
-        String question3 = "Is this an important message Y/N";
+        String question1 = "Is this an urgent splitMessagetoWholeMessage? Y/N";
+        String question2 = "Is this a formal splitMessagetoWholeMessage? Y/N";
+        String question3 = "Is this an important splitMessagetoWholeMessage Y/N";
         List<String> question = new ArrayList <>();
         question.add(question1);
         question.add(question2);

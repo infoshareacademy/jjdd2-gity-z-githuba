@@ -44,7 +44,7 @@ public class Email {
                 "from='" + from + '\'' +
                 ", sender='" + sender + '\'' +
                 ", date=" + date +
-                ", message='" + message + '\'' +
+                ", splitMessagetoWholeMessage='" + message + '\'' +
                 ", subject='" + subject + '\'' +
                 '}';
     }
