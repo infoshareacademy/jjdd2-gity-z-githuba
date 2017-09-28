@@ -1,4 +1,5 @@
 package pl.infoshareacademy.mail;
+import org.apache.james.mime4j.dom.address.Mailbox;
 import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
 
@@ -9,9 +10,9 @@ import java.util.Set;
 
 public class ContactFinder {
 
-    public void FindMail(MboxParser parser) {
+    public void FindMail(MailBox mailbox) {
 
-        ArrayList<Email> list = parser.getMailbox();
+        ArrayList<Email> list = mailbox.getMailbox();
 
         Set<String> eFound = new HashSet<>();
 
@@ -28,9 +29,9 @@ public class ContactFinder {
         }
     }
 
-    public void FindPhoneNo(Finder finder) {
+    public void FindPhoneNo(MailBox mailbox) {
 
-        List<Email> list = finder.getEmailList();
+        ArrayList<Email> list = mailbox.getMailbox();
         Set<String> pFound = new HashSet<String>();
         for (Email e : list) {
             String splitterResult[] = e.getMessage().split("\\s");
@@ -45,9 +46,9 @@ public class ContactFinder {
             System.out.println("Phone numbers found: " + phones);
         }
     }
-    public void FindWebsite(Finder finder) {
+    public void FindWebsite(MailBox mailbox) {
 
-        List<Email> list = finder.getEmailList();
+        ArrayList<Email> list = mailbox.getMailbox();
         Set<String> wFound = new HashSet<String>();
         for (Email e : list) {
             String splitterResult[] = e.getMessage().split("\\s");
