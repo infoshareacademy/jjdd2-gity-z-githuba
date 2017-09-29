@@ -9,5 +9,8 @@ pageEncoding="ISO-8859-1"%>
 <body>
 <%-- Using JSP EL to get message attribute value from request scope --%>
 <h2>${requestScope.message}</h2>
+<h2>${requestScope.message2}</h2>
+<br><br>
+<h1>Please, go back to <a href = "/index.html">HOME</a> page. We are done here...</h1>
 </body>
 </html>
