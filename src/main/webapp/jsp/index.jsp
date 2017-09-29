@@ -2,7 +2,7 @@
 <script src="js/bootstrap.min.js"></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<form class="form-horizontal">
+<form class="form-horizontal" method="POST" action="makeResv.jsp">
     <fieldset>
 
         <!-- Form Name -->
@@ -43,10 +43,12 @@
 
         <!-- Button -->
         <div class="form-group">
+            <form action="indexWelcome.jsp" method="post">
             <label class="col-md-4 control-label" for="singlebutton"></label>
             <div class="col-md-4">
-                <button id="singlebutton" name="singlebutton" class="btn btn-primary">Give me the answers!</button>
+                <button id="singlebutton" name="singlebutton" class="btn btn-primary"> Give me the answers! </code> </button>
             </div>
+            </form>
         </div>
 
         <!-- Textarea -->
