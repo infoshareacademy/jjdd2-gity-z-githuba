@@ -2,6 +2,9 @@ package pl.infoshareacademy.mail;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import pl.infoshareacademy.config.ConfigureLoad;
+import pl.infoshareacademy.config.ConfigureSave;
+
 import java.util.Scanner;
 
 
