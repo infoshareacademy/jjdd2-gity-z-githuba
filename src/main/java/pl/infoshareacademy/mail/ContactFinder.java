@@ -72,7 +72,7 @@ public class ContactFinder {
         KeyWords keywords = new KeyWords();
         List<Object> flatKeywords =
                 keywords.getKeywordsList().stream()
-                        .flatMap(List::stream)
+                        //.flatMap(List::stream)
                         .collect(Collectors.toList());
         System.out.println(flatKeywords);
 

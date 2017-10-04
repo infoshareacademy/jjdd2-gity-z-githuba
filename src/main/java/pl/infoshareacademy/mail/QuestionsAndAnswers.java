@@ -20,8 +20,8 @@ public class QuestionsAndAnswers {
         return question;
     }
 
-    private  final List<String> initListOfAnswersIfYes() {
-        List<String> answerIfYes1 = new ArrayList<>(); //lista słów kluczowych dla odpowiedzi twierdzącej na pytanie 1
+    private List<String> initListOfAnswersIfYes() {
+        List<String> answerIfYes1 {} = new ArrayList<>(); //lista słów kluczowych dla odpowiedzi twierdzącej na pytanie 1
         answerIfYes1.add("urgent");
         answerIfYes1.add("fast");
         answerIfYes1.add("yesterday");
@@ -43,8 +43,8 @@ public class QuestionsAndAnswers {
         answerIfYes3.add("mandatory");
         List<String> answerIfYes = new ArrayList <>();
         answerIfYes.add(String.valueOf(answerIfYes1)); //zwraca listę słów kluczowych jeśli odp na pytanie 1 jest twierdząca
-        answerIfYes.add(String.valueOf(answerIfYes2)); //zwraca listę słów kluczowych jeśli odp na pytanie 2 jest twierdząca
-        answerIfYes.add(String.valueOf(answerIfYes3)); //zwraca listę słów kluczowych jeśli odp na pytanie 3 jest twierdząca
+        answerIfYes.addAll(answerIfYes2); //zwraca listę słów kluczowych jeśli odp na pytanie 2 jest twierdząca
+        answerIfYes.addAll(answerIfYes3); //zwraca listę słów kluczowych jeśli odp na pytanie 3 jest twierdząca
         return answerIfYes;
     }
 

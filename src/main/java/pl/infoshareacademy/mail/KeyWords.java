@@ -46,17 +46,20 @@ public class KeyWords {
                     System.out.println("These keywords might be helpful for you:");
                     System.out.println(question.getListOfAnswersIfYes().get(i));
                     keywordsList.add(question.getListOfAnswersIfYes().get(i));
+                    System.out.println(keywordsList);
                     break;
                 case "n":
                     System.out.println();
                     System.out.println("These keywords might be helpful for you:");
                     System.out.println(question.getListOfAnswersIfNo().get(i));
                     keywordsList.add(question.getListOfAnswersIfNo().get(i));
+                    System.out.println(keywordsList);
                     break;
             }
         }
         System.out.println();
         System.out.println(keywordsList);
+        keywordsList.forEach(e-> System.out.println(e));
         System.out.println("Have a nice day!");
         }
 
