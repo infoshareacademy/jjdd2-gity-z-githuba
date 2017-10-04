@@ -9,15 +9,12 @@ import java.util.stream.Stream;
 public class KeyWords {
 
 
-    List<String> keywordsList = new ArrayList<>();
-
     public List<String> getKeywordsList() {
         return keywordsList;
     }
 
-    public void setKeywordsList(List<String> keywordsList) {
-        this.keywordsList = keywordsList;
-    }
+    List<String> keywordsList = new ArrayList<>();
+    List<String> keywordsSelected = new ArrayList<>();
 
 
     private Scanner scanner = new Scanner(System.in);
@@ -45,21 +42,21 @@ public class KeyWords {
                     System.out.println();
                     System.out.println("These keywords might be helpful for you:");
                     System.out.println(question.getListOfAnswersIfYes().get(i));
-                    keywordsList.add(question.getListOfAnswersIfYes().get(i));
-                    System.out.println(keywordsList);
+                    keywordsSelected.addAll(question.getListOfAnswersIfYes().get(i));
                     break;
                 case "n":
                     System.out.println();
                     System.out.println("These keywords might be helpful for you:");
                     System.out.println(question.getListOfAnswersIfNo().get(i));
-                    keywordsList.add(question.getListOfAnswersIfNo().get(i));
-                    System.out.println(keywordsList);
+                    keywordsSelected.add(String.valueOf(question.getListOfAnswersIfNo().get(i)));
                     break;
             }
         }
         System.out.println();
+        System.out.println(keywordsSelected);
+        keywordsList.addAll(keywordsSelected);
         System.out.println(keywordsList);
-        keywordsList.forEach(e-> System.out.println(e));
+        keywordsList.forEach(System.out::println);
         System.out.println("Have a nice day!");
         }
 
