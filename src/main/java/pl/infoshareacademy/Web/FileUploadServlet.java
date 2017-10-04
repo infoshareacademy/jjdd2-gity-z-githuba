@@ -51,7 +51,6 @@ public class FileUploadServlet extends HttpServlet {
         request.setAttribute("message2", uploadFilePath + File.separator + fileName);
         getServletContext().getRequestDispatcher("/jsp/response.jsp").forward(
                 request, response);
-        request.setAttribute("message2", uploadFilePath + File.separator + fileName);
     }
 
     /**
