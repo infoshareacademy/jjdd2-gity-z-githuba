@@ -24,7 +24,7 @@
 <html>
 <head></head>
 <body>
-<h1> Welcome to ANALyzeMineMail!</h1>
+<h1> Welcome to AnalyseMyMail!</h1>
 <form action="FileUploadServlet" method="post" enctype="multipart/form-data">
     Select File to Upload:<input type="file" name="fileName">
     <br>
