@@ -11,6 +11,7 @@ pageEncoding="ISO-8859-1"%>
 <h2>${requestScope.message}</h2>
 <h2>${requestScope.message2}</h2>
 <br><br>
-<h1>Please, go back to <a href = "/index.html">HOME</a> page. We are done here...</h1>
+<h1>Please, go back to <a href = "home">HOME</a> page. We are done here...</h1>
+<h1>Or you can check uploaded files <a href="list">HERE</a> </h1>
 </body>
 </html>
