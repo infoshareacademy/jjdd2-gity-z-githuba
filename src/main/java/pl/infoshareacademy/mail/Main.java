@@ -40,7 +40,10 @@ public class Main {
 //                    EmlParser.parseEml(new File("/home/artur/test.eml"),mailBox);
                     mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
                     ContactFinder searcher = new ContactFinder();
-                    searcher.FindMail(mailBox);
+                    //searcher.FindMail(mailBox);
+                    //searcher.FindPhoneNo(mailBox);
+                    //searcher.FindWebsite(mailBox);
+                    searcher.FindQA(mailBox);
                     break;
                 case 3:
                     System.out.println("You've chosen item #3");

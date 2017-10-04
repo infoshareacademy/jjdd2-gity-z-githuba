@@ -7,13 +7,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ContactFinder {
+
 
     public void FindMail(MailBox mailbox) {
 
         ArrayList<Email> list = mailbox.getMailbox();
-
         Set<String> eFound = new HashSet<>();
 
         for (Email e : list) {
@@ -32,7 +33,8 @@ public class ContactFinder {
     public void FindPhoneNo(MailBox mailbox) {
 
         ArrayList<Email> list = mailbox.getMailbox();
-        Set<String> pFound = new HashSet<String>();
+        Set<String> pFound = new HashSet<>();
+
         for (Email e : list) {
             String splitterResult[] = e.getMessage().split("\\s");
             for (int i = 0; i < splitterResult.length; i++) {
@@ -49,7 +51,8 @@ public class ContactFinder {
     public void FindWebsite(MailBox mailbox) {
 
         ArrayList<Email> list = mailbox.getMailbox();
-        Set<String> wFound = new HashSet<String>();
+        Set<String> wFound = new HashSet<>();
+
         for (Email e : list) {
             String splitterResult[] = e.getMessage().split("\\s");
             for (int i = 0; i < splitterResult.length; i++) {
@@ -63,7 +66,28 @@ public class ContactFinder {
             System.out.println("Websites or Links found: " + websites);
         }
     }
-    public void FindQA (){
+    public void FindQA (MailBox mailbox){
+        ArrayList<Email> list = mailbox.getMailbox();
+        Set<String> keywordsFound = new HashSet<>();
+        KeyWords keywords = new KeyWords();
+        List<Object> flatKeywords =
+                keywords.getKeywordsList().stream()
+                        .flatMap(List::stream)
+                        .collect(Collectors.toList());
+        System.out.println(flatKeywords);
 
+
+        for (Email e : list) {
+            String splitterResult[] = e.getMessage().split("\\s");
+            for (int i = 0; i < splitterResult.length; i++) {
+                if (splitterResult[i].matches(keywords.getKeywordsList().toString())) {
+                    keywordsFound.add(splitterResult[i]);
+                }
+            }
+        }
+        for (String websites : keywordsFound) {
+            System.out.println("Websites or Links found: " + websites);
+        }
     }
+
 }
