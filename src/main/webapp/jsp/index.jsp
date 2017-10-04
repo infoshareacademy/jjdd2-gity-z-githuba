@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <form class="form-horizontal" action="${pageContext.request.contextPath}/home">
+
     <fieldset>
 
         <!-- Form Name -->
@@ -46,6 +47,7 @@
             <label class="col-md-4 control-label" for="singlebutton"></label>
             <div class="col-md-4">
                 <button id="singlebutton" type="submit" value="Submit" name="singlebutton" class="btn btn-primary">Give me the answers!</button>
+
             </div>
         </div>
 
