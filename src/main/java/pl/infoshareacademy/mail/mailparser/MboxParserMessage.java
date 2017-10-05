@@ -1,46 +1,54 @@
 package pl.infoshareacademy.mail.mailparser;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.EmptyFileException;
+import pl.infoshareacademy.mail.Main;
 
-import javax.xml.ws.soap.Addressing;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MboxParserMessage {
+    private static final Logger logger = LogManager.getLogger(Main.class.getName());
     String path;
-    ArrayList<Email> supportmail;
-    ArrayList<String> supportmessage = new ArrayList<>();
-    ArrayList<String> supportmessageextract = new ArrayList<>();
+    ArrayList<Email> arrayWithObject;
+    ArrayList<String> arrayCointainsSeprateWholeMessage = new ArrayList<>();
+    ArrayList<String> arrayContainsOnlyMessage = new ArrayList<>();
 
-    public MboxParserMessage(String path, ArrayList<Email> supportmail) {
+    public MboxParserMessage(String path, ArrayList<Email> arrayWithObject) {
         this.path = path;
-        this.supportmail = supportmail;
+        this.arrayWithObject = arrayWithObject;
     }
 
-    public void run(MailBox mailBox) throws FileNotFoundException, EmptyFileException {
-        message();
-        splitMessage();
-        mboxParserMessage();
+    public void run(MailBox mailBox) {
+        splitMessagetoWholeMessage();
+        splittMesegaContainsOnlyMessege();
+        addMessagetoEmailClass();
         addEmailObjecttoMailBoxclass(mailBox);
 
     }
 
-    public void message() throws FileNotFoundException {
+    public void splitMessagetoWholeMessage() {
 
         File file = new File(path);
-        Scanner sc = new Scanner(file);
+        Scanner sc = null;
+        try {
+            sc = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         sc.useDelimiter("\\n{3}");
         while (sc.hasNext()) {
-            supportmessage.add(sc.next());
+            arrayCointainsSeprateWholeMessage.add(sc.next());
 
         }
     }
 
-    public void splitMessage() {
-        for (String e : supportmessage) {
+    public void splittMesegaContainsOnlyMessege() {
+        for (String e : arrayCointainsSeprateWholeMessage) {
             Scanner sc = new Scanner(e);
             sc.useDelimiter("\\n{2}");
             int i = 1;
@@ -52,24 +60,28 @@ public class MboxParserMessage {
                 }
                 i++;
             }
-            supportmessageextract.add(wholecontent);
+            arrayContainsOnlyMessage.add(wholecontent);
         }
     }
 
-    public void mboxParserMessage() throws EmptyFileException {
+    public void addMessagetoEmailClass() {
 
-        if (supportmessageextract.isEmpty()) {
-            throw new EmptyFileException("Empty file");
+        if (arrayContainsOnlyMessage.isEmpty()) {
+            try {
+                throw new EmptyFileException("Empty file");
+            } catch (EmptyFileException e) {
+                logger.warn("Empty file");
+            }
         }
-        for (int i = 0; i < supportmail.size(); i++) {
-            supportmail.get(i).setMessage(supportmessageextract.get(i));
+        for (int i = 0; i < arrayWithObject.size(); i++) {
+            arrayWithObject.get(i).setMessage(arrayContainsOnlyMessage.get(i));
         }
     }
 
     public void addEmailObjecttoMailBoxclass(MailBox mailBox) {
         ArrayList<Email> emptyarray = mailBox.getMailbox();
-        for (int i = 0; i <supportmail.size() ; i++) {
-            emptyarray.add(supportmail.get(i));
+        for (int i = 0; i < arrayWithObject.size(); i++) {
+            emptyarray.add(arrayWithObject.get(i));
         }
 
     }

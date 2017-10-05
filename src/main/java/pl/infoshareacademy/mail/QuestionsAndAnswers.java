@@ -1,9 +1,13 @@
 package pl.infoshareacademy.mail;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionsAndAnswers {
+    private static final Logger logger = LogManager.getLogger(QuestionsAndAnswers.class.getName());
 
     private final List<String> questions = getQuestionsList();
     private final List<List<String>> listOfAnswersIfYes = initListOfAnswersIfYes();
@@ -12,7 +16,7 @@ public class QuestionsAndAnswers {
     private final List<String> getQuestionsList() {
         String question1 = "Is this an urgent message? Y/N";
         String question2 = "Is this a formal message? Y/N";
-        String question3 = "Is this an important message Y/N";
+        String question3 = "Is this an important messageY/N";
         List<String> question = new ArrayList <>();
         question.add(question1);
         question.add(question2);
