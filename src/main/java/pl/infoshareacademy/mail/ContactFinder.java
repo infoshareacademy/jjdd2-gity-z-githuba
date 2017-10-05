@@ -72,18 +72,16 @@ public class ContactFinder {
         ArrayList matchingMail = new ArrayList();
         System.out.println(keywords.getKeywordsSelected());
         System.out.println(keywords.KeyWordsIdentification());
-        System.out.println(keywords.getKeywordsSelected().spliterator());
-        System.out.println(keywords.getKeywordsSelected().iterator());
 
         for (Email e : list) {
             String splitterResult[] = e.getMessage().split("\\s");
             for (int i = 0; i < splitterResult.length; i++){
-                    if (splitterResult[i].matches(keywords.getKeywordsSelected().spliterator().toString())) {
+                    if (splitterResult[i].matches(keywords.getKeywordsSelected().toString())) {
                         System.out.println(splitterResult[i]);
-                        //matchingMail.add(e.getFrom());
-                        //matchingMail.add(e.getSender());
-                        //matchingMail.add(e.getDate());
-                        //matchingMail.add(e.getSubject());
+                        matchingMail.add(e.getFrom());
+                        matchingMail.add(e.getSender());
+                        matchingMail.add(e.getDate());
+                        matchingMail.add(e.getSubject());
                         matchingMail.add(e.getMessage());
                         sortedMail.addAll(matchingMail);
                     }
