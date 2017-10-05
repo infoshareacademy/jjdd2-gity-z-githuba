@@ -14,7 +14,7 @@ public class KeyWords {
         return scanner.nextLine().trim().toLowerCase();
     }
 
-    public void KeyWordsIdentification() {
+    public List KeyWordsIdentification() {
         QuestionsAndAnswers question = new QuestionsAndAnswers();
 
 
@@ -43,12 +43,16 @@ public class KeyWords {
             }
         }
         System.out.println();
-        System.out.println("Summary of Your selected keywords: \n" + keywordsSelected);
+        System.out.println("Summary of keywords selected for You: \n" + keywordsSelected);
         System.out.println("Have a nice day!");
+        setKeywordsSelected(keywordsSelected);
+        return keywordsSelected;
         }
 
     public List<String> getKeywordsSelected() {
         return keywordsSelected;
     }
-
+    public void setKeywordsSelected(List<String> keywordsSelected) {
+        this.keywordsSelected = keywordsSelected;
+    }
     }

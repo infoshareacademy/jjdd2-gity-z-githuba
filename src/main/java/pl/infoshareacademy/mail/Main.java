@@ -45,9 +45,9 @@ public class Main {
                     MailBox mailBox=new MailBox();
                     MboxParser parser = new MboxParser("/home/artur/test.mbox");
                     parser.run(mailBox);
-                    mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
+                    //mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
                     //EmlParser.parseEml(new File("/home/michalrichert/1.eml"),mailBox);
-                    mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
+                    //mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
                     ContactFinder searcher = new ContactFinder();
                     //searcher.FindMail(mailBox);
                     //searcher.FindPhoneNo(mailBox);

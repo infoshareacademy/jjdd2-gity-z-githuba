@@ -67,21 +67,30 @@ public class ContactFinder {
 
     public void FindQA (MailBox mailbox){
         ArrayList<Email> list = mailbox.getMailbox();
-        Set<String> sortedMail = new HashSet<>();
+        Set<List<String>> sortedMail = new HashSet<>();
         KeyWords keywords = new KeyWords();
+        ArrayList matchingMail = new ArrayList();
+        System.out.println(keywords.getKeywordsSelected());
+        System.out.println(keywords.KeyWordsIdentification());
+        System.out.println(keywords.getKeywordsSelected().spliterator());
+        System.out.println(keywords.getKeywordsSelected().iterator());
 
-        for (int k = 0; k < list.size(); k++) {
-            String splitterResult[] = list.get(k).getMessage().split("\\s");
-            System.out.println(splitterResult);
+        for (Email e : list) {
+            String splitterResult[] = e.getMessage().split("\\s");
             for (int i = 0; i < splitterResult.length; i++){
-                for (int j = 0; j < keywords.getKeywordsSelected().size(); j++) {
-                    if (splitterResult[i].matches(keywords.getKeywordsSelected().get(j))) {
-                    sortedMail.addAll(list.get(k));
+                    if (splitterResult[i].matches(keywords.getKeywordsSelected().spliterator().toString())) {
+                        System.out.println(splitterResult[i]);
+                        //matchingMail.add(e.getFrom());
+                        //matchingMail.add(e.getSender());
+                        //matchingMail.add(e.getDate());
+                        //matchingMail.add(e.getSubject());
+                        matchingMail.add(e.getMessage());
+                        sortedMail.addAll(matchingMail);
                     }
-                }
             }
         }
-        for (String sortedMailDisplay : sortedMail) {
+        System.out.println(matchingMail);
+        for (List sortedMailDisplay : sortedMail) {
             System.out.println("Emails containing keyword: " + sortedMailDisplay);
         }
     }
