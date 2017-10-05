@@ -67,19 +67,22 @@ public class ContactFinder {
 
     public void FindQA (MailBox mailbox){
         ArrayList<Email> list = mailbox.getMailbox();
-        Set<String> keywordsFound = new HashSet<>();
+        Set<String> sortedMail = new HashSet<>();
         KeyWords keywords = new KeyWords();
 
-        for (Email e : list) {
-            String splitterResult[] = e.getMessage().split("\\s");
-            for (int i = 0; i < splitterResult.length; i++) {
-                if (splitterResult[i].matches(keywords.getKeywordsSelected().toString())) {
-                    keywordsFound.add(splitterResult[i]);
+        for (int k = 0; k < list.size(); k++) {
+            String splitterResult[] = list.get(k).getMessage().split("\\s");
+            System.out.println(splitterResult);
+            for (int i = 0; i < splitterResult.length; i++){
+                for (int j = 0; j < keywords.getKeywordsSelected().size(); j++) {
+                    if (splitterResult[i].matches(keywords.getKeywordsSelected().get(j))) {
+                    sortedMail.addAll(list.get(k));
+                    }
                 }
             }
         }
-        for (String websites : keywordsFound) {
-            System.out.println("Emails containing keyword: " + sortedMail);
+        for (String sortedMailDisplay : sortedMail) {
+            System.out.println("Emails containing keyword: " + sortedMailDisplay);
         }
     }
 
