@@ -7,7 +7,7 @@ public class QuestionsAndAnswers {
 
     private final List<String> questions = getQuestionsList();
     private final List<List<String>> listOfAnswersIfYes = initListOfAnswersIfYes();
-    private final List<String> listOfAnswersIfNo = initListOfAnswersIfNo();
+    private final List<List<String>> listOfAnswersIfNo = initListOfAnswersIfNo();
 
     private final List<String> getQuestionsList() {
         String question1 = "Is this an urgent message? Y/N";
@@ -48,7 +48,7 @@ public class QuestionsAndAnswers {
         return answerIfYes;
     }
 
-    private final List<String> initListOfAnswersIfNo() {
+    private List<List<String>> initListOfAnswersIfNo() {
         List<String> answerIfNo1 = new ArrayList<>(); //lista słów kluczowych dla odpowiedzi przeczącej na pytanie 1
         answerIfNo1.add("irrelevant");
         answerIfNo1.add("next");
@@ -64,10 +64,10 @@ public class QuestionsAndAnswers {
         answerIfNo3.add("leisure");
         answerIfNo3.add("btw");
         answerIfNo3.add("nevermind");
-        List<String> answerIfNo = new ArrayList <>();
-        answerIfNo.add(String.valueOf(answerIfNo1)); //zwraca listę słów kluczowych jeśli odp na pytanie 1 jest przecząca
-        answerIfNo.add(String.valueOf(answerIfNo2)); //zwraca listę słów kluczowych jeśli odp na pytanie 2 jest przecząca
-        answerIfNo.add(String.valueOf(answerIfNo3)); //zwraca listę słów kluczowych jeśli odp na pytanie 3 jest przecząca
+        List<List<String>> answerIfNo = new ArrayList <>();
+        answerIfNo.add(answerIfNo1); //zwraca listę słów kluczowych jeśli odp na pytanie 1 jest przecząca
+        answerIfNo.add(answerIfNo2); //zwraca listę słów kluczowych jeśli odp na pytanie 2 jest przecząca
+        answerIfNo.add(answerIfNo3); //zwraca listę słów kluczowych jeśli odp na pytanie 3 jest przecząca
         return answerIfNo;
     }
 
@@ -79,7 +79,7 @@ public class QuestionsAndAnswers {
         return listOfAnswersIfYes;
     }
 
-    public List<String> getListOfAnswersIfNo() {
+    public List<List<String>> getListOfAnswersIfNo() {
         return listOfAnswersIfNo;
     }
 }

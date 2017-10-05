@@ -3,19 +3,10 @@ package pl.infoshareacademy.mail;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class KeyWords {
 
-
-    public List<String> getKeywordsList() {
-        return keywordsList;
-    }
-
-    List<String> keywordsList = new ArrayList<>();
-    List<String> keywordsSelected = new ArrayList<>();
-
+    private List<String> keywordsSelected = new ArrayList<>();
 
     private Scanner scanner = new Scanner(System.in);
 
@@ -25,7 +16,6 @@ public class KeyWords {
 
     public void KeyWordsIdentification() {
         QuestionsAndAnswers question = new QuestionsAndAnswers();
-
 
 
         for (int i = 0; i < question.getQuestions().size(); i++) {
@@ -48,16 +38,17 @@ public class KeyWords {
                     System.out.println();
                     System.out.println("These keywords might be helpful for you:");
                     System.out.println(question.getListOfAnswersIfNo().get(i));
-                    keywordsSelected.add(String.valueOf(question.getListOfAnswersIfNo().get(i)));
+                    keywordsSelected.addAll(question.getListOfAnswersIfNo().get(i));
                     break;
             }
         }
         System.out.println();
-        System.out.println(keywordsSelected);
-        keywordsList.addAll(keywordsSelected);
-        System.out.println(keywordsList);
-        keywordsList.forEach(System.out::println);
+        System.out.println("Summary of Your selected keywords: \n" + keywordsSelected);
         System.out.println("Have a nice day!");
         }
+
+    public List<String> getKeywordsSelected() {
+        return keywordsSelected;
+    }
 
     }

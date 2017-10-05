@@ -1,7 +1,5 @@
 package pl.infoshareacademy.mail;
-import org.apache.james.mime4j.dom.address.Mailbox;
 import pl.infoshareacademy.mail.mailparser.MailBox;
-import pl.infoshareacademy.mail.mailparser.MboxParser;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -66,27 +64,22 @@ public class ContactFinder {
             System.out.println("Websites or Links found: " + websites);
         }
     }
+
     public void FindQA (MailBox mailbox){
         ArrayList<Email> list = mailbox.getMailbox();
         Set<String> keywordsFound = new HashSet<>();
         KeyWords keywords = new KeyWords();
-        List<Object> flatKeywords =
-                keywords.getKeywordsList().stream()
-                        //.flatMap(List::stream)
-                        .collect(Collectors.toList());
-        System.out.println(flatKeywords);
-
 
         for (Email e : list) {
             String splitterResult[] = e.getMessage().split("\\s");
             for (int i = 0; i < splitterResult.length; i++) {
-                if (splitterResult[i].matches(keywords.getKeywordsList().toString())) {
+                if (splitterResult[i].matches(keywords.getKeywordsSelected().toString())) {
                     keywordsFound.add(splitterResult[i]);
                 }
             }
         }
         for (String websites : keywordsFound) {
-            System.out.println("Websites or Links found: " + websites);
+            System.out.println("Emails containing keyword: " + sortedMail);
         }
     }
 
