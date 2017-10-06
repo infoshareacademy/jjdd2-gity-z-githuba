@@ -53,7 +53,7 @@ public class FileUploadServlet extends HttpServlet {
         }
         logger.info("Saved {} on upload directory!", fileName);
 
-        filePath.setTempFilePath(tempPath);
+        filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
 
         request.setAttribute("message", fileName + " File uploaded successfully!");
         request.setAttribute("message2", uploadFilePath + File.separator + fileName);
