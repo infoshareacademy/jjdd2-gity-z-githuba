@@ -1,17 +1,25 @@
 package pl.infoshareacademy.mail;
 
 
+import java.util.Date;
+
 public class Email {
 
     private String from;
-    private String description;
-    private String message;
+    private String sender;
+    private Date date;
+    private String message="";
+    private String subject;
+    private String to;
 
     public Email(){}
 
-    public Email(final String from,final String description) {
+    public Email(String from, String sender, Date date, String message, String subject) {
         this.from = from;
-        this.description = description;
+        this.sender = sender;
+        this.date = date;
+        this.message = message;
+        this.subject = subject;
     }
 
     @Override
@@ -20,13 +28,13 @@ public class Email {
         if (o == null || getClass() != o.getClass()) return false;
         Email email = (Email) o;
         if (from != null ? !from.equals(email.from) : email.from != null) return false;
-        return description != null ? description.equals(email.description) : email.description == null;
+        return message != null ? message.equals(email.message) : email.message == null;
     }
 
     @Override
     public int hashCode() {
         int result = from != null ? from.hashCode() : 0;
-        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (message != null ? message.hashCode() : 0);
         return result;
     }
 
@@ -34,7 +42,10 @@ public class Email {
     public String toString() {
         return "Email{" +
                 "from='" + from + '\'' +
-                ", description='" + description + '\'' +
+                ", sender='" + sender + '\'' +
+                ", date=" + date +
+                ", splitMessagetoWholeMessage='" + message + '\'' +
+                ", subject='" + subject + '\'' +
                 '}';
     }
 
@@ -46,19 +57,43 @@ public class Email {
         this.from = from;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getMessage() {
         return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
     }
 }
