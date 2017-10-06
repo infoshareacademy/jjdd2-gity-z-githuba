@@ -45,6 +45,7 @@ public class Main {
                     MailBox mailBox=new MailBox();
                     MboxParser parser = new MboxParser("/home/artur/test.mbox");
                     parser.run(mailBox);
+                    KeyWords keywordsSelectedList = new KeyWords();
                     //mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
                     //EmlParser.parseEml(new File("/home/michalrichert/1.eml"),mailBox);
                     //mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
@@ -52,7 +53,7 @@ public class Main {
                     //searcher.FindMail(mailBox);
                     //searcher.FindPhoneNo(mailBox);
                     //searcher.FindWebsite(mailBox);
-                    searcher.FindQA(mailBox);
+                    searcher.FindQA(mailBox,"urgent");
                     break;
                 case 3:
                     logger.info("Im in Menu {} right now!", menuItem);

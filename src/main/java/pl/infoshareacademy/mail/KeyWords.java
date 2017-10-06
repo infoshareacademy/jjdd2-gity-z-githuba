@@ -43,7 +43,6 @@ public class KeyWords {
             }
         }
         System.out.println();
-        System.out.println("Summary of keywords selected for You: \n" + keywordsSelected);
         System.out.println("Have a nice day!\n");
         return keywordsSelected;
         }

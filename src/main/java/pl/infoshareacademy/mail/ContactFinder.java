@@ -3,9 +3,7 @@ import pl.infoshareacademy.mail.mailparser.MailBox;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class ContactFinder {
 
@@ -65,37 +63,22 @@ public class ContactFinder {
         }
     }
 
-    public void FindQA (MailBox mailbox){
+    public Set FindQA (MailBox mailbox, String searchkeywords){
         ArrayList<Email> list = mailbox.getMailbox();
-        Set<Set<String>> sortedMail = new HashSet<>();
         KeyWords keywords = new KeyWords();
         Set matchingMail = new HashSet();
-        System.out.println("before Q&A\n"+keywords.getKeywordsSelected());
-        System.out.println("Q&A\n"+keywords.KeyWordsIdentification());
-        System.out.println("afterQ&A\n"+keywords.getKeywordsSelected());
+        System.out.println("Summary of keywords selected for You:\n"+keywords.KeyWordsIdentification());
 
         for (Email e : list) {
             String splitterResult[] = e.getMessage().split("\\s");
-            System.out.println("\ngetMessage content\n"+e.getMessage());
-            System.out.println("\ngetMessage split content\n"+e.getMessage().split("\\s"));
-
             for (int i = 0; i < splitterResult.length; i++){
-                    if (splitterResult[i].matches("urgent")) {
-                        System.out.println("\nspliter result"+i+"\n"+splitterResult[i]);
-                        matchingMail.add(e.getFrom());
-                        matchingMail.add(e.getSender());
-                        matchingMail.add(e.getDate());
-                        matchingMail.add(e.getSubject());
-                        matchingMail.add(e.getMessage());
-                        sortedMail.add(matchingMail);
+                    if (splitterResult[i].matches(searchkeywords)) {
+                        matchingMail.add(e.toString());
                     }
             }
         }
         System.out.println("\nmatchingMail content\n"+matchingMail);
-        System.out.println("\nsortedMail content\n"+sortedMail+"\n");
-        //for (List sortedMailDisplay : sortedMail) {
-        //    System.out.println("Emails containing keyword: " + sortedMailDisplay);
-        //}
+        return matchingMail;
     }
 
 }
