@@ -1,6 +1,9 @@
 package pl.infoshareacademy.Web;
 
 
+import pl.infoshareacademy.mail.TempFilePath;
+
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +16,10 @@ import java.io.PrintWriter;
 @WebServlet("/sender")
 
 public class SearchingBySenderServlet extends HttpServlet {
+
+    @Inject
+    TempFilePath filePath;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -24,6 +31,7 @@ public class SearchingBySenderServlet extends HttpServlet {
         writer.println("<html>");
         writer.println("<body>");
         writer.println("<h1>Searching by sender</h1>");
+        writer.println("<p>"+filePath.getTempFilePath()+"</p>");
         writer.println("</body>");
         writer.println("</html>");
     }

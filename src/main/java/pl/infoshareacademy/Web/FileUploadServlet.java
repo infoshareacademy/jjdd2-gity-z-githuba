@@ -2,7 +2,9 @@ package pl.infoshareacademy.Web;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import pl.infoshareacademy.mail.TempFilePath;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -27,6 +29,9 @@ public class FileUploadServlet extends HttpServlet {
     private static final String UPLOAD_DIR = "uploads";
     private static final Logger logger = LogManager.getLogger(FileUploadServlet.class.getName());
 
+    @Inject
+    TempFilePath filePath;
+
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
         // gets absolute path of the web application
@@ -41,11 +46,14 @@ public class FileUploadServlet extends HttpServlet {
         }
         String fileName = null;
         //Get all the parts from request and write it to the file on server
+        String tempPath = uploadFilePath + File.separator + fileName;
         for (Part part : request.getParts()) {
             fileName = getFileName(part);
-            part.write(uploadFilePath + File.separator + fileName);
+            part.write(tempPath);
         }
         logger.info("Saved {} on upload directory!", fileName);
+
+        filePath.setTempFilePath(tempPath);
 
         request.setAttribute("message", fileName + " File uploaded successfully!");
         request.setAttribute("message2", uploadFilePath + File.separator + fileName);
