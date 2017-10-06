@@ -49,11 +49,11 @@ public class FileUploadServlet extends HttpServlet {
         String tempPath = uploadFilePath + File.separator + fileName;
         for (Part part : request.getParts()) {
             fileName = getFileName(part);
-            part.write(tempPath);
+            part.write(uploadFilePath + File.separator + fileName);
         }
         logger.info("Saved {} on upload directory!", fileName);
 
-        filePath.setTempFilePath(tempPath);
+        filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
 
         request.setAttribute("message", fileName + " File uploaded successfully!");
         request.setAttribute("message2", uploadFilePath + File.separator + fileName);
