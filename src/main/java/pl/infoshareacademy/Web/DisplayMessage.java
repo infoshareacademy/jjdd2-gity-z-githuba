@@ -2,6 +2,7 @@ package pl.infoshareacademy.Web;
 
 
 import pl.infoshareacademy.mail.ContactFinder;
+import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.TempFilePath;
 import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
@@ -38,7 +39,7 @@ public class DisplayMessage extends HttpServlet {
         MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
         mboxParser.run(mailBox);
         ContactFinder finder= new ContactFinder();
-        Set mail = finder.FindQA(mailBox, "test");
+        Set<Email> mail = finder.FindQA(mailBox, "test");
         PrintWriter writer = resp.getWriter();
 
         writer.println("<!DOCTYPE html>");
@@ -46,9 +47,9 @@ public class DisplayMessage extends HttpServlet {
         writer.println("<body>");
         writer.println("<h1>Searching by sender</h1>");
         writer.println("<p>"+filePath.getTempFilePath()+"</p>");
-        mailBox.getMailbox().forEach(e->writer.println("ds"+e.getMessage()));
-        mail.forEach(e->e.toString());
-        writer.println("<p>" + mail.isEmpty()+"</p>");
+      //  mailBox.getMailbox().forEach(e->writer.println("ds"+e.getMessage()));
+        mail.forEach(e->writer.println(e.getMessage()));
+   //     writer.println("<p>" + mail +"</p>");
         writer.println("</body>");
         writer.println("</html>");
     }
