@@ -46,17 +46,17 @@ public class Main {
                     Menu.PrintMenuAnalyze();
                     System.out.println("You've chosen item #2");
                     MailBox mailBox=new MailBox();
-                    MboxParser parser = new MboxParser("/home/artur/test.mbox");
+                    MboxParser parser = new MboxParser("/home/mr/testlist.mbox");
                     parser.run(mailBox);
-                    KeyWords keywordsSelectedList = new KeyWords();
-                    //mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
+                  //  KeyWords keywordsSelectedList = new KeyWords();
+                    mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
                     //EmlParser.parseEml(new File("/home/michalrichert/1.eml"),mailBox);
                     //mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
-                    ContactFinder searcher = new ContactFinder();
+                   // ContactFinder searcher = new ContactFinder();
                     //searcher.FindMail(mailBox);
                     //searcher.FindPhoneNo(mailBox);
                     //searcher.FindWebsite(mailBox);
-                    searcher.FindQA(mailBox,"urgent");
+                   // searcher.FindQA(mailBox,"urgent");
                     break;
                 case 3:
                     logger.info("Im in Menu {} right now!", menuItem);
