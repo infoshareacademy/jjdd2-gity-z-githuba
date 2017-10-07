@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -39,16 +41,24 @@ public class DisplayMessage extends HttpServlet {
         MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
         mboxParser.run(mailBox);
         ContactFinder finder= new ContactFinder();
-        Set<Email> mail = finder.FindQA(mailBox, "test");
-        PrintWriter writer = resp.getWriter();
+        ArrayList<String> lista = new ArrayList<>();
+        lista.add("test");
+        lista.add("michal");
+        Set<Email> displaylist = new HashSet<>();
 
+        for (int i = 0; i <lista.size(); i++) {
+            Set<Email> mail = finder.FindQA(mailBox, lista.get(i));
+            displaylist.addAll(mail);
+        }
+
+        PrintWriter writer = resp.getWriter();
         writer.println("<!DOCTYPE html>");
         writer.println("<html>");
         writer.println("<body>");
         writer.println("<h1>Searching by sender</h1>");
         writer.println("<p>"+filePath.getTempFilePath()+"</p>");
       //  mailBox.getMailbox().forEach(e->writer.println("ds"+e.getMessage()));
-        mail.forEach(e->writer.println(e.getMessage()));
+        displaylist.forEach(e->writer.println(e.getMessage()));
    //     writer.println("<p>" + mail +"</p>");
         writer.println("</body>");
         writer.println("</html>");
