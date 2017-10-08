@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -51,10 +52,7 @@ public class DisplayMessage extends HttpServlet {
         }
 
         ContactFinder finder= new ContactFinder();
-        ArrayList<String> lista = new ArrayList<>();
-        lista.add("test");
-        lista.add("michal");
-
+        List<String> lista = filePath.getKeywordsFromServletForm();
         Set<Email> displaylist = new HashSet<>();
 
 
@@ -69,7 +67,7 @@ public class DisplayMessage extends HttpServlet {
         }
 
         req.setAttribute("question",displaylist);
-        req.setAttribute("dupa",lista);
+        req.setAttribute("keywords",lista);
 
 
 //        PrintWriter writer = resp.getWriter();
