@@ -20,6 +20,9 @@ public class SearchingBySenderServlet extends HttpServlet {
     @Inject
     TempFilePath filePath;
 
+    @Inject
+    TempFilePath listOfKeywords;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -32,6 +35,7 @@ public class SearchingBySenderServlet extends HttpServlet {
         writer.println("<body>");
         writer.println("<h1>Searching by sender</h1>");
         writer.println("<p>"+filePath.getTempFilePath()+"</p>");
+        writer.println("<p>"+listOfKeywords.getKeywordsFromServletForm()+"</p>");
         writer.println("</body>");
         writer.println("</html>");
     }
