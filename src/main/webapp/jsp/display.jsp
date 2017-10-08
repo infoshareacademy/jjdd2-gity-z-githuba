@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div id="keywords">
     <c:forEach var="keywords" items="${keywords}" varStatus="loop">
-        <c:out value="[${loop.index}]" />: <c:out value="${keywords}"/><br/>
+        <c:out value="[${loop.index}]" />: <c:out value="${keywords}"/>
     </c:forEach>
 </div>
 <div id="sentences">
