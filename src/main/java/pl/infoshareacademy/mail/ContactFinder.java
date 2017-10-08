@@ -1,14 +1,12 @@
 package pl.infoshareacademy.mail;
 import pl.infoshareacademy.mail.mailparser.MailBox;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public class ContactFinder {
 
-
-    public void FindMail(MailBox mailbox) {
+    public void findMail(MailBox mailbox) {
 
         ArrayList<Email> list = mailbox.getMailbox();
         Set<String> eFound = new HashSet<>();
@@ -26,7 +24,7 @@ public class ContactFinder {
         }
     }
 
-    public void FindPhoneNo(MailBox mailbox) {
+    public void findPhoneNo(MailBox mailbox) {
 
         ArrayList<Email> list = mailbox.getMailbox();
         Set<String> pFound = new HashSet<>();
@@ -44,7 +42,8 @@ public class ContactFinder {
             System.out.println("Phone numbers found: " + phones);
         }
     }
-    public void FindWebsite(MailBox mailbox) {
+
+    public void findWebsite(MailBox mailbox) {
 
         ArrayList<Email> list = mailbox.getMailbox();
         Set<String> wFound = new HashSet<>();
@@ -63,11 +62,10 @@ public class ContactFinder {
         }
     }
 
-    public Set FindQA (MailBox mailbox, String searchkeywords){
+    public Set findQA(MailBox mailbox, String searchkeywords){
+
         ArrayList<Email> list = mailbox.getMailbox();
-        KeyWords keywords = new KeyWords();
         Set matchingMail = new HashSet();
-        //       System.out.println("Summary of keywords selected for You:\n"+keywords.KeyWordsIdentification());
 
         for (Email e : list) {
             String splitterResult[] = e.getMessage().split("\\s");
@@ -77,8 +75,6 @@ public class ContactFinder {
                 }
             }
         }
-        //      System.out.println("\nmatchingMail content\n"+matchingMail);
         return matchingMail;
     }
-
 }
