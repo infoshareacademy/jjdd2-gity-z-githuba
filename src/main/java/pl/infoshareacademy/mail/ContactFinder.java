@@ -67,17 +67,17 @@ public class ContactFinder {
         ArrayList<Email> list = mailbox.getMailbox();
         KeyWords keywords = new KeyWords();
         Set matchingMail = new HashSet();
-        System.out.println("Summary of keywords selected for You:\n"+keywords.KeyWordsIdentification());
+        //       System.out.println("Summary of keywords selected for You:\n"+keywords.KeyWordsIdentification());
 
         for (Email e : list) {
             String splitterResult[] = e.getMessage().split("\\s");
             for (int i = 0; i < splitterResult.length; i++){
-                    if (splitterResult[i].matches(searchkeywords)) {
-                        matchingMail.add(e.toString());
-                    }
+                if (splitterResult[i].matches(searchkeywords)) {
+                    matchingMail.add(e);
+                }
             }
         }
-        System.out.println("\nmatchingMail content\n"+matchingMail);
+        //      System.out.println("\nmatchingMail content\n"+matchingMail);
         return matchingMail;
     }
 
