@@ -16,12 +16,12 @@ import java.util.Properties;
 public class EmlParser {
     private static final Logger logger = LogManager.getLogger(Main.class.getName());
 
-    public static void parseEml(File emlFile, MailBox mailBox) {
+    public static void parseEml(String emlFile, MailBox mailBox) {
         try {
             Properties props = System.getProperties();
             Session mailSession = Session.getDefaultInstance(props, null);
             InputStream source = null;
-            source = new FileInputStream(emlFile);
+            source = new FileInputStream(new File(emlFile));
             MimeMessage message = new MimeMessage(mailSession, source);
             Email email = new Email();
             email.setMessage(message.getContent().toString());
