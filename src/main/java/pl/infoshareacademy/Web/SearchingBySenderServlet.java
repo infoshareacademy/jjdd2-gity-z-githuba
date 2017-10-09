@@ -34,8 +34,6 @@ public class SearchingBySenderServlet extends HttpServlet {
         writer.println("<html>");
         writer.println("<body>");
         writer.println("<h1>Searching by sender</h1>");
-        writer.println("<p>"+filePath.getTempFilePath()+"</p>");
-        writer.println("<p>"+listOfKeywords.getKeywordsFromServletForm()+"</p>");
         writer.println("</body>");
         writer.println("</html>");
     }
