@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 @WebServlet("/words")
@@ -33,9 +34,11 @@ public class ListOfWordsServlet extends HttpServlet {
         String firstAnswer = (String)req.getAttribute("firstAnswer");
         String secondAnswer = (String)req.getAttribute("secondAnswer");
         String thirdAnswer = (String)req.getAttribute("thirdAnswer");
+
         ArrayList<String> listOfSearchKeywords = new ArrayList<>();
 
         writer.println("These keywords might be helpful for you: ");
+
 
         switch (firstAnswer) {
             case "Yes":
@@ -76,5 +79,6 @@ public class ListOfWordsServlet extends HttpServlet {
                 break;
         }
         listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
+
     }
 }

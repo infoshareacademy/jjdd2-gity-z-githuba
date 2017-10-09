@@ -11,5 +11,6 @@
 <c:forEach var="question" items="${question}" varStatus="loop">
     <c:out value="[${loop.index}]" />: <c:out value="${question}"/><br/>
 </c:forEach>
+    <a href="home"/>Go to home</a>
 </div>
 
