@@ -27,6 +27,8 @@ public class ListOfWordsServlet extends HttpServlet {
 
         resp.setContentType("text/html;charset=UTF-8");
 
+
+
         PrintWriter writer = resp.getWriter();
 
         QuestionsAndAnswers question = new QuestionsAndAnswers();
@@ -39,6 +41,9 @@ public class ListOfWordsServlet extends HttpServlet {
 
         writer.println("These keywords might be helpful for you: ");
 
+        writer.println("<!DOCTYPE html>");
+        writer.println("<html>");
+        writer.println("<body>");
 
         switch (firstAnswer) {
             case "Yes":
@@ -79,6 +84,13 @@ public class ListOfWordsServlet extends HttpServlet {
                 break;
         }
         listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
+
+
+        writer.println("<br>");
+        writer.println("<A HREF=\"display\">Display result</A>");
+        writer.println("<A HREF=\"sender\">Change words</A>");
+        writer.println("</body>");
+        writer.println("</html>");
 
     }
 }

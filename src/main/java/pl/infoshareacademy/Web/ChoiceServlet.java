@@ -25,7 +25,7 @@ public class ChoiceServlet extends HttpServlet {
         writer.println("<html>");
         writer.println("<body>");
         writer.println("<h1>What do you want to do?</h1>");
-        writer.println("<a href=\"sender\"/>1.Show me a messages with certain word.</a>");
+        writer.println("<a href=\"sender\"/>1.Show me messages with certain word.</a>");
         writer.println("<form method=\"get\" action=\"keywords\">");
         writer.println("<a href=\"keywords\"/>2.What keywords should I use to find my email?</a>");
         writer.println("</form>");

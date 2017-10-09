@@ -26,10 +26,9 @@ public class SearchingBySenderServlet extends HttpServlet {
     @Inject
     TempFilePath listOfKeywords;
 
-    ArrayList<String> listOfSearchKeywords = new ArrayList<>();
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ArrayList<String> listOfSearchKeywords = new ArrayList<>();
         String fourAnswer =req.getParameter("sender");
         PrintWriter out =resp.getWriter();
 
@@ -64,7 +63,7 @@ public class SearchingBySenderServlet extends HttpServlet {
         writer.println("<!DOCTYPE html>");
         writer.println("<html>");
         writer.println("<body>");
-        writer.println("<h1>Searching by sender</h1>");
+        writer.println("<h1>Searching by keywords</h1>");
         writer.println("<form method=\"post\" action=\"sender\">");
         writer.println("<input type=\"text\" name=\"sender\"><br>");
         writer.println("<button type=\"submit\">Give me mail with keywords</button>");

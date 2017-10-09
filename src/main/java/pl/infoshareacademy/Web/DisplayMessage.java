@@ -63,6 +63,8 @@ public class DisplayMessage extends HttpServlet {
         if (displaylist.isEmpty()) {
             Email emptyEmail =new Email();
             emptyEmail.setMessage("Not found emails matches criteria");
+            emptyEmail.setFrom("Not found emails matches criteria");
+            emptyEmail.setSubject("Not found emails matches criteria");
             displaylist.add(emptyEmail);
         }
 
