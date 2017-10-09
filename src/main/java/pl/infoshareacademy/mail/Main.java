@@ -1,13 +1,8 @@
 package pl.infoshareacademy.mail;
-import org.apache.james.mime4j.MimeException;
-import pl.infoshareacademy.mail.mailparser.EmlParser;
 import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
-
-import java.io.File;import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pl.infoshareacademy.config.ConfigureLoad;
-import pl.infoshareacademy.config.ConfigureSave;
 import java.util.Scanner;
 
 public class Main {
@@ -43,11 +38,10 @@ public class Main {
                     Menu.PrintMenuAnalyze();
                     System.out.println("You've chosen item #2");
                     MailBox mailBox=new MailBox();
-                    MboxParser parser = new MboxParser("/home/michalrichert/1.mbox");
+                    MboxParser parser = new MboxParser("/home/artur/test.mbox");
                     parser.run(mailBox);
-                    mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
-                    EmlParser.parseEml(new File("/home/michalrichert/1.eml"),mailBox);
-                    mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
+                    ContactFinder searcher = new ContactFinder();
+                    searcher.findQA(mailBox,"urgent");
                     break;
                 case 3:
                     logger.info("Im in Menu {} right now!", menuItem);
@@ -56,18 +50,13 @@ public class Main {
                 case 4:
                     logger.info("Im in Menu {} right now!", menuItem);
                     System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
-
                     System.out.println("Example: /home/user/mail.mbox");
                     String filename= in.next();
                     filename =filename.toLowerCase();
-
-                    // Only for 1 Sprint
-                    //mail.displayAllEmails();
                     break;
                 case 5:
                     logger.info("Im in Menu {} right now!", menuItem);
                     msg.criticalErrorRaport("Function no implemented yet!");
-
                     break;
                 case 0:
                     quit = true;
