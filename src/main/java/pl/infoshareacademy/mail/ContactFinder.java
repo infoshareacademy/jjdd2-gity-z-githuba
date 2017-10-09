@@ -67,7 +67,6 @@ public class ContactFinder {
         ArrayList<Email> list = mailbox.getMailbox();
         KeyWords keywords = new KeyWords();
         Set matchingMail = new HashSet();
- //       System.out.println("Summary of keywords selected for You:\n"+keywords.KeyWordsIdentification());
 
         for (Email e : list) {
             String splitterResult[] = e.getMessage().split("\\s");
@@ -77,7 +76,6 @@ public class ContactFinder {
                     }
             }
         }
-  //      System.out.println("\nmatchingMail content\n"+matchingMail);
         return matchingMail;
     }
 
