@@ -18,13 +18,16 @@
 
                 var text = sentences.text();
                 var selection = window.getSelection() || document.getSelection() || document.selection.createRange();
+                var selObj = document.getSelection();
+                alert(selObj);
                 var word = $.trim(selection.toString());
                 console.log(word);
                 var regex = new RegExp('(' + word + ')', 'ig');
-          Tu jest   //    text = text.replace(regex, '<span class="highlight">$1</span>');
-            //    sentences.text(text);
+                text = text.replace(regex, '<span style="color:#97ff6b">$1</span>');
+                sentences.text(text);
             });
         });
+
 
     </script>
 </head>
@@ -32,6 +35,7 @@
     <h3>Keywords</h3>
     <br>
     <div id="keywords">
+        Null kasa
     <c:forEach var="keywords" items="${keywords}" varStatus="loop">
         <c:out value="[${loop.index+1}]" />: <c:out value="${keywords}"/>
     </c:forEach>
@@ -42,6 +46,7 @@
     <h3>Message</h3>
     <br>
     <div id="sentences">
+        Null kasa kasa sdsd
 <c:forEach var="question" items="${question}" varStatus="loop">
     <c:out value="[${loop.index+1}]" />: <c:out value="${question}"/><br/>
 </c:forEach>
