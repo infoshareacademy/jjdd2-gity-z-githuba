@@ -1,22 +1,53 @@
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<script src="js/bootstrap.min.js"></script>
-<script src="js/display.js"></script>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-2"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div id="keywords">
-    <p><h3>Keywords</h3></p>
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/display.css">
+
+    <script language="JavaScript">
+
+        $( document ).ready(function() {
+            var sentences = $('#sentences');
+            var keywords = $('#keywords');
+
+            keywords.click(function () {
+
+                var text = sentences.text();
+                var selection = window.getSelection() || document.getSelection() || document.selection.createRange();
+                var word = $.trim(selection.toString());
+                console.log(word);
+                var regex = new RegExp('(' + word + ')', 'ig');
+          Tu jest   //    text = text.replace(regex, '<span class="highlight">$1</span>');
+            //    sentences.text(text);
+            });
+        });
+
+    </script>
+</head>
+    <body>
+    <h3>Keywords</h3>
     <br>
+    <div id="keywords">
     <c:forEach var="keywords" items="${keywords}" varStatus="loop">
         <c:out value="[${loop.index+1}]" />: <c:out value="${keywords}"/>
     </c:forEach>
-    <br>
+    </div>
+    <br/>
 </div>
-<div id="sentences">
     <br>
-    <p><h3>Message</h3></p>
+    <h3>Message</h3>
     <br>
+    <div id="sentences">
 <c:forEach var="question" items="${question}" varStatus="loop">
     <c:out value="[${loop.index+1}]" />: <c:out value="${question}"/><br/>
 </c:forEach>
-    <a href="choice"/>Go to home</a>
-</div>
+    </div>
+    <a href="choice">Go to home</a>
 
+
+</body>
+</html>
