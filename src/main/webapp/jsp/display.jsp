@@ -16,17 +16,23 @@
 
             keywords.click(function () {
 
-                var text = sentences.text();
+                var text = sentences.html();
                 var selection = window.getSelection() || document.getSelection() || document.selection.createRange();
                 var selObj = document.getSelection();
                 alert(selObj);
                 var word = $.trim(selection.toString());
                 console.log(word);
+
                 var regex = new RegExp('(' + word + ')', 'ig');
-                text = text.replace(regex, '<span style="color:#97ff6b">$1</span>');
-                sentences.text(text);
+                text = text.replace(regex, '<span class="highlight">$1</span>');
+                sentences.html(text);
+            });
+
+            sentences.click(function() {
+                location.reload();
             });
         });
+
 
 
     </script>
