@@ -75,6 +75,7 @@ public class ContactFinder {
                 }
             }
         }
+        System.out.println(matchingMail);
         return matchingMail;
     }
 }
