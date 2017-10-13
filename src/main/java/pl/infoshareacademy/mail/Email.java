@@ -1,6 +1,4 @@
 package pl.infoshareacademy.mail;
-
-
 import java.util.Date;
 
 public class Email {
