@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
 @WebServlet("/keywords")
-
 public class SearchingByKeyWordsServlet extends HttpServlet {
 
     @Override

@@ -2,7 +2,6 @@ package pl.infoshareacademy.Web;
 
 import pl.infoshareacademy.mail.QuestionsAndAnswers;
 import pl.infoshareacademy.mail.TempFilePath;
-
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,9 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-
 @WebServlet("/words")
-
 public class ListOfWordsServlet extends HttpServlet {
 
     @Inject

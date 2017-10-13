@@ -3,7 +3,6 @@ package pl.infoshareacademy.Web;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pl.infoshareacademy.mail.TempFilePath;
-
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -46,7 +45,6 @@ public class FileUploadServlet extends HttpServlet {
         }
         String fileName = null;
         //Get all the parts from request and write it to the file on server
-        String tempPath = uploadFilePath + File.separator + fileName;
         for (Part part : request.getParts()) {
             fileName = getFileName(part);
             part.write(uploadFilePath + File.separator + fileName);

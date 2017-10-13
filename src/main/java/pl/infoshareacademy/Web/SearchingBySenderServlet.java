@@ -1,8 +1,6 @@
 package pl.infoshareacademy.Web;
 
-
 import pl.infoshareacademy.mail.TempFilePath;
-
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
 @WebServlet("/sender")
-
 public class SearchingBySenderServlet extends HttpServlet {
 
     @Inject
