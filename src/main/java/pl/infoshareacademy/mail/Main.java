@@ -1,8 +1,16 @@
 package pl.infoshareacademy.mail;
+import org.apache.james.mime4j.MimeException;
+import pl.infoshareacademy.mail.mailparser.EmlParser;
 import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
-import org.apache.logging.log4j.LogManager;
+
+import java.io.File;import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import pl.infoshareacademy.config.ConfigureLoad;
+import pl.infoshareacademy.config.ConfigureSave;
+import pl.infoshareacademy.config.ConfigureLoad;
+import pl.infoshareacademy.config.ConfigureSave;
+
 import java.util.Scanner;
 
 public class Main {
@@ -38,10 +46,17 @@ public class Main {
                     Menu.PrintMenuAnalyze();
                     System.out.println("You've chosen item #2");
                     MailBox mailBox=new MailBox();
-                    MboxParser parser = new MboxParser("/home/artur/test.mbox");
+                    MboxParser parser = new MboxParser("/home/mr/testlist.mbox");
                     parser.run(mailBox);
-                    ContactFinder searcher = new ContactFinder();
-                    searcher.findQA(mailBox,"urgent");
+                  //  KeyWords keywordsSelectedList = new KeyWords();
+                    mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
+                    //EmlParser.parseEml(new File("/home/michalrichert/1.eml"),mailBox);
+                    //mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
+                   // ContactFinder searcher = new ContactFinder();
+                    //searcher.FindMail(mailBox);
+                    //searcher.FindPhoneNo(mailBox);
+                    //searcher.FindWebsite(mailBox);
+                   // searcher.FindQA(mailBox,"urgent");
                     break;
                 case 3:
                     logger.info("Im in Menu {} right now!", menuItem);
@@ -50,13 +65,18 @@ public class Main {
                 case 4:
                     logger.info("Im in Menu {} right now!", menuItem);
                     System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
+
                     System.out.println("Example: /home/user/mail.mbox");
                     String filename= in.next();
                     filename =filename.toLowerCase();
+
+                    // Only for 1 Sprint
+                    //mail.displayAllEmails();
                     break;
                 case 5:
                     logger.info("Im in Menu {} right now!", menuItem);
                     msg.criticalErrorRaport("Function no implemented yet!");
+
                     break;
                 case 0:
                     quit = true;
