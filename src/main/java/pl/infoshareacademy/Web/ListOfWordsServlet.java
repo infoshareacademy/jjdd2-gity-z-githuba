@@ -3,6 +3,7 @@ package pl.infoshareacademy.Web;
 import pl.infoshareacademy.mail.QuestionsAndAnswers;
 import pl.infoshareacademy.mail.TempFilePath;
 import javax.inject.Inject;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +24,7 @@ public class ListOfWordsServlet extends HttpServlet {
 
         resp.setContentType("text/html;charset=UTF-8");
 
-        PrintWriter writer = resp.getWriter();
+        //PrintWriter writer = resp.getWriter();
 
         QuestionsAndAnswers question = new QuestionsAndAnswers();
 
@@ -32,7 +33,11 @@ public class ListOfWordsServlet extends HttpServlet {
         String thirdAnswer = (String)req.getAttribute("thirdAnswer");
         ArrayList<String> listOfSearchKeywords = new ArrayList<>();
 
-        writer.println("These keywords might be helpful for you: ");
+        RequestDispatcher dispatcher = getServletContext()
+                .getRequestDispatcher("/jsp/keywords.jsp");
+        dispatcher.forward(req, resp);
+
+/*        writer.println("These keywords might be helpful for you: ");
 
         switch (firstAnswer) {
             case "Yes":
@@ -72,6 +77,6 @@ public class ListOfWordsServlet extends HttpServlet {
                 listOfSearchKeywords.addAll((question.getListOfAnswersIfNo().get(2)));
                 break;
         }
-        listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
+        listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);*/
     }
 }
