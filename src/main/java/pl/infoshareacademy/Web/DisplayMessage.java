@@ -49,7 +49,7 @@ public class DisplayMessage extends HttpServlet {
 
 
         for (int i = 0; i <lista.size(); i++) {
-            Set<Email> mail = finder.FindQA(mailBox, lista.get(i));
+            Set<Email> mail = finder.findQA(mailBox, lista.get(i));
             displaylist.addAll(mail);
         }
         if (displaylist.isEmpty()) {

@@ -16,7 +16,6 @@ import java.util.Arrays;
 
 
 @WebServlet("/words")
-
 public class ListOfWordsServlet extends HttpServlet {
 
     @Inject
