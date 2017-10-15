@@ -24,16 +24,10 @@ import java.util.Set;
 
 
 @WebServlet("/display")
-
 public class DisplayMessage extends HttpServlet {
 
     @Inject
     TempFilePath filePath;
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,8 +41,6 @@ public class DisplayMessage extends HttpServlet {
             mboxParser.run(mailBox);
         } else if (filePath.getTempFilePath().endsWith("eml")) {
             EmlParser.parseEml(filePath.getTempFilePath(), mailBox);
-        } else {
-
         }
 
         ContactFinder finder= new ContactFinder();

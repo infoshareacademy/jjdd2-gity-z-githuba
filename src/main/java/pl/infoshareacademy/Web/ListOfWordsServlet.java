@@ -23,19 +23,17 @@ public class ListOfWordsServlet extends HttpServlet {
     TempFilePath listOfKeywords;
 
     @Override
-    protected void doPost (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         resp.setContentType("text/html;charset=UTF-8");
-
-
 
         PrintWriter writer = resp.getWriter();
 
         QuestionsAndAnswers question = new QuestionsAndAnswers();
 
-        String firstAnswer = (String)req.getAttribute("firstAnswer");
-        String secondAnswer = (String)req.getAttribute("secondAnswer");
-        String thirdAnswer = (String)req.getAttribute("thirdAnswer");
+        String firstAnswer = (String) req.getAttribute("firstAnswer");
+        String secondAnswer = (String) req.getAttribute("secondAnswer");
+        String thirdAnswer = (String) req.getAttribute("thirdAnswer");
 
         ArrayList<String> listOfSearchKeywords = new ArrayList<>();
 
@@ -85,12 +83,10 @@ public class ListOfWordsServlet extends HttpServlet {
         }
         listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
 
-
         writer.println("<br>");
         writer.println("<A HREF=\"display\">Display result</A>");
         writer.println("<A HREF=\"sender\">Change words</A>");
         writer.println("</body>");
         writer.println("</html>");
-
     }
 }
