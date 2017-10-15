@@ -28,13 +28,13 @@ public class DisplayMessage extends HttpServlet {
 
     @Inject
     TempFilePath filePath;
+    @Inject
+    MailBox mailBox;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         resp.setContentType("text/html;charset=UTF-8");
-
-        MailBox mailBox = new MailBox();
 
         if (filePath.getTempFilePath().endsWith("mbox")) {
             MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
@@ -62,19 +62,6 @@ public class DisplayMessage extends HttpServlet {
 
         req.setAttribute("question",displaylist);
         req.setAttribute("keywords",lista);
-
-
-//        PrintWriter writer = resp.getWriter();
-//        writer.println("<!DOCTYPE html>");
-//        writer.println("<html>");
-//        writer.println("<body>");
-//        writer.println("<h1>Searching by sender</h1>");
-//        writer.println("<p>"+filePath.getTempFilePath()+"</p>");
-//        mailBox.getMailbox().forEach(e->writer.println("ds"+e.getMessage()));
-//        displaylist.forEach(e->writer.println(e.getMessage()));
-//   //     writer.println("<p>" + mail +"</p>");
-//        writer.println("</body>");
-//        writer.println("</html>");
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/jsp/display.jsp");
         dispatcher.forward(req, resp);

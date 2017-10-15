@@ -1,5 +1,4 @@
 package pl.infoshareacademy.mail;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,7 +6,6 @@ import java.util.Scanner;
 public class KeyWords {
 
     private List<String> keywordsSelected = new ArrayList<>();
-
     private Scanner scanner = new Scanner(System.in);
 
     private String getUserInput() {
@@ -15,8 +13,8 @@ public class KeyWords {
     }
 
     public List KeyWordsIdentification() {
-        QuestionsAndAnswers question = new QuestionsAndAnswers();
 
+        QuestionsAndAnswers question = new QuestionsAndAnswers();
 
         for (int i = 0; i < question.getQuestions().size(); i++) {
             System.out.println();
@@ -46,8 +44,4 @@ public class KeyWords {
         System.out.println("Have a nice day!\n");
         return keywordsSelected;
         }
-
-    public List<String> getKeywordsSelected() {
-        return keywordsSelected;
     }
-}
