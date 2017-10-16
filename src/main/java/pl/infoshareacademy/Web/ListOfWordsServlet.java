@@ -12,11 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
-
 
 @WebServlet("/words")
-
 public class ListOfWordsServlet extends HttpServlet {
 
     @Inject

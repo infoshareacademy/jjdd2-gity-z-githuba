@@ -1,15 +1,9 @@
 package pl.infoshareacademy.mail;
-import org.apache.james.mime4j.MimeException;
-import pl.infoshareacademy.mail.mailparser.EmlParser;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
-
-import java.io.File;import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import pl.infoshareacademy.config.ConfigureLoad;
-import pl.infoshareacademy.config.ConfigureSave;
-import pl.infoshareacademy.config.ConfigureLoad;
-import pl.infoshareacademy.config.ConfigureSave;
 
 import java.util.Scanner;
 

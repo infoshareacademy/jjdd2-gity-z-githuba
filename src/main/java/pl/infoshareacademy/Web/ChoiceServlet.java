@@ -1,6 +1,5 @@
 package pl.infoshareacademy.Web;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,11 +11,8 @@ import java.io.PrintWriter;
 public class ChoiceServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         resp.setContentType("text/html;charset=UTF-8");
-
         PrintWriter writer = resp.getWriter();
-
         writer.println("<!DOCTYPE html>");
         writer.println("<html>");
         writer.println("<body>");
