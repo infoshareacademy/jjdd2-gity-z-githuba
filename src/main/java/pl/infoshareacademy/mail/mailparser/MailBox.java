@@ -2,9 +2,10 @@ package pl.infoshareacademy.mail.mailparser;
 
 import pl.infoshareacademy.mail.Email;
 
+import javax.ejb.Singleton;
 import java.util.ArrayList;
 import java.util.List;
-
+@Singleton
 public class MailBox {
     List<Email> Mailbox = new ArrayList<>();
 

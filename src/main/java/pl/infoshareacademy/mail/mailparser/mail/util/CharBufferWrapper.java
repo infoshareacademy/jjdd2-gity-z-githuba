@@ -19,11 +19,11 @@ package pl.infoshareacademy.mail.mailparser.mail.util;
  * under the License.                                           *
  ****************************************************************/
 
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.nio.ByteBuffer;
-        import java.nio.CharBuffer;
-        import java.nio.charset.Charset;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
 
 /**
  * Wraps a CharBuffer and exposes some convenience methods to easy parse with Mime4j.

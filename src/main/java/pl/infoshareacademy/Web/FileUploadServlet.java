@@ -6,7 +6,6 @@ import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.TempFilePath;
 import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
-
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;

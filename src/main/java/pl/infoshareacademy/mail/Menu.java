@@ -1,5 +1,4 @@
 package pl.infoshareacademy.mail;
-import java.util.ArrayList;
 
 public class Menu {
     public static void PrintMenu(){
