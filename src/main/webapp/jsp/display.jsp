@@ -33,15 +33,12 @@
             });
         });
 
-
-
     </script>
 </head>
     <body>
     <h3>Keywords</h3>
     <br>
     <div id="keywords">
-        Null kasa
     <c:forEach var="keywords" items="${keywords}" varStatus="loop">
         <c:out value="[${loop.index+1}]" />: <c:out value="${keywords}"/>
     </c:forEach>
@@ -52,13 +49,10 @@
     <h3>Message</h3>
     <br>
     <div id="sentences">
-        Null kasa kasa sdsd
 <c:forEach var="question" items="${question}" varStatus="loop">
     <c:out value="[${loop.index+1}]" />: <c:out value="${question}"/><br/>
 </c:forEach>
     </div>
     <a href="choice">Go to home</a>
-
-
 </body>
 </html>
