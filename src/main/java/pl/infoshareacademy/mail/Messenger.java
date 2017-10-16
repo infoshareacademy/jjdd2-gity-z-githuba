@@ -1,7 +1,5 @@
 package pl.infoshareacademy.mail;
 
-import java.util.ArrayList;
-
 public class Messenger {
 
     public void criticalErrorRaport(String msg) {
