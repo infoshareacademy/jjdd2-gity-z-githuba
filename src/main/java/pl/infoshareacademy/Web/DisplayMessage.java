@@ -23,13 +23,12 @@ public class DisplayMessage extends HttpServlet {
 
     @Inject
     TempFilePath filePath;
+    @Inject
+    MailBox mailBox;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         resp.setContentType("text/html;charset=UTF-8");
-
-        MailBox mailBox = new MailBox();
 
         if (filePath.getTempFilePath().endsWith("mbox")) {
             MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
@@ -49,13 +48,14 @@ public class DisplayMessage extends HttpServlet {
         }
         if (displaylist.isEmpty()) {
             Email emptyEmail =new Email();
-            emptyEmail.setMessage("Not found emails matches criteria");
+            emptyEmail.setMessage("No e-mails found matching provided criteria");
+            emptyEmail.setFrom("No e-mails found matching provided criteria");
+            emptyEmail.setSubject("No e-mails found matching provided criteria");
             displaylist.add(emptyEmail);
         }
 
         req.setAttribute("question",displaylist);
         req.setAttribute("keywords",lista);
-
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/jsp/display.jsp");
         dispatcher.forward(req, resp);

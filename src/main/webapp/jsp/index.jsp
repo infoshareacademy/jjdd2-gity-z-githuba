@@ -1,6 +1,8 @@
+<%@ page import="pl.infoshareacademy.mail.Email" %>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script src="js/bootstrap.min.js"></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% Email email = new Email(); %>
 
 <form class="form-horizontal">
     <fieldset>
@@ -45,7 +47,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="singlebutton"></label>
             <div class="col-md-4">
-                <button id="singlebutton" name="singlebutton" class="btn btn-primary">Give me the answers!</button>
+                <button id="singlebutton" name="singlebutton" class="btn btn-primary"><a href="index.jsp">Give me the answers!</a> </button>
             </div>
         </div>
 
@@ -53,6 +55,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="textarea">Your Result:</label>
             <div class="col-md-4">
+
                 <textarea class="form-control" id="textarea" name="textarea">&lt;empty&gt;</textarea>
             </div>
         </div>

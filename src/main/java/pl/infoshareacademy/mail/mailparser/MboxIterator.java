@@ -19,22 +19,17 @@ package pl.infoshareacademy.mail.mailparser;
  * under the License.                                           *
  ****************************************************************/
 
-        import java.io.CharConversionException;
-        import java.io.Closeable;
-        import java.io.File;
-        import java.io.FileInputStream;
-        import java.io.FileNotFoundException;
-        import java.io.IOException;
-        import java.nio.Buffer;
-        import java.nio.CharBuffer;
-        import java.nio.MappedByteBuffer;
-        import java.nio.channels.FileChannel;
-        import java.nio.charset.Charset;
-        import java.nio.charset.CharsetDecoder;
-        import java.nio.charset.CoderResult;
-        import java.util.Iterator;
-        import java.util.regex.Matcher;
-        import java.util.regex.Pattern;
+import java.io.*;
+import java.nio.Buffer;
+import java.nio.CharBuffer;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
+import java.nio.charset.CoderResult;
+import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * <p>
