@@ -48,15 +48,9 @@ public class Main {
                     MailBox mailBox=new MailBox();
                     MboxParser parser = new MboxParser("/home/mr/testlist.mbox");
                     parser.run(mailBox);
-                  //  KeyWords keywordsSelectedList = new KeyWords();
                     mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
-                    //EmlParser.parseEml(new File("/home/michalrichert/1.eml"),mailBox);
-                    //mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
-                   // ContactFinder searcher = new ContactFinder();
-                    //searcher.FindMail(mailBox);
-                    //searcher.FindPhoneNo(mailBox);
-                    //searcher.FindWebsite(mailBox);
-                   // searcher.FindQA(mailBox,"urgent");
+                    mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
+                    ContactFinder searcher = new ContactFinder();
                     break;
                 case 3:
                     logger.info("Im in Menu {} right now!", menuItem);
@@ -65,13 +59,9 @@ public class Main {
                 case 4:
                     logger.info("Im in Menu {} right now!", menuItem);
                     System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
-
                     System.out.println("Example: /home/user/mail.mbox");
                     String filename= in.next();
                     filename =filename.toLowerCase();
-
-                    // Only for 1 Sprint
-                    //mail.displayAllEmails();
                     break;
                 case 5:
                     logger.info("Im in Menu {} right now!", menuItem);

@@ -24,23 +24,15 @@ public class ListOfWordsServlet extends HttpServlet {
 
     @Override
     protected void doPost (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         resp.setContentType("text/html;charset=UTF-8");
-
-
-
         PrintWriter writer = resp.getWriter();
-
         QuestionsAndAnswers question = new QuestionsAndAnswers();
-
         String firstAnswer = (String)req.getAttribute("firstAnswer");
         String secondAnswer = (String)req.getAttribute("secondAnswer");
         String thirdAnswer = (String)req.getAttribute("thirdAnswer");
-
         ArrayList<String> listOfSearchKeywords = new ArrayList<>();
 
         writer.println("These keywords might be helpful for you: ");
-
         writer.println("<!DOCTYPE html>");
         writer.println("<html>");
         writer.println("<body>");
@@ -84,7 +76,6 @@ public class ListOfWordsServlet extends HttpServlet {
                 break;
         }
         listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
-
 
         writer.println("<br>");
         writer.println("<A HREF=\"display\">Display result</A>");

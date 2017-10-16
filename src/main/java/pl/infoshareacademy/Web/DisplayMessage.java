@@ -1,13 +1,11 @@
 package pl.infoshareacademy.Web;
 
-
 import pl.infoshareacademy.mail.ContactFinder;
 import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.TempFilePath;
 import pl.infoshareacademy.mail.mailparser.EmlParser;
 import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
-
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,9 +20,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
 @WebServlet("/display")
-
 public class DisplayMessage extends HttpServlet {
 
     @Inject
@@ -57,14 +53,14 @@ public class DisplayMessage extends HttpServlet {
 
 
         for (int i = 0; i <lista.size(); i++) {
-            Set<Email> mail = finder.FindQA(mailBox, lista.get(i));
+            Set<Email> mail = finder.findQA(mailBox, lista.get(i));
             displaylist.addAll(mail);
         }
         if (displaylist.isEmpty()) {
             Email emptyEmail =new Email();
-            emptyEmail.setMessage("Not found emails matches criteria");
-            emptyEmail.setFrom("Not found emails matches criteria");
-            emptyEmail.setSubject("Not found emails matches criteria");
+            emptyEmail.setMessage("No e-mails found matching provided criteria");
+            emptyEmail.setFrom("No e-mails found matching provided criteria");
+            emptyEmail.setSubject("No e-mails found matching provided criteria");
             displaylist.add(emptyEmail);
         }
 
