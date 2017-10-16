@@ -23,6 +23,7 @@ public class DisplayMessage extends HttpServlet {
 
     @Inject
     TempFilePath filePath;
+
     @Inject
     MailBox mailBox;
 
