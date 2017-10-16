@@ -7,6 +7,7 @@ public class KeyWords {
 
     private List<String> keywordsSelected = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
+
     private String getUserInput() {
         return scanner.nextLine().trim().toLowerCase();
     }
@@ -43,7 +44,4 @@ public class KeyWords {
         System.out.println("Have a nice day!\n");
         return keywordsSelected;
         }
-    public List<String> getKeywordsSelected() {
-        return keywordsSelected;
     }
-}
