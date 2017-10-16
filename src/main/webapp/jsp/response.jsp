@@ -8,10 +8,10 @@ pageEncoding="ISO-8859-1"%>
 </head>
 <body>
 <%-- Using JSP EL to get message attribute value from request scope --%>
-<h2>${requestScope.message}</h2>
-<h2>${requestScope.message2}</h2>
-<br><br>
+<h2><b>${requestScope.message}</b></h2>
+<h5>${requestScope.message2}</h5>
+<br>
 <h2>Please, go to <a href = "choice">NEXT STEP</a>. We are done here...</h2>
-<h1>Or you can check uploaded files <a href="list">HERE</a> </h1>
+<h2>Or you can check uploaded files <a href="list">HERE</a> </h2>
 </body>
 </html>

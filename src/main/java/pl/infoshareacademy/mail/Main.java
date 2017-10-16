@@ -1,8 +1,10 @@
 package pl.infoshareacademy.mail;
-import pl.infoshareacademy.mail.mailparser.MailBox;
-import pl.infoshareacademy.mail.mailparser.MboxParser;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import pl.infoshareacademy.mail.mailparser.MailBox;
+import pl.infoshareacademy.mail.mailparser.MboxParser;
+
 import java.util.Scanner;
 
 public class Main {
@@ -38,10 +40,11 @@ public class Main {
                     Menu.PrintMenuAnalyze();
                     System.out.println("You've chosen item #2");
                     MailBox mailBox=new MailBox();
-                    MboxParser parser = new MboxParser("/home/artur/test.mbox");
+                    MboxParser parser = new MboxParser("/home/mr/testlist.mbox");
                     parser.run(mailBox);
+                    mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
+                    mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
                     ContactFinder searcher = new ContactFinder();
-                    searcher.findQA(mailBox,"urgent");
                     break;
                 case 3:
                     logger.info("Im in Menu {} right now!", menuItem);
@@ -57,6 +60,7 @@ public class Main {
                 case 5:
                     logger.info("Im in Menu {} right now!", menuItem);
                     msg.criticalErrorRaport("Function no implemented yet!");
+
                     break;
                 case 0:
                     quit = true;
