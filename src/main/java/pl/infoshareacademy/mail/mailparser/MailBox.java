@@ -6,7 +6,7 @@ import javax.ejb.Singleton;
 import java.util.ArrayList;
 @Singleton
 public class MailBox {
-    ArrayList<Email> Mailbox = new ArrayList<>();
+    ArrayList<Email> Mailbox;
 
     public ArrayList<Email> getMailbox() {
         return Mailbox;
