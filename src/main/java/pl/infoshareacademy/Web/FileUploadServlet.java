@@ -1,5 +1,6 @@
 package pl.infoshareacademy.Web;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pl.infoshareacademy.mail.TempFilePath;
@@ -33,6 +34,7 @@ public class FileUploadServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
+        String uploadStatus = new String();
         // gets absolute path of the web application
         String applicationPath = request.getServletContext().getRealPath("");
         // constructs path of the directory to save uploaded file
@@ -52,6 +54,15 @@ public class FileUploadServlet extends HttpServlet {
         logger.info("Saved {} on upload directory!", fileName);
 
         filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
+
+        if (!filePath.getTempFilePath().endsWith("mbox") || !filePath.getTempFilePath().endsWith("eml")) {
+            uploadStatus = fileName + " is not an mbox nor eml file";
+        }
+        /*else if ("parse file for one message and check is from not found"){
+            uploadStatus = fileName + " contains unsupported markers or is corrupted";
+        } else {
+            uploadStatus = fileName + " uploaded successfully!"
+        }*/
 
         request.setAttribute("message", fileName + " File uploaded successfully!");
         request.setAttribute("message2", uploadFilePath + File.separator + fileName);
