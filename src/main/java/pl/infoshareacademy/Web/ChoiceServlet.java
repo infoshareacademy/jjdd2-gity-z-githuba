@@ -16,10 +16,9 @@ public class ChoiceServlet extends HttpServlet {
         writer.println("<!DOCTYPE html>");
         writer.println("<html>");
         writer.println("<body>");
-        writer.println("<h1>What do you want to do?</h1>");
-        writer.println("<a href=\"sender\"/>1.Show me messages with certain word.</a>");
-        writer.println("<form method=\"get\" action=\"keywords\">");
-        writer.println("<a href=\"keywords\"/>2.What keywords should I use to find my email?</a>");
+        writer.println("<h1>What do you want to do?</h1><br>");
+        writer.println("<a href=\"sender\"/>1.Show me messages with certain word.</a><br>");
+        writer.println("<a href=\"jsp/keywords.jsp\"/>2.What keywords should I use to find my email?</a><br>");
         writer.println("</form>");
         writer.println("<a href=\"home\"/>3. Let me upload another file</a>");
         writer.println("</body>");

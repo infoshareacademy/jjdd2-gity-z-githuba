@@ -23,68 +23,48 @@ public class ListOfWordsServlet extends HttpServlet {
     @Override
     protected void doPost (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
-        PrintWriter writer = resp.getWriter();
         QuestionsAndAnswers question = new QuestionsAndAnswers();
-        String firstAnswer = (String)req.getAttribute("firstAnswer");
-        String secondAnswer = (String)req.getAttribute("secondAnswer");
-        String thirdAnswer = (String)req.getAttribute("thirdAnswer");
+        String firstAnswer = req.getParameter("question1");
+        String secondAnswer = req.getParameter("question2");
+        String thirdAnswer = req.getParameter("question3");
+
         ArrayList<String> listOfSearchKeywords = new ArrayList<>();
-
-        writer.println("These keywords might be helpful for you: ");
-        writer.println("<!DOCTYPE html>");
-        writer.println("<html>");
-        writer.println("<body>");
-
-//        RequestDispatcher dispatcher = getServletContext()
-//                .getRequestDispatcher("/jsp/words.jsp");
-//        dispatcher.forward(req, resp);
 
         switch (firstAnswer) {
             case "Yes":
-                writer.println("<br>");
-                writer.println(question.getListOfAnswersIfYes().get(0));
-//                req.setAttribute("costam", question.getListOfAnswersIfYes().get(0));
+                req.setAttribute("question1Yes", question.getListOfAnswersIfYes().get(0));
                 listOfSearchKeywords.addAll(question.getListOfAnswersIfYes().get(0));
                 break;
             case "No":
-                writer.println("<br>");
-                writer.println(question.getListOfAnswersIfNo().get(0));
+                req.setAttribute("question1No", question.getListOfAnswersIfNo().get(0));
                 listOfSearchKeywords.addAll((question.getListOfAnswersIfNo().get(0)));
                 break;
         }
 
         switch (secondAnswer) {
             case "Yes":
-                writer.println("<br>");
-                writer.println(question.getListOfAnswersIfYes().get(1));
+                req.setAttribute("question2Yes", question.getListOfAnswersIfYes().get(1));
                 listOfSearchKeywords.addAll((question.getListOfAnswersIfYes().get(1)));
                 break;
             case "No":
-                writer.println("<br>");
-                writer.println(question.getListOfAnswersIfNo().get(1));
+                req.setAttribute("question2No", question.getListOfAnswersIfNo().get(1));
                 listOfSearchKeywords.addAll((question.getListOfAnswersIfNo().get(1)));
                 break;
         }
 
         switch (thirdAnswer) {
             case "Yes":
-                writer.println("<br>");
-                writer.println(question.getListOfAnswersIfYes().get(2));
+                req.setAttribute("question3Yes", question.getListOfAnswersIfYes().get(2));
                 listOfSearchKeywords.addAll((question.getListOfAnswersIfYes().get(2)));
                 break;
             case "No":
-                writer.println("<br>");
-                writer.println(question.getListOfAnswersIfNo().get(2));
+                req.setAttribute("question3No", question.getListOfAnswersIfNo().get(2));
                 listOfSearchKeywords.addAll((question.getListOfAnswersIfNo().get(2)));
                 break;
         }
         listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
 
-        writer.println("<br>");
-        writer.println("<A HREF=\"display\">Display result</A>");
-        writer.println("<A HREF=\"sender\">Change words</A>");
-        writer.println("</body>");
-        writer.println("</html>");
+        resp.sendRedirect("display");
 
     }
 }
