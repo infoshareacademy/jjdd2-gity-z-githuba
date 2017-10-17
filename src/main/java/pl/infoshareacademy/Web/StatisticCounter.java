@@ -28,8 +28,5 @@ public class StatisticCounter extends HttpServlet {
                 .map(email -> email.getMessage())
                 .count();
 
-        PrintWriter out= resp.getWriter();
-        out.println(counter);
-        out.println(emails.get(0));
     }
 }
