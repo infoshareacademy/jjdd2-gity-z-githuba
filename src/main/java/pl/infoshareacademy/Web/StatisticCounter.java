@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
+import java.util.List;
+>>>>>>> e61dbbae79ead5a8c5c567331c7c8e565c84ff02
 
 @WebServlet("/home")
 public class StatisticCounter extends HttpServlet {
@@ -21,7 +25,11 @@ public class StatisticCounter extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+<<<<<<< HEAD
         ArrayList<Email> emails = mailBox.getMailbox();
+=======
+        List<Email> emails = mailBox.getMailbox();
+>>>>>>> e61dbbae79ead5a8c5c567331c7c8e565c84ff02
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/jsp/Index.html");
         dispatcher.forward(req, resp);
