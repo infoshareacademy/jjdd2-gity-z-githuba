@@ -17,39 +17,43 @@ public class SearchingByKeyWordsServlet extends HttpServlet {
 
         resp.setContentType("text/html;charset=UTF-8");
 
-        PrintWriter writer = resp.getWriter();
+        RequestDispatcher dispatcher = getServletContext()
+                .getRequestDispatcher("/jsp/keywords.jsp");
+        dispatcher.forward(req, resp);
 
-        writer.println("<!DOCTYPE html>");
-        writer.println("<html>");
-        writer.println("<body>");
-        writer.println("Is this an urgent message?");
-        writer.println("<br>");
-        writer.println("<form method=\"post\" action=\"keywords\">");
-        writer.println("<select name=\"question1\">");
-        writer.println("<option value=\"Yes\">Yes</option>");
-        writer.println("<option value=\"No\">No</option>");
-        writer.println("</select>"); 
-        writer.println("<br>");
-        writer.println("Is this a formal message?");
-        writer.println("<br>");
-        writer.println("<form method=\"post\" action=\"keywords\">");
-        writer.println("<select name=\"question2\">");
-        writer.println("<option value=\"Yes\">Yes</option>");
-        writer.println("<option value=\"No\">No</option>");
-        writer.println("</select>");
-        writer.println("<br>");
-        writer.println("Is this an important message");
-        writer.println("<br>");
-        writer.println("<form method=\"post\" action=\"keywords\">");
-        writer.println("<select name=\"question3\">");
-        writer.println("<option value=\"Yes\">Yes</option>");
-        writer.println("<option value=\"No\">No</option>");
-        writer.println("</select>");
-        writer.println("<br><br>");
-        writer.println("<button type=\"submit\">Give me the list of keywords!</button>");
-        writer.println("</form>");
-        writer.println("</body>");
-        writer.println("</html>");
+//        PrintWriter writer = resp.getWriter();
+
+//        writer.println("<!DOCTYPE html>");
+//        writer.println("<html>");
+//        writer.println("<body>");
+//        writer.println("Is this an urgent message?");
+//        writer.println("<br>");
+//        writer.println("<form method=\"post\" action=\"keywords\">");
+//        writer.println("<select name=\"question1\">");
+//        writer.println("<option value=\"Yes\">Yes</option>");
+//        writer.println("<option value=\"No\">No</option>");
+//        writer.println("</select>");
+//        writer.println("<br>");
+//        writer.println("Is this a formal message?");
+//        writer.println("<br>");
+//        writer.println("<form method=\"post\" action=\"keywords\">");
+//        writer.println("<select name=\"question2\">");
+//        writer.println("<option value=\"Yes\">Yes</option>");
+//        writer.println("<option value=\"No\">No</option>");
+//        writer.println("</select>");
+//        writer.println("<br>");
+//        writer.println("Is this an important message");
+//        writer.println("<br>");
+//        writer.println("<form method=\"post\" action=\"keywords\">");
+//        writer.println("<select name=\"question3\">");
+//        writer.println("<option value=\"Yes\">Yes</option>");
+//        writer.println("<option value=\"No\">No</option>");
+//        writer.println("</select>");
+//        writer.println("<br><br>");
+//        writer.println("<button type=\"submit\">Give me the list of keywords!</button>");
+//        writer.println("</form>");
+//        writer.println("</body>");
+//        writer.println("</html>");
     }
 
     @Override

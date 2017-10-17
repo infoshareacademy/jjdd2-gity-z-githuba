@@ -4,6 +4,7 @@ import pl.infoshareacademy.mail.QuestionsAndAnswers;
 import pl.infoshareacademy.mail.TempFilePath;
 
 import javax.inject.Inject;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,10 +35,15 @@ public class ListOfWordsServlet extends HttpServlet {
         writer.println("<html>");
         writer.println("<body>");
 
+//        RequestDispatcher dispatcher = getServletContext()
+//                .getRequestDispatcher("/jsp/words.jsp");
+//        dispatcher.forward(req, resp);
+
         switch (firstAnswer) {
             case "Yes":
                 writer.println("<br>");
                 writer.println(question.getListOfAnswersIfYes().get(0));
+//                req.setAttribute("costam", question.getListOfAnswersIfYes().get(0));
                 listOfSearchKeywords.addAll(question.getListOfAnswersIfYes().get(0));
                 break;
             case "No":
