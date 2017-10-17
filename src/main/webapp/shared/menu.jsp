@@ -6,8 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link href="../css/display.css" rel="stylesheet" type="text/css">
-<script src="../js/menu.js"></script>
 <nav class="navbar navbar-default navbar-doublerow navbar-trans navbar-fixed-top">
     <!-- top nav -->
     <nav class="navbar navbar-top hidden-xs">
