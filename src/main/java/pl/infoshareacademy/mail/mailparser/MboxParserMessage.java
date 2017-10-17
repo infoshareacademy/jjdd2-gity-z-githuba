@@ -9,6 +9,7 @@ import pl.infoshareacademy.mail.Main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MboxParserMessage {
@@ -79,7 +80,7 @@ public class MboxParserMessage {
     }
 
     public void addEmailObjecttoMailBoxclass(MailBox mailBox) {
-        ArrayList<Email> emptyarray = mailBox.getMailbox();
+        List<Email> emptyarray = mailBox.getMailbox();
         for (int i = 0; i < arrayWithObject.size(); i++) {
             emptyarray.add(arrayWithObject.get(i));
         }
