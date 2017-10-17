@@ -7,7 +7,6 @@
     <title>Upload File Response</title>
 </head>
 <body>
-<%-- Using JSP EL to get message attribute value from request scope --%>
 <h1>Searching by keywords</h1>
 <form method="post" action="../sender">
     <input type="text" name="sender"><br>

@@ -60,22 +60,22 @@ public class FileUploadServlet extends HttpServlet {
 
         filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
 
-//        MailBox mailBox = new MailBox();
-//        MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
-//        mboxParser.run(mailBox);
-//
-//        List<Email> testUploadFile = mailBox.getMailbox();
-//
-//        if (!(filePath.getTempFilePath().endsWith("mbox") || filePath.getTempFilePath().endsWith("eml"))) {
-//            uploadStatus = fileName + " is not an mbox/eml file";
-//        } else if (testUploadFile.isEmpty()){
-//            uploadStatus = fileName + " contains unsupported markers or is corrupted";
-//        } else {
-//            uploadStatus = fileName + " uploaded successfully!";
-//        }
-//
-//        request.setAttribute("message", uploadStatus);
-//        request.setAttribute("message2", uploadFilePath + File.separator + fileName);
+        MailBox mailBox = new MailBox();
+        MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
+        mboxParser.run(mailBox);
+
+        List<Email> testUploadFile = mailBox.getMailbox();
+
+        if (!(filePath.getTempFilePath().endsWith("mbox") || filePath.getTempFilePath().endsWith("eml"))) {
+            uploadStatus = fileName + " is not an mbox/eml file";
+        } else if (testUploadFile.isEmpty()){
+            uploadStatus = fileName + " contains unsupported markers or is corrupted";
+        } else {
+            uploadStatus = fileName + " uploaded successfully!";
+        }
+
+        request.setAttribute("message", uploadStatus);
+        request.setAttribute("message2", uploadFilePath + File.separator + fileName);
         getServletContext().getRequestDispatcher("/jsp/response.jsp").forward(
                 request, response);
     }

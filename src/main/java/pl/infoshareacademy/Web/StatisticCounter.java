@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/des")
 public class StatisticCounter extends HttpServlet {
@@ -22,7 +23,7 @@ public class StatisticCounter extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ArrayList<Email> emails = mailBox.getMailbox();
+        List<Email> emails = mailBox.getMailbox();
         Long counter =emails.stream()
                 .map(email -> email.getMessage())
                 .count();
