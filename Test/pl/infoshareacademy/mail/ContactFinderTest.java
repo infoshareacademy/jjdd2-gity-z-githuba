@@ -1,18 +1,14 @@
 package pl.infoshareacademy.mail;
 
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import pl.infoshareacademy.mail.mailparser.MailBox;
-
 import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -35,7 +31,6 @@ public class ContactFinderTest {
 
         // then
         assertThat(foundMails).isEmpty();
-
     }
 
     @Test
@@ -53,7 +48,5 @@ public class ContactFinderTest {
         assertThat(foundMails).isNotEmpty();
         assertThat(foundMails).hasSize(1);
         assertThat(foundMails).containsExactly(testEmail);
-
     }
-
 }
