@@ -13,7 +13,7 @@ public class StartingServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher("/jsp/Index.html");
+                .getRequestDispatcher("/jsp/choice.jsp");
         dispatcher.forward(req, resp);
     }
 }

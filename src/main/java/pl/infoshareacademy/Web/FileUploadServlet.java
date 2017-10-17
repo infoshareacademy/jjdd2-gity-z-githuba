@@ -2,8 +2,10 @@ package pl.infoshareacademy.Web;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.TempFilePath;
-
+import pl.infoshareacademy.mail.mailparser.MailBox;
+import pl.infoshareacademy.mail.mailparser.MboxParser;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -14,6 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @WebServlet("/FileUploadServlet")
 @MultipartConfig(fileSizeThreshold=1024*1024*10, 	// 10 MB
@@ -34,6 +39,7 @@ public class FileUploadServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
+        String uploadStatus;
         // gets absolute path of the web application
         String applicationPath = request.getServletContext().getRealPath("");
         // constructs path of the directory to save uploaded file
@@ -54,8 +60,22 @@ public class FileUploadServlet extends HttpServlet {
 
         filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
 
-        request.setAttribute("message", fileName + " File uploaded successfully!");
-        request.setAttribute("message2", uploadFilePath + File.separator + fileName);
+//        MailBox mailBox = new MailBox();
+//        MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
+//        mboxParser.run(mailBox);
+//
+//        List<Email> testUploadFile = mailBox.getMailbox();
+//
+//        if (!(filePath.getTempFilePath().endsWith("mbox") || filePath.getTempFilePath().endsWith("eml"))) {
+//            uploadStatus = fileName + " is not an mbox/eml file";
+//        } else if (testUploadFile.isEmpty()){
+//            uploadStatus = fileName + " contains unsupported markers or is corrupted";
+//        } else {
+//            uploadStatus = fileName + " uploaded successfully!";
+//        }
+//
+//        request.setAttribute("message", uploadStatus);
+//        request.setAttribute("message2", uploadFilePath + File.separator + fileName);
         getServletContext().getRequestDispatcher("/jsp/response.jsp").forward(
                 request, response);
     }
