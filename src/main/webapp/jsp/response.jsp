@@ -7,7 +7,6 @@ pageEncoding="ISO-8859-1"%>
 <title>Upload File Response</title>
 </head>
 <body>
-<%-- Using JSP EL to get message attribute value from request scope --%>
 <h1>${requestScope.message}</h1>
 <h5>${requestScope.message2}</h5>
 <br><br>
