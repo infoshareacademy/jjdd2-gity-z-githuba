@@ -10,7 +10,7 @@ pageEncoding="ISO-8859-1"%>
 <h1>${requestScope.message}</h1>
 <h5>${requestScope.message2}</h5>
 <br><br>
-<h2>Please, go to <a href = "choice">NEXT STEP</a>. We are done here...</h2>
+<h2>Please, go to <a href="${pageContext.request.contextPath}/jsp/choice.jsp">Back</a>NEXT STEP</a>. We are done here...</h2>
 <h2>Or you can check uploaded files <a href="list">HERE</a> </h2>
 </body>
 </html>
