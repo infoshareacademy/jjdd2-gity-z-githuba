@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: sowatheking
-  Date: 17.10.17
-  Time: 15:07
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -20,8 +14,6 @@
     <div class="panel panel-default">
         <div class="panel-heading"><strong>Upload Files</strong> <small>Bootstrap files upload</small></div>
         <div class="panel-body">
-
-            <!-- Standar Form -->
             <h4>Select files from your computer</h4>
             <form action="../FileUploadServlet" method="post" enctype="multipart/form-data" id="js-upload-form">
                 <div class="form-inline">
@@ -34,14 +26,12 @@
 
                 </div>
             </form>
-
-            <!-- Drop Zone -->
             <h4>Or drag and drop files below</h4>
             <div class="upload-drop-zone" id="drop-zone">
                 Just drag and drop files here
             </div>
         </div>
     </div>
-</div> <!-- /container -->
+</div>
 </body>
 </html>

@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: sowatheking
-  Date: 16.10.17
-  Time: 16:06
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <link href="../css/menu_css.css" rel="stylesheet" type="text/css">
