@@ -27,8 +27,5 @@ public class StatisticCounter extends HttpServlet {
         Long counter =emails.stream()
                 .map(email -> email.getMessage())
                 .count();
-
-
-
     }
 }

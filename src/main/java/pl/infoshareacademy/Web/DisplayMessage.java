@@ -20,13 +20,10 @@ import java.util.Set;
 
 @WebServlet("/display")
 public class DisplayMessage extends HttpServlet {
-
     @Inject
     TempFilePath filePath;
-
     @Inject
     MailBox mailBox;
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
