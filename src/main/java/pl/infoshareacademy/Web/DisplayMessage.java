@@ -2,6 +2,7 @@ package pl.infoshareacademy.Web;
 
 import pl.infoshareacademy.mail.ContactFinder;
 import pl.infoshareacademy.mail.Email;
+import pl.infoshareacademy.mail.StatisticBean;
 import pl.infoshareacademy.mail.TempFilePath;
 import pl.infoshareacademy.mail.mailparser.EmlParser;
 import pl.infoshareacademy.mail.mailparser.MailBox;
@@ -24,6 +25,8 @@ public class DisplayMessage extends HttpServlet {
     TempFilePath filePath;
     @Inject
     MailBox mailBox;
+    @Inject
+    StatisticBean statisticBean;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
@@ -37,6 +40,7 @@ public class DisplayMessage extends HttpServlet {
 
         ContactFinder finder= new ContactFinder();
         List<String> lista = filePath.getKeywordsFromServletForm();
+        statisticBean.countWords(lista);
         Set<Email> displaylist = new HashSet<>();
 
 

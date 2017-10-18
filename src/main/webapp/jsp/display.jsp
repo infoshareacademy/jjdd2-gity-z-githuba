@@ -6,7 +6,7 @@
 <head>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/display.css">
+    <link rel="stylesheet" type="text/css" href="css/highLineEmails.css">
 
     <script language="JavaScript">
 
