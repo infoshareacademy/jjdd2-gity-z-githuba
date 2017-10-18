@@ -1,41 +1,29 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <link href="../css/menu_css.css" rel="stylesheet" type="text/css">
-    <script src="../js/menu_js.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.8.3.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<nav class="navbar navbar-default">
-    <div class="container">
-        <div class="row">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="navbar-collapse">
-                <ul class="nav navbar-nav">
-
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="#">Contacts</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">@Mail Analyzer</a>
         </div>
-        <!-- /.container-fluid -->
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="${pageContext.request.contextPath}/home">Home</a></li>
+            <li><a href="${pageContext.request.contextPath}/jsp/file_upload.jsp">Upload Files</a></li>
+            <li><a href="${pageContext.request.contextPath}/jsp/check_files.jsp">Check files</a></li>
+            <li><a href="${pageContext.request.contextPath}/sender">Keywords</a></li>
+            <li><a href="${pageContext.request.contextPath}/keywords">Helper</a></li>
+        </ul>
+    </div>
 </nav>
-</div><div id="particles" ><section class="intro">
-</section>
-</div>
+</body>
+</html>

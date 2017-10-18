@@ -1,44 +1,11 @@
-*{border-radius:0px!important; -moz-border-radius:0px!important; -webkit-border-radius:0px!important; border:none!important }
-/*Override BS*/
-.navbar-nav > li {
-    padding-top: 0px!important;
-    padding-bottom: 0px!important;
+.navbar-brand {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+    margin: auto;
 }
-.navbar-default .navbar-nav > li > a {padding-left:40px; padding-right: 40px}
-.navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{padding-top:30px!important;padding-bottom:40px}
-body{background:#16A085}
-
-/*Main CSS*/
-#particles{height:500px}
-
-.navbar-default {
-    background-color: #026c71;
-    border-color: none;
-}
-
-.navbar-nav > li{padding-top:30px; padding-bottom:30px}
-
-.navbar-nav {
-    display: table;
-    float: none;
-    margin: 0 auto;
-    table-layout: fixed;
-}
-
-.navbar-nav > li:after {
-    content: " •";
-    color: #fff;
-    float: right;
-    display: block;
-    z-index: 999;
-    position: relative;
-    font-size: 20px;
-    margin-top: -63px;
-    margin-right: -4px;
-}
-
-.navbar-nav > li:last-child:after{content:"";}
-
-@media (max-width: 767px) {
-    .navbar-nav > li:after{content: ""!important}
+.navbar-toggle {
+    z-index:3;
 }
