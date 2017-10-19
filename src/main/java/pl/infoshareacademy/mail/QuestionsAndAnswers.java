@@ -10,13 +10,13 @@ public class QuestionsAndAnswers {
     private static final Logger logger = LogManager.getLogger(QuestionsAndAnswers.class.getName());
 
     private final List<String> questions = getQuestionsList();
-    private final List<String> listOfAnswersIfYes = initListOfAnswersIfYes();
-    private final List<String> listOfAnswersIfNo = initListOfAnswersIfNo();
+    private final List<List<String>> listOfAnswersIfYes = initListOfAnswersIfYes();
+    private final List<List<String>> listOfAnswersIfNo = initListOfAnswersIfNo();
 
     private final List<String> getQuestionsList() {
-        String question1 = "Is this an urgent splitMessagetoWholeMessage? Y/N";
-        String question2 = "Is this a formal splitMessagetoWholeMessage? Y/N";
-        String question3 = "Is this an important splitMessagetoWholeMessage Y/N";
+        String question1 = "Is this an urgent message? Y/N";
+        String question2 = "Is this a formal message? Y/N";
+        String question3 = "Is this an important messageY/N";
         List<String> question = new ArrayList <>();
         question.add(question1);
         question.add(question2);
@@ -24,7 +24,7 @@ public class QuestionsAndAnswers {
         return question;
     }
 
-    private  final List<String> initListOfAnswersIfYes() {
+    private List<List<String>> initListOfAnswersIfYes() {
         List<String> answerIfYes1 = new ArrayList<>(); //lista słów kluczowych dla odpowiedzi twierdzącej na pytanie 1
         answerIfYes1.add("urgent");
         answerIfYes1.add("fast");
@@ -45,14 +45,14 @@ public class QuestionsAndAnswers {
         answerIfYes3.add("important");
         answerIfYes3.add("vital");
         answerIfYes3.add("mandatory");
-        List<String> answerIfYes = new ArrayList <>();
-        answerIfYes.add(String.valueOf(answerIfYes1)); //zwraca listę słów kluczowych jeśli odp na pytanie 1 jest twierdząca
-        answerIfYes.add(String.valueOf(answerIfYes2)); //zwraca listę słów kluczowych jeśli odp na pytanie 2 jest twierdząca
-        answerIfYes.add(String.valueOf(answerIfYes3)); //zwraca listę słów kluczowych jeśli odp na pytanie 3 jest twierdząca
+        List<List<String>> answerIfYes = new ArrayList <>();
+        answerIfYes.add(answerIfYes1); //zwraca listę słów kluczowych jeśli odp na pytanie 1 jest twierdząca
+        answerIfYes.add(answerIfYes2); //zwraca listę słów kluczowych jeśli odp na pytanie 2 jest twierdząca
+        answerIfYes.add(answerIfYes3); //zwraca listę słów kluczowych jeśli odp na pytanie 3 jest twierdząca
         return answerIfYes;
     }
 
-    private final List<String> initListOfAnswersIfNo() {
+    private List<List<String>> initListOfAnswersIfNo() {
         List<String> answerIfNo1 = new ArrayList<>(); //lista słów kluczowych dla odpowiedzi przeczącej na pytanie 1
         answerIfNo1.add("irrelevant");
         answerIfNo1.add("next");
@@ -68,10 +68,10 @@ public class QuestionsAndAnswers {
         answerIfNo3.add("leisure");
         answerIfNo3.add("btw");
         answerIfNo3.add("nevermind");
-        List<String> answerIfNo = new ArrayList <>();
-        answerIfNo.add(String.valueOf(answerIfNo1)); //zwraca listę słów kluczowych jeśli odp na pytanie 1 jest przecząca
-        answerIfNo.add(String.valueOf(answerIfNo2)); //zwraca listę słów kluczowych jeśli odp na pytanie 2 jest przecząca
-        answerIfNo.add(String.valueOf(answerIfNo3)); //zwraca listę słów kluczowych jeśli odp na pytanie 3 jest przecząca
+        List<List<String>> answerIfNo = new ArrayList <>();
+        answerIfNo.add(answerIfNo1); //zwraca listę słów kluczowych jeśli odp na pytanie 1 jest przecząca
+        answerIfNo.add(answerIfNo2); //zwraca listę słów kluczowych jeśli odp na pytanie 2 jest przecząca
+        answerIfNo.add(answerIfNo3); //zwraca listę słów kluczowych jeśli odp na pytanie 3 jest przecząca
         return answerIfNo;
     }
 
@@ -79,11 +79,11 @@ public class QuestionsAndAnswers {
         return questions;
     }
 
-    public List<String> getListOfAnswersIfYes() {
+    public List<List<String>> getListOfAnswersIfYes() {
         return listOfAnswersIfYes;
     }
 
-    public List<String> getListOfAnswersIfNo() {
+    public List<List<String>> getListOfAnswersIfNo() {
         return listOfAnswersIfNo;
     }
 }

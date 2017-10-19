@@ -4,8 +4,11 @@ import pl.infoshareacademy.mail.mailparser.EmlParser;
 import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
 
-import java.io.File;import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import pl.infoshareacademy.mail.mailparser.MailBox;
+import pl.infoshareacademy.mail.mailparser.MboxParser;
+
 import pl.infoshareacademy.config.ConfigureLoad;
 import pl.infoshareacademy.config.ConfigureSave;
 import java.util.Scanner;
@@ -46,7 +49,7 @@ public class Main {
                     MboxParser parser = new MboxParser("/home/michalrichert/1.mbox");
                     parser.run(mailBox);
                     mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
-                    EmlParser.parseEml(new File("/home/michalrichert/1.eml"),mailBox);
+                    //EmlParser.parseEml(new File("/home/michalrichert/1.eml"),mailBox);
                     mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
                     break;
                 case 3:
@@ -56,13 +59,9 @@ public class Main {
                 case 4:
                     logger.info("Im in Menu {} right now!", menuItem);
                     System.out.println("Please enter ABSOLUTE path to e-mail to analyze: ");
-
                     System.out.println("Example: /home/user/mail.mbox");
                     String filename= in.next();
                     filename =filename.toLowerCase();
-
-                    // Only for 1 Sprint
-                    //mail.displayAllEmails();
                     break;
                 case 5:
                     logger.info("Im in Menu {} right now!", menuItem);

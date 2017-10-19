@@ -1,6 +1,4 @@
 package pl.infoshareacademy.mail;
-
-
 import java.util.Date;
 
 public class Email {
@@ -44,7 +42,7 @@ public class Email {
                 "from='" + from + '\'' +
                 ", sender='" + sender + '\'' +
                 ", date=" + date +
-                ", splitMessagetoWholeMessage='" + message + '\'' +
+                ", message='" + message + '\'' +
                 ", subject='" + subject + '\'' +
                 '}';
     }
