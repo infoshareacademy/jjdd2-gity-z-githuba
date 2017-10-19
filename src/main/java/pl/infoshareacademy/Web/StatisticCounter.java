@@ -31,8 +31,5 @@ public class StatisticCounter extends HttpServlet {
         Long counter =emails.stream()
                 .map(email -> email.getMessage())
                 .count();
-        PrintWriter o = resp.getWriter();
-
-        o.println(statisticBean.getMapKeyWords());
     }
 }
