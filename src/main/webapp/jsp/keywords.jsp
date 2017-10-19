@@ -4,11 +4,37 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>Upload File Response</title>
+    <title></title>
 </head>
 <body>
-<p>These keywords might be helpful for you: </p>
-<%-- Using JSP EL to get message attribute value from request scope --%>
-<h2>${requestScope.message}</h2>
+Is this an urgent message?
+<br>
+
+<form method="post" action="../words">
+    <select name="question1">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+    <br>
+    Is this a formal message?
+    <br>
+
+    <select name="question2">");
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+    <br>
+    Is this an important message
+    <br>
+
+    <select name="question3">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+    <br><br>
+
+    <button type="submit">Give me the list of keywords!</button>
+</form>
+
 </body>
 </html>
