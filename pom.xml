@@ -86,7 +86,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.james</groupId>
-            <artifactId>apache-mime4j</artifactId>
+            <artifactId>apache-mime4j-james-utils</artifactId>
             <version>0.8.1</version>
         </dependency>
         <dependency>
@@ -106,6 +106,11 @@
             <artifactId>assertj-core</artifactId>
             <version>3.8.0</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
     </dependencies>
 </project>

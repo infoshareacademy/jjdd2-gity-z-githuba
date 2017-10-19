@@ -1,8 +1,6 @@
 package pl.infoshareacademy.mail;
 
 import pl.infoshareacademy.mail.mailparser.MailBox;
-
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,13 +20,10 @@ public class ContactFinder {
                 }
             }
         }
-        for (String emailResult : eFound) {
-            System.out.println("Email contacts found: " + emailResult);
-        }
         return eFound;
     }
 
-    public Set findPhoneNo(MailBox mailbox) {
+    public Set<String> findPhoneNo(MailBox mailbox) {
 
         List<Email> list = mailbox.getMailbox();
         Set<String> pFound = new HashSet<>();
@@ -45,7 +40,7 @@ public class ContactFinder {
         return pFound;
     }
 
-    public Set findWebsite(MailBox mailbox) {
+    public Set<String> findWebsite(MailBox mailbox) {
 
         List<Email> list = mailbox.getMailbox();
         Set<String> wFound = new HashSet<>();
@@ -59,7 +54,7 @@ public class ContactFinder {
                 }
             }
         }
-            return wFound;
+        return wFound;
     }
 
     public Set findQA(MailBox mailbox, String searchkeywords){
@@ -70,12 +65,11 @@ public class ContactFinder {
         for (Email e : list) {
             String splitterResult[] = e.getMessage().split("\\s");
             for (int i = 0; i < splitterResult.length; i++){
-                if (splitterResult[i].matches(searchkeywords)) {
+                if (splitterResult[i].toLowerCase().matches(searchkeywords)) {
                     matchingMail.add(e);
                 }
             }
         }
-        System.out.println(matchingMail);
         return matchingMail;
     }
 }
