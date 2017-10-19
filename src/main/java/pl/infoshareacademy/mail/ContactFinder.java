@@ -1,14 +1,18 @@
 package pl.infoshareacademy.mail;
+
+import pl.infoshareacademy.mail.mailparser.MailBox;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class ContactFinder {
 
-    public void FindMail(Finder finder) {
+    public Set<String> findMail(MailBox mailbox) {
 
-        List<Email> list = finder.getEmailList();
-        Set<String> eFound = new HashSet<String>();
+        List<Email> list = mailbox.getMailbox();
+        Set<String> eFound = new HashSet<>();
 
         for (Email e : list) {
             String splitterResult[] = e.getMessage().split("\\s");
@@ -18,15 +22,14 @@ public class ContactFinder {
                 }
             }
         }
-        for (String emails : eFound) {
-            System.out.println("Email contacts found: " + emails);
-        }
+        return eFound;
     }
 
-    public void FindPhoneNo(Finder finder) {
+    public Set<String> findPhoneNo(MailBox mailbox) {
 
-        List<Email> list = finder.getEmailList();
-        Set<String> pFound = new HashSet<String>();
+        List<Email> list = mailbox.getMailbox();
+        Set<String> pFound = new HashSet<>();
+
         for (Email e : list) {
             String splitterResult[] = e.getMessage().split("\\s");
             for (int i = 0; i < splitterResult.length; i++) {
@@ -36,14 +39,14 @@ public class ContactFinder {
                 }
             }
         }
-        for (String phones : pFound) {
-            System.out.println("Phone numbers found: " + phones);
-        }
+        return pFound;
     }
-    public void FindWebsite(Finder finder) {
 
-        List<Email> list = finder.getEmailList();
-        Set<String> wFound = new HashSet<String>();
+    public Set<String> findWebsite(MailBox mailbox) {
+
+        List<Email> list = mailbox.getMailbox();
+        Set<String> wFound = new HashSet<>();
+
         for (Email e : list) {
             String splitterResult[] = e.getMessage().split("\\s");
             for (int i = 0; i < splitterResult.length; i++) {
@@ -53,8 +56,23 @@ public class ContactFinder {
                 }
             }
         }
-        for (String websites : wFound) {
-            System.out.println("Websites or Links found: " + websites);
+        return wFound;
+    }
+
+    public Set findQA(MailBox mailbox, String searchkeywords){
+
+        List<Email> list = mailbox.getMailbox();
+        Set matchingMail = new HashSet();
+
+        for (Email e : list) {
+            String splitterResult[] = e.getMessage().split("\\s");
+            for (int i = 0; i < splitterResult.length; i++){
+                if (splitterResult[i].toLowerCase().matches(searchkeywords)) {
+                    matchingMail.add(e);
+                }
+            }
         }
+        System.out.println(matchingMail);
+        return matchingMail;
     }
 }

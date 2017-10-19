@@ -1,6 +1,4 @@
 package pl.infoshareacademy.mail;
-
-
 import java.util.Date;
 
 public class Email {
@@ -8,7 +6,7 @@ public class Email {
     private String from;
     private String sender;
     private Date date;
-    private String message;
+    private String message="";
     private String subject;
     private String to;
 
