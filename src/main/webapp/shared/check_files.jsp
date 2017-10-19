@@ -23,19 +23,17 @@
             <b>Good files:</b>
             <c:choose>
                 <c:when test="${empty requestScope.positiveFiles}">
-                    <b>There is no positive files :(</b>
+                    <b class="color-red">There is no positive files :(</b>
                 </c:when>
                 <c:otherwise>
                     <c:forTokens items="${requestScope.positiveFiles}"
                                  delims="," var="filename">
-                        <c:out value = "${filename}"/><p>
+            <div class="color-green"><c:out value = "${filename}"/></div>
                     </c:forTokens>
                 </c:otherwise>
             </c:choose>
-            </p>
         </div>
         <div class="col-md-4">
-            <font color="red">
             <b>Bad Files:</b>
             <c:choose>
             <c:when test="${empty requestScope.negativeFiles}">
@@ -48,7 +46,6 @@
             </c:forTokens>
             </c:otherwise>
             </c:choose>
-            </p></font>
         </div>
         <c:choose>
         <c:when test="${empty requestScope.error}">
