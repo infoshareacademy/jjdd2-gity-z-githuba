@@ -52,6 +52,10 @@
 <c:forEach var="question" items="${question}" varStatus="loop">
     <c:out value="[${loop.index+1}]" />: <c:out value="${question}"/><br/>
 </c:forEach>
+
+        <c:forEach var="value" items="${value}" varStatus="loop">
+            <c:out value="[${loop.index+1}]" />: <c:out value="${question}"/><br/>
+        </c:forEach>
     </div>
     <a href="choice">Go to home</a>
 </body>

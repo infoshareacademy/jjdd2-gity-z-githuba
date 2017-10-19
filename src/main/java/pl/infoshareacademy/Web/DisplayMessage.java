@@ -1,5 +1,7 @@
 package pl.infoshareacademy.Web;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import pl.infoshareacademy.mail.ContactFinder;
 import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.StatisticBean;
@@ -27,9 +29,17 @@ public class DisplayMessage extends HttpServlet {
     MailBox mailBox;
     @Inject
     StatisticBean statisticBean;
+    private static final Logger logger = LogManager.getLogger(FileUploadServlet.class.getName());
     @Override
+
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
         resp.setContentType("text/html;charset=UTF-8");
+        String CheckboxWord = req.getParameter("  System.out.println(CheckboxWord);");
+        String CheckboxWebsite = req.getParameter("Websites");
+        String CheckboxPhone = req.getParameter("Phonenumbers");
+        String CheckboxEmails = req.getParameter("Emails");
 
         if (filePath.getTempFilePath().endsWith("mbox")) {
             MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
@@ -40,26 +50,39 @@ public class DisplayMessage extends HttpServlet {
 
         ContactFinder finder= new ContactFinder();
         List<String> lista = filePath.getKeywordsFromServletForm();
+
+
         statisticBean.countWords(lista);
-        Set<Email> displaylist = new HashSet<>();
+        System.out.println(CheckboxWord);
+        Set<Email> displaylist =ReturnSearchWords(finder, lista, CheckboxWord);
 
-
-        for (int i = 0; i <lista.size(); i++) {
-            Set<Email> mail = finder.findQA(mailBox, lista.get(i));
-            displaylist.addAll(mail);
-        }
-        if (displaylist.isEmpty()) {
-            Email emptyEmail =new Email();
-            emptyEmail.setMessage("No e-mails found matching provided criteria");
-            emptyEmail.setFrom("No e-mails found matching provided criteria");
-            emptyEmail.setSubject("No e-mails found matching provided criteria");
-            displaylist.add(emptyEmail);
-        }
-
+        req.setAttribute("value",CheckboxWord);
         req.setAttribute("question",displaylist);
         req.setAttribute("keywords",lista);
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/jsp/display.jsp");
         dispatcher.forward(req, resp);
+    }
+
+    public Set<Email> ReturnSearchWords(ContactFinder finder, List<String> lista, String checkboxWord) {
+
+        logger.warn("Here", checkboxWord);
+        System.out.println(checkboxWord);
+
+        Set<Email> displaylist = new HashSet<>();
+        if (checkboxWord != null) {
+            for (int i = 0; i <lista.size(); i++) {
+                Set<Email> mail = finder.findQA(mailBox, lista.get(i));
+                displaylist.addAll(mail);
+            }
+            if (displaylist.isEmpty()) {
+                Email emptyEmail =new Email();
+                emptyEmail.setMessage("No e-mails found matching provided criteria");
+                emptyEmail.setFrom("No e-mails found matching provided criteria");
+                emptyEmail.setSubject("No e-mails found matching provided criteria");
+                displaylist.add(emptyEmail);
+            }
+        }
+        return displaylist;
     }
 }
