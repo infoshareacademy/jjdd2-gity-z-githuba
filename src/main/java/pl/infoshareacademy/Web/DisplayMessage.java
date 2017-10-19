@@ -36,11 +36,11 @@ public class DisplayMessage extends HttpServlet {
 
 
         resp.setContentType("text/html;charset=UTF-8");
-        String CheckboxWord = req.getParameter("  System.out.println(CheckboxWord);");
+
+        String CheckboxWord = (String) req.getAttribute("searchword");
         String CheckboxWebsite = req.getParameter("Websites");
         String CheckboxPhone = req.getParameter("Phonenumbers");
         String CheckboxEmails = req.getParameter("Emails");
-
         if (filePath.getTempFilePath().endsWith("mbox")) {
             MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
             mboxParser.run(mailBox);
@@ -54,9 +54,9 @@ public class DisplayMessage extends HttpServlet {
 
         statisticBean.countWords(lista);
         System.out.println(CheckboxWord);
+        System.out.println(CheckboxWebsite);
         Set<Email> displaylist =ReturnSearchWords(finder, lista, CheckboxWord);
 
-        req.setAttribute("value",CheckboxWord);
         req.setAttribute("question",displaylist);
         req.setAttribute("keywords",lista);
         RequestDispatcher dispatcher = getServletContext()

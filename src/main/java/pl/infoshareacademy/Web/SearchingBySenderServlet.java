@@ -3,6 +3,7 @@ package pl.infoshareacademy.Web;
 import pl.infoshareacademy.mail.TempFilePath;
 
 import javax.inject.Inject;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +27,10 @@ public class SearchingBySenderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ArrayList<String> listOfSearchKeywords = new ArrayList<>();
         String fourAnswer =req.getParameter("sender");
-        PrintWriter out =resp.getWriter();
+        String CheckboxWord = req.getParameter("searchword");
+        String CheckboxWebsite = req.getParameter("Websites");
+        String CheckboxPhone = req.getParameter("Phonenumbers");
+        String CheckboxEmails = req.getParameter("Emails");
 
         if (fourAnswer.isEmpty()) {
             listOfSearchKeywords.add("Empty box");
@@ -36,7 +40,9 @@ public class SearchingBySenderServlet extends HttpServlet {
             listOfSearchKeywords.addAll(Arrays.asList(listofwords));
             listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
         }
-
+        System.out.println(CheckboxWord);
+        req.setAttribute("searchword",CheckboxWord);
         resp.sendRedirect("display");
+
     }
 }
