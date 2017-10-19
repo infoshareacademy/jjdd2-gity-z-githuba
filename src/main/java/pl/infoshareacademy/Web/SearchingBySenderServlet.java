@@ -40,7 +40,6 @@ public class SearchingBySenderServlet extends HttpServlet {
             listOfSearchKeywords.addAll(Arrays.asList(listofwords));
             listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
         }
-        System.out.println(checkboxWord);
         req.setAttribute("searchword", checkboxWord);
         resp.sendRedirect("display");
 
