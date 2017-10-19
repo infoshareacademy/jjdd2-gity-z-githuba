@@ -1,8 +1,6 @@
 package pl.infoshareacademy.mail;
 
 import pl.infoshareacademy.mail.mailparser.MailBox;
-
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,13 +20,10 @@ public class ContactFinder {
                 }
             }
         }
-        for (String emailResult : eFound) {
-            System.out.println("Email contacts found: " + emailResult);
-        }
         return eFound;
     }
 
-    public void findPhoneNo(MailBox mailbox) {
+    public Set<String> findPhoneNo(MailBox mailbox) {
 
         List<Email> list = mailbox.getMailbox();
         Set<String> pFound = new HashSet<>();
@@ -42,12 +37,10 @@ public class ContactFinder {
                 }
             }
         }
-        for (String phones : pFound) {
-            System.out.println("Phone numbers found: " + phones);
-        }
+        return pFound;
     }
 
-    public void findWebsite(MailBox mailbox) {
+    public Set<String> findWebsite(MailBox mailbox) {
 
         List<Email> list = mailbox.getMailbox();
         Set<String> wFound = new HashSet<>();
@@ -61,9 +54,7 @@ public class ContactFinder {
                 }
             }
         }
-        for (String websites : wFound) {
-            System.out.println("Websites or Links found: " + websites);
-        }
+        return wFound;
     }
 
     public Set findQA(MailBox mailbox, String searchkeywords){
@@ -74,12 +65,11 @@ public class ContactFinder {
         for (Email e : list) {
             String splitterResult[] = e.getMessage().split("\\s");
             for (int i = 0; i < splitterResult.length; i++){
-                if (splitterResult[i].matches(searchkeywords)) {
+                if (splitterResult[i].toLowerCase().matches(searchkeywords)) {
                     matchingMail.add(e);
                 }
             }
         }
-        System.out.println(matchingMail);
         return matchingMail;
     }
 }
