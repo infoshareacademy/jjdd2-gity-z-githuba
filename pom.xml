@@ -86,7 +86,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.james</groupId>
-            <artifactId>apache-mime4j</artifactId>
+            <artifactId>apache-mime4j-james-utils</artifactId>
             <version>0.8.1</version>
         </dependency>
         <dependency>
