@@ -35,15 +35,6 @@ public class FileCheckServlet extends HttpServlet {
         req.setAttribute("positiveFiles", positiveFiles);
         req.setAttribute("negativeFiles", negativeFiles);
         getServletContext().getRequestDispatcher("/shared/check_files.jsp").forward(req, resp);
-        PrintWriter writer = resp.getWriter();
-        writer.println();
-        writer.println();
-        writer.println();
-        writer.println();
-        writer.println();
-        writer.println("HELLO KURWA");
-        writer.println(positiveFiles);
-        writer.println(negativeFiles);
     }
 
 
