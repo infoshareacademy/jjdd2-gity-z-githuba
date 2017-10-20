@@ -37,27 +37,29 @@
             <b>Bad Files:</b>
             <c:choose>
             <c:when test="${empty requestScope.negativeFiles}">
-                <b >There is no negative files ^_^</b>
+                <b class="color-green">There is no negative files ^_^</b>
             </c:when>
             <c:otherwise>
             <c:forTokens items="${requestScope.negativeFiles}"
                          delims="," var="filename">
-            <c:out value = "${filename}"/><p>
+                <div class="color-red"><c:out value = "${filename}"/></div>
             </c:forTokens>
             </c:otherwise>
             </c:choose>
         </div>
-        <c:choose>
-        <c:when test="${empty requestScope.error}">
-            <b>Everything went fine ^_^</b>
-        </c:when>
-        <c:otherwise>
-        <c:forTokens items="${requestScope.Error}"
+        <div>
+            <c:choose>
+                <c:when test="${empty requestScope.error}">
+                <b class="color-green">Everything went fine ^_^</b>
+                </c:when>
+            <c:otherwise>
+            <c:forTokens items="${requestScope.Error}"
                      delims="," var="filename">
-        <c:out value = "${filename}"/><p>
-        </c:forTokens>
-        </c:otherwise>
-        </c:choose>
+            <div class="color-red"><c:out value = "${filename}"/></div>
+            </c:forTokens>
+            </c:otherwise>
+            </c:choose>
+        </div>
     </div>
     <div class="row"></div>
     <div class="row"></div>
