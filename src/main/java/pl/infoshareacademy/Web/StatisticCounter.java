@@ -1,6 +1,7 @@
 package pl.infoshareacademy.Web;
 
 import pl.infoshareacademy.mail.Email;
+import pl.infoshareacademy.mail.StatisticBean;
 import pl.infoshareacademy.mail.mailparser.MailBox;
 
 import javax.inject.Inject;
@@ -20,6 +21,9 @@ public class StatisticCounter extends HttpServlet {
 
     @Inject
     MailBox mailBox;
+
+    @Inject
+    StatisticBean statisticBean;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
