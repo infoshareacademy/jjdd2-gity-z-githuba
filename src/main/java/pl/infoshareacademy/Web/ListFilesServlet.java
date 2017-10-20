@@ -26,12 +26,11 @@ public class ListFilesServlet extends HttpServlet {
                 writer.println("File: "
                         + listOfFiles[i].getName()
                         + "     "
-                        + listOfFiles[i].toURI());
+                        + listOfFiles[i].toPath());
             } else if (listOfFiles[i].isDirectory()) {
                 writer.println("Directory: "
                         + listOfFiles[i].getName());
             }
         }
     }
-
 }
