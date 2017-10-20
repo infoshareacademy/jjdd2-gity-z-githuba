@@ -23,7 +23,7 @@
             <b>Good files:</b>
             <c:choose>
                 <c:when test="${empty requestScope.positiveFiles}">
-                    <b class="color-red">There is no positive files :(</b>
+                    <b class="color-red">There is no proper files :(</b>
                 </c:when>
                 <c:otherwise>
                     <c:forTokens items="${requestScope.positiveFiles}"
