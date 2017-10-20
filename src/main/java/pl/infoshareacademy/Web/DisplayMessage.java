@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 @WebServlet("/display")
 public class DisplayMessage extends HttpServlet {
     @Inject
@@ -35,7 +34,6 @@ public class DisplayMessage extends HttpServlet {
     @Override
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String checkBoxWord = (String) req.getAttribute("searchword");
         if (filePath.getTempFilePath().endsWith("mbox")) {
             MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
