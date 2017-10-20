@@ -51,9 +51,13 @@ public class FileUploadServlet extends HttpServlet {
             logger.warn("Folder {} does not exist! Creating new one...", UPLOAD_DIR);
         }
         String fileName = null;
+
         //Get all the parts from request and write it to the file on server
         for (Part part : request.getParts()) {
             fileName = getFileName(part);
+            log(String.valueOf(part.getSize()));
+            log(part.getContentType());
+            log(part.getSubmittedFileName());
             part.write(uploadFilePath + File.separator + fileName);
         }
         logger.info("Saved {} on upload directory!", fileName);

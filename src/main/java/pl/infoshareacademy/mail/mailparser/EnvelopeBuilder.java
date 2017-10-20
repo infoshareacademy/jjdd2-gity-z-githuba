@@ -1,7 +1,5 @@
-/*
 package pl.infoshareacademy.mail.mailparser;
-*/
-/****************************************************************
+/***************************************************************
  * Licensed to the Apache Software Foundation (ASF) under one   *
  * or more contributor license agreements.  See the NOTICE file *
  * distributed with this work for additional information        *
@@ -18,34 +16,15 @@ package pl.infoshareacademy.mail.mailparser;
  * KIND, either express or implied.  See the License for the    *
  * specific language governing permissions and limitations      *
  * under the License.                                           *
- ****************************************************************//*
-
-
-*/
-/**
- *
- *//*
-
-package org.apache.james.imap.processor.fetch;
-
-        import java.text.ParseException;
-        import java.util.ArrayList;
-        import java.util.List;
-
-        import javax.mail.internet.MimeUtility;
-
-        import org.apache.james.imap.api.ImapConstants;
-        import org.apache.james.imap.message.response.FetchResponse;
-        import org.apache.james.mailbox.exception.MailboxException;
-        import org.apache.james.mailbox.model.Headers;
-        import org.apache.james.mailbox.model.MessageResult;
+ ***************************************************************/
+/*
+import org.apache.james.mime4j.message.Header;
         import org.apache.james.mime4j.codec.EncoderUtil;
         import org.apache.james.mime4j.dom.address.Address;
         import org.apache.james.mime4j.dom.address.AddressList;
         import org.apache.james.mime4j.dom.address.DomainList;
         import org.apache.james.mime4j.dom.address.Group;
         import org.apache.james.mime4j.dom.address.MailboxList;
-        import org.apache.james.mime4j.field.address.LenientAddressBuilder;
         import org.slf4j.Logger;
 
 public final class EnvelopeBuilder {
@@ -108,16 +87,17 @@ public final class EnvelopeBuilder {
         return results;
     }
 
-    */
-/**
-     * Try to parse the addresses out of the header. If its not possible because
+
+*/
+/*     * Try to parse the addresses out of the header. If its not possible because
      * of a {@link ParseException} a null value is returned
      *
      * @param message
      * @param headerName
      * @return addresses
-     * @throws MailboxException
-     *//*
+     * @throws MailboxException*//*
+
+
 
     private FetchResponse.Envelope.Address[] buildAddresses(final Headers message, final String headerName) throws MailboxException {
         final MessageResult.Header header = MessageResultUtils.getMatching(headerName, message.headers());
