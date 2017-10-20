@@ -7,10 +7,10 @@ import java.util.List;
 public class TempFilePath {
 
     String tempFilePath="";
-    String checkboxWord ;
-    String checkboxWebsite;
-    String checkboxPhone ;
-    String checkboxEmails;
+    String checkboxWord="" ;
+    String checkboxWebsite="";
+    String checkboxPhone="" ;
+    String checkboxEmails="";
 
     public String getTempFilePath() {
         return tempFilePath;

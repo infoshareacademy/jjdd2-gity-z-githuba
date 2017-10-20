@@ -46,14 +46,25 @@ public class DisplayMessage extends HttpServlet {
         ContactFinder finder = new ContactFinder();
         List<String> lista = filePath.getKeywordsFromServletForm();
 
-        statisticBean.countWords(lista);
         Set<Email> displaylist = returnSearchWords(finder, lista);
+        Set<String> foundEmails = returnEmails(finder);
+        Set<String> foundWebsites = returnWebsite(finder);
+        Set<String> foundPhone = returnPhone(finder);
+        filePath.setNullforCheckbox();
 
+        if (!lista.isEmpty()) {
+            statisticBean.countWords(lista);
+        }
 
 
 
         req.setAttribute("question", displaylist);
+        req.setAttribute("foundEmails",foundEmails);
+        req.setAttribute("foundWebsites",foundWebsites);
+        req.setAttribute("foundPhone",foundPhone);
         req.setAttribute("keywords", lista);
+
+
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/jsp/display.jsp");
         dispatcher.forward(req, resp);
@@ -83,7 +94,7 @@ public class DisplayMessage extends HttpServlet {
     private Set<String> returnWebsite(ContactFinder finder) {
         Set <String> website = new HashSet<>();
         if ( filePath.getCheckboxWebsite()!= null) {
-            website = finder.findMail(mailBox);
+            website = finder.findWebsite(mailBox);
             return website;
         }else
             return website;
