@@ -7,7 +7,7 @@
         <ul class="nav navbar-nav">
             <li class="active"><a href="${pageContext.request.contextPath}/jsp/index3.jsp">Home</a></li>
             <li><a href="${pageContext.request.contextPath}/jsp/file_upload.jsp">Upload Files</a></li>
-            <li><a href="${pageContext.request.contextPath}/shared/check_files.jsp">Check files</a></li>
+            <li><a href="${pageContext.request.contextPath}/checkFiles">Check files</a></li>
             <li><a href="${pageContext.request.contextPath}/sender">Keywords</a></li>
             <li><a href="${pageContext.request.contextPath}/keywords">Helper</a></li>
         </ul>
