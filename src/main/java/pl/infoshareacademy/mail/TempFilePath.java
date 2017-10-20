@@ -6,7 +6,7 @@ import java.util.List;
 @Singleton
 public class TempFilePath {
 
-    String tempFilePath;
+    String tempFilePath="";
 
     public String getTempFilePath() {
         return tempFilePath;
