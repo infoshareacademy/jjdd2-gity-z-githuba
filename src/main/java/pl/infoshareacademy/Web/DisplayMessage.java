@@ -46,7 +46,6 @@ public class DisplayMessage extends HttpServlet {
 
         ContactFinder finder = new ContactFinder();
         List<String> lista = filePath.getKeywordsFromServletForm();
-
         Set<Email> displaylist = returnSearchWords(finder, lista);
         Set<String> foundEmails = returnEmails(finder);
         Set<String> foundWebsites = returnWebsite(finder);
