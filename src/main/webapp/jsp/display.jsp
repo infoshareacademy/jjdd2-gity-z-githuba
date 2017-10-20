@@ -49,9 +49,13 @@
     <h3>Message</h3>
     <br>
     <div id="sentences">
+         <c:if test = "${empty question}">
+        <p>No e-mails found matching the criteria<p>
+        </c:if>
 <c:forEach var="question" items="${question}" varStatus="loop">
     <c:out value="[${loop.index+1}]" />: <c:out value="${question}"/><br/>
 </c:forEach>
+
 
         <c:forEach var="value" items="${value}" varStatus="loop">
             <c:out value="[${loop.index+1}]" />: <c:out value="${question}"/><br/>
