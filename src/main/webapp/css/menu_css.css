@@ -1,0 +1,24 @@
+.navbar-brand {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+    margin: auto;
+}
+.navbar-toggle {
+    z-index:3;
+}
+.color-green{
+    color: lawngreen;
+}
+.color-red {
+    color: red;
+}
+p {
+    padding-top: 70px;
+    color: #d7ceb2;
+    text-shadow: 3px 3px 0px #2c2e38, 5px 5px 0px #5c5f72;
+    font: 80px 'BazarMedium';
+    letter-spacing: 10px;
+}
