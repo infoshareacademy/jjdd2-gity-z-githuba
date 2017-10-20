@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 @WebServlet("/display")
 public class DisplayMessage extends HttpServlet {
     @Inject
@@ -56,14 +57,11 @@ public class DisplayMessage extends HttpServlet {
             statisticBean.countWords(lista);
         }
 
-
-
         req.setAttribute("question", displaylist);
-        req.setAttribute("foundEmails",foundEmails);
-        req.setAttribute("foundWebsites",foundWebsites);
-        req.setAttribute("foundPhone",foundPhone);
+        req.setAttribute("foundEmails", foundEmails);
+        req.setAttribute("foundWebsites", foundWebsites);
+        req.setAttribute("foundPhone", foundPhone);
         req.setAttribute("keywords", lista);
-
 
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/jsp/display.jsp");
@@ -83,29 +81,29 @@ public class DisplayMessage extends HttpServlet {
     }
 
     private Set<String> returnEmails(ContactFinder finder) {
-        Set <String> mail = new HashSet<>();
-        if ( filePath.getCheckboxEmails()!= null) {
+        Set<String> mail = new HashSet<>();
+        if (filePath.getCheckboxEmails() != null) {
             mail = finder.findMail(mailBox);
             return mail;
-        }else
-        return mail;
+        } else
+            return mail;
     }
 
     private Set<String> returnWebsite(ContactFinder finder) {
-        Set <String> website = new HashSet<>();
-        if ( filePath.getCheckboxWebsite()!= null) {
+        Set<String> website = new HashSet<>();
+        if (filePath.getCheckboxWebsite() != null) {
             website = finder.findWebsite(mailBox);
             return website;
-        }else
+        } else
             return website;
     }
 
     private Set<String> returnPhone(ContactFinder finder) {
-        Set <String> phone = new HashSet<>();
-        if ( filePath.getCheckboxPhone()!= null) {
+        Set<String> phone = new HashSet<>();
+        if (filePath.getCheckboxPhone() != null) {
             phone = finder.findPhoneNo(mailBox);
             return phone;
-        }else
+        } else
             return phone;
     }
 
