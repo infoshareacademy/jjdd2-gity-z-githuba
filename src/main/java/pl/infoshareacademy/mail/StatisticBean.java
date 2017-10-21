@@ -11,6 +11,8 @@ public class StatisticBean {
 
 
     public void countWords(List<String> listofWords) {
+        System.out.println(listofWords);
+        System.out.println(mapKeyWords);
         if (!listofWords.isEmpty()) {
             for (String list : listofWords) {
                 if (mapKeyWords.containsKey(list.toLowerCase())) {

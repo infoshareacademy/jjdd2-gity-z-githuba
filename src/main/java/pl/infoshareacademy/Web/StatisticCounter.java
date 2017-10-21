@@ -31,5 +31,13 @@ public class StatisticCounter extends HttpServlet {
         Long counter =emails.stream()
                 .map(email -> email.getMessage())
                 .count();
+        System.out.println(statisticBean.getMapKeyWords());
+        req.setAttribute("WordsMap", statisticBean.getMapKeyWords());
+        System.out.println(statisticBean.getMapKeyWords());
+
+        RequestDispatcher dispatcher = getServletContext()
+                .getRequestDispatcher("/jsp/Displayraport.jsp");
+        dispatcher.forward(req, resp);
     }
+
 }

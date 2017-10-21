@@ -7,10 +7,10 @@ import java.util.List;
 public class TempFilePath {
 
     String tempFilePath="";
-    String checkboxWord="" ;
-    String checkboxWebsite="";
-    String checkboxPhone="" ;
-    String checkboxEmails="";
+    String checkboxWord="null" ;
+    String checkboxWebsite="null";
+    String checkboxPhone="null" ;
+    String checkboxEmails="null";
 
     public String getTempFilePath() {
         return tempFilePath;
@@ -62,9 +62,9 @@ public class TempFilePath {
         this.checkboxEmails = checkboxEmails;
     }
     public void setNullforCheckbox() {
-        checkboxWord="" ;
-        checkboxWebsite="";
-        checkboxPhone="";
-        checkboxEmails="";
+        checkboxWord="null" ;
+        checkboxWebsite="null";
+        checkboxPhone="null";
+        checkboxEmails="null";
     }
 }

@@ -50,18 +50,17 @@ public class DisplayMessage extends HttpServlet {
         Set<String> foundEmails = returnEmails(finder);
         Set<String> foundWebsites = returnWebsite(finder);
         Set<String> foundPhone = returnPhone(finder);
-        filePath.setNullforCheckbox();
 
-        if (!lista.isEmpty()) {
+        System.out.println(lista);
+        if (filePath.getCheckboxWord() != "null") {
             statisticBean.countWords(lista);
         }
-
         req.setAttribute("question", displaylist);
         req.setAttribute("foundEmails", foundEmails);
         req.setAttribute("foundWebsites", foundWebsites);
         req.setAttribute("foundPhone", foundPhone);
         req.setAttribute("keywords", lista);
-
+        filePath.setNullforCheckbox();
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/jsp/display.jsp");
         dispatcher.forward(req, resp);
@@ -70,7 +69,7 @@ public class DisplayMessage extends HttpServlet {
     private Set<Email> returnSearchWords(ContactFinder finder, List<String> lista) {
 
         Set<Email> displaylist = new HashSet<>();
-        if (filePath.getCheckboxWord() != null) {
+        if (filePath.getCheckboxWord() != "null") {
             for (int i = 0; i < lista.size(); i++) {
                 Set<Email> mail = finder.findQA(mailBox, lista.get(i));
                 displaylist.addAll(mail);
@@ -81,7 +80,7 @@ public class DisplayMessage extends HttpServlet {
 
     private Set<String> returnEmails(ContactFinder finder) {
         Set<String> mail = new HashSet<>();
-        if (filePath.getCheckboxEmails() != null) {
+        if (filePath.getCheckboxEmails() != "null") {
             mail = finder.findMail(mailBox);
             return mail;
         } else
@@ -90,7 +89,7 @@ public class DisplayMessage extends HttpServlet {
 
     private Set<String> returnWebsite(ContactFinder finder) {
         Set<String> website = new HashSet<>();
-        if (filePath.getCheckboxWebsite() != null) {
+        if (filePath.getCheckboxWebsite() != "null") {
             website = finder.findWebsite(mailBox);
             return website;
         } else
@@ -99,7 +98,7 @@ public class DisplayMessage extends HttpServlet {
 
     private Set<String> returnPhone(ContactFinder finder) {
         Set<String> phone = new HashSet<>();
-        if (filePath.getCheckboxPhone() != null) {
+        if (filePath.getCheckboxPhone() != "null") {
             phone = finder.findPhoneNo(mailBox);
             return phone;
         } else
