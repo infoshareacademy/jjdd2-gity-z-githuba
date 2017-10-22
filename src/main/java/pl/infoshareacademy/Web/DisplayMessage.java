@@ -35,7 +35,6 @@ public class DisplayMessage extends HttpServlet {
     @Override
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String checkBoxWord = (String) req.getAttribute("searchword");
 
         if (filePath.getTempFilePath().endsWith("mbox")) {
             MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
@@ -51,15 +50,27 @@ public class DisplayMessage extends HttpServlet {
         Set<String> foundWebsites = returnWebsite(finder);
         Set<String> foundPhone = returnPhone(finder);
 
-        System.out.println(lista);
         if (filePath.getCheckboxWord() != "null") {
-            statisticBean.countWords(lista);
+            statisticBean.countWords(lista,statisticBean.getMapKeyWords());
         }
+        if (filePath.getCheckboxWebsite() != "null") {
+            statisticBean.countWords(foundWebsites,statisticBean.getMapWebsite());
+        }if (filePath.getCheckboxPhone() != "null") {
+            statisticBean.countWords(foundPhone,statisticBean.getMapPhone());
+        }if (filePath.getCheckboxEmails() != "null") {
+            statisticBean.countWords(foundEmails,statisticBean.getMapEmails());
+        }
+        System.out.println(statisticBean.getMapEmails());
+        System.out.println(statisticBean.getMapWebsite());
+
+
         req.setAttribute("question", displaylist);
         req.setAttribute("foundEmails", foundEmails);
         req.setAttribute("foundWebsites", foundWebsites);
         req.setAttribute("foundPhone", foundPhone);
         req.setAttribute("keywords", lista);
+        req.setAttribute("file", filePath.getTempFilePath());
+
         filePath.setNullforCheckbox();
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/jsp/display.jsp");

@@ -6,11 +6,14 @@
 <head>
     <link type="text/css" href="css/highLineEmails.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script language="JavaScript">
 
         $(document).ready(function () {
             var sentences = $('#sentences');
+            var normal = $('#sentences');
             var keywords = $('#keywords');
 
             keywords.click(function () {
@@ -34,6 +37,17 @@
     </script>
 </head>
 <body>
+<c:if test="${not empty file}">
+<div class="alert alert-success">
+    <strong>Success!</strong> Everything went well!.
+</div>
+</c:if>
+<c:if test="${file==''}">
+<div class="alert alert-danger">
+    <strong>Achtung!</strong> Upload file.<a href="${pageContext.request.contextPath}/jsp/choice.jsp">  Go to home</a>
+</div>
+</c:if>
+
 <h3>Keywords</h3>
 <br>
 <div id="keywords">
@@ -79,6 +93,6 @@
         </c:forEach>
 </div>
 <br>
-<a href="choice">Go to home</a>
+<a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp">Back</a>
 </body>
 </html>

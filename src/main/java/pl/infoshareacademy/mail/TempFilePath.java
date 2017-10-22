@@ -2,6 +2,7 @@ package pl.infoshareacademy.mail;
 
 import javax.ejb.Singleton;
 import java.util.List;
+import java.util.Set;
 
 @Singleton
 public class TempFilePath {

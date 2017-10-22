@@ -11,8 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 @WebServlet("/sender")
 public class SearchingBySenderServlet extends HttpServlet {
@@ -32,7 +31,7 @@ public class SearchingBySenderServlet extends HttpServlet {
     }
 
     private void addSearchingWordtoArrayBean(String fourAnswer) {
-        ArrayList<String> listOfSearchKeywords = new ArrayList<>();
+        List<String> listOfSearchKeywords = new ArrayList<>();
         if (fourAnswer.isEmpty()) {
             listOfSearchKeywords.add("Empty");
             listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);

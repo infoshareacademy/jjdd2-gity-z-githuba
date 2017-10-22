@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/des")
+@WebServlet("/stats")
 public class StatisticCounter extends HttpServlet {
 
     @Inject
@@ -31,9 +31,10 @@ public class StatisticCounter extends HttpServlet {
         Long counter =emails.stream()
                 .map(email -> email.getMessage())
                 .count();
-        System.out.println(statisticBean.getMapKeyWords());
-        req.setAttribute("WordsMap", statisticBean.getMapKeyWords());
-        System.out.println(statisticBean.getMapKeyWords());
+        req.setAttribute("WordsMap",statisticBean.getMapKeyWords());
+        req.setAttribute("EmailsMap",statisticBean.getMapEmails());
+        req.setAttribute("PhonesMap",statisticBean.getMapPhone());
+        req.setAttribute("WebsitesMap",statisticBean.getMapWebsite());
 
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/jsp/Displayraport.jsp");
