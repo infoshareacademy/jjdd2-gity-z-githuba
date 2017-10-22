@@ -9,9 +9,8 @@
     <title>Upload some files...</title>
 </head>
 <body>
-<div class="container">
     <div class="panel panel-default">
-        <div class="panel-heading"><strong>Upload Files</strong> <small>Bootstrap files upload</small></div>
+        <div class="panel-heading"><strong>Upload Files</strong></div>
         <div class="panel-body">
             <h4>Select files from your computer</h4>
             <form action="../FileUploadServlet" method="post" enctype="multipart/form-data" id="js-upload-form">
@@ -31,6 +30,5 @@
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>

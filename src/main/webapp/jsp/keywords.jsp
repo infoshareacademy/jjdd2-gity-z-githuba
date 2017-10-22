@@ -12,34 +12,37 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-Is this an urgent message?
-<br>
-
-<form method="post" action="../words">
-    <select name="question1">
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-    </select>
-    <br>
-    Is this a formal message?
-    <br>
-
-    <select name="question2">");
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-    </select>
-    <br>
-    Is this an important message
-    <br>
-
-    <select name="question3">
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-    </select>
-    <br><br>
-
-    <button type="submit">Give me the list of keywords!</button>
-</form>
-
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form method="post" action="../words">
+                    <div class="form-group">
+                        <label for="question1">Is this an urgent message?</label>
+                        <select class="form-control" id="question1" name="question1">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <br>
+                        <label for="question2">Is this a formal message?</label>
+                        <select class="form-control" id="question2" name="question2">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <br>
+                        <label for="question3">Is this an important message?</label>
+                        <select class="form-control" id="question3" name="question3">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <br>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Give me the list of keywords!</button>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
 </body>
 </html>
