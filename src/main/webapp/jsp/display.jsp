@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-2" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<jsp:useBean id="Display" class="pl.infoshareacademy.mail.TempFilePath" scope="request" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,25 +44,23 @@
 <br>
 <h3>Emails</h3>
 <c:if test="${empty foundEmails}">
-<p>Messages do not content emails addresses
+<p>Messages do not contains emails addresses
 <p>
     </c:if>
     <c:forEach var="foundEmails" items="${foundEmails}" varStatus="loop">
         <c:out value="[${loop.index+1}]"/>: <c:out value="${foundEmails}"/><br>
     </c:forEach>
-    <br>
 <h3>Phone</h3>
 <c:if test="${empty foundPhone}">
-<p>Messages do not content phones
+<p>Messages do not contains phones
 <p>
     </c:if>
     <c:forEach var="foundEmails" items="${foundPhone}" varStatus="loop">
         <c:out value="[${loop.index+1}]"/>: <c:out value="${foundPhone}"/><br>
     </c:forEach>
-        <br>
 <h3>Websites</h3>
 <c:if test="${empty foundWebsites}">
-<p>Messages do not content website addresses
+<p>Messages do not contains website addresses
 <p>
     </c:if>
     <c:forEach var="foundEmails" items="${foundWebsites}" varStatus="loop">
@@ -79,6 +77,6 @@
         </c:forEach>
 </div>
 <br>
-<a href="choice">Go to home</a>
+<a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp">Back</a><br>
 </body>
 </html>

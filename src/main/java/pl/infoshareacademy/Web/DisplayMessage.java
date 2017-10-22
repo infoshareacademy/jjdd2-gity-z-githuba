@@ -35,7 +35,6 @@ public class DisplayMessage extends HttpServlet {
     @Override
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String checkBoxWord = (String) req.getAttribute("searchword");
 
         if (filePath.getTempFilePath().endsWith("mbox")) {
             MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
@@ -51,7 +50,7 @@ public class DisplayMessage extends HttpServlet {
         Set<String> foundWebsites = returnWebsite(finder);
         Set<String> foundPhone = returnPhone(finder);
 
-        System.out.println(lista);
+
         if (filePath.getCheckboxWord() != "null") {
             statisticBean.countWords(lista);
         }
@@ -83,8 +82,9 @@ public class DisplayMessage extends HttpServlet {
         if (filePath.getCheckboxEmails() != "null") {
             mail = finder.findMail(mailBox);
             return mail;
-        } else
+        } else {
             return mail;
+        }
     }
 
     private Set<String> returnWebsite(ContactFinder finder) {
@@ -92,8 +92,9 @@ public class DisplayMessage extends HttpServlet {
         if (filePath.getCheckboxWebsite() != "null") {
             website = finder.findWebsite(mailBox);
             return website;
-        } else
+        } else {
             return website;
+        }
     }
 
     private Set<String> returnPhone(ContactFinder finder) {
@@ -101,8 +102,9 @@ public class DisplayMessage extends HttpServlet {
         if (filePath.getCheckboxPhone() != "null") {
             phone = finder.findPhoneNo(mailBox);
             return phone;
-        } else
+        } else {
             return phone;
+        }
     }
 
 }

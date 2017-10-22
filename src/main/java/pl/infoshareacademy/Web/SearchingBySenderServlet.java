@@ -33,7 +33,7 @@ public class SearchingBySenderServlet extends HttpServlet {
 
     private void addSearchingWordtoArrayBean(String fourAnswer) {
         ArrayList<String> listOfSearchKeywords = new ArrayList<>();
-        if (fourAnswer.isEmpty()) {
+        if (fourAnswer.isEmpty()|| fourAnswer==null) {
             listOfSearchKeywords.add("Empty");
             listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
         } else {
