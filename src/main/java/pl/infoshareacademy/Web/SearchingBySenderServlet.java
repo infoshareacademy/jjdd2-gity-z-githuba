@@ -37,8 +37,8 @@ public class SearchingBySenderServlet extends HttpServlet {
             listOfSearchKeywords.add("Empty");
             listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
         } else {
-            String[] listofwords = fourAnswer.split(",");
-            listOfSearchKeywords.addAll(Arrays.asList(listofwords));
+            String[] listOfWords = fourAnswer.split(",");
+            listOfSearchKeywords.addAll(Arrays.asList(listOfWords));
             listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
         }
     }
