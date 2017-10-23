@@ -25,23 +25,28 @@ public class SearchingBySenderServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ArrayList<String> listOfSearchKeywords = new ArrayList<>();
+        setCheckBox(req);
         String fourAnswer = req.getParameter("sender");
-        String checkboxWord = req.getParameter("searchword");
-        String checkboxWebsite = req.getParameter("Websites");
-        String checkboxPhone = req.getParameter("Phonenumbers");
-        String checkboxEmails = req.getParameter("Emails");
+        addSearchingWordtoArrayBean(fourAnswer);
+        resp.sendRedirect("display");
+    }
 
-        if (fourAnswer.isEmpty()) {
-            listOfSearchKeywords.add("Empty box");
+    private void addSearchingWordtoArrayBean(String fourAnswer) {
+        ArrayList<String> listOfSearchKeywords = new ArrayList<>();
+        if (fourAnswer.isEmpty()|| fourAnswer==null) {
+            listOfSearchKeywords.add("Empty");
             listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
         } else {
-            String[] listofwords = fourAnswer.split(",");
-            listOfSearchKeywords.addAll(Arrays.asList(listofwords));
+            String[] listOfWords = fourAnswer.split(",");
+            listOfSearchKeywords.addAll(Arrays.asList(listOfWords));
             listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
         }
-        req.setAttribute("searchword", checkboxWord);
-        resp.sendRedirect("display");
+    }
 
+    private void setCheckBox(HttpServletRequest req) {
+        filePath.setCheckboxWord(req.getParameter("searchWord"));
+        filePath.setCheckboxWebsite(req.getParameter("Websites"));
+        filePath.setCheckboxPhone(req.getParameter("Phonenumbers"));
+        filePath.setCheckboxEmails(req.getParameter("Emails"));
     }
 }
