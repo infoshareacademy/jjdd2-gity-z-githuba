@@ -22,7 +22,7 @@
             <div class="col-md-4">
                 <div class="input-group">
       <span class="input-group-addon">
-          <input type="checkbox" name="searchword" value="searchword">
+          <input type="checkbox" name="searchWord" value="searchWord">
       </span>
                     <input id="prependedcheckbox" name="sender" class="form-control" placeholder="Your word here" type="text">
                 </div>

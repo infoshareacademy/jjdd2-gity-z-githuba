@@ -3,16 +3,15 @@ package pl.infoshareacademy.Web;
 import pl.infoshareacademy.mail.TempFilePath;
 
 import javax.inject.Inject;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @WebServlet("/sender")
 public class SearchingBySenderServlet extends HttpServlet {
@@ -25,23 +24,28 @@ public class SearchingBySenderServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ArrayList<String> listOfSearchKeywords = new ArrayList<>();
+        setCheckBox(req);
         String fourAnswer = req.getParameter("sender");
-        String checkboxWord = req.getParameter("searchword");
-        String checkboxWebsite = req.getParameter("Websites");
-        String checkboxPhone = req.getParameter("Phonenumbers");
-        String checkboxEmails = req.getParameter("Emails");
+        addSearchingWordtoArrayBean(fourAnswer);
+        resp.sendRedirect("display");
+    }
 
+    private void addSearchingWordtoArrayBean(String fourAnswer) {
+        List<String> listOfSearchKeywords = new ArrayList<>();
         if (fourAnswer.isEmpty()) {
-            listOfSearchKeywords.add("Empty box");
+            listOfSearchKeywords.add("Empty");
             listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
         } else {
             String[] listofwords = fourAnswer.split(",");
             listOfSearchKeywords.addAll(Arrays.asList(listofwords));
             listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
         }
-        req.setAttribute("searchword", checkboxWord);
-        resp.sendRedirect("display");
+    }
 
+    private void setCheckBox(HttpServletRequest req) {
+        filePath.setCheckboxWord(req.getParameter("searchWord"));
+        filePath.setCheckboxWebsite(req.getParameter("Websites"));
+        filePath.setCheckboxPhone(req.getParameter("Phonenumbers"));
+        filePath.setCheckboxEmails(req.getParameter("Emails"));
     }
 }
