@@ -28,7 +28,7 @@
         </div>
         <div class="col-md-3"></div>
     </div>
-    <div class="row"><jsp:include page="../shared/footer.jsp"/></div>
+    <%--<div class="row"><jsp:include page="../shared/footer.jsp"/></div>--%>
 </div>
 </body>
 </html>
