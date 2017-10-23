@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -39,7 +40,7 @@ public class FileUploadServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
-        String uploadStatus;
+        List<String> uploadStatus = new ArrayList<>();
         // gets absolute path of the web application
         String applicationPath = request.getServletContext().getRealPath("");
         // constructs path of the directory to save uploaded file
@@ -54,12 +55,18 @@ public class FileUploadServlet extends HttpServlet {
         //Get all the parts from request and write it to the file on server
         for (Part part : request.getParts()) {
             fileName = getFileName(part);
-            part.write(uploadFilePath + File.separator + fileName);
+            if (part.getContentType().contains("mbox") || part.getContentType().contains("eml")) {
+                if (part.getSize() == 0) {
+                    uploadStatus.add(part.getSubmittedFileName()+": is empty");
+                }
+                part.write(uploadFilePath + File.separator + fileName);
+            }
+            uploadStatus.add(part.getSubmittedFileName()+": is not mbox/eml file");
         }
         logger.info("Saved {} on upload directory!", fileName);
 
         filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
-
+/*
         MailBox mailBox = new MailBox();
         MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
         mboxParser.run(mailBox);
@@ -72,7 +79,7 @@ public class FileUploadServlet extends HttpServlet {
             uploadStatus = fileName + " contains unsupported markers or is corrupted";
         } else {
             uploadStatus = fileName + " uploaded successfully!";
-        }
+        }*/
 
         request.setAttribute("message", uploadStatus);
         request.setAttribute("message2", uploadFilePath + File.separator + fileName);
