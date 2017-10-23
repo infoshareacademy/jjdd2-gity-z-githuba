@@ -24,7 +24,7 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            Some error messages need to be redirected here
+            <%--Some error messages need to be redirected here--%>
         </div>
         <div class="col-md-3"></div>
     </div>

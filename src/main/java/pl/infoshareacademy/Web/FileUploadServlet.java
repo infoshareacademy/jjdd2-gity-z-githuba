@@ -64,6 +64,7 @@ public class FileUploadServlet extends HttpServlet {
         MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
         mboxParser.run(mailBox);
 
+
         List<Email> testUploadFile = mailBox.getMailbox();
 
         if (!(filePath.getTempFilePath().endsWith("mbox") || filePath.getTempFilePath().endsWith("eml"))) {
@@ -76,8 +77,9 @@ public class FileUploadServlet extends HttpServlet {
 
         request.setAttribute("message", uploadStatus);
         request.setAttribute("message2", uploadFilePath + File.separator + fileName);
-        getServletContext().getRequestDispatcher("/jsp/response.jsp").forward(
-                request, response);
+//        getServletContext().getRequestDispatcher("/jsp/response.jsp").forward(
+//                request, response);
+        response.sendRedirect("jsp/choice.jsp");
     }
 
     /**
@@ -94,4 +96,6 @@ public class FileUploadServlet extends HttpServlet {
         }
         return "";
     }
+
+
 }
