@@ -50,16 +50,16 @@ public class DisplayMessage extends HttpServlet {
         Set<String> foundWebsites = returnWebsite(finder);
         Set<String> foundPhone = returnPhone(finder);
 
-        if (filePath.getCheckboxWord() != "null") {
+        if (filePath.getCheckboxWord() != null) {
             statisticBean.countWords(lista, statisticBean.getMapKeyWords());
         }
-        if (filePath.getCheckboxWebsite() != "null") {
+        if (filePath.getCheckboxWebsite() != null) {
             statisticBean.countWords(foundWebsites, statisticBean.getMapWebsite());
         }
-        if (filePath.getCheckboxPhone() != "null") {
+        if (filePath.getCheckboxPhone() != null) {
             statisticBean.countWords(foundPhone, statisticBean.getMapPhone());
         }
-        if (filePath.getCheckboxEmails() != "null") {
+        if (filePath.getCheckboxEmails() != null) {
             statisticBean.countWords(foundEmails, statisticBean.getMapEmails());
         }
 
