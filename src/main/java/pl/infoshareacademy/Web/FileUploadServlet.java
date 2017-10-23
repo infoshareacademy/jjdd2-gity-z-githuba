@@ -70,7 +70,7 @@ public class FileUploadServlet extends HttpServlet {
             try {
                 part.write(uploadFilePath + File.separator + fileName);
             } catch (FileAlreadyExistsException e) {
-                uploadStatus.add("No files selected");
+                uploadStatus.add(": that file is olready on the list");
             }
         }
         logger.info("Saved {} on upload directory!", fileName);
