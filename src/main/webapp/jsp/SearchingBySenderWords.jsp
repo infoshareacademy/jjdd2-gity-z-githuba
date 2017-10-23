@@ -62,7 +62,7 @@
             </fieldset>
         </form>
     </div>
-    <div class="row"><jsp:include page="../shared/footer.jsp"/></div>
+    <%--<div class="row"><jsp:include page="../shared/footer.jsp"/></div>--%>
 </div>
 </body>
 </html>

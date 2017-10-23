@@ -24,9 +24,9 @@
 
                 </div>
             </form>
-            <h4>Or drag and drop files below</h4>
-            <div class="upload-drop-zone" id="drop-zone">
-                Just drag and drop files here
+            <%--<h4>Or drag and drop files below</h4>--%>
+            <%--<div class="upload-drop-zone" id="drop-zone">--%>
+                <%--Just drag and drop files here--%>
             </div>
         </div>
     </div>

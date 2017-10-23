@@ -53,7 +53,6 @@ public class FileUploadServlet extends HttpServlet {
             logger.warn("Folder {} does not exist! Creating new one...", UPLOAD_DIR);
         }
         String fileName = null;
-
         //Get all the parts from request and write it to the file on server
         for (Part part : request.getParts()) {
             fileName = getFileName(part);
@@ -93,8 +92,9 @@ public class FileUploadServlet extends HttpServlet {
 
         request.setAttribute("message", uploadStatus);
         request.setAttribute("message2", uploadFilePath + File.separator + fileName);
-        getServletContext().getRequestDispatcher("/jsp/file_upload.jsp").forward(
-                request, response);
+//        getServletContext().getRequestDispatcher("/jsp/response.jsp").forward(
+//                request, response);
+        response.sendRedirect("jsp/choice.jsp");
     }
 
     /**
