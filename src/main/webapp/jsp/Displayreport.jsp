@@ -19,7 +19,7 @@
             ]);
 
             var options = {
-                title: 'Searching words'
+                title: 'Searched words'
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('pieWord'));
@@ -40,7 +40,7 @@
             ]);
 
             var options = {
-                title: 'Searching emails'
+                title: 'Searched emails'
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('pieEmails'));
@@ -60,7 +60,7 @@
             ]);
 
             var options = {
-                title: 'Searching phones',
+                title: 'Searched phones',
                 pieHole: 0.4,
             };
 
@@ -80,7 +80,7 @@
             ]);
 
             var options = {
-                title: 'My Daily Activities',
+                title: 'Searched websites',
                 pieHole: 0.4,
             };
 

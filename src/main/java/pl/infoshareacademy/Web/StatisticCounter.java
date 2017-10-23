@@ -37,7 +37,7 @@ public class StatisticCounter extends HttpServlet {
         req.setAttribute("WebsitesMap",statisticBean.getMapWebsite());
 
         RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher("/jsp/Displayraport.jsp");
+                .getRequestDispatcher("/jsp/Displayreport.jsp");
         dispatcher.forward(req, resp);
     }
 
