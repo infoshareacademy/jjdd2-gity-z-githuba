@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -65,11 +66,12 @@ public class FileUploadServlet extends HttpServlet {
                 } else {
                     uploadStatus.add(part.getSubmittedFileName() + ": is not mbox/eml file");
                 }
-            } else {
+            }
+            try {
+                part.write(uploadFilePath + File.separator + fileName);
+            } catch (FileAlreadyExistsException e) {
                 uploadStatus.add("No files selected");
             }
-            uploadStatus.add(part.getSubmittedFileName() + ": uploaded succesfully");
-            part.write(uploadFilePath + File.separator + fileName);
         }
         logger.info("Saved {} on upload directory!", fileName);
 
@@ -91,7 +93,7 @@ public class FileUploadServlet extends HttpServlet {
 
         request.setAttribute("message", uploadStatus);
         request.setAttribute("message2", uploadFilePath + File.separator + fileName);
-        getServletContext().getRequestDispatcher("/jsp/response.jsp").forward(
+        getServletContext().getRequestDispatcher("/jsp/file_upload.jsp").forward(
                 request, response);
     }
 

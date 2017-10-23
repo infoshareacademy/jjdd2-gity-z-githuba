@@ -13,14 +13,14 @@
 </head>
 <body>
 <jsp:include page="../shared/menu.jsp" />
-<p>Upload your files mine little fellow hobbit</p>
+<p>Upload your files</p>
 <div class="container">
     <div class="row"></div>
     <div class="row">
         <div class="col-md-9"></div>
         <jsp:include page="../shared/file_up.jsp"/>
         <div class="col-md-3"></div>
-        Some error messages need to be redirected here
+        ${requestScope.message}
     </div>
 </div>
 <jsp:include page="../shared/footer.jsp" />
