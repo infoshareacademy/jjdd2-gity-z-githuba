@@ -12,17 +12,23 @@
     <link rel="stylesheet" href="../css/menu_css.css">
 </head>
 <body>
-<jsp:include page="../shared/menu.jsp" />
-<p>Upload your files</p>
 <div class="container">
-    <div class="row"></div>
+    <%--<div class="row"><jsp:include page="../shared/menu.jsp"/></div>--%>
     <div class="row">
-        <div class="col-md-9"></div>
-        <jsp:include page="../shared/file_up.jsp"/>
         <div class="col-md-3"></div>
-        ${requestScope.message}
+        <div class="col-md-6">
+            <jsp:include page="../shared/file_up.jsp"/>
+        </div>
+        <div class="col-md-3"></div>
     </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            ${requestScope.message}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <%--<div class="row"><jsp:include page="../shared/footer.jsp"/></div>--%>
 </div>
-<jsp:include page="../shared/footer.jsp" />
 </body>
 </html>
