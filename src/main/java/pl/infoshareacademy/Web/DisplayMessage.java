@@ -51,18 +51,17 @@ public class DisplayMessage extends HttpServlet {
         Set<String> foundPhone = returnPhone(finder);
 
         if (filePath.getCheckboxWord() != "null") {
-            statisticBean.countWords(lista,statisticBean.getMapKeyWords());
+            statisticBean.countWords(lista, statisticBean.getMapKeyWords());
         }
         if (filePath.getCheckboxWebsite() != "null") {
-            statisticBean.countWords(foundWebsites,statisticBean.getMapWebsite());
-        }if (filePath.getCheckboxPhone() != "null") {
-            statisticBean.countWords(foundPhone,statisticBean.getMapPhone());
-        }if (filePath.getCheckboxEmails() != "null") {
-            statisticBean.countWords(foundEmails,statisticBean.getMapEmails());
+            statisticBean.countWords(foundWebsites, statisticBean.getMapWebsite());
         }
-        System.out.println(statisticBean.getMapEmails());
-        System.out.println(statisticBean.getMapWebsite());
-
+        if (filePath.getCheckboxPhone() != "null") {
+            statisticBean.countWords(foundPhone, statisticBean.getMapPhone());
+        }
+        if (filePath.getCheckboxEmails() != "null") {
+            statisticBean.countWords(foundEmails, statisticBean.getMapEmails());
+        }
 
         req.setAttribute("question", displaylist);
         req.setAttribute("foundEmails", foundEmails);
@@ -94,8 +93,9 @@ public class DisplayMessage extends HttpServlet {
         if (filePath.getCheckboxEmails() != "null") {
             mail = finder.findMail(mailBox);
             return mail;
-        } else
+        } else {
             return mail;
+        }
     }
 
     private Set<String> returnWebsite(ContactFinder finder) {
@@ -103,8 +103,9 @@ public class DisplayMessage extends HttpServlet {
         if (filePath.getCheckboxWebsite() != "null") {
             website = finder.findWebsite(mailBox);
             return website;
-        } else
+        } else {
             return website;
+        }
     }
 
     private Set<String> returnPhone(ContactFinder finder) {
@@ -112,8 +113,9 @@ public class DisplayMessage extends HttpServlet {
         if (filePath.getCheckboxPhone() != "null") {
             phone = finder.findPhoneNo(mailBox);
             return phone;
-        } else
+        } else {
             return phone;
+        }
     }
 
 }

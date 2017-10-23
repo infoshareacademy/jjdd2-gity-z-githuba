@@ -58,7 +58,7 @@
 <br>
 <h3>Emails</h3>
 <c:if test="${empty foundEmails}">
-<p>Messages do not content emails addresses
+<p>Messages do not contains emails addresses
 <p>
     </c:if>
     <c:forEach var="foundEmails" items="${foundEmails}" varStatus="loop">
@@ -67,7 +67,7 @@
     <br>
 <h3>Phone</h3>
 <c:if test="${empty foundPhone}">
-<p>Messages do not content phones
+<p>Messages do not contains phones
 <p>
     </c:if>
     <c:forEach var="foundEmails" items="${foundPhone}" varStatus="loop">
@@ -76,7 +76,7 @@
         <br>
 <h3>Websites</h3>
 <c:if test="${empty foundWebsites}">
-<p>Messages do not content website addresses
+<p>Messages do not contains website addresses
 <p>
     </c:if>
     <c:forEach var="foundEmails" items="${foundWebsites}" varStatus="loop">
