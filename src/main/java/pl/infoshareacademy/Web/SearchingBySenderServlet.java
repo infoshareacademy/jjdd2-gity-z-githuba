@@ -3,16 +3,15 @@ package pl.infoshareacademy.Web;
 import pl.infoshareacademy.mail.TempFilePath;
 
 import javax.inject.Inject;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @WebServlet("/sender")
 public class SearchingBySenderServlet extends HttpServlet {
@@ -32,13 +31,13 @@ public class SearchingBySenderServlet extends HttpServlet {
     }
 
     private void addSearchingWordtoArrayBean(String fourAnswer) {
-        ArrayList<String> listOfSearchKeywords = new ArrayList<>();
-        if (fourAnswer.isEmpty()|| fourAnswer==null) {
+        List<String> listOfSearchKeywords = new ArrayList<>();
+        if (fourAnswer.isEmpty()) {
             listOfSearchKeywords.add("Empty");
             listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
         } else {
-            String[] listOfWords = fourAnswer.split(",");
-            listOfSearchKeywords.addAll(Arrays.asList(listOfWords));
+            String[] listofwords = fourAnswer.split(",");
+            listOfSearchKeywords.addAll(Arrays.asList(listofwords));
             listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
         }
     }

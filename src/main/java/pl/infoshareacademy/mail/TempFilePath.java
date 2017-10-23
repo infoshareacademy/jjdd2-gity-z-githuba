@@ -2,15 +2,16 @@ package pl.infoshareacademy.mail;
 
 import javax.ejb.Singleton;
 import java.util.List;
+import java.util.Set;
 
 @Singleton
 public class TempFilePath {
 
     String tempFilePath="";
-    String checkboxWord="null" ;
-    String checkboxWebsite="null";
-    String checkboxPhone="null" ;
-    String checkboxEmails="null";
+    String checkboxWord ;
+    String checkboxWebsite;
+    String checkboxPhone ;
+    String checkboxEmails;
 
     public String getTempFilePath() {
         return tempFilePath;
@@ -62,9 +63,9 @@ public class TempFilePath {
         this.checkboxEmails = checkboxEmails;
     }
     public void setNullforCheckbox() {
-        checkboxWord="null" ;
-        checkboxWebsite="null";
-        checkboxPhone="null";
-        checkboxEmails="null";
+        checkboxWord=null ;
+        checkboxWebsite=null;
+        checkboxPhone=null;
+        checkboxEmails=null;
     }
 }

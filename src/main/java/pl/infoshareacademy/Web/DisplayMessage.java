@@ -50,15 +50,26 @@ public class DisplayMessage extends HttpServlet {
         Set<String> foundWebsites = returnWebsite(finder);
         Set<String> foundPhone = returnPhone(finder);
 
-
-        if (filePath.getCheckboxWord() != "null") {
-            statisticBean.countWords(lista);
+        if (filePath.getCheckboxWord() != null) {
+            statisticBean.countWords(lista, statisticBean.getMapKeyWords());
         }
+        if (filePath.getCheckboxWebsite() != null) {
+            statisticBean.countWords(foundWebsites, statisticBean.getMapWebsite());
+        }
+        if (filePath.getCheckboxPhone() != null) {
+            statisticBean.countWords(foundPhone, statisticBean.getMapPhone());
+        }
+        if (filePath.getCheckboxEmails() != null) {
+            statisticBean.countWords(foundEmails, statisticBean.getMapEmails());
+        }
+
         req.setAttribute("question", displaylist);
         req.setAttribute("foundEmails", foundEmails);
         req.setAttribute("foundWebsites", foundWebsites);
         req.setAttribute("foundPhone", foundPhone);
         req.setAttribute("keywords", lista);
+        req.setAttribute("file", filePath.getTempFilePath());
+
         filePath.setNullforCheckbox();
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/jsp/display.jsp");

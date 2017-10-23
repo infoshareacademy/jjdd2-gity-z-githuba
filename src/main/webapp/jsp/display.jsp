@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-2" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:useBean id="Display" class="pl.infoshareacademy.mail.TempFilePath" scope="request" />
+
 <!DOCTYPE html>
 <html>
 <head>
     <link type="text/css" href="css/highLineEmails.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script language="JavaScript">
 
         $(document).ready(function () {
             var sentences = $('#sentences');
+            var normal = $('#sentences');
             var keywords = $('#keywords');
 
             keywords.click(function () {
@@ -34,6 +37,17 @@
     </script>
 </head>
 <body>
+<c:if test="${not empty file}">
+<div class="alert alert-success">
+    <strong>Success!</strong> Everything went well!.
+</div>
+</c:if>
+<c:if test="${file==''}">
+<div class="alert alert-danger">
+    <strong>Achtung!</strong> Upload file.<a href="${pageContext.request.contextPath}/jsp/choice.jsp">  Go to home</a>
+</div>
+</c:if>
+
 <h3>Keywords</h3>
 <br>
 <div id="keywords">
@@ -50,6 +64,7 @@
     <c:forEach var="foundEmails" items="${foundEmails}" varStatus="loop">
         <c:out value="[${loop.index+1}]"/>: <c:out value="${foundEmails}"/><br>
     </c:forEach>
+    <br>
 <h3>Phone</h3>
 <c:if test="${empty foundPhone}">
 <p>Messages do not contains phones
@@ -58,6 +73,7 @@
     <c:forEach var="foundEmails" items="${foundPhone}" varStatus="loop">
         <c:out value="[${loop.index+1}]"/>: <c:out value="${foundPhone}"/><br>
     </c:forEach>
+        <br>
 <h3>Websites</h3>
 <c:if test="${empty foundWebsites}">
 <p>Messages do not contains website addresses
@@ -77,6 +93,6 @@
         </c:forEach>
 </div>
 <br>
-<a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp">Back</a><br>
+<a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp">Back</a>
 </body>
 </html>
