@@ -55,14 +55,20 @@ public class FileUploadServlet extends HttpServlet {
         //Get all the parts from request and write it to the file on server
         for (Part part : request.getParts()) {
             fileName = getFileName(part);
-            if (part.getContentType().contains("mbox") || part.getContentType().contains("eml")) {
-                if (part.getSize() == 0) {
-                    uploadStatus.add(part.getSubmittedFileName()+": is empty");
+            if (part.getSubmittedFileName() != null) {
+                if (part.getContentType().contains("mbox") || part.getContentType().contains("eml")) {
+                    if (part.getSize() == 0) {
+                        uploadStatus.add(part.getSubmittedFileName() + ": is empty");
+                    }
                 }
-                part.write(uploadFilePath + File.separator + fileName);
+                uploadStatus.add(part.getSubmittedFileName() + ": is not mbox/eml file");
+            } else {
+                uploadStatus.add("No files selected");
             }
-            uploadStatus.add(part.getSubmittedFileName()+": is not mbox/eml file");
+            part.write(uploadFilePath + File.separator + fileName);
         }
+
+
         logger.info("Saved {} on upload directory!", fileName);
 
         filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
