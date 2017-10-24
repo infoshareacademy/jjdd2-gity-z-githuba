@@ -6,6 +6,8 @@ import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.TempFilePath;
 import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
+
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -69,7 +71,7 @@ public class FileUploadServlet extends HttpServlet {
             try {
                 part.write(uploadFilePath + File.separator + fileName);
             } catch (FileAlreadyExistsException e) {
-                uploadStatus.add(": that file is olready on the list");
+                uploadStatus.add(": that file is already on the list");
             }
         }
         logger.info("Saved {} on upload directory!", fileName);
@@ -89,12 +91,12 @@ public class FileUploadServlet extends HttpServlet {
         } else {
             uploadStatus = fileName + " uploaded successfully!";
         }*/
-
+        
         request.setAttribute("message", uploadStatus);
         request.setAttribute("message2", uploadFilePath + File.separator + fileName);
-//        getServletContext().getRequestDispatcher("/jsp/response.jsp").forward(
-//                request, response);
-        response.sendRedirect("jsp/choice.jsp");
+        getServletContext().getRequestDispatcher("/jsp/choice.jsp").forward(
+                request, response);
+        //response.sendRedirect("jsp/choice.jsp");
     }
 
     /**
