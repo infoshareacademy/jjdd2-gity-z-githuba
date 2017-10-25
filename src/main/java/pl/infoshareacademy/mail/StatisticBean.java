@@ -1,5 +1,9 @@
 package pl.infoshareacademy.mail;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import pl.infoshareacademy.Web.FileUploadServlet;
+
 import javax.ejb.Singleton;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +16,7 @@ public class StatisticBean {
     private Map<String, Integer> mapWebsite = new HashMap<>();
     private Map<String, Integer> mapPhone = new HashMap<>();
     private Map<String, Integer> mapEmails = new HashMap<>();
+    private final Logger logger = LogManager.getLogger(getClass());
 
 
     public void countWords(List<String> listofWords, Map<String, Integer> mapToCount) {
@@ -22,7 +27,7 @@ public class StatisticBean {
                         try {
                             mapToCount.put(list.toLowerCase(), mapToCount.get(list) + 1);
                         } catch (NullPointerException ex) {
-
+                            logger.warn("Empty map {} {}",list,listofWords);
                         }
                     }
                 } else {
@@ -39,7 +44,7 @@ public class StatisticBean {
                         try {
                             mapToCount.put(list.toLowerCase(), mapToCount.get(list) + 1);
                         } catch (NullPointerException ex) {
-
+                            logger.warn("Empty set {} {}",list,listofWords);
                         }
                     }
                 } else {
