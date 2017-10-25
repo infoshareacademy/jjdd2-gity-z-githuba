@@ -19,7 +19,11 @@ public class StatisticBean {
             for (String list : listofWords) {
                 if (mapToCount.containsKey(list.toLowerCase())) {
                     if (!listofWords.contains("Empty")){
-                        mapToCount.put(list.toLowerCase(), mapToCount.get(list) + 1);
+                        try {
+                            mapToCount.put(list.toLowerCase(), mapToCount.get(list) + 1);
+                        } catch (NullPointerException ex) {
+
+                        }
                     }
                 } else {
                     mapToCount.put(list.toLowerCase(), 1);
@@ -32,7 +36,11 @@ public class StatisticBean {
             for (String list : listofWords) {
                 if (mapToCount.containsKey(list.toLowerCase())) {
                     if (!listofWords.contains("Empty")){
-                        mapToCount.put(list.toLowerCase(), mapToCount.get(list) + 1);
+                        try {
+                            mapToCount.put(list.toLowerCase(), mapToCount.get(list) + 1);
+                        } catch (NullPointerException ex) {
+
+                        }
                     }
                 } else {
                     mapToCount.put(list.toLowerCase(), 1);

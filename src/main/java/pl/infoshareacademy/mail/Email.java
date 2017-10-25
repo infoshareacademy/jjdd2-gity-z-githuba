@@ -9,15 +9,17 @@ public class Email {
     private String message="";
     private String subject;
     private String to;
+    private String reply;
 
     public Email(){}
 
-    public Email(String from, String sender, Date date, String message, String subject) {
+    public Email(String from, String sender, Date date, String message, String subject,String reply) {
         this.from = from;
         this.sender = sender;
         this.date = date;
         this.message = message;
         this.subject = subject;
+        this.reply = reply;
     }
 
     @Override
@@ -44,6 +46,8 @@ public class Email {
                 ", date=" + date +
                 ", message='" + message + '\'' +
                 ", subject='" + subject + '\'' +
+                ", to='" + to + '\'' +
+                ", reply='" + reply + '\'' +
                 '}';
     }
 
@@ -93,5 +97,13 @@ public class Email {
 
     public void setTo(String to) {
         this.to = to;
+    }
+
+    public String getReply() {
+        return reply;
+    }
+
+    public void setReply(String reply) {
+        this.reply = reply;
     }
 }
