@@ -1,0 +1,24 @@
+version: "1.13"
+services:
+  app:
+    container_name: "webapp"
+    build: ../
+
+    ports:
+      - 8801:8080
+      - 9900:9990
+    depends_on:
+      - db
+  db:
+    container_name: "db"
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=GZGH!23
+      - MYSQL_DATABASE=Data
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=GZGH
+    ports:
+      - 3306:3306
+networks:
+  Mohito:
+driver: bridge
