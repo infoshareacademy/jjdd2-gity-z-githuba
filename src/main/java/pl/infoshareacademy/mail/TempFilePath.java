@@ -8,19 +8,13 @@ import java.util.Set;
 @Singleton
 public class TempFilePath {
 
-    String tempFilePath="";
+    String tempFilePath;
     String checkboxWord ;
     String checkboxWebsite;
     String checkboxPhone ;
     String checkboxEmails;
 
-    public String getTempFilePath() {
-        return tempFilePath;
-    }
 
-    public void setTempFilePath(String tempFilePath) {
-        this.tempFilePath = tempFilePath;
-    }
 
     List<String> keywordsFromServletForm = new ArrayList<>();
 
@@ -68,5 +62,13 @@ public class TempFilePath {
         checkboxWebsite=null;
         checkboxPhone=null;
         checkboxEmails=null;
+    }
+
+    public String getTempFilePath() {
+        return tempFilePath;
+    }
+
+    public void setTempFilePath(String tempFilePath) {
+        this.tempFilePath = tempFilePath;
     }
 }

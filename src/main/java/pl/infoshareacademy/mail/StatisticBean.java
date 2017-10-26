@@ -1,5 +1,8 @@
 package pl.infoshareacademy.mail;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.ejb.Singleton;
 import java.util.HashMap;
 import java.util.List;
@@ -16,36 +19,29 @@ public class StatisticBean {
 
 
     public void countWords(List<String> listofWords, Map<String, Integer> mapToCount) {
-        if (!listofWords.isEmpty()) {
-            for (String list : listofWords) {
-                if (mapToCount.containsKey(list.toLowerCase())) {
-                    if (!listofWords.contains("Empty")){
-                        try {
-                            mapToCount.put(list.toLowerCase(), mapToCount.get(list) + 1);
-                        } catch (NullPointerException ex) {
-                            logger.warn("Empty map {} {}",list,listofWords);
-                        }
-                    }
-                } else {
-                    mapToCount.put(list.toLowerCase(), 1);
+        for (String list : listofWords) {
+            if (mapToCount.containsKey(list.toLowerCase())) {
+                try {
+                    mapToCount.put(list.toLowerCase(), mapToCount.get(list) + 1);
+                } catch (NullPointerException ex) {
+                    logger.warn("Empty map {} {}", list, listofWords);
                 }
+            } else {
+                mapToCount.put(list.toLowerCase(), 1);
             }
         }
     }
+
     public void countWords(Set<String> listofWords, Map<String, Integer> mapToCount) {
-        if (!listofWords.isEmpty()) {
-            for (String list : listofWords) {
-                if (mapToCount.containsKey(list.toLowerCase())) {
-                    if (!listofWords.contains("Empty")){
-                        try {
-                            mapToCount.put(list.toLowerCase(), mapToCount.get(list) + 1);
-                        } catch (NullPointerException ex) {
-                            logger.warn("Empty set {} {}",list,listofWords);
-                        }
-                    }
-                } else {
-                    mapToCount.put(list.toLowerCase(), 1);
+        for (String list : listofWords) {
+            if (mapToCount.containsKey(list.toLowerCase())) {
+                try {
+                    mapToCount.put(list.toLowerCase(), mapToCount.get(list) + 1);
+                } catch (NullPointerException ex) {
+                    logger.warn("Empty map {} {}", list, listofWords);
                 }
+            } else {
+                mapToCount.put(list.toLowerCase(), 1);
             }
         }
     }

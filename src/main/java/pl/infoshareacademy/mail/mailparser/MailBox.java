@@ -3,9 +3,10 @@ package pl.infoshareacademy.mail.mailparser;
 import pl.infoshareacademy.mail.Email;
 
 import javax.ejb.Singleton;
+import javax.ejb.Stateful;
 import java.util.ArrayList;
 import java.util.List;
-@Singleton
+@Stateful
 public class MailBox {
     List<Email> Mailbox = new ArrayList<>();
 

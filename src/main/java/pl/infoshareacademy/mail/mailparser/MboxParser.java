@@ -63,20 +63,17 @@ public class MboxParser {
         MessageBuilder builder = new DefaultMessageBuilder();
         Message message = builder.parseMessage(messageBytes);
         Email email = new Email();
-        Optional<String> reply =Optional.ofNullable(message.getBody().toString());
         Optional<String> from = Optional.ofNullable((message.getFrom().toString()));
         Optional<String> to = Optional.ofNullable((message.getTo().toString()));
         Optional<Mailbox> senderObject = Optional.ofNullable(message.getSender());
         String sender = senderObject.map(v -> v.toString()).orElse("Not found");
         Optional<Date> date = Optional.ofNullable(message.getDate());
         Optional<String> subject = Optional.ofNullable(message.getSubject());
-
         email.setFrom(from.orElse("Not found"));
         email.setTo(to.orElse("Not found"));
         email.setSender(sender);
         email.setDate(date.orElse(new Date()));
         email.setSubject(subject.orElse("Not found"));
-        email.setReply(reply.orElse("Not found"));
         supportmailbox.add(email);
 
     }

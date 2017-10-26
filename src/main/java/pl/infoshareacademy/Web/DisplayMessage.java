@@ -36,12 +36,12 @@ public class DisplayMessage extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        if (filePath.getTempFilePath().endsWith("mbox")) {
-            MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
-            mboxParser.run(mailBox);
-        } else if (filePath.getTempFilePath().endsWith("eml")) {
-            EmlParser.parseEml(filePath.getTempFilePath(), mailBox);
-        }
+//        if (filePath.getTempFilePath().endsWith("mbox")) {
+//            MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
+//            mboxParser.run(mailBox);
+//        } else if (filePath.getTempFilePath().endsWith("eml")) {
+//            EmlParser.parseEml(filePath.getTempFilePath(), mailBox);
+//        }
 
         ContactFinder finder = new ContactFinder();
         List<String> lista = filePath.getKeywordsFromServletForm();
