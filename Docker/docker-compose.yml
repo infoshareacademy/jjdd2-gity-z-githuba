@@ -1,4 +1,4 @@
-version: "1.13"
+version: "2.2"
 services:
   app:
     container_name: "webapp"
@@ -8,17 +8,16 @@ services:
       - 8801:8080
       - 9900:9990
     depends_on:
-      - db
-  db:
-    container_name: "db"
+      - gity-db
+    links:
+      - gity-db
+  gity-db:
+    container_name: "gity-db"
     image: mysql:latest
     environment:
       - MYSQL_ROOT_PASSWORD=GZGH!23
-      - MYSQL_DATABASE=Data
-      - MYSQL_USER=admin
-      - MYSQL_PASSWORD=GZGH
+      - MYSQL_DATABASE=gity-db
+      - MYSQL_USER=gity
+      - MYSQL_PASSWORD=a1b2c3d4
     ports:
       - 3306:3306
-networks:
-  Mohito:
-driver: bridge
