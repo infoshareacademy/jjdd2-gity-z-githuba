@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet({"portal/home"})
+@WebServlet("/cos")
 public class HomeServlet extends HttpServlet {
 
     @Override
@@ -20,7 +20,6 @@ public class HomeServlet extends HttpServlet {
         } else if (idToken != null) {
             req.setAttribute("userId", idToken);
         }
-        req.getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, res);
+        req.getRequestDispatcher("/jsp/home.jsp").forward(req, res);
     }
-
 }
