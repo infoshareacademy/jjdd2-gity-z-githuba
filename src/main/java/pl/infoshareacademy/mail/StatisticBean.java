@@ -1,9 +1,5 @@
 package pl.infoshareacademy.mail;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import pl.infoshareacademy.Web.FileUploadServlet;
-
 import javax.ejb.Singleton;
 import java.util.HashMap;
 import java.util.List;
