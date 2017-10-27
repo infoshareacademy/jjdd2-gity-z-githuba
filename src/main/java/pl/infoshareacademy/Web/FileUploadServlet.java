@@ -4,8 +4,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.TempFilePath;
+import pl.infoshareacademy.mail.mailparser.EmlParser;
 import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
+
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -16,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -35,12 +39,16 @@ public class FileUploadServlet extends HttpServlet {
     private static final String UPLOAD_DIR = "uploads";
     private static final Logger logger = LogManager.getLogger(FileUploadServlet.class.getName());
 
+    List<String> uploadStatusOK = new ArrayList<>();
+    List<String> uploadStatusNotOK = new ArrayList<>();
+    List<Part> isParsableCheck = new ArrayList<>();
+
     @Inject
     TempFilePath filePath;
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
-        List<String> uploadStatus = new ArrayList<>();
+
         // gets absolute path of the web application
         String applicationPath = request.getServletContext().getRealPath("");
         // constructs path of the directory to save uploaded file
@@ -55,20 +63,38 @@ public class FileUploadServlet extends HttpServlet {
         //Get all the parts from request and write it to the file on server
         for (Part part : request.getParts()) {
             fileName = getFileName(part);
-            if (part.getSubmittedFileName() != null) {
-                if (part.getContentType().contains("mbox") || part.getContentType().contains("eml")) {
-                    if (part.getSize() == 0) {
-                        uploadStatus.add(part.getSubmittedFileName() + ": is empty");
-                    }
+            log(part.getContentType());
+            if (isOK(part)) {
+                try {
+                    part.write(uploadFilePath + File.separator + fileName);
+                } catch (FileAlreadyExistsException e) {
+                    uploadStatusNotOK.add(": that file is already on the list");
                 }
-                uploadStatus.add(part.getSubmittedFileName() + ": is not mbox/eml file");
-            } else {
-                uploadStatus.add("No files selected");
+
             }
-            part.write(uploadFilePath + File.separator + fileName);
         }
 
 
+
+
+        /*for (Part part : request.getParts()) {
+            fileName = getFileName(part);
+            log(part.getContentType());
+            if (part.getSubmittedFileName() != null) {
+                if ((part.getContentType().contains("mbox")) || (part.getContentType().contains("eml"))) {
+                    if (part.getSize() == 0) {
+                        uploadStatusNotOK.add(part.getSubmittedFileName() + ": is empty");
+                    }
+                } else {
+                    uploadStatusNotOK.add(part.getSubmittedFileName() + ": is not mbox/eml file");
+                }
+            }
+            try {
+                part.write(uploadFilePath + File.separator + fileName);
+            } catch (FileAlreadyExistsException e) {
+                uploadStatusNotOK.add(": that file is already on the list");
+            }
+        }*/
         logger.info("Saved {} on upload directory!", fileName);
 
         filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
@@ -87,10 +113,53 @@ public class FileUploadServlet extends HttpServlet {
             uploadStatus = fileName + " uploaded successfully!";
         }*/
 
-        request.setAttribute("message", uploadStatus);
-        request.setAttribute("message2", uploadFilePath + File.separator + fileName);
-        getServletContext().getRequestDispatcher("/jsp/response.jsp").forward(
+        request.setAttribute("fileOK", uploadStatusOK);
+        request.setAttribute("fileNotOK", uploadStatusNotOK);
+        getServletContext().getRequestDispatcher("/jsp/choice.jsp").forward(
                 request, response);
+        //response.sendRedirect("jsp/choice.jsp");
+    }
+
+
+    private boolean isOK(Part part) {
+
+        if(part.getSubmittedFileName() == null) {
+            uploadStatusNotOK.add("File to upload not selected");
+            logger.info("upload with no file selected");
+            return false;
+        }
+
+        if (!(part.getContentType().contains("mbox")) || (part.getContentType().contains("eml"))) {
+            uploadStatusNotOK.add(part.getSubmittedFileName()+" is not an mbox/eml file type");
+            logger.info("Added {} to NotOK:not an mbox/eml file type!", part.getSubmittedFileName());
+            return false;
+        }
+
+        if (part.getSize() == 0) {
+            uploadStatusNotOK.add(part.getSubmittedFileName()+" is empty");
+            logger.info("Added {} to NotOK:empty", part.getSubmittedFileName());
+            return false;
+        }
+        //TODO what is needed by Parsers to check file
+        isParsableCheck.add(part);
+        return true;
+    }
+
+    private boolean isParsable() {
+
+        MailBox mailBox = new MailBox();
+        MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
+        mboxParser.run(mailBox);
+
+        for (Part part : isParsableCheck) {
+            if (part.getContentType().contains("mbox")) {
+                MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
+                mboxParser.run(mailBox);
+            } else if (filePath.getTempFilePath().endsWith("eml")) {
+                EmlParser.parseEml(filePath.getTempFilePath(), mailBox);
+            }
+        }
+        return true;
     }
 
     /**

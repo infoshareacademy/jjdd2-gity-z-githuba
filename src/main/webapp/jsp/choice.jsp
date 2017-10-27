@@ -1,12 +1,60 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="ISO-8859-1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>Start page</title>
+    <style>
+        .navbar-brand {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            text-align: center;
+            margin: auto;
+        }
+        .navbar-toggle {
+            z-index:3;
+        }
+        .color-green{
+            color: lawngreen;
+        }
+        .color-red {
+            color: red;
+        }
+        p {
+            padding-top: 70px;
+            color: #d7ceb2;
+            text-shadow: 3px 3px 0px #2c2e38, 5px 5px 0px #5c5f72;
+            font: 80px 'BazarMedium';
+            letter-spacing: 10px;
+        }
+    </style>
+    <link href="../css/menu_css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Upload File Response</title>
 </head>
 <body>
-<h1>What do you want to do?</h1>
-<a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp">1.Show me messages with certain word.</a><br>
-<a href="${pageContext.request.contextPath}/jsp/keywords.jsp">2.What keywords should I use to find my email?</a><br>
-<a href="${pageContext.request.contextPath}/jsp/file_upload.jsp">3. Let me upload another file</a>
+    <div class="container">
+        <p></p>
+        <div class="row"><jsp:include page="../shared/menu.jsp"/></div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <h6 class="color-red">${requestScope.fileNotOK}</h6>
+                <h6 class="color-green">${requestScope.fileOK}</h6>
+                <div class="btn-group-vertical">
+                    <a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp" class="btn btn-primary" type="button">Show me messages with certain word</a>
+                    <a href="${pageContext.request.contextPath}/jsp/keywords.jsp"class="btn btn-primary" type="button">What keywords should I use to find my email?</a>
+                    <a href="${pageContext.request.contextPath}/jsp/file_upload.jsp"class="btn btn-primary" type="button">Let me upload another file</a><br><br>
+                    <a href="${pageContext.request.contextPath}/stats" class="btn btn-primary" type="button">Show me statistics</a>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <%--<div class="row"><jsp:include page="../shared/footer.jsp"/></div>--%>
+    </div>
 </body>
 </html>

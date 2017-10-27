@@ -22,6 +22,11 @@ public class FileCheckServlet extends HttpServlet {
             req.getRequestDispatcher("/shared/check_files.jsp").forward(req, resp);
         }
         File[] listOfFilesInUploadFolder = fileSaveDir.listFiles();
+        if (listOfFilesInUploadFolder == null) {
+
+            resp.sendError(404);
+            return;
+        }
         ArrayList<String> positiveFiles = new ArrayList<>();
         ArrayList<String> negativeFiles = new ArrayList<>();
         for (int i = 0; i < listOfFilesInUploadFolder.length; i++) {
@@ -32,6 +37,7 @@ public class FileCheckServlet extends HttpServlet {
                 negativeFiles.add(listOfFilesInUploadFolder[i].getName());
             }
         }
+
         req.setAttribute("positiveFiles", positiveFiles);
         req.setAttribute("negativeFiles", negativeFiles);
         getServletContext().getRequestDispatcher("/shared/check_files.jsp").forward(req, resp);

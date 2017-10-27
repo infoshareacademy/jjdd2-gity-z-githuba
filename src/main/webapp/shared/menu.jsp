@@ -8,8 +8,8 @@
             <li class="active"><a href="${pageContext.request.contextPath}/jsp/index3.jsp">Home</a></li>
             <li><a href="${pageContext.request.contextPath}/jsp/file_upload.jsp">Upload Files</a></li>
             <li><a href="${pageContext.request.contextPath}/checkFiles">Check files</a></li>
-            <li><a href="${pageContext.request.contextPath}/sender">Keywords</a></li>
-            <li><a href="${pageContext.request.contextPath}/keywords">Helper</a></li>
+            <li><a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp">Keywords</a></li>
+            <li><a href="${pageContext.request.contextPath}/jsp/keywords.jsp">Helper</a></li>
         </ul>
     </div>
 </nav>
