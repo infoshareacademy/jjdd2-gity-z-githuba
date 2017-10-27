@@ -19,7 +19,6 @@ public class Email {
         this.date = date;
         this.message = message;
         this.subject = subject;
-        this.reply = reply;
     }
 
     @Override
@@ -40,15 +39,13 @@ public class Email {
 
     @Override
     public String toString() {
-        return "Email{" +
+        return "Email" +
                 "from='" + from + '\'' +
                 ", sender='" + sender + '\'' +
                 ", date=" + date +
                 ", message='" + message + '\'' +
                 ", subject='" + subject + '\'' +
-                ", to='" + to + '\'' +
-                ", reply='" + reply + '\'' +
-                '}';
+                ", to='" + to;
     }
 
     public String getFrom() {

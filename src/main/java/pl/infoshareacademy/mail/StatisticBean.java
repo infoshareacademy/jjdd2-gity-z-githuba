@@ -1,5 +1,8 @@
 package pl.infoshareacademy.mail;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.ejb.Singleton;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +16,6 @@ public class StatisticBean {
     private Map<String, Integer> mapPhone = new HashMap<>();
     private Map<String, Integer> mapEmails = new HashMap<>();
     private final Logger logger = LogManager.getLogger(getClass());
-
 
     public void countWords(List<String> listofWords, Map<String, Integer> mapToCount) {
         if (!listofWords.isEmpty()) {
