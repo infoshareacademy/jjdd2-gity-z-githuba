@@ -41,10 +41,13 @@ public class FileUploadServlet extends HttpServlet {
 
     List<String> uploadStatusOK = new ArrayList<>();
     List<String> uploadStatusNotOK = new ArrayList<>();
-    List<Part> isParsableCheck = new ArrayList<>();
+    List<String> uploadStatusOKButWarn = new ArrayList<>();
+    List<String> isParsableCheck = new ArrayList<>();
 
     @Inject
     TempFilePath filePath;
+    @Inject
+    MailBox mailBox;
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
@@ -59,6 +62,7 @@ public class FileUploadServlet extends HttpServlet {
             fileSaveDir.mkdirs();
             logger.warn("Folder {} does not exist! Creating new one...", UPLOAD_DIR);
         }
+
         String fileName = null;
         //Get all the parts from request and write it to the file on server
         for (Part part : request.getParts()) {
@@ -67,59 +71,28 @@ public class FileUploadServlet extends HttpServlet {
             if (isOK(part)) {
                 try {
                     part.write(uploadFilePath + File.separator + fileName);
+                    isParsableCheck.add(uploadFilePath + File.separator + fileName);
                 } catch (FileAlreadyExistsException e) {
-                    uploadStatusNotOK.add(": that file is already on the list");
+                    uploadStatusNotOK.add(part.getSubmittedFileName().toUpperCase() +
+                            ": that file is already on the list");
                 }
-
+                if (!isParsable()) {
+                    uploadStatusOKButWarn.add(part.getSubmittedFileName().toUpperCase() +
+                            ": may contain some lock markers added at export process. " +
+                            "That can cause our program to display messages incorrectly");
+                }
             }
         }
 
-
-
-
-        /*for (Part part : request.getParts()) {
-            fileName = getFileName(part);
-            log(part.getContentType());
-            if (part.getSubmittedFileName() != null) {
-                if ((part.getContentType().contains("mbox")) || (part.getContentType().contains("eml"))) {
-                    if (part.getSize() == 0) {
-                        uploadStatusNotOK.add(part.getSubmittedFileName() + ": is empty");
-                    }
-                } else {
-                    uploadStatusNotOK.add(part.getSubmittedFileName() + ": is not mbox/eml file");
-                }
-            }
-            try {
-                part.write(uploadFilePath + File.separator + fileName);
-            } catch (FileAlreadyExistsException e) {
-                uploadStatusNotOK.add(": that file is already on the list");
-            }
-        }*/
         logger.info("Saved {} on upload directory!", fileName);
 
         filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
-/*
-        MailBox mailBox = new MailBox();
-        MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
-        mboxParser.run(mailBox);
-
-        List<Email> testUploadFile = mailBox.getMailbox();
-
-        if (!(filePath.getTempFilePath().endsWith("mbox") || filePath.getTempFilePath().endsWith("eml"))) {
-            uploadStatus = fileName + " is not an mbox/eml file";
-        } else if (testUploadFile.isEmpty()){
-            uploadStatus = fileName + " contains unsupported markers or is corrupted";
-        } else {
-            uploadStatus = fileName + " uploaded successfully!";
-        }*/
 
         request.setAttribute("fileOK", uploadStatusOK);
         request.setAttribute("fileNotOK", uploadStatusNotOK);
         getServletContext().getRequestDispatcher("/jsp/choice.jsp").forward(
                 request, response);
-        //response.sendRedirect("jsp/choice.jsp");
     }
-
 
     private boolean isOK(Part part) {
 
@@ -130,33 +103,35 @@ public class FileUploadServlet extends HttpServlet {
         }
 
         if (!(part.getContentType().contains("mbox")) || (part.getContentType().contains("eml"))) {
-            uploadStatusNotOK.add(part.getSubmittedFileName()+" is not an mbox/eml file type");
+            uploadStatusNotOK.add(part.getSubmittedFileName().toUpperCase() + ": is not an mbox/eml file type");
             logger.info("Added {} to NotOK:not an mbox/eml file type!", part.getSubmittedFileName());
             return false;
         }
 
         if (part.getSize() == 0) {
-            uploadStatusNotOK.add(part.getSubmittedFileName()+" is empty");
+            uploadStatusNotOK.add(part.getSubmittedFileName().toUpperCase() + ": is empty");
             logger.info("Added {} to NotOK:empty", part.getSubmittedFileName());
             return false;
         }
-        //TODO what is needed by Parsers to check file
-        isParsableCheck.add(part);
+
+        uploadStatusOK.add(part.getSubmittedFileName().toUpperCase() + ": uploaded");
         return true;
     }
 
     private boolean isParsable() {
-
-        MailBox mailBox = new MailBox();
-        MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
-        mboxParser.run(mailBox);
-
-        for (Part part : isParsableCheck) {
-            if (part.getContentType().contains("mbox")) {
-                MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
+        for (String parse:isParsableCheck) {
+            log(parse);
+            if (parse.endsWith("mbox")) {
+                MboxParser mboxParser = new MboxParser(parse);
                 mboxParser.run(mailBox);
-            } else if (filePath.getTempFilePath().endsWith("eml")) {
-                EmlParser.parseEml(filePath.getTempFilePath(), mailBox);
+            } else if (parse.endsWith("eml")) {
+                EmlParser.parseEml(parse, mailBox);
+            }
+        }
+        List<Email> list = mailBox.getMailbox();
+        for (Email e:list) {
+            if (e.getFrom().contains("Not found")) {
+                return false;
             }
         }
         return true;
