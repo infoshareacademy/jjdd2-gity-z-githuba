@@ -21,26 +21,10 @@ public class CallbackServlet extends HttpServlet {
     private String redirectOnFail;
     private AuthenticationController authenticationController;
 
-
-    /*
-     * Initialize this servlet with required configuration.
-     * <p>
-     * Parameters needed on the Local Servlet scope:
-     * <ul>
-     * <li>'com.auth0.redirect_on_success': where to redirect after a successful authentication.</li>
-     * <li>'com.auth0.redirect_on_error': where to redirect after a failed authentication.</li>
-     * </ul>
-     * Parameters needed on the Local/Global Servlet scope:
-     * <ul>
-     * <li>'com.auth0.domain': the Auth0 domain.</li>
-     * <li>'com.auth0.client_id': the Auth0 Client id.</li>
-     * <li>'com.auth0.client_secret': the Auth0 Client secret.</li>
-     * </ul>
-     */
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        redirectOnSuccess = "/portal/home";
+        redirectOnSuccess = "jsp/file_upload.jsp";
         redirectOnFail = "/login";
 
         try {
@@ -50,29 +34,11 @@ public class CallbackServlet extends HttpServlet {
         }
     }
 
-    /*
-     * Process a call to the redirect_uri with a GET HTTP method.
-     *
-     * @param req the received request with the tokens (implicit grant) or the authorization code (code grant) in the parameters.
-     * @param res the response to send back to the server.
-     * @throws IOException
-     * @throws ServletException
-     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         handle(req, res);
     }
 
-
-    /*
-     * Process a call to the redirect_uri with a POST HTTP method. This occurs if the authorize_url included the 'response_mode=form_post' value.
-     * This is disabled by default. On the Local Servlet scope you can specify the 'com.auth0.allow_post' parameter to enable this behaviour.
-     *
-     * @param req the received request with the tokens (implicit grant) or the authorization code (code grant) in the parameters.
-     * @param res the response to send back to the server.
-     * @throws IOException
-     * @throws ServletException
-     */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         handle(req, res);
