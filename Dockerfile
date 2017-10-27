@@ -1,8 +1,8 @@
-FROM jboss/wildfly:10.1.0.Final
+FROM jboss/wildfly:latest
 
 MAINTAINER "InfoShare Academy"
 
-COPY target/EMailApp.war /opt/jboss/wildfly/standalone/deployments/
+ADD target/EMailApp.war /opt/jboss/wildfly/standalone/deployments/
 
 RUN wildfly/bin/add-user.sh admin admin --silent
 
