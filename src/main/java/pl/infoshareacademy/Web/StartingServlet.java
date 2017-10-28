@@ -1,5 +1,7 @@
 package pl.infoshareacademy.Web;
 
+import com.auth0.SessionUtils;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +14,15 @@ import java.io.IOException;
 public class StartingServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        final String accessToken = (String) SessionUtils.get(req, "accessToken");
+        final String idToken = (String) SessionUtils.get(req, "idToken");
+        if (accessToken != null) {
+            req.setAttribute("userId", accessToken);
+        } else if (idToken != null) {
+            req.setAttribute("userId", idToken);
+        }
         RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher("/jsp/file_upload.jsp");
+                .getRequestDispatcher("/jsp/welcome.jsp");
         dispatcher.forward(req, resp);
     }
 }

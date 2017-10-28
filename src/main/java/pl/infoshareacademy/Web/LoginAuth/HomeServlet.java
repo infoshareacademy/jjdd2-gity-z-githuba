@@ -1,5 +1,7 @@
 package pl.infoshareacademy.Web.LoginAuth;
 
+import com.auth0.SessionUtils;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -15,6 +17,7 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/jsp/home.jsp");
         dispatcher.forward(req, resp);

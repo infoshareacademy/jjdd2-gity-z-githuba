@@ -47,14 +47,13 @@
 </head>
     <body>
         <div class="container">
-            <c:if test="${not empty file}">
-                <div class="alert alert-success">
-                    <strong>Success!</strong> Everything went well!.
-                </div>
-            </c:if>
+            <div class="row"><jsp:include page="../shared/menu.jsp"/></div>
+            <br>
+            <br>
+            <br>
             <c:if test="${file==''}">
                 <div class="alert alert-danger">
-                    <strong>Achtung!</strong> Upload file.<a href="${pageContext.request.contextPath}/jsp/choice.jsp">  Go to home</a>
+                    <strong>Warning!</strong> No file uploaded.<a href="${pageContext.request.contextPath}/jsp/file_upload.jsp"> Upload file</a>
                 </div>
             </c:if>
             <br>
@@ -62,59 +61,43 @@
 
             <div class="row">
             <div class="col-md-offset-0"></div>
-            <div class="col-md-offset-0">
-                <div class="panel-group">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Keywords</div>
-                        <div class="panel-body">
-                            <div id="keywords">
-                            <c:forEach var="keywords" items="${keywords}" varStatus="loop">
-                            <c:out value="[${loop.index+1}]" />: <c:out value="${keywords}"/>
-                            </c:forEach>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Message</div>
-                        <div class="panel-body">
-                                <div id="sentences">
-                                    <c:if test="${empty question}">
-                                    <p>No e-mails found matching the criteria
-                                    <p>
-                                        </c:if>
-                                        <c:forEach var="question" items="${question}" varStatus="loop">
-                                            <c:out value="[${loop.index+1}]"/>: <c:out value="${question}"/><br/>
-                                        </c:forEach>
-                                </div>
-                            </div>
-                        </div>
+                <div class="col-md-offset-0">
                     <div class="panel-group">
                         <div class="panel panel-default">
-                            <div class="panel-heading">Emails</div>
+                            <div class="panel-heading">Keywords</div>
                             <div class="panel-body">
                                 <div id="keywords">
-                                    <c:if test="${empty foundEmails}">
-                                    <p>Messages do not contains emails addresses
-                                    <p>
-                                        </c:if>
-                                        <c:forEach var="foundEmails" items="${foundEmails}" varStatus="loop">
-                                            <c:out value="[${loop.index+1}]"/>: <c:out value="${foundEmails}"/><br>
-                                        </c:forEach>
+                                <c:forEach var="keywords" items="${keywords}" varStatus="loop">
+                                <c:out value="[${loop.index+1}]" />: <c:out value="${keywords}"/>
+                                </c:forEach>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="panel-group">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Phone</div>
-                                <div class="panel-body">
-                                    <div id="keywords">
-                                        <c:if test="${empty foundPhone}">
-                                        <p>Messages do not contains phones
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Message</div>
+                            <div class="panel-body">
+                                    <div id="sentences">
+                                        <c:if test="${empty question}">
+                                        <p>No e-mails found matching the criteria
                                         <p>
                                             </c:if>
-                                            <c:forEach var="foundEmails" items="${foundPhone}" varStatus="loop">
-                                                <c:out value="[${loop.index+1}]"/>: <c:out value="${foundPhone}"/><br>
+                                            <c:forEach var="question" items="${question}" varStatus="loop">
+                                                <c:out value="[${loop.index+1}]"/>: <c:out value="${question}"/><br/>
+                                            </c:forEach>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Emails</div>
+                                <div class="panel-body">
+                                    <div id="keywords">
+                                        <c:if test="${empty foundEmails}">
+                                        <p>Messages do not contains emails addresses
+                                        <p>
+                                            </c:if>
+                                            <c:forEach var="foundEmails" items="${foundEmails}" varStatus="loop">
+                                                <c:out value="[${loop.index+1}]"/>: <c:out value="${foundEmails}"/><br>
                                             </c:forEach>
                                     </div>
                                 </div>
@@ -122,25 +105,40 @@
 
                             <div class="panel-group">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading">Website</div>
+                                    <div class="panel-heading">Phone</div>
                                     <div class="panel-body">
                                         <div id="keywords">
-                                            <c:if test="${empty foundWebsites}">
-                                            <p>Messages do not contains website addresses
+                                            <c:if test="${empty foundPhone}">
+                                            <p>Messages do not contains phones
                                             <p>
                                                 </c:if>
-                                                <c:forEach var="foundEmails" items="${foundWebsites}" varStatus="loop">
-                                                    <c:out value="[${loop.index+1}]"/>: <c:out value="${foundWebsites}"/><br>
+                                                <c:forEach var="foundEmails" items="${foundPhone}" varStatus="loop">
+                                                    <c:out value="[${loop.index+1}]"/>: <c:out value="${foundPhone}"/><br>
                                                 </c:forEach>
                                         </div>
                                     </div>
                                 </div>
-                <a href="${pageContext.request.contextPath}/jsp/choice.jsp" class="btn btn-primary" type="button">Go to home</a>
-            </div>
-            </div>
-        </div>
+
+                                <div class="panel-group">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Website</div>
+                                        <div class="panel-body">
+                                            <div id="keywords">
+                                                <c:if test="${empty foundWebsites}">
+                                                <p>Messages do not contains website addresses
+                                                <p>
+                                                    </c:if>
+                                                    <c:forEach var="foundEmails" items="${foundWebsites}" varStatus="loop">
+                                                        <c:out value="[${loop.index+1}]"/>: <c:out value="${foundWebsites}"/><br>
+                                                    </c:forEach>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
 </body>
