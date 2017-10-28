@@ -20,7 +20,7 @@
         <img src="${pageContext.request.contextPath}/shared/email-logo.jpg" class="img-circle" alt="Email" width="30%" height="30%">
         <br>
         <br>
-        <a href="${pageContext.request.contextPath}/portal/jsp/file_upload.jsp" class="btn btn-primary btn-md" type="button">Login</a>
+        <a href="${pageContext.request.contextPath}/portal/index" class="btn btn-primary btn-md" type="button">Login</a>
     </div>
 </body>
 </html>
