@@ -29,6 +29,8 @@
             <label class="col-md-4 control-label" for="Report">Report</label>
             <div class="col-md-4">
                 <a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp" class="btn btn-primary" type="button">Show me messages with certain word</a>
+
+                </button>
             </div>
         </div>
 
@@ -37,14 +39,23 @@
             <label class="col-md-4 control-label" for="Configuration" data-toggle="modal"
                    data-target="#newLetter">Configuration</label>
             <div class="col-md-4">
-                <button type="button" id="Configuration" name="Configuration" class="btn btn-primary" data-toggle="modal"
-                        data-target="#newLetter">Generate</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                    Show configuration</button>
             </div>
-
+        </div>
             <div class="modal fade" id="newLetter" tabindex="-1" role="dialog" aria-labelledby="newLetterLabel"
                  aria-hidden="true">
                 <jsp:include page="modalofConfigPanel.jsp"/>
             </div>
+
+
+
+
+
+
+
+
+
         </div>
 
     </fieldset>
