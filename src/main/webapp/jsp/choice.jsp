@@ -22,6 +22,9 @@
         .color-red {
             color: red;
         }
+        .color-orange {
+            color: orange;
+        }
         p {
             padding-top: 70px;
             color: #d7ceb2;
@@ -45,6 +48,7 @@
             <div class="col-md-4">
                 <h6 class="color-red">${requestScope.fileNotOK}</h6>
                 <h6 class="color-green">${requestScope.fileOK}</h6>
+                <h6 class="color-orange">${requestScope.fileWarn}</h6>
                 <div class="btn-group-vertical">
                     <a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp" class="btn btn-primary" type="button">Show me messages with certain word</a>
                     <a href="${pageContext.request.contextPath}/jsp/keywords.jsp"class="btn btn-primary" type="button">What keywords should I use to find my email?</a>

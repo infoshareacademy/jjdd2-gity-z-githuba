@@ -39,10 +39,10 @@ public class FileUploadServlet extends HttpServlet {
     private static final String UPLOAD_DIR = "uploads";
     private static final Logger logger = LogManager.getLogger(FileUploadServlet.class.getName());
 
-    List<String> uploadStatusOK = new ArrayList<>();
-    List<String> uploadStatusNotOK = new ArrayList<>();
-    List<String> uploadStatusOKButWarn = new ArrayList<>();
-    List<String> isParsableCheck = new ArrayList<>();
+    Set<String> uploadStatusOK = new HashSet<>();
+    Set<String> uploadStatusNotOK = new HashSet<>();
+    Set<String> uploadStatusOKButWarn = new HashSet<>();
+    Set<String> isParsableCheck = new HashSet<>();
 
     @Inject
     TempFilePath filePath;
@@ -67,42 +67,40 @@ public class FileUploadServlet extends HttpServlet {
         //Get all the parts from request and write it to the file on server
         for (Part part : request.getParts()) {
             fileName = getFileName(part);
-            log(part.getContentType());
             if (isOK(part)) {
                 try {
                     part.write(uploadFilePath + File.separator + fileName);
                     isParsableCheck.add(uploadFilePath + File.separator + fileName);
+                    logger.info("Saved {} on upload directory!", fileName);
+                    //isParsable();
                 } catch (FileAlreadyExistsException e) {
                     uploadStatusNotOK.add(part.getSubmittedFileName().toUpperCase() +
                             ": that file is already on the list");
                 }
                 if (!isParsable()) {
                     uploadStatusOKButWarn.add(part.getSubmittedFileName().toUpperCase() +
-                            ": may contain some lock markers added at export process. " +
-                            "That can cause our program to display messages incorrectly");
+                            ": contains some lock markers that can cause our program to display messages incorrectly");
                 }
             }
         }
-
-        logger.info("Saved {} on upload directory!", fileName);
 
         filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
 
         request.setAttribute("fileOK", uploadStatusOK);
         request.setAttribute("fileNotOK", uploadStatusNotOK);
+        request.setAttribute("fileWarn", uploadStatusOKButWarn);
         getServletContext().getRequestDispatcher("/jsp/choice.jsp").forward(
                 request, response);
     }
 
     private boolean isOK(Part part) {
-
         if(part.getSubmittedFileName() == null) {
             uploadStatusNotOK.add("File to upload not selected");
             logger.info("upload with no file selected");
             return false;
         }
 
-        if (!(part.getContentType().contains("mbox")) || (part.getContentType().contains("eml"))) {
+        if (!((part.getContentType().contains("mbox")) || (part.getContentType().contains("rfc822")))) {
             uploadStatusNotOK.add(part.getSubmittedFileName().toUpperCase() + ": is not an mbox/eml file type");
             logger.info("Added {} to NotOK:not an mbox/eml file type!", part.getSubmittedFileName());
             return false;
@@ -119,20 +117,25 @@ public class FileUploadServlet extends HttpServlet {
     }
 
     private boolean isParsable() {
-        for (String parse:isParsableCheck) {
-            log(parse);
+        for (String parse : isParsableCheck) {
             if (parse.endsWith("mbox")) {
                 MboxParser mboxParser = new MboxParser(parse);
-                mboxParser.run(mailBox);
-            } else if (parse.endsWith("eml")) {
-                EmlParser.parseEml(parse, mailBox);
-            }
-        }
-        List<Email> list = mailBox.getMailbox();
-        for (Email e:list) {
-            if (e.getFrom().contains("Not found")) {
-                return false;
-            }
+                try {
+                    mboxParser.run(mailBox);
+                } catch (Exception e) {
+                    logger.warn("cant parse mbox: {}", parse);
+                    return false;
+                }
+            } else /*if (parse.endsWith("eml")) */{
+                try {
+                    EmlParser.parseEml(parse, mailBox);
+                } catch (Exception e) {
+                    logger.warn("cant parse eml: {}", parse);
+                    return false;
+                }
+            } /*else {
+                logger.error("Invalid parsableCheck: {}", parse);
+            }*/
         }
         return true;
     }

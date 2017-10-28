@@ -47,7 +47,7 @@ public class Main {
                     System.out.println("You've chosen item #2");
                     MailBox mailBox=new MailBox();
                     MboxParser parser = new MboxParser("/home/michalrichert/1.mbox");
-                    parser.run(mailBox);
+                    //parser.run(mailBox);
                     mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
                     //EmlParser.parseEml(new File("/home/michalrichert/1.eml"),mailBox);
                     mailBox.getMailbox().forEach(e-> System.out.println(e.toString()));
