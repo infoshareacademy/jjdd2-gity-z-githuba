@@ -1,5 +1,6 @@
 package pl.infoshareacademy.Web;
 
+import pl.infoshareacademy.TranslateAPI.GoogleTranslate;
 import pl.infoshareacademy.mail.TempFilePath;
 
 import javax.inject.Inject;
@@ -22,16 +23,25 @@ public class SearchingBySenderServlet extends HttpServlet {
     @Inject
     TempFilePath listOfKeywords;
 
+    List<String> listOfSearchKeywords = new ArrayList<>();
+    String toLanguage;
+    String fromLanguage;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         setCheckBox(req);
+
+        fromLanguage = req.getParameter("fromLanguage");
+        toLanguage = req.getParameter("toLanguage");
         String fourAnswer = req.getParameter("sender");
-        addSearchingWordtoArrayBean(fourAnswer);
+
+        addSearchingWordtoArrayBean(fourAnswer,listOfSearchKeywords);
+        doTranslate(listOfSearchKeywords,"KEY");
+
         resp.sendRedirect("display");
     }
 
-    private void addSearchingWordtoArrayBean(String fourAnswer) {
-        List<String> listOfSearchKeywords = new ArrayList<>();
+    private void addSearchingWordtoArrayBean(String fourAnswer,List<String> listOfSearchKeywords ) {
         if (fourAnswer.isEmpty()) {
             listOfSearchKeywords.add("Empty");
             listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
@@ -47,5 +57,13 @@ public class SearchingBySenderServlet extends HttpServlet {
         filePath.setCheckboxWebsite(req.getParameter("Websites"));
         filePath.setCheckboxPhone(req.getParameter("Phonenumbers"));
         filePath.setCheckboxEmails(req.getParameter("Emails"));
+    }
+    private List<String>  doTranslate(List<String> listOfSearchKeywords,String API_KEY) {
+        GoogleTranslate googleTranslate = new GoogleTranslate(API_KEY);
+        List<String> listOfSearchKeywordstoset = new ArrayList<>();
+        for (String list:listOfSearchKeywords) {
+            listOfSearchKeywordstoset.add(googleTranslate.translate(list,fromLanguage,toLanguage));
+        }
+        return listOfSearchKeywordstoset;
     }
 }

@@ -2,6 +2,7 @@ package pl.infoshareacademy.Web;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import pl.infoshareacademy.TranslateAPI.GoogleTranslate;
 import pl.infoshareacademy.mail.ContactFinder;
 import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.StatisticBean;
@@ -36,12 +37,13 @@ public class DisplayMessage extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-//        if (filePath.getTempFilePath().endsWith("mbox")) {
-//            MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
-//            mboxParser.run(mailBox);
-//        } else if (filePath.getTempFilePath().endsWith("eml")) {
-//            EmlParser.parseEml(filePath.getTempFilePath(), mailBox);
-//        }
+
+        if (filePath.getTempFilePath().endsWith("mbox")) {
+            MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
+            mboxParser.run(mailBox);
+        } else if (filePath.getTempFilePath().endsWith("eml")) {
+            EmlParser.parseEml(filePath.getTempFilePath(), mailBox);
+        }
 
         ContactFinder finder = new ContactFinder();
         List<String> lista = filePath.getKeywordsFromServletForm();
