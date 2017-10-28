@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class CreateFile {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "example")
     EntityManager em;
 
     public void test() {
