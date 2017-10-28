@@ -31,6 +31,4 @@ public class Auth0Filter implements Filter {
     @Override
     public void destroy() {
     }
-
-
 }

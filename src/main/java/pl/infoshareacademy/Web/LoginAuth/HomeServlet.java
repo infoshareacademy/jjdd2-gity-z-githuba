@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("")
-@MultipartConfig
 public class HomeServlet extends HttpServlet {
 
     @Override
@@ -18,6 +17,5 @@ public class HomeServlet extends HttpServlet {
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/jsp/home.jsp");
         dispatcher.forward(req, resp);
-
     }
 }
