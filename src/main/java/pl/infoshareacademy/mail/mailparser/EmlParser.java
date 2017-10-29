@@ -3,7 +3,6 @@ package pl.infoshareacademy.mail.mailparser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pl.infoshareacademy.mail.Email;
-import pl.infoshareacademy.mail.Main;
 
 import javax.mail.Address;
 import javax.mail.MessagingException;
@@ -14,7 +13,7 @@ import java.util.Optional;
 import java.util.Properties;
 
 public class EmlParser {
-    private static final Logger logger = LogManager.getLogger(Main.class.getName());
+    private static final Logger logger = LogManager.getLogger(EmlParser.class.getName());
 
     public static void parseEml(String emlFile, MailBox mailBox) {
         try {

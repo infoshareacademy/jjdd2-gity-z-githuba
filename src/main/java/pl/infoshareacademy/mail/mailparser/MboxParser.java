@@ -9,7 +9,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.EmptyFileException;
-import pl.infoshareacademy.mail.Main;
 import pl.infoshareacademy.mail.mailparser.mail.util.CharBufferWrapper;
 import pl.infoshareacademy.mail.mailparser.mail.util.MboxIterator;
 
@@ -24,7 +23,7 @@ import java.util.Date;
 import java.util.Optional;
 
 public class MboxParser {
-    private static final Logger logger = LogManager.getLogger(Main.class.getName());
+    private static final Logger logger = LogManager.getLogger(MboxParser.class.getName());
     private final static CharsetEncoder ENCODER = Charset.forName("UTF-8").newEncoder();
     String path;
     File mbox;

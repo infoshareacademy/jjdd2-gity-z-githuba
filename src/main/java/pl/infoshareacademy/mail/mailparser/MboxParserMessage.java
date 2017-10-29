@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.EmptyFileException;
-import pl.infoshareacademy.mail.Main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MboxParserMessage {
-    private static final Logger logger = LogManager.getLogger(Main.class.getName());
+    private static final Logger logger = LogManager.getLogger(MboxParserMessage.class);
     String path;
     ArrayList<Email> arrayWithObject;
     ArrayList<String> arrayCointainsSeprateWholeMessage = new ArrayList<>();

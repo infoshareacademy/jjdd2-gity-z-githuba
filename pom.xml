@@ -122,5 +122,15 @@
             <artifactId>google-api-client</artifactId>
             <version>1.23.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.googlecode.gmail4j</groupId>
+            <artifactId>gmail4j</artifactId>
+            <version>0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-gmail</artifactId>
+            <version>v1-rev2-1.18.0-rc</version>
+        </dependency>
     </dependencies>
 </project>
