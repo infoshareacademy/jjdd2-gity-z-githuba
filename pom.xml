@@ -123,9 +123,14 @@
             <version>1.23.0</version>
         </dependency>
         <dependency>
-            <groupId>com.googlecode.gmail4j</groupId>
-            <artifactId>gmail4j</artifactId>
-            <version>0.4</version>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>20171018</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.security</groupId>
+            <artifactId>xml-security-impl</artifactId>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.apis</groupId>

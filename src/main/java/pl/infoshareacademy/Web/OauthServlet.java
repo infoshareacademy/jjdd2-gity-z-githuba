@@ -26,7 +26,7 @@ import java.util.Collections;
 @WebServlet(urlPatterns = {"/oauth"})
 public class OauthServlet extends HttpServlet {
 
-    private String redirectUri = "http://localhost:8080/SearchEmails/redirect-servlet";
+    private String redirectUri = "http://localhost:8080/EMailApp/redirect-servlet";
     private String clientSecret = "5eqqEMtpXmAFKHpd5TwJIt6a";
     private String clientId = "1069112653339-n2nvkgfnc1fe55ishulkcp98tir1lc05.apps.googleusercontent.com";
     GoogleClientSecrets clientSecrets;

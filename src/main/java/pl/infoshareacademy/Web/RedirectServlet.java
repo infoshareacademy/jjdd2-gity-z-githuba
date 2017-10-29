@@ -1,11 +1,5 @@
 package pl.infoshareacademy.Web;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import com.google.api.client.auth.oauth2.Credential;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -27,7 +21,7 @@ import org.json.JSONObject;
 public class RedirectServlet extends HttpServlet {
 
     private static final String APPLICATION_NAME = "Testing app";
-    private String redirectUri = "http://localhost:8080/SearchEmails/redirect-servlet";
+    private String redirectUri = "http://localhost:8080/EmaiApp/redirect-servlet";
     Credential credential;
     private static com.google.api.services.gmail.Gmail client;
 
