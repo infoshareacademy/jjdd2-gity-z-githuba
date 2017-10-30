@@ -20,8 +20,8 @@ import org.json.JSONObject;
 @WebServlet(urlPatterns = {"/redirect-servlet"})
 public class RedirectServlet extends HttpServlet {
 
-    private static final String APPLICATION_NAME = "Testing app";
-    private String redirectUri = "http://localhost:8080/EmaiApp/redirect-servlet";
+    private static final String APPLICATION_NAME = "EMailApp";
+    private String redirectUri = "http://localhost:8080/EMailApp/redirect-servlet";
     Credential credential;
     private static com.google.api.services.gmail.Gmail client;
 
@@ -29,8 +29,8 @@ public class RedirectServlet extends HttpServlet {
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
-     * @param response servlet response
+     * @param req servlet request
+     * @param res servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
@@ -61,7 +61,7 @@ public class RedirectServlet extends HttpServlet {
 
                     Message message = client.users().messages().get(userId, msg.getId()).execute();
                     System.out.println(message.getSnippet());
-                    arr.put(message.getSnippet());
+                    arr.put(message);
                 }catch(Exception e){}
             }
             json.put("response", "Success");

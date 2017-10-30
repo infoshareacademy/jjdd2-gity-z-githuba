@@ -8,6 +8,7 @@ package pl.infoshareacademy.Web;
 
 
 import java.io.IOException;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,8 +28,9 @@ import java.util.Collections;
 public class OauthServlet extends HttpServlet {
 
     private String redirectUri = "http://localhost:8080/EMailApp/redirect-servlet";
-    private String clientSecret = "5eqqEMtpXmAFKHpd5TwJIt6a";
-    private String clientId = "1069112653339-n2nvkgfnc1fe55ishulkcp98tir1lc05.apps.googleusercontent.com";
+    private String clientSecret = "xKQQmLnzjgKiNfm-7kZ2Ytup";
+    private String clientId = "904227267851-34jmqkr6rtovh3qs4m6alqmlk08sqgn8.apps.googleusercontent.com";
+
     GoogleClientSecrets clientSecrets;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
