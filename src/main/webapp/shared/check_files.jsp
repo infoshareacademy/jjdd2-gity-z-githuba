@@ -27,8 +27,8 @@
                 </c:when>
                 <c:otherwise>
                     <c:forTokens items="${requestScope.positiveFiles}"
-                                 delims="," var="filename">
-            <div class="color-green"><c:out value = "${filename}"/></div>
+                                 delims="," var="fileStatus">
+            <div class="color-green"><c:out value = "${fileStatus}"/></div>
                     </c:forTokens>
                 </c:otherwise>
             </c:choose>
@@ -41,8 +41,8 @@
             </c:when>
             <c:otherwise>
             <c:forTokens items="${requestScope.negativeFiles}"
-                         delims="," var="filename">
-                <div class="color-red"><c:out value = "${filename}"/></div>
+                         delims="," var="fileStatus">
+                <div class="color-red"><c:out value = "${fileStatus}"/></div>
             </c:forTokens>
             </c:otherwise>
             </c:choose>
@@ -54,8 +54,8 @@
                 </c:when>
             <c:otherwise>
             <c:forTokens items="${requestScope.Error}"
-                     delims="," var="filename">
-            <div class="color-red"><c:out value = "${filename}"/></div>
+                     delims="," var="fileStatus">
+            <div class="color-red"><c:out value = "${fileStatus}"/></div>
             </c:forTokens>
             </c:otherwise>
             </c:choose>
