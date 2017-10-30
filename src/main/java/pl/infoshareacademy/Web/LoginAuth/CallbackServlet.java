@@ -4,7 +4,9 @@ import com.auth0.AuthenticationController;
 import com.auth0.IdentityVerificationException;
 import com.auth0.SessionUtils;
 import com.auth0.Tokens;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import pl.infoshareacademy.mail.Main;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +18,7 @@ import java.io.UnsupportedEncodingException;
 
 @WebServlet("/callback")
 public class CallbackServlet extends HttpServlet {
+    private static final Logger logger = LogManager.getLogger(CallbackServlet.class.getName());
 
     private String redirectOnSuccess;
     private String redirectOnFail;
@@ -30,6 +33,7 @@ public class CallbackServlet extends HttpServlet {
         try {
             authenticationController = AuthenticationControllerProvider.getInstance(config);
         } catch (UnsupportedEncodingException e) {
+            logger.fatal("Couldn't create the AuthenticationController instance. Check the configuration.");
             throw new ServletException("Couldn't create the AuthenticationController instance. Check the configuration.", e);
         }
     }
@@ -52,6 +56,7 @@ public class CallbackServlet extends HttpServlet {
             res.sendRedirect(redirectOnSuccess);
         } catch (IdentityVerificationException e) {
             e.printStackTrace();
+            logger.warn("Identity Verification Failed!", e);
             res.sendRedirect(redirectOnFail);
         }
     }

@@ -1,6 +1,10 @@
 package pl.infoshareacademy.Web.LoginAuth;
 
 import com.auth0.AuthenticationController;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import pl.infoshareacademy.mail.Main;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +16,7 @@ import java.io.UnsupportedEncodingException;
 
 @WebServlet({"/login"})
 public class LoginServlet extends HttpServlet {
+    private static final Logger logger = LogManager.getLogger(LoginServlet.class.getName());
 
     private AuthenticationController authenticationController;
     private String domain;
@@ -23,6 +28,7 @@ public class LoginServlet extends HttpServlet {
         try {
             authenticationController = AuthenticationControllerProvider.getInstance(config);
         } catch (UnsupportedEncodingException e) {
+            logger.fatal("Couldn't create the AuthenticationController instance. Check the configuration.");
             throw new ServletException("Couldn't create the AuthenticationController instance. Check the configuration.", e);
         }
     }
