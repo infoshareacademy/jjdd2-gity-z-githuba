@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 
         StringBuilder redirectUri = new StringBuilder();
         redirectUri.append(req.getScheme()).append("://");
-        redirectUri.append(req.getServerName();
+        redirectUri.append(req.getServerName());
         if (req.getServerPort() != 80) {
             redirectUri.append(":").append(req.getServerPort());
         }
