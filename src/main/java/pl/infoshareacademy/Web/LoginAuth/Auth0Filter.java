@@ -30,7 +30,7 @@ public class Auth0Filter implements Filter {
             res.sendRedirect(request.getServletContext().getContextPath() + "/login");
             return;
         }
-        logger.info("Access granted!");
+        logger.info("Access granted!" );
         next.doFilter(request, response);
     }
 

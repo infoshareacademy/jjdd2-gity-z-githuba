@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
         try {
             authenticationController = AuthenticationControllerProvider.getInstance(config);
         } catch (UnsupportedEncodingException e) {
-            logger.fatal("Couldn't create the AuthenticationController instance. Check the configuration.");
+            logger.error("Couldn't create the AuthenticationController instance. Check the configuration.");
             throw new ServletException("Couldn't create the AuthenticationController instance. Check the configuration.", e);
         }
     }

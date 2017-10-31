@@ -20,20 +20,18 @@ import java.io.UnsupportedEncodingException;
 public class CallbackServlet extends HttpServlet {
     private static final Logger logger = LogManager.getLogger(CallbackServlet.class.getName());
 
-    private String redirectOnSuccess;
-    private String redirectOnFail;
+    private String redirectOnSuccess = "portal/index";
+    private String redirectOnFail = "/login";
     private AuthenticationController authenticationController;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        redirectOnSuccess = "portal/index";
-        redirectOnFail = "/login";
 
         try {
             authenticationController = AuthenticationControllerProvider.getInstance(config);
         } catch (UnsupportedEncodingException e) {
-            logger.fatal("Couldn't create the AuthenticationController instance. Check the configuration.");
+            logger.fatal("Couldn't create the AuthenticationController instance. Check the configuration.", e);
             throw new ServletException("Couldn't create the AuthenticationController instance. Check the configuration.", e);
         }
     }
@@ -55,7 +53,6 @@ public class CallbackServlet extends HttpServlet {
             SessionUtils.set(req, "idToken", tokens.getIdToken());
             res.sendRedirect(redirectOnSuccess);
         } catch (IdentityVerificationException e) {
-            e.printStackTrace();
             logger.warn("Identity Verification Failed!", e);
             res.sendRedirect(redirectOnFail);
         }
