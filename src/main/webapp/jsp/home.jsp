@@ -13,8 +13,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <br>
-    <br>
     <div class="container-fluid bg-1 text-center">
         <h3>Welcome to Email Analyzer</h3>
         <img src="${pageContext.request.contextPath}/shared/email-logo.jpg" class="img-circle" alt="Email" width="30%" height="30%">
