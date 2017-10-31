@@ -74,67 +74,59 @@
                             </div>
                         </div>
                     </div>
+
+                    <c:if test="${not empty question}">
                     <div class="panel panel-default">
                         <div class="panel-heading">Message</div>
                         <div class="panel-body">
                                 <div id="sentences">
-                                    <c:if test="${empty question}">
-                                    <p>No e-mails found matching the criteria
-                                    <p>
-                                        </c:if>
                                         <c:forEach var="question" items="${question}" varStatus="loop">
                                             <c:out value="[${loop.index+1}]"/>: <c:out value="${question}"/><br/>
                                         </c:forEach>
                                 </div>
                             </div>
                         </div>
+                    </c:if>
+                <c:if test="${not empty foundEmails}">
                     <div class="panel-group">
                         <div class="panel panel-default">
                             <div class="panel-heading">Emails</div>
                             <div class="panel-body">
                                 <div id="keywords">
-                                    <c:if test="${empty foundEmails}">
-                                    <p>Messages do not contains emails addresses
-                                    <p>
-                                        </c:if>
                                         <c:forEach var="foundEmails" items="${foundEmails}" varStatus="loop">
                                             <c:out value="[${loop.index+1}]"/>: <c:out value="${foundEmails}"/><br>
                                         </c:forEach>
                                 </div>
                             </div>
                         </div>
-
+                        </c:if>
+                        <c:if test="${not empty foundPhone}">
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">Phone</div>
                                 <div class="panel-body">
                                     <div id="keywords">
-                                        <c:if test="${empty foundPhone}">
-                                        <p>Messages do not contains phones
-                                        <p>
-                                            </c:if>
                                             <c:forEach var="foundEmails" items="${foundPhone}" varStatus="loop">
                                                 <c:out value="[${loop.index+1}]"/>: <c:out value="${foundPhone}"/><br>
                                             </c:forEach>
                                     </div>
                                 </div>
                             </div>
+                            </c:if>
 
+                        <c:if test="${not empty foundWebsites}">
                             <div class="panel-group">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">Website</div>
                                     <div class="panel-body">
                                         <div id="keywords">
-                                            <c:if test="${empty foundWebsites}">
-                                            <p>Messages do not contains website addresses
-                                            <p>
-                                                </c:if>
                                                 <c:forEach var="foundEmails" items="${foundWebsites}" varStatus="loop">
                                                     <c:out value="[${loop.index+1}]"/>: <c:out value="${foundWebsites}"/><br>
                                                 </c:forEach>
                                         </div>
                                     </div>
                                 </div>
+                                </c:if>
                 <a href="${pageContext.request.contextPath}/jsp/choice.jsp" class="btn btn-primary" type="button">Go to home</a>
             </div>
             </div>

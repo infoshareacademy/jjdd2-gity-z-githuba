@@ -58,7 +58,6 @@ public class RedirectServlet extends HttpServlet {
             for (Message msg : MsgResponse.getMessages()) {
                 try{
                     messages.add(msg);
-
                     Message message = client.users().messages().get(userId, msg.getId()).execute();
                     System.out.println(message.getSnippet());
                     arr.put(message);
