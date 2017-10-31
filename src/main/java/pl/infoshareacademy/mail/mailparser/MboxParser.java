@@ -1,6 +1,5 @@
 package pl.infoshareacademy.mail.mailparser;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import org.apache.james.mime4j.MimeException;
 import org.apache.james.mime4j.dom.Message;
 import org.apache.james.mime4j.dom.MessageBuilder;
@@ -58,20 +57,23 @@ public class MboxParser {
             logger.fatal("Can't parse file",e);
         }
     }
-
-//TODO eliminate throws
+    //TODO usunąć throws
     private void messageSummary(InputStream messageBytes) throws IOException, MimeException {
 
         MessageBuilder builder = new DefaultMessageBuilder();
-       // try {
-            Message message = builder.parseMessage(messageBytes);
-       // } catch (IOException eio) {
-       //     logger.fatal("IO exception cant parse message or header",eio);
-       // } catch (MimeException emime) {
-       //     logger.fatal("Mime exception cant parse message or header",emime);
-       // }
+        Message message = null;
+        try {
+            message = builder.parseMessage(messageBytes);
+        } catch (IOException eio) {
+            logger.fatal("IO exception cant parse message or header", eio);
+        } catch (MimeException emime) {
+            logger.fatal("Mime exception cant parse message or header", emime);
+        } catch (NullPointerException enp) {
+            logger.warn("NullPointer exception cant parse file",enp);
+        }
 
         Email email = new Email();
+        //TODO getBody?
         Optional<String> reply =Optional.ofNullable(message.getBody().toString());
         Optional<String> from = Optional.ofNullable((message.getFrom().toString()));
         Optional<String> to = Optional.ofNullable((message.getTo().toString()));
