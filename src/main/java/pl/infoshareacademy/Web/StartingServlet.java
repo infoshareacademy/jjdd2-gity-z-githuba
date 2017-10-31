@@ -27,6 +27,10 @@ public class StartingServlet extends HttpServlet {
         log.info("Jestem w klasie Starting Servlet!");
 
         logPatternDemo.saveLog();
+        logPatternDemo.deleteLog(1);
+        logPatternDemo.deleteLog(2);
+        System.out.println(logPatternDemo.getAllLogs());
+        System.out.println(logPatternDemo.getLogRange(10, 20));
 
 
         log.info("Wywołałem createFile.test();;)");
