@@ -77,6 +77,7 @@ public class FileUploadServlet extends HttpServlet {
                     uploadStatusNotOK.add(part.getSubmittedFileName().toUpperCase() +
                             ": that file is already on the list");
                 }
+                //TODO rzuca Partami w isParsable
                 if (!isParsable()) {
                     uploadStatusOKButWarn.add(part.getSubmittedFileName().toUpperCase() +
                             ": contains some lock markers that can cause our program to display messages incorrectly");
@@ -117,25 +118,23 @@ public class FileUploadServlet extends HttpServlet {
     }
 
     private boolean isParsable() {
-        for (String parse : isParsableCheck) {
-            if (parse.endsWith("mbox")) {
-                MboxParser mboxParser = new MboxParser(parse);
+        for (String pathToParse : isParsableCheck) {
+            if (pathToParse.endsWith("mbox")) {
+                MboxParser mboxParser = new MboxParser(pathToParse);
                 try {
                     mboxParser.run(mailBox);
-                } catch (Exception e) {
-                    logger.warn("cant parse mbox: {}", parse);
+                } catch (Exception ebox) {
+                    logger.warn("cant pathToParse mbox " + pathToParse, ebox);
                     return false;
                 }
-            } else /*if (parse.endsWith("eml")) */{
+            } else if (pathToParse.endsWith("eml")) {
                 try {
-                    EmlParser.parseEml(parse, mailBox);
-                } catch (Exception e) {
-                    logger.warn("cant parse eml: {}", parse);
+                    EmlParser.parseEml(pathToParse, mailBox);
+                } catch (Exception eeml) {
+                    logger.warn("cant pathToParse eml " + pathToParse,eeml);
                     return false;
                 }
-            } /*else {
-                logger.error("Invalid parsableCheck: {}", parse);
-            }*/
+            }
         }
         return true;
     }

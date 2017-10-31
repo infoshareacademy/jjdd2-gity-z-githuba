@@ -45,20 +45,18 @@ public class MboxParser {
             }
         } catch (EmptyFileException e) {
             logger.warn("Empty file");
-        } catch (MimeException e) {
-            logger.warn("Incorrect structure of file");
         } catch (IllegalArgumentException e) {
             logger.warn("Incorrect structure of file");
         } catch (FileNotFoundException e) {
             logger.warn("File not found");
         } catch (IOException e) {
             logger.error("Stream error");
-        } catch (Exception e) {
+        } /*catch (Exception e) {
             logger.fatal("Can't parse file",e);
-        }
+        }*/
     }
-    //TODO usunąć throws
-    private void messageSummary(InputStream messageBytes) throws IOException, MimeException {
+
+    private void messageSummary(InputStream messageBytes) {
 
         MessageBuilder builder = new DefaultMessageBuilder();
         Message message = null;
@@ -67,29 +65,33 @@ public class MboxParser {
         } catch (IOException eio) {
             logger.fatal("IO exception cant parse message or header", eio);
         } catch (MimeException emime) {
-            logger.fatal("Mime exception cant parse message or header", emime);
+            logger.fatal("Mime exception cant parse message or header, probably incorrect structure of file", emime);
         } catch (NullPointerException enp) {
             logger.warn("NullPointer exception cant parse file",enp);
         }
 
         Email email = new Email();
-        //TODO getBody?
-        Optional<String> reply =Optional.ofNullable(message.getBody().toString());
-        Optional<String> from = Optional.ofNullable((message.getFrom().toString()));
-        Optional<String> to = Optional.ofNullable((message.getTo().toString()));
-        Optional<Mailbox> senderObject = Optional.ofNullable(message.getSender());
-        String sender = senderObject.map(v -> v.toString()).orElse("Not found");
-        Optional<Date> date = Optional.ofNullable(message.getDate());
-        Optional<String> subject = Optional.ofNullable(message.getSubject());
+        //TODO if message.get != null dopiero wtedy .toString
+        if (message != null) {
+            Optional<String> reply = Optional.ofNullable(message.getBody().toString());
+            Optional<String> from = Optional.ofNullable((message.getFrom().toString()));
+            Optional<String> to = Optional.ofNullable((message.getTo().toString()));
+            Optional<Mailbox> senderObject = Optional.ofNullable(message.getSender());
+            String sender = senderObject.map(v -> v.toString()).orElse("Not found");
+            Optional<Date> date = Optional.ofNullable(message.getDate());
+            Optional<String> subject = Optional.ofNullable(message.getSubject());
 
-        email.setFrom(from.orElse("Not found"));
-        email.setTo(to.orElse("Not found"));
-        email.setSender(sender);
-        email.setDate(date.orElse(new Date()));
-        email.setSubject(subject.orElse("Not found"));
-        email.setReply(reply.orElse("Not found"));
-        supportmailbox.add(email);
-
+            email.setFrom(from.orElse("Not found"));
+            email.setTo(to.orElse("Not found"));
+            email.setSender(sender);
+            email.setDate(date.orElse(new Date()));
+            email.setSubject(subject.orElse("Not found"));
+            email.setReply(reply.orElse("Not found"));
+            supportmailbox.add(email);
+        } else {
+            email.setMessage("Could not parse file");
+            logger.fatal("Encountered problem with parsing message");
+        }
     }
 
     private void addMessage(MailBox mailBox) throws FileNotFoundException, EmptyFileException {
