@@ -9,11 +9,6 @@ public class LogDAOImpl implements LogDAO {
     List<Log> logList;
 
     public LogDAOImpl() {
-        logList = new ArrayList<Log>();
-        Log log1 = new Log(1, "First log!");
-        Log log2 = new Log(2, "Second log!");
-        logList.add(log1);
-        logList.add(log2);
     }
 
     @Override

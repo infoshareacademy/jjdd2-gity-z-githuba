@@ -1,0 +1,28 @@
+version: '2'
+services:
+  jjdd2-stub-db:
+    container_name: "jjdd2-stub-db"
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=gity-db
+      - MYSQL_USER=gity
+      - MYSQL_PASSWORD=abcd1234
+      - MYSQL_ROOT_PASSWORD=sup3rs3cr3t
+    ports:
+      - 4042:3306
+  jjdd2-stub-webapp:
+    container_name: "jjdd2-gity-webapp"
+    build: .
+    environment:
+      - MYSQL_URI=jjdd2-stub-db:3306
+      - MYSQL_DATABASE=gity-db
+      - MYSQL_USER=gity
+      - MYSQL_PASSWORD=abcd1234
+      - DATASOURCE_NAME=java:jboss/datasources/gity-db
+    ports:
+      - 4040:8080
+      - 4041:9990
+    depends_on:
+      - jjdd2-stub-db
+    links:
+      - jjdd2-stub-db

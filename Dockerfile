@@ -1,12 +1,9 @@
 FROM jboss/wildfly:latest
+CMD ["ls -ll"]
 
-MAINTAINER "InfoShare Academy"
+ADD config /opt/jboss/wildfly/config/
 
-ADD target/EMailApp.war /opt/jboss/wildfly/standalone/deployments/
+COPY target/EMailApp.war /opt/jboss/wildfly/config/
 
-RUN wildfly/bin/add-user.sh admin admin --silent
+CMD ["/opt/jboss/wildfly/config/execute.sh"]
 
-EXPOSE 8801
-EXPOSE 9900
-
-CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]

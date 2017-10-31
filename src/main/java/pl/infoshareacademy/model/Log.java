@@ -1,7 +1,7 @@
 package pl.infoshareacademy.model;
 
 import javax.persistence.*;
-import java.time.LocalTime;
+import java.time.LocalDate;
 
 @Entity
 @Table
@@ -15,11 +15,14 @@ public class Log {
     String message;
 
     @Column
-    LocalTime time;
+    LocalDate time;
 
-    public Log(Integer id, String message) {
-        this.id = id;
+    public Log() {
+    }
+
+    public Log(String message, LocalDate date) {
         this.message = message;
+        this.time = date;
     }
 
     public Integer getId() {
@@ -38,11 +41,11 @@ public class Log {
         this.message = message;
     }
 
-    public LocalTime getTime() {
+    public LocalDate getTime() {
         return time;
     }
 
-    public void setTime(LocalTime time) {
+    public void setTime(LocalDate time) {
         this.time = time;
     }
 }
