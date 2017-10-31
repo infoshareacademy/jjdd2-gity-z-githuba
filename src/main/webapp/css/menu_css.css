@@ -22,3 +22,6 @@ p {
     font: 80px 'BazarMedium';
     letter-spacing: 10px;
 }
+.main-container {
+    margin-top: 60px
+}

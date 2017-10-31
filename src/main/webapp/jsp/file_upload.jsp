@@ -12,11 +12,8 @@
     <link rel="stylesheet" href="../css/menu_css.css">
 </head>
 <body>
-    <br>
-    <br>
-    <br>
-    <div class="container">
-        <div class="row"><jsp:include page="../shared/menu.jsp"/></div>
+    <div class="row"><jsp:include page="../shared/menu.jsp"/></div>
+    <div class="container main-container">
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
