@@ -106,4 +106,7 @@ public class Email {
     public void setReply(String reply) {
         this.reply = reply;
     }
+
+    public void setDate(Long internalDate) {
+    }
 }

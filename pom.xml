@@ -133,9 +133,9 @@
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>com.google.apis</groupId>
-            <artifactId>google-api-services-gmail</artifactId>
-            <version>v1-rev2-1.18.0-rc</version>
-        </dependency>
+                <groupId>com.google.apis</groupId>
+                <artifactId>google-api-services-gmail</artifactId>
+                <version>v1-rev72-1.23.0</version>
+            </dependency>
     </dependencies>
 </project>

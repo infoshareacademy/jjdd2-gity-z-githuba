@@ -2,20 +2,25 @@ package pl.infoshareacademy.Web;
 
 import com.google.api.client.auth.oauth2.Credential;
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.crypto.Data;
+
 import com.google.api.client.auth.oauth2.TokenResponse;
 import com.google.api.services.gmail.model.ListMessagesResponse;
 import com.google.api.services.gmail.model.Message;
+import com.google.api.services.gmail.model.MessagePartHeader;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import pl.infoshareacademy.mail.Email;
 
 @WebServlet(urlPatterns = {"/redirect-servlet"})
 public class RedirectServlet extends HttpServlet {
@@ -33,14 +38,12 @@ public class RedirectServlet extends HttpServlet {
      * @param res servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     */
+**/
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
         res.setContentType("application/json");
-        PrintWriter out = res.getWriter();
-        JSONObject json = new JSONObject();
-        JSONArray arr = new JSONArray();
+        ArrayList<Email> emails = new ArrayList();
         try {
             String code = req.getParameter("code");
             TokenResponse response = Constants.flow.newTokenRequest(code).setRedirectUri(redirectUri).execute();
@@ -53,26 +56,44 @@ public class RedirectServlet extends HttpServlet {
             String query = new String(Base64.decode(req.getParameter("state").getBytes()));
             ListMessagesResponse MsgResponse = client.users().messages().list(userId).setQ(query).execute();
 
-            List<Message> messages = new ArrayList<>();
             System.out.println("Total messages found " + MsgResponse.getMessages().size());
             for (Message msg : MsgResponse.getMessages()) {
-                try{
-                    messages.add(msg);
+                try {
                     Message message = client.users().messages().get(userId, msg.getId()).execute();
-                    System.out.println(message.getSnippet());
-                    arr.put(message);
-                }catch(Exception e){}
+                    List<MessagePartHeader> headers = message.getPayload().getHeaders();
+                    Email object = new Email();
+                    for (int i = 0; i < headers.size(); i++) {
+                        if (headers.get(i).getName().equals("To")) {
+                            object.setTo(headers.get(i).getValue());
+                        }
+                        if (headers.get(i).getName().equals("From")) {
+                            object.setFrom(headers.get(i).getValue());
+                        }
+                        if (headers.get(i).getName().equals("Subject")) {
+                            object.setSubject(headers.get(i).getValue());
+                        }
+                    }
+                    object.setReply(message.getId());
+                    object.setMessage(message.getSnippet());
+//                    object.setFileName(message.getPayload().getFilename());
+//                    object.setMimeType(message.getPayload().getMimeType());
+                    object.setDate(message.getInternalDate());
+                    emails.add(object);
+
+                } catch (Exception e) {
+                }
             }
-            json.put("response", "Success");
-            json.put("data", arr);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        out.print(json);
-        out.close();
-    }
+        System.out.println(emails.toString());
+        req.setAttribute("question",emails);
 
-    /**
+        RequestDispatcher dispatcher = getServletContext()
+                .getRequestDispatcher("/jsp/display.jsp");
+        dispatcher.forward(req, res);}
+
+     /**
      * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
