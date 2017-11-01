@@ -14,6 +14,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/highLineEmails.css">
+    <link rel="stylesheet" href="../css/menu_css.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -46,11 +47,8 @@
     </script>
 </head>
     <body>
-        <div class="container">
-            <div class="row"><jsp:include page="../shared/menu.jsp"/></div>
-            <br>
-            <br>
-            <br>
+    <div class="row"><jsp:include page="../shared/menu.jsp"/></div>
+    <div class="container main-container">
             <c:if test="${file==''}">
                 <div class="alert alert-danger">
                     <strong>Warning!</strong> No file uploaded.<a href="${pageContext.request.contextPath}/jsp/file_upload.jsp"> Upload file</a>
@@ -67,26 +65,26 @@
                             <div class="panel-heading">Keywords</div>
                             <div class="panel-body">
                                 <div id="keywords">
-                                <c:forEach var="keywords" items="${keywords}" varStatus="loop">
-                                <c:out value="[${loop.index+1}]" />: <c:out value="${keywords}"/>
-                                </c:forEach>
+                                    <c:forEach var="keywords" items="${keywords}" varStatus="loop">
+                                        <c:out value="[${loop.index+1}]"/>: <c:out value="${keywords}"/>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">Message</div>
                             <div class="panel-body">
-                                    <div id="sentences">
-                                        <c:if test="${empty question}">
-                                        <p>No e-mails found matching the criteria
-                                        <p>
-                                            </c:if>
-                                            <c:forEach var="question" items="${question}" varStatus="loop">
-                                                <c:out value="[${loop.index+1}]"/>: <c:out value="${question}"/><br/>
-                                            </c:forEach>
-                                    </div>
+                                <div id="sentences">
+                                    <c:if test="${empty question}">
+                                    <p>No e-mails found matching the criteria
+                                    <p>
+                                    </c:if>
+                                        <c:forEach var="question" items="${question}" varStatus="loop">
+                                            <c:out value="[${loop.index+1}]"/>: <c:out value="${question}"/><br/>
+                                        </c:forEach>
                                 </div>
                             </div>
+                        </div>
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">Emails</div>
@@ -95,7 +93,7 @@
                                         <c:if test="${empty foundEmails}">
                                         <p>Messages do not contains emails addresses
                                         <p>
-                                            </c:if>
+                                        </c:if>
                                             <c:forEach var="foundEmails" items="${foundEmails}" varStatus="loop">
                                                 <c:out value="[${loop.index+1}]"/>: <c:out value="${foundEmails}"/><br>
                                             </c:forEach>
@@ -111,7 +109,7 @@
                                             <c:if test="${empty foundPhone}">
                                             <p>Messages do not contains phones
                                             <p>
-                                                </c:if>
+                                            </c:if>
                                                 <c:forEach var="foundEmails" items="${foundPhone}" varStatus="loop">
                                                     <c:out value="[${loop.index+1}]"/>: <c:out value="${foundPhone}"/><br>
                                                 </c:forEach>
@@ -127,7 +125,7 @@
                                                 <c:if test="${empty foundWebsites}">
                                                 <p>Messages do not contains website addresses
                                                 <p>
-                                                    </c:if>
+                                                </c:if>
                                                     <c:forEach var="foundEmails" items="${foundWebsites}" varStatus="loop">
                                                         <c:out value="[${loop.index+1}]"/>: <c:out value="${foundWebsites}"/><br>
                                                     </c:forEach>
