@@ -23,18 +23,11 @@ public class StartingServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        log.info("Jestem w klasie Starting Servlet!");
-
         logPatternDemo.saveLog();
         logPatternDemo.deleteLog(1);
         logPatternDemo.deleteLog(2);
         System.out.println(logPatternDemo.getAllLogs());
         System.out.println(logPatternDemo.getLogRange(10, 20));
-
-
-        log.info("Wywołałem createFile.test();;)");
-
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/jsp/index3.jsp");
         dispatcher.forward(req, resp);

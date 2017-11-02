@@ -1,8 +1,6 @@
 package pl.infoshareacademy.service;
 
 import pl.infoshareacademy.model.Log;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class LogDAOImpl implements LogDAO {
@@ -32,5 +30,4 @@ public class LogDAOImpl implements LogDAO {
         logList.get(log.getId()).setMessage(log.getMessage());
         System.out.println("Log ID: " + log.getId() + "Updated!");
     }
-
 }

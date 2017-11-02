@@ -1,15 +1,9 @@
 package pl.infoshareacademy.service;
 
-import com.mysql.cj.xdevapi.XSessionFactory;
 import pl.infoshareacademy.model.Log;
-
 import javax.ejb.Stateless;
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
-import javax.security.auth.login.Configuration;
-import javax.transaction.Transaction;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
@@ -46,4 +40,3 @@ public class LogPatternDemo {
         return result;
     }
 }
-

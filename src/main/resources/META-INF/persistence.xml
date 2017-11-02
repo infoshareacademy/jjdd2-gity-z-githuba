@@ -13,9 +13,3 @@
         </properties>
     </persistence-unit>
 </persistence>
-
-
-<!--
-
-        sudo docker run -e MYSQL_ROOT_PASSWORD=JJDD2! -p 4050:3306 -e MYSQL_DATABASE=EMailApp -d -e MYSQL_USER=JJDD2 -e MYSQL_PASSWORD=abcdeee &#45;&#45;name gity-db mysql:latest
--->
