@@ -3,7 +3,6 @@ package pl.infoshareacademy.Web.LoginAuth;
 import com.auth0.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pl.infoshareacademy.mail.Main;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +14,6 @@ import java.io.IOException;
 public class Auth0Filter implements Filter {
     private static final Logger logger = LogManager.getLogger(Auth0Filter.class.getName());
 
-    @Override
     public void init(FilterConfig filterConfig) throws ServletException {
     }
 
@@ -34,7 +32,6 @@ public class Auth0Filter implements Filter {
         next.doFilter(request, response);
     }
 
-    @Override
     public void destroy() {
     }
 }

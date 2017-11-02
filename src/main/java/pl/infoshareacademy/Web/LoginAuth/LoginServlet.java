@@ -3,8 +3,6 @@ package pl.infoshareacademy.Web.LoginAuth;
 import com.auth0.AuthenticationController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pl.infoshareacademy.mail.Main;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,7 +42,7 @@ public class LoginServlet extends HttpServlet {
         }
         redirectUri.append(req.getContextPath()).append("/callback");
 
-        logger.info("prepared authorization callback url: {}", redirectUri);
+        logger.info("Prepared authorization callback url: {}", redirectUri);
 
         String authorizeUrl = authenticationController.buildAuthorizeUrl(req, redirectUri.toString())
                 .withAudience(String.format("https://%s/userinfo", domain))

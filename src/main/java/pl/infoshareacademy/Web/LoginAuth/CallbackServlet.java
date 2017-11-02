@@ -6,7 +6,6 @@ import com.auth0.SessionUtils;
 import com.auth0.Tokens;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pl.infoshareacademy.mail.Main;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,6 +56,4 @@ public class CallbackServlet extends HttpServlet {
             res.sendRedirect(redirectOnFail);
         }
     }
-
 }
-
