@@ -36,6 +36,7 @@ public class LogServlet extends HttpServlet {
                 break;
             case "deletebyid":
                 Integer deleteId = Integer.parseInt(req.getParameter("deletebyid"));
+
                 logDAO.deleteLogById(deleteId);
             case "deleteall":
                 logDAO.deleteAllLogs();

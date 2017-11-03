@@ -1,6 +1,7 @@
 package pl.infoshareacademy.mail;
 
 import javax.ejb.Singleton;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -21,7 +22,7 @@ public class TempFilePath {
         this.tempFilePath = tempFilePath;
     }
 
-    List<String> keywordsFromServletForm;
+    List<String> keywordsFromServletForm = new ArrayList<>();
 
     public List<String> getKeywordsFromServletForm() {
         return keywordsFromServletForm;
