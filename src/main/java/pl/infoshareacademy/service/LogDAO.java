@@ -5,8 +5,10 @@ import pl.infoshareacademy.model.Log;
 import java.util.List;
 
 public interface LogDAO {
-    public List<Log> getAllLog();
-    public Log getLog(int logId);
-    public void deleteLog(Log log);
-    public void updateLog(Log log);
+    public Log getLogById(Integer id);
+    public List<Log> getAllLogs();
+    public List<Log> getLogsByIdRange(Integer min, Integer max);
+    public List<Log> getLogsByLevel(String level);
+    public Integer deleteLogById(Integer id);
+    public void deleteAllLogs();
 }
