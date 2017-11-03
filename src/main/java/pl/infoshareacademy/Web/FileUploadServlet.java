@@ -83,6 +83,7 @@ public class FileUploadServlet extends HttpServlet {
         request.setAttribute("fileWarn", uploadStatusOKButWarn);
         getServletContext().getRequestDispatcher("/jsp/choice.jsp").forward(
                 request, response);
+        response.sendRedirect("shared/check_files.jsp");
     }
 
     private boolean isValidMailFile(Part part) {
