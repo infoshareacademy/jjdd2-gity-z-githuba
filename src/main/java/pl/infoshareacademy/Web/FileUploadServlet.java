@@ -2,13 +2,11 @@ package pl.infoshareacademy.Web;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.TempFilePath;
 import pl.infoshareacademy.mail.mailparser.EmlParser;
 import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
 
-import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -20,9 +18,7 @@ import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @WebServlet("/FileUploadServlet")
@@ -67,7 +63,7 @@ public class FileUploadServlet extends HttpServlet {
         //Get all the parts from request and write it to the file on server
         for (Part part : request.getParts()) {
             fileName = getFileName(part);
-            if (isOK(part)) {
+            if (isValidMailFile(part)) {
                 try {
                     part.write(uploadFilePath + File.separator + fileName);
                     isParsableCheck.add(uploadFilePath + File.separator + fileName);
@@ -77,12 +73,13 @@ public class FileUploadServlet extends HttpServlet {
                     uploadStatusNotOK.add(part.getSubmittedFileName().toUpperCase() +
                             ": that file is already on the list");
                 }
-                //TODO rzuca Partami w isParsable
-                if (!isParsable()) {
-                    uploadStatusOKButWarn.add(part.getSubmittedFileName().toUpperCase() +
-                            ": contains some lock markers that can cause our program to display messages incorrectly");
-                }
+
             }
+            /*//TODO rzuca Partami w isParsable
+            if (!isParsable()) {
+                uploadStatusOKButWarn.add(part.getSubmittedFileName().toUpperCase() +
+                        ": contains some lock markers that can cause our program to display messages incorrectly");
+            }*/
         }
 
         filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
@@ -94,7 +91,7 @@ public class FileUploadServlet extends HttpServlet {
                 request, response);
     }
 
-    private boolean isOK(Part part) {
+    private boolean isValidMailFile(Part part) {
         if(part.getSubmittedFileName() == null) {
             uploadStatusNotOK.add("File to upload not selected");
             logger.info("upload with no file selected");
@@ -124,14 +121,15 @@ public class FileUploadServlet extends HttpServlet {
                 try {
                     mboxParser.run(mailBox);
                 } catch (Exception ebox) {
-                    logger.warn("cant pathToParse mbox " + pathToParse, ebox);
-                    return false;
+                    logger.warn("cant parse mbox " + pathToParse, ebox);
+                        uploadStatusOKButWarn.add(/*part.getSubmittedFileName().toUpperCase()*/ +
+                                ": contains some lock markers that can cause our program to display messages incorrectly");
                 }
             } else if (pathToParse.endsWith("eml")) {
                 try {
                     EmlParser.parseEml(pathToParse, mailBox);
                 } catch (Exception eeml) {
-                    logger.warn("cant pathToParse eml " + pathToParse,eeml);
+                    logger.warn("cant parse eml " + pathToParse,eeml);
                     return false;
                 }
             }

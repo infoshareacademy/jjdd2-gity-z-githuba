@@ -74,8 +74,8 @@ public class MboxParser {
         //TODO if message.get != null dopiero wtedy .toString
         if (message != null) {
             Optional<String> reply = Optional.ofNullable(message.getBody().toString());
-            Optional<String> from = Optional.ofNullable((message.getFrom().toString()));
-            Optional<String> to = Optional.ofNullable((message.getTo().toString()));
+            Optional<String> from = Optional.ofNullable(message.getFrom().toString());
+            Optional<String> to = Optional.ofNullable(message.getTo().toString());
             Optional<Mailbox> senderObject = Optional.ofNullable(message.getSender());
             String sender = senderObject.map(v -> v.toString()).orElse("Not found");
             Optional<Date> date = Optional.ofNullable(message.getDate());
