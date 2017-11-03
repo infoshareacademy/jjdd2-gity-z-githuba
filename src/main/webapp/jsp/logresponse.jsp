@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>${requestScope.header}</h1>
-<h5>${requestScope.body}</h5>
+<h5>${requestScope.body.id}</h5>
 <br><br>
 </body>
 </html>
