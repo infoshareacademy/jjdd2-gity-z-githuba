@@ -1,11 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: michalrichert
-  Date: 26.10.17
-  Time: 16:25
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:if test="${empty isAdmin}">
+    <c:redirect url="sender"/>
+</c:if>
 <html>
 <head>
     <title>Title</title>

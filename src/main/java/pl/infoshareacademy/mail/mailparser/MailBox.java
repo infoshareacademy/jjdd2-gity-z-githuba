@@ -4,10 +4,12 @@ import pl.infoshareacademy.mail.Email;
 
 import javax.ejb.Singleton;
 import javax.ejb.Stateful;
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-@Stateful
-public class MailBox {
+@SessionScoped
+public class MailBox implements Serializable{
     List<Email> Mailbox = new ArrayList<>();
 
     public List<Email> getMailbox() {

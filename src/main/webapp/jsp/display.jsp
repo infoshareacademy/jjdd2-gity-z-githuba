@@ -19,19 +19,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script language="JavaScript">
-
         $(document).ready(function () {
             var sentences = $('#sentences');
             var normal = $('#sentences');
             var keywords = $('#keywords');
 
-            keywords.click(function () {
+            keywords.click(function (event) {
 
-                var text = sentences.html();
+                var text = sentences.text();
                 var selection = window.getSelection() || document.getSelection() || document.selection.createRange();
                 var selObj = document.getSelection();
                 var word = $.trim(selection.toString());
-                console.log(word);
+                // console.log(word);
+
+                if (word === '') {
+                    word = event.target.innerText
+                }
 
                 var regex = new RegExp('(' + word + ')', 'ig');
                 text = text.replace(regex, '<span style="background-color: yellow">$1</span>');

@@ -23,7 +23,6 @@ public class SearchingBySenderServlet extends HttpServlet {
     @Inject
     TempFilePath listOfKeywords;
 
-    List<String> listOfSearchKeywords = new ArrayList<>();
     String toLanguage;
     String fromLanguage;
 
@@ -35,13 +34,14 @@ public class SearchingBySenderServlet extends HttpServlet {
         toLanguage = req.getParameter("toLanguage");
         String fourAnswer = req.getParameter("sender");
 
-        addSearchingWordtoArrayBean(fourAnswer,listOfSearchKeywords);
-        doTranslate(listOfSearchKeywords,"KEY");
+        addSearchingWordtoArrayBean(fourAnswer);
+        doTranslate("KEY");
 
         resp.sendRedirect("display");
     }
 
-    private void addSearchingWordtoArrayBean(String fourAnswer,List<String> listOfSearchKeywords ) {
+    private void addSearchingWordtoArrayBean(String fourAnswer) {
+        List<String> listOfSearchKeywords = new ArrayList<>();
         if (fourAnswer.isEmpty()) {
             listOfSearchKeywords.add("Empty");
             listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
@@ -58,12 +58,12 @@ public class SearchingBySenderServlet extends HttpServlet {
         filePath.setCheckboxPhone(req.getParameter("Phonenumbers"));
         filePath.setCheckboxEmails(req.getParameter("Emails"));
     }
-    private List<String>  doTranslate(List<String> listOfSearchKeywords,String API_KEY) {
+    private List<String>  doTranslate(String API_KEY) {
         GoogleTranslate googleTranslate = new GoogleTranslate(API_KEY);
-        List<String> listOfSearchKeywordstoset = new ArrayList<>();
+        List<String> listOfSearchKeywords = new ArrayList<>();
         for (String list:listOfSearchKeywords) {
-            listOfSearchKeywordstoset.add(googleTranslate.translate(list,fromLanguage,toLanguage));
+            listOfSearchKeywords.add(googleTranslate.translate(list,fromLanguage,toLanguage));
         }
-        return listOfSearchKeywordstoset;
+        return listOfSearchKeywords;
     }
 }

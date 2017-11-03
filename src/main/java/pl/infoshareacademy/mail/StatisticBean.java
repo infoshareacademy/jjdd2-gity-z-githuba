@@ -4,10 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.ejb.Singleton;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Singleton
 public class StatisticBean {
@@ -15,6 +12,7 @@ public class StatisticBean {
     private Map<String, Integer> mapWebsite = new HashMap<>();
     private Map<String, Integer> mapPhone = new HashMap<>();
     private Map<String, Integer> mapEmails = new HashMap<>();
+    private List<String> adminPannelAccessUsers = new ArrayList<>();
     private final Logger logger = LogManager.getLogger(getClass());
 
 
@@ -44,6 +42,20 @@ public class StatisticBean {
                 mapToCount.put(list.toLowerCase(), 1);
             }
         }
+    }
+
+    public List<String> getAdminPannelAccessUsers() {
+        return adminPannelAccessUsers;
+    }
+
+    public void setAdminPannelAccessUsers(List<String> adminPannelAccessUsers) {
+        this.adminPannelAccessUsers = adminPannelAccessUsers;
+    }
+    public void addAdmintoList(){
+        adminPannelAccessUsers.add("ggooo");
+    }
+    public boolean isAdmin(String user){
+        return adminPannelAccessUsers.contains(user);
     }
 
     public Map<String, Integer> getMapKeyWords() {

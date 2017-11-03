@@ -1,21 +1,20 @@
 package pl.infoshareacademy.mail;
 
 import javax.ejb.Singleton;
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@Singleton
-public class TempFilePath {
+@SessionScoped
+public class TempFilePath implements Serializable {
 
     String tempFilePath;
     String checkboxWord ;
     String checkboxWebsite;
     String checkboxPhone ;
     String checkboxEmails;
-
-
-
     List<String> keywordsFromServletForm = new ArrayList<>();
 
     public List<String> getKeywordsFromServletForm() {
