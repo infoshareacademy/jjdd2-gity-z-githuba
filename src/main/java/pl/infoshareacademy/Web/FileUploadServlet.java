@@ -68,18 +68,12 @@ public class FileUploadServlet extends HttpServlet {
                     part.write(uploadFilePath + File.separator + fileName);
                     isParsableCheck.add(uploadFilePath + File.separator + fileName);
                     logger.info("Saved {} on upload directory!", fileName);
-                    //isParsable();
+                    tryToParse();
                 } catch (FileAlreadyExistsException e) {
                     uploadStatusNotOK.add(part.getSubmittedFileName().toUpperCase() +
                             ": that file is already on the list");
                 }
-
             }
-            /*//TODO rzuca Partami w isParsable
-            if (!isParsable()) {
-                uploadStatusOKButWarn.add(part.getSubmittedFileName().toUpperCase() +
-                        ": contains some lock markers that can cause our program to display messages incorrectly");
-            }*/
         }
 
         filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
@@ -114,27 +108,26 @@ public class FileUploadServlet extends HttpServlet {
         return true;
     }
 
-    private boolean isParsable() {
+    private void tryToParse() {
         for (String pathToParse : isParsableCheck) {
+            File f = new File(pathToParse);
             if (pathToParse.endsWith("mbox")) {
                 MboxParser mboxParser = new MboxParser(pathToParse);
                 try {
                     mboxParser.run(mailBox);
                 } catch (Exception ebox) {
-                    logger.warn("cant parse mbox " + pathToParse, ebox);
-                        uploadStatusOKButWarn.add(/*part.getSubmittedFileName().toUpperCase()*/ +
-                                ": contains some lock markers that can cause our program to display messages incorrectly");
+                    logger.warn("cant parse mbox " + f.getName(), ebox);
+                    uploadStatusOKButWarn.add(f.getName() + ": contains some lock markers that can cause our program to display messages incorrectly");
                 }
             } else if (pathToParse.endsWith("eml")) {
                 try {
                     EmlParser.parseEml(pathToParse, mailBox);
                 } catch (Exception eeml) {
-                    logger.warn("cant parse eml " + pathToParse,eeml);
-                    return false;
+                    logger.warn("cant parse eml " + f.getName(), eeml);
+                    uploadStatusOKButWarn.add(f.getName() + ": contains some lock markers that can cause our program to display messages incorrectly");
                 }
             }
         }
-        return true;
     }
 
     /**
