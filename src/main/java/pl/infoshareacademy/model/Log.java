@@ -12,10 +12,15 @@ public class Log {
     Integer id;
 
     @Column
-    String message;
+    LocalDate time;
 
     @Column
-    LocalDate time;
+    String Level;
+
+    @Column
+    String message;
+
+
 
     public Log() {
     }
@@ -47,5 +52,13 @@ public class Log {
 
     public void setTime(LocalDate time) {
         this.time = time;
+    }
+
+    public String getLevel() {
+        return Level;
+    }
+
+    public void setLevel(String level) {
+        Level = level;
     }
 }
