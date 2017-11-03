@@ -4,6 +4,7 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu_css.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -11,13 +12,11 @@
 </head>
 <body>
 <div class="container">
-    <%--<div class="row"><jsp:include page="../shared/menu.jsp"/></div>--%>
+    <p></p>
+    <div class="row"><jsp:include page="../shared/menu.jsp"/></div>
     <div class="row">
         <form method="post" action="../sender" class="form-horizontal">
             <fieldset>
-
-                <!-- Form Name -->
-                <legend ></legend>
 
                 <!-- Prepended checkbox -->
                 <div class="form-group">

@@ -20,6 +20,22 @@
     </servlet-mapping>
     <display-name>UploadServlet</display-name>
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>index</welcome-file>
     </welcome-file-list>
+
+    <context-param>
+        <param-name>com.auth0.domain</param-name>
+        <param-value>gityzgithuba.eu.auth0.com</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>com.auth0.clientId</param-name>
+        <param-value>gOt0GJLIxOmUfNgZ2en35oditvGR78Or</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>com.auth0.clientSecret</param-name>
+        <param-value>jQ3Rqro1klfJzgaul9_vjVrx_pIIWSh9FzpyrrnDvw-jdFgDefX7x9eMRtRHVBSc</param-value>
+    </context-param>
+
 </web-app>
