@@ -16,9 +16,6 @@ public class LogDAOImpl implements LogDAO {
 
     @Override
     public Log getLogById(Integer id){
-        /*Log log = em.find(Log.class, id);
-        return log;*/
-        //Log log = (Log) em.createQuery("SELECT id, message, time FROM Log WHERE id=" + id);
         Log log = em.find(Log.class, id);
         return log;
     }
@@ -26,7 +23,6 @@ public class LogDAOImpl implements LogDAO {
     @Override
     public List<Log> getAllLogs() {
         return em.createQuery("FROM Log").getResultList();
-
     }
 
     @Override
@@ -37,7 +33,6 @@ public class LogDAOImpl implements LogDAO {
             result.add(log);
         }
         return result;
-
     }
 
     @Override
