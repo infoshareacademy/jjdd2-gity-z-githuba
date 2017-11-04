@@ -24,49 +24,50 @@
 <div id="main">
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
 
-<form class="form-horizontal">
-    <fieldset>
+    <form class="form-horizontal">
+        <fieldset>
 
-        <!-- Form Name -->
-        <legend>Welcome Admin</legend>
+            <!-- Form Name -->
+            <legend>Welcome Admin</legend>
 
-        <!-- Button -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="Report">Report</label>
-            <div class="col-md-4">
-                <a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp" class="btn btn-default" type="button">Show me messages with certain word</a>
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Report">Report</label>
+                <div class="col-md-4">
+                    <a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp" class="btn btn-default"
+                       type="button">Show me messages with certain word</a>
 
-                </button>
+                    </button>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="Report">Report</label>
-            <div class="col-md-4">
-                <a href="${pageContext.request.contextPath}/jsp/log.jsp" class="btn btn-default" type="button">Show me messages with certain word</a>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Report">Report</label>
+                <div class="col-md-4">
+                    <a href="${pageContext.request.contextPath}/jsp/log.jsp" class="btn btn-default" type="button">Show
+                        me messages with certain word</a>
 
-                </button>
+                    </button>
+                </div>
             </div>
-        </div>
 
-        <!-- Button -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="Configuration" data-toggle="modal"
-                   data-target="#newLetter">Configuration</label>
-            <div class="col-md-4">
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModalLong">
-                    Show configuration</button>
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Configuration" data-toggle="modal"
+                       data-target="#newLetter">Configuration</label>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModalLong">
+                        Show configuration
+                    </button>
+                </div>
             </div>
-        </div>
             <div class="modal fade" id="newLetter" tabindex="-1" role="dialog" aria-labelledby="newLetterLabel"
                  aria-hidden="true">
                 <jsp:include page="modalofConfigPanel.jsp"/>
             </div>
-        </div>
+</div>
 
-    </fieldset>
+</fieldset>
 </form>
-
-
 
 </body>
 </html>
