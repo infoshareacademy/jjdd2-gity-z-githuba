@@ -4,6 +4,7 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu_css.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -11,13 +12,11 @@
 </head>
 <body>
 <div class="container">
-    <%--<div class="row"><jsp:include page="../shared/menu.jsp"/></div>--%>
+    <p></p>
+    <div class="row"><jsp:include page="../shared/menu.jsp"/></div>
     <div class="row">
         <form method="post" action="../sender" class="form-horizontal">
             <fieldset>
-
-                <!-- Form Name -->
-                <legend></legend>
 
                 <!-- Prepended checkbox -->
                 <div class="form-group">
@@ -27,19 +26,8 @@
               <span class="input-group-addon">
                   <input type="checkbox" name="searchword" value="searchword">
               </span>
-                            <input id="prependedcheckbox" name="sender" class="form-control"
-                                   placeholder="Your word here" type="text">
+                            <input id="prependedcheckbox" name="sender" class="form-control" placeholder="Your word here" type="text">
                         </div>
-                    </div>
-                </div>
-                <!-- Select Basic -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="selectbasic">To language</label>
-                    <div class="col-md-4">
-                        <select id="selectbasic" name="selectbasic" class="form-control">
-                            <option value="1">Option one</option>
-                            <option value="2">Option two</option>
-                        </select>
                     </div>
                 </div>
 
@@ -69,36 +57,11 @@
                         <button id="singlebutton" name="singlebutton" class="btn btn-primary">Send</button>
                     </div>
                 </div>
+
             </fieldset>
         </form>
     </div>
-</div>
-
-<form method="get" action="../oauth" class="form-horizontal">
-    <div class="row">
-    <form class="form-horizontal">
-        <fieldset>
-
-            <!-- Search input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="searchinput">Search in Gmail</label>
-                <div class="col-md-4">
-                    <input id="searchinput" name="srch" placeholder="keyword" class="form-control input-md"
-                           type="search">
-
-                </div>
-            </div>
-
-            <!-- Button -->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="singlebutton"></label>
-                <div class="col-md-4">
-                    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Send</button>
-                </div>
-            </div>
-        </fieldset>
-    </form>
     <%--<div class="row"><jsp:include page="../shared/footer.jsp"/></div>--%>
-    </div>
+</div>
 </body>
 </html>

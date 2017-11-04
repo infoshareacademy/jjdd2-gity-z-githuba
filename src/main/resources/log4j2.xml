@@ -4,7 +4,6 @@
         <Console name="Console">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-
         <File name="File" filename="logBaseApp.log" append="true" bufferedIO="true" bufferSize="8192">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </File>
