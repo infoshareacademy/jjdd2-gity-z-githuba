@@ -6,6 +6,8 @@ import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.TempFilePath;
 import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
+import pl.infoshareacademy.service.LogDAO;
+
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -37,18 +39,20 @@ public class FileUploadServlet extends HttpServlet {
     @Inject
     TempFilePath filePath;
 
+    @Inject
+    LogDAO logDAO;
+
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
+
         String uploadStatus;
-        // gets absolute path of the web application
         String applicationPath = request.getServletContext().getRealPath("");
-        // constructs path of the directory to save uploaded file
+        logDAO.saveLogToDatabase("INFO", "Aplication Path: " + applicationPath);
         String uploadFilePath = applicationPath + File.separator + UPLOAD_DIR;
-        // creates the save directory if it does not exists
         File fileSaveDir = new File(uploadFilePath);
         if (!fileSaveDir.exists()) {
+            logDAO.saveLogToDatabase("INFO", "Upload folder does not exist. Creating new one");
             fileSaveDir.mkdirs();
-            logger.warn("Folder {} does not exist! Creating new one...", UPLOAD_DIR);
         }
         String fileName = null;
         //Get all the parts from request and write it to the file on server
@@ -56,8 +60,7 @@ public class FileUploadServlet extends HttpServlet {
             fileName = getFileName(part);
             part.write(uploadFilePath + File.separator + fileName);
         }
-        logger.info("Saved {} on upload directory!", fileName);
-
+        logDAO.saveLogToDatabase("INFO", "Saved file to upload directory! " + fileName);
         filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
 
         MailBox mailBox = new MailBox();
