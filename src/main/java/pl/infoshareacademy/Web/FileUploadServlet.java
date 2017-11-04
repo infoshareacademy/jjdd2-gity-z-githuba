@@ -81,8 +81,8 @@ public class FileUploadServlet extends HttpServlet {
         request.setAttribute("fileOK", uploadStatusOK);
         request.setAttribute("fileNotOK", uploadStatusNotOK);
         request.setAttribute("fileWarn", uploadStatusOKButWarn);
-        /*getServletContext().getRequestDispatcher("/shared/check_files.jsp").forward(
-                request, response);*/
+        getServletContext().getRequestDispatcher("/shared/check_files.jsp").forward(
+                request, response);
         response.sendRedirect("shared/check_files.jsp");
     }
 
