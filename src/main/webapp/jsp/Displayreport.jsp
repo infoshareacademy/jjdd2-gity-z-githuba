@@ -7,8 +7,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
+        google.charts.load('current', {'packages': ['corechart']});
         google.charts.setOnLoadCallback(drawChart);
+
         function drawChart() {
 
             var data = google.visualization.arrayToDataTable([
@@ -28,8 +29,9 @@
         }
     </script>
     <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
+        google.charts.load('current', {'packages': ['corechart']});
         google.charts.setOnLoadCallback(drawChart);
+
         function drawChart() {
 
             var data = google.visualization.arrayToDataTable([
@@ -49,8 +51,9 @@
         }
     </script>
     <script type="text/javascript">
-        google.charts.load("current", {packages:["corechart"]});
+        google.charts.load("current", {packages: ["corechart"]});
         google.charts.setOnLoadCallback(drawChart);
+
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
                 ['Phones', 'Quantity'],
@@ -69,8 +72,9 @@
         }
     </script>
     <script type="text/javascript">
-        google.charts.load("current", {packages:["corechart"]});
+        google.charts.load("current", {packages: ["corechart"]});
         google.charts.setOnLoadCallback(drawChart);
+
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
                 ['Website', 'Quantity'],
@@ -90,15 +94,15 @@
     </script>
 </head>
 <body>
- <jsp:include page="../shared/menu.jsp" />
+<jsp:include page="../shared/menu.jsp"/>
 <div id="main">
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
- <div class="container">
-<div id="pieWord" style="width: 900px; height: 500px; float: left"></div>
-    <div id="pieEmails" style="width: 900px; height: 500px; float: left"></div>
-    <div id="piePhones" style="width: 900px; height: 500px; float: left"></div>
-    <div id="pieWebsites" style="width: 900px; height: 500px; float: left"></div>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+    <div class="container">
+        <div id="pieWord" style="width: 900px; height: 500px; float: left"></div>
+        <div id="pieEmails" style="width: 900px; height: 500px; float: left"></div>
+        <div id="piePhones" style="width: 900px; height: 500px; float: left"></div>
+        <div id="pieWebsites" style="width: 900px; height: 500px; float: left"></div>
     </div>
-    </div>
+</div>
 </body>
 </html>

@@ -20,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 </head>
 <body>
-<jsp:include page="../shared/menu.jsp" />
+<jsp:include page="../shared/menu.jsp"/>
 <div id="main">
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
 

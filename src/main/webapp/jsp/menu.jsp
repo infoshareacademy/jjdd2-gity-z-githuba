@@ -42,7 +42,8 @@
                 </ul>
                 <!-- dropdown only moblie -->
                 <div class="dropdown visible-xs pull-right">
-                    <button class="btn btn-default dropdown-toggle " type="button" id="dropdownmenu" data-toggle="dropdown">
+                    <button class="btn btn-default dropdown-toggle " type="button" id="dropdownmenu"
+                            data-toggle="dropdown">
                         <span class="glyphicon glyphicon-align-justify"></span>
                     </button>
                     <ul class="dropdown-menu">
@@ -57,7 +58,7 @@
         </div>
     </nav>
 </nav>
-<!--bg img  -->
+<!--bg img -->
 <header>
     <img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/J70T3LHQ2O.jpg" style="width:100%">
 </header>

@@ -13,15 +13,19 @@
             text-align: center;
             margin: auto;
         }
+
         .navbar-toggle {
-            z-index:3;
+            z-index: 3;
         }
-        .color-green{
+
+        .color-green {
             color: lawngreen;
         }
+
         .color-red {
             color: red;
         }
+
         p {
             padding-top: 70px;
             color: #d7ceb2;
@@ -37,22 +41,30 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Upload File Response</title>
 </head>
-<<body onload="openNav()">
-<jsp:include page="../shared/menu.jsp" />
+<
+<body onload="openNav()">
+<jsp:include page="../shared/menu.jsp"/>
 <div id="main">
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
     <div class="container">
         <p></p>
-        <div class="row"><jsp:include page="../shared/menu.jsp"/></div>
+        <div class="row">
+            <jsp:include page="../shared/menu.jsp"/>
+        </div>
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-7">
                 <h4>Great! What do you want next?</h4>
                 <div class="btn-group-vertical">
-                    <a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp" class="btn btn-default margin-5 size-150vh" type="button">Show me messages with certain word</a>
-                    <a href="${pageContext.request.contextPath}/jsp/keywords.jsp" class="btn btn-default margin-5 size-150vh" type="button">What keywords should I use to find my email?</a>
-                    <a href="${pageContext.request.contextPath}/jsp/file_upload.jsp" class="btn btn-default margin-5 size-150vh" type="button">Let me upload another file</a><br><br>
-                    <a href="${pageContext.request.contextPath}/stats" class="btn btn-default margin-5 size-150vh" type="button">Show me statistics</a>
+                    <a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp"
+                       class="btn btn-default margin-5 size-150vh" type="button">Show me messages with certain word</a>
+                    <a href="${pageContext.request.contextPath}/jsp/keywords.jsp"
+                       class="btn btn-default margin-5 size-150vh" type="button">What keywords should I use to find my
+                        email?</a>
+                    <a href="${pageContext.request.contextPath}/jsp/file_upload.jsp"
+                       class="btn btn-default margin-5 size-150vh" type="button">Let me upload another file</a><br><br>
+                    <a href="${pageContext.request.contextPath}/stats" class="btn btn-default margin-5 size-150vh"
+                       type="button">Show me statistics</a>
                 </div>
             </div>
             <div class="col-md-4"></div>
