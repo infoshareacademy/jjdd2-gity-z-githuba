@@ -7,9 +7,61 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
     <title>Upload File Response</title>
+    <script language="JavaScript">
+
+        $(document).ready(function () {
+            openNav();
+            var sentences = $('#sentences');
+            var normal = $('#sentences');
+            var keywords = $('#keywords');
+
+            keywords.click(function () {
+
+                var text = sentences.html();
+                var selection = window.getSelection() || document.getSelection() || document.selection.createRange();
+                var selObj = document.getSelection();
+                var word = $.trim(selection.toString());
+                console.log(word);
+
+                var regex = new RegExp('(' + word + ')', 'ig');
+                text = text.replace(regex, '<span style="background-color: yellow">$1</span>');
+                sentences.html(text);
+            });
+
+            sentences.click(function () {
+                location.reload();
+            });
+
+            $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+                $("#success-alert").slideUp(500);
+            });
+
+            $(document).on('click', '.panel-heading span.clickable', function(e){
+                var $this = $(this);
+                if(!$this.hasClass('panel-collapsed')) {
+                    $this.parents('.panel').find('.panel-body').slideUp();
+                    $this.addClass('panel-collapsed');
+                    $this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+                } else {
+                    $this.parents('.panel').find('.panel-body').slideDown();
+                    $this.removeClass('panel-collapsed');
+                    $this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+                }
+            })
+
+
+        });
+
+    </script>
 </head>
-<body>
+<body onload="openNav()">
+<jsp:include page="../shared/menu.jsp" />
+<div id="main">
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+
+
 <div class="container">
     <%--<div class="row"><jsp:include page="../shared/menu.jsp"/></div>--%>
     <div class="row">
@@ -20,6 +72,13 @@
                 <legend></legend>
 
                 <!-- Prepended checkbox -->
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">	<h3 class="panel-title">Website</h3>
+                            <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+                        </div>
+                        <div class="panel-body">
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="prependedcheckbox">Enter searching words</label>
                     <div class="col-md-4">
@@ -66,17 +125,27 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="singlebutton"></label>
                     <div class="col-md-4">
-                        <button id="singlebutton" name="singlebutton" class="btn btn-primary">Send</button>
+                        <button id="singlebutton" name="singlebutton" class="btn btn-default">Send</button>
                     </div>
                 </div>
             </fieldset>
         </form>
     </div>
 </div>
+</div>
+</div>
+
+
 
 <form method="get" action="../oauth" class="form-horizontal">
-    <div class="row">
-    <form class="form-horizontal">
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">	<h3 class="panel-title">Website</h3>
+                <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+            </div>
+            <div class="panel-body">
+    <%--<div class="row">--%>
+    <%--<form class="form-horizontal">--%>
         <fieldset>
 
             <!-- Search input-->
@@ -93,12 +162,15 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="singlebutton"></label>
                 <div class="col-md-4">
-                    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Send</button>
+                    <button id="singlebutton" name="singlebutton" class="btn btn-default">Send</button>
                 </div>
             </div>
         </fieldset>
     </form>
     <%--<div class="row"><jsp:include page="../shared/footer.jsp"/></div>--%>
+    </div>
+    
+    </form>
     </div>
 </body>
 </html>

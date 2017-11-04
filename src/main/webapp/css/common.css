@@ -1,0 +1,16 @@
+body {
+	font-family: "Lato", sans-serif !important;
+	transition: background-color .5s !important;
+	background-image: url("../img/bg-img.jpeg") !important;
+	height: 100vh !important;
+	background-position: center  !important;
+	background-repeat: no-repeat  !important;
+	background-size: cover  !important;
+}
+.margin-5{
+
+	margin:5px !important;
+}
+.size-150vh{
+	width: 100vh !important;
+}

@@ -1,142 +1,64 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-2" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
     <style>
-
+        .navbar-brand {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            text-align: center;
+            margin: auto;
+        }
+        .navbar-toggle {
+            z-index:3;
+        }
+        .color-green{
+            color: lawngreen;
+        }
+        .color-red {
+            color: red;
+        }
+        p {
+            padding-top: 70px;
+            color: #d7ceb2;
+            text-shadow: 3px 3px 0px #2c2e38, 5px 5px 0px #5c5f72;
+            font: 80px 'BazarMedium';
+            letter-spacing: 10px;
+        }
     </style>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/highLineEmails.css">
-
+    <link href="../css/menu_css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script language="JavaScript">
-        $(document).ready(function () {
-            var sentences = $('#sentences');
-            var normal = $('#sentences');
-            var keywords = $('#keywords');
-
-            keywords.click(function (event) {
-
-                var text = sentences.text();
-                var selection = window.getSelection() || document.getSelection() || document.selection.createRange();
-                var selObj = document.getSelection();
-                var word = $.trim(selection.toString());
-                // console.log(word);
-
-                if (word === '') {
-                    word = event.target.innerText
-                }
-
-                var regex = new RegExp('(' + word + ')', 'ig');
-                text = text.replace(regex, '<span style="background-color: yellow">$1</span>');
-                sentences.html(text);
-            });
-
-            sentences.click(function () {
-                location.reload();
-            });
-        });
-
-    </script>
+    <title>Upload File Response</title>
 </head>
-    <body>
-        <div class="container">
-            <c:if test="${not empty file}">
-                <div class="alert alert-success">
-                    <strong>Success!</strong> Everything went well!.
+<<body onload="openNav()">
+<jsp:include page="../shared/menu.jsp" />
+<div id="main">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+    <div class="container">
+        <p></p>
+        <div class="row"><jsp:include page="../shared/menu.jsp"/></div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-7">
+                <h4>Great! What do you want next?</h4>
+                <div class="btn-group-vertical">
+                    <a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp" class="btn btn-default margin-5 size-150vh" type="button">Show me messages with certain word</a>
+                    <a href="${pageContext.request.contextPath}/jsp/keywords.jsp" class="btn btn-default margin-5 size-150vh" type="button">What keywords should I use to find my email?</a>
+                    <a href="${pageContext.request.contextPath}/jsp/file_upload.jsp" class="btn btn-default margin-5 size-150vh" type="button">Let me upload another file</a><br><br>
+                    <a href="${pageContext.request.contextPath}/stats" class="btn btn-default margin-5 size-150vh" type="button">Show me statistics</a>
                 </div>
-            </c:if>
-            <c:if test="${file==''}">
-                <div class="alert alert-danger">
-                    <strong>Achtung!</strong> Upload file.<a href="${pageContext.request.contextPath}/jsp/choice.jsp">  Go to home</a>
-                </div>
-            </c:if>
-            <br>
-
-
-            <div class="row">
-            <div class="col-md-offset-0"></div>
-            <div class="col-md-offset-0">
-                <div class="panel-group">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Keywords</div>
-                        <div class="panel-body">
-                            <div id="keywords">
-                            <c:forEach var="keywords" items="${keywords}" varStatus="loop">
-                            <c:out value="[${loop.index+1}]" />: <c:out value="${keywords}"/>
-                            </c:forEach>
-                            </div>
-                        </div>
-                    </div>
-
-                    <c:if test="${not empty question}">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Message</div>
-                        <div class="panel-body">
-                                <div id="sentences">
-                                        <c:forEach var="question" items="${question}" varStatus="loop">
-                                            <c:out value="[${loop.index+1}]"/>: <c:out value="${question}"/><br/>
-                                        </c:forEach>
-                                </div>
-                            </div>
-                        </div>
-                    </c:if>
-                <c:if test="${not empty foundEmails}">
-                    <div class="panel-group">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Emails</div>
-                            <div class="panel-body">
-                                <div id="keywords">
-                                        <c:forEach var="foundEmails" items="${foundEmails}" varStatus="loop">
-                                            <c:out value="[${loop.index+1}]"/>: <c:out value="${foundEmails}"/><br>
-                                        </c:forEach>
-                                </div>
-                            </div>
-                        </div>
-                        </c:if>
-                        <c:if test="${not empty foundPhone}">
-                        <div class="panel-group">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Phone</div>
-                                <div class="panel-body">
-                                    <div id="keywords">
-                                            <c:forEach var="foundEmails" items="${foundPhone}" varStatus="loop">
-                                                <c:out value="[${loop.index+1}]"/>: <c:out value="${foundPhone}"/><br>
-                                            </c:forEach>
-                                    </div>
-                                </div>
-                            </div>
-                            </c:if>
-
-                        <c:if test="${not empty foundWebsites}">
-                            <div class="panel-group">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">Website</div>
-                                    <div class="panel-body">
-                                        <div id="keywords">
-                                                <c:forEach var="foundEmails" items="${foundWebsites}" varStatus="loop">
-                                                    <c:out value="[${loop.index+1}]"/>: <c:out value="${foundWebsites}"/><br>
-                                                </c:forEach>
-                                        </div>
-                                    </div>
-                                </div>
-                                </c:if>
-                <a href="${pageContext.request.contextPath}/jsp/choice.jsp" class="btn btn-primary" type="button">Go to home</a>
             </div>
-            </div>
+            <div class="col-md-4"></div>
         </div>
-                </div>
-            </div>
-            </div>
-        </div>
+        <%--<div class="row"><jsp:include page="../shared/footer.jsp"/></div>--%>
+    </div>
+</div>
 </body>
 </html>

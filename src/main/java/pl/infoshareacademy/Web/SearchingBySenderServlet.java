@@ -23,19 +23,14 @@ public class SearchingBySenderServlet extends HttpServlet {
     @Inject
     TempFilePath listOfKeywords;
 
-    String toLanguage;
-    String fromLanguage;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        setCheckBox(req);
-
-        fromLanguage = req.getParameter("fromLanguage");
-        toLanguage = req.getParameter("toLanguage");
+//        setCheckBox(req);
+        String toLanguage = req.getParameter("toLanguage");
         String fourAnswer = req.getParameter("sender");
-
         addSearchingWordtoArrayBean(fourAnswer);
-        doTranslate("KEY");
+        doTranslate("AIzaSyBBA8MWaqJbghdmVE6ven-yX6Oma0OSZ3A",fourAnswer,toLanguage);
 
         resp.sendRedirect("display");
     }
@@ -58,12 +53,13 @@ public class SearchingBySenderServlet extends HttpServlet {
         filePath.setCheckboxPhone(req.getParameter("Phonenumbers"));
         filePath.setCheckboxEmails(req.getParameter("Emails"));
     }
-    private List<String>  doTranslate(String API_KEY) {
-        GoogleTranslate googleTranslate = new GoogleTranslate(API_KEY);
-        List<String> listOfSearchKeywords = new ArrayList<>();
-        for (String list:listOfSearchKeywords) {
-            listOfSearchKeywords.add(googleTranslate.translate(list,fromLanguage,toLanguage));
+    private void doTranslate(String API_KEY, String word,String toLanguage) {
+        if (toLanguage.equals("no")) {
+        }else {
+            GoogleTranslate googleTranslate = new GoogleTranslate(API_KEY);
+            List<String> keywordsFromServletForm = listOfKeywords.getKeywordsFromServletForm();
+            keywordsFromServletForm.add(googleTranslate.translate(word,"",toLanguage));
+            listOfKeywords.setKeywordsFromServletForm(keywordsFromServletForm);
         }
-        return listOfSearchKeywords;
     }
 }

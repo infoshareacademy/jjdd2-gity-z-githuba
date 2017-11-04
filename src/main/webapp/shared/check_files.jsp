@@ -12,9 +12,13 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!-- Custom CSS section -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu_css.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
     </head>
-<body>
-<jsp:include page="menu.jsp"/>
+<body onload="openNav()">
+<jsp:include page="../shared/menu.jsp" />
+<div id="main">
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+
 <p>Files uploaded: </p>
 <div class="container">
     <div class="row">
@@ -63,6 +67,7 @@
     </div>
     <div class="row"></div>
     <div class="row"></div>
+</div>
 </div>
 </body>
 </html>

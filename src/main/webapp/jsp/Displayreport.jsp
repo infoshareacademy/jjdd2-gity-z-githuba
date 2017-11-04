@@ -90,9 +90,15 @@
     </script>
 </head>
 <body>
+ <jsp:include page="../shared/menu.jsp" />
+<div id="main">
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+ <div class="container">
 <div id="pieWord" style="width: 900px; height: 500px; float: left"></div>
     <div id="pieEmails" style="width: 900px; height: 500px; float: left"></div>
     <div id="piePhones" style="width: 900px; height: 500px; float: left"></div>
     <div id="pieWebsites" style="width: 900px; height: 500px; float: left"></div>
+    </div>
+    </div>
 </body>
 </html>
