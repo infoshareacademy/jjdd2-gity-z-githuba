@@ -1,11 +1,11 @@
-package pl.infoshareacademy.mailsender;
+package pl.infoshareacademy.Web.LoginAuth;
 
 import org.apache.commons.codec.binary.Base64;
 
-public class ParseToken {
+public  class ParseToken {
 
 
-    private static String parseId(String jwtToken) {
+    public static String parseId(String jwtToken) {
         String[] split_string = jwtToken.split("\\.");
         String base64EncodedBody = split_string[1];
         Base64 base64Url = new Base64(true);

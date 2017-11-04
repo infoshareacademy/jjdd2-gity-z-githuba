@@ -6,6 +6,9 @@ import com.auth0.SessionUtils;
 import com.auth0.Tokens;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import pl.infoshareacademy.mail.StatisticBean;
+
+import javax.inject.Inject;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,6 +25,8 @@ public class CallbackServlet extends HttpServlet {
     private String redirectOnSuccess = "portal/index";
     private String redirectOnFail = "/login";
     private AuthenticationController authenticationController;
+    @Inject
+    StatisticBean statisticBean;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -50,6 +55,11 @@ public class CallbackServlet extends HttpServlet {
             Tokens tokens = authenticationController.handle(req);
             SessionUtils.set(req, "accessToken", tokens.getAccessToken());
             SessionUtils.set(req, "idToken", tokens.getIdToken());
+            String token =tokens.getIdToken();
+            statisticBean.addAdmintoList();
+            if (statisticBean.isAdmin(ParseToken.parseId(token))) {
+                req.getSession().setAttribute("isAdmin","true");
+            }
             res.sendRedirect(redirectOnSuccess);
         } catch (IdentityVerificationException e) {
             logger.warn("Identity Verification Failed!", e);
