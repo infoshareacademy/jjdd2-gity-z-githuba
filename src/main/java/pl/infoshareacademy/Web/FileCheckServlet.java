@@ -16,7 +16,6 @@ public class FileCheckServlet extends HttpServlet {
     @Inject
     LogDAO logDAO;
 
-
     private static final String UPLOAD_DIR = "/uploads";
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String absolutePathToUpload = getServletContext().getRealPath(UPLOAD_DIR);
