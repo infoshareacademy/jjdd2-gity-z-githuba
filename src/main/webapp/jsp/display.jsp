@@ -40,8 +40,9 @@
                 var selection = window.getSelection() || document.getSelection() || document.selection.createRange();
                 var selObj = document.getSelection();
                 var word = $.trim(selection.toString());
-                console.log(word);
-
+                if (word === '') {
+                    word = event.target.innerText
+                }
                 var regex = new RegExp('(' + word + ')', 'ig');
                 text = text.replace(regex, '<span style="background-color: yellow">$1</span>');
                 sentences.html(text);
@@ -87,7 +88,7 @@
         </c:if>
         <c:if test="${file==''}">
             <div class="alert alert-danger">
-                <strong>Achtung!</strong> Upload file.<a href="${pageContext.request.contextPath}/jsp/choice.jsp"> Go to
+                <strong>WARNING!</strong> Upload file.<a href="${pageContext.request.contextPath}/jsp/choice.jsp"> Go to
                 home</a>
             </div>
             <br/>
@@ -148,7 +149,7 @@
                                                             <button type="button" class="close" data-dismiss="modal">
                                                                 &times;
                                                             </button>
-                                                            <h4 class="modal-title">Modal Header</h4>
+                                                            <h4 class="modal-title">Message</h4>
                                                         </div>
                                                         <div class="modal-body" id="orderDetails">
                                                             <div class="row" style="margin-top:5px">
@@ -187,12 +188,12 @@
                                                                         class="text-primary">${quest.to}</p></div>
 
                                                             </div>
-                                                            <div class="row" style="margin-top:5px">
-                                                                <div class="col-sm-4">Reply</div>
-                                                                <div class="col-sm-8"><p
-                                                                        class="text-primary">${quest.reply}</p></div>
+                                                                <%--<div class="row" style="margin-top:5px">--%>
+                                                                <%--<div class="col-sm-4">Reply</div>--%>
+                                                                <%--<div class="col-sm-8"><p--%>
+                                                                <%--class="text-primary">${quest.reply}</p></div>--%>
 
-                                                            </div>
+                                                                <%--</div>--%>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default"

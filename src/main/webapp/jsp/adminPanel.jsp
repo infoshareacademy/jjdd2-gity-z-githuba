@@ -9,10 +9,12 @@
     <title>Title</title>
     <title></title>
     <script src="../js/menu.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
     <link href="../css/display.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <jsp:include page="../shared/menu.jsp"/>
 </head>
 <body>
 <jsp:include page="/shared/header.jsp"/>
