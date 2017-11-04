@@ -1,7 +1,7 @@
+/*
 package pl.infoshareacademy.service;
 
 import pl.infoshareacademy.model.Log;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
@@ -52,14 +52,20 @@ public class LogDAOImpl implements LogDAO {
 
     @Override
     public void deleteAllLogs() {
-        em.createQuery("DELETE FROM Log").executeUpdate();
+        */
+/*em.createQuery("DELETE FROM Log").executeUpdate();*//*
+
+
     }
 
     public void addLog() {
         Log log = new Log();
         log.setMessage("Test msg");
         log.setLevel("INFO");
+
+        em.joinTransaction();
         em.persist(log);
     }
 }
 
+*/

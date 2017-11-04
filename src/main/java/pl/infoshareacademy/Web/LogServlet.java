@@ -1,6 +1,7 @@
 package pl.infoshareacademy.Web;
 
-import pl.infoshareacademy.service.LogDAOImpl;
+import pl.infoshareacademy.model.Log;
+import pl.infoshareacademy.service.LogDAO;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,12 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalTime;
 
 @WebServlet("/LogServlet")
 public class LogServlet extends HttpServlet {
 
     @Inject
-    LogDAOImpl logDAO;
+    private LogDAO logDAO;
 
     protected void doGet(HttpServletRequest req,
                          HttpServletResponse resp) throws ServletException, IOException {
@@ -43,8 +45,14 @@ public class LogServlet extends HttpServlet {
             case "deletebyid":
                 Integer deleteId = Integer.parseInt(req.getParameter("id"));
                 logDAO.deleteLogById(deleteId);
+                break;
             case "deleteall":
-                logDAO.deleteAllLogs();
+                Log log = new Log();
+                log.setTime(LocalTime.now());
+                log.setLevel("WARNING");
+                log.setMessage("Custom LOG");
+                logDAO.saveLogToDatabase(log);
+                break;
         }
     }
 }
