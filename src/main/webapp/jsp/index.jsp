@@ -1,5 +1,3 @@
-<%@ page import="pl.infoshareacademy.mail.Email" %>
-
 <script src="js/bootstrap.min.js"></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <form class="form-horizontal">
