@@ -1,13 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: michalrichert
-  Date: 26.10.17
-  Time: 16:25
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:if test="${empty isAdmin}">
+    <c:redirect url="sender"/>
+</c:if>
 <html>
 <head>
     <title>Title</title>
@@ -17,18 +13,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 </head>
 <body>
-<jsp:include page="../shared/menu.jsp"/>
-<div id="main">
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+<jsp:include page="/shared/header.jsp"/>
+<form class="form-horizontal">
+    <fieldset>
 
-    <form class="form-horizontal">
-        <fieldset>
-
-            <!-- Form Name -->
-            <legend>Welcome Admin</legend>
+        <!-- Form Name -->
+        <legend>Welcome Admin</legend>
 
             <!-- Button -->
             <div class="form-group">
