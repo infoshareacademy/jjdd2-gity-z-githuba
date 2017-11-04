@@ -7,7 +7,6 @@ import pl.infoshareacademy.mail.TempFilePath;
 import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
 import pl.infoshareacademy.service.LogDAO;
-
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -18,9 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @WebServlet("/FileUploadServlet")
 @MultipartConfig(fileSizeThreshold=1024*1024*10, 	// 10 MB
@@ -29,10 +26,6 @@ import java.util.Set;
 public class FileUploadServlet extends HttpServlet {
 
     private static final long serialVersionUID = 205242440643911308L;
-    /**
-     * Directory where uploaded files will be saved, its relative to
-     * the web application directory.
-     */
     private static final String UPLOAD_DIR = "uploads";
     private static final Logger logger = LogManager.getLogger(FileUploadServlet.class.getName());
 
@@ -44,7 +37,6 @@ public class FileUploadServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
-
         String uploadStatus;
         String applicationPath = request.getServletContext().getRealPath("");
         logDAO.saveLogToDatabase("INFO", "Aplication Path: " + applicationPath);
@@ -55,21 +47,16 @@ public class FileUploadServlet extends HttpServlet {
             fileSaveDir.mkdirs();
         }
         String fileName = null;
-        //Get all the parts from request and write it to the file on server
         for (Part part : request.getParts()) {
             fileName = getFileName(part);
             part.write(uploadFilePath + File.separator + fileName);
         }
         logDAO.saveLogToDatabase("INFO", "Saved file to upload directory! " + fileName);
         filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
-
         MailBox mailBox = new MailBox();
         MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
         mboxParser.run(mailBox);
-
-
         List<Email> testUploadFile = mailBox.getMailbox();
-
         if (!(filePath.getTempFilePath().endsWith("mbox") || filePath.getTempFilePath().endsWith("eml"))) {
             uploadStatus = fileName + " is not an mbox/eml file";
         } else if (testUploadFile.isEmpty()){
@@ -77,7 +64,6 @@ public class FileUploadServlet extends HttpServlet {
         } else {
             uploadStatus = fileName + " uploaded successfully!";
         }
-
         request.setAttribute("message", uploadStatus);
         request.setAttribute("message2", uploadFilePath + File.separator + fileName);
 //        getServletContext().getRequestDispatcher("/jsp/response.jsp").forward(
@@ -85,9 +71,6 @@ public class FileUploadServlet extends HttpServlet {
         response.sendRedirect("jsp/choice.jsp");
     }
 
-    /**
-     * Utility method to get file name from HTTP header content-disposition
-     */
     private String getFileName(Part part) {
         String contentDisp = part.getHeader("content-disposition");
         System.out.println("content-disposition header= "+contentDisp);
@@ -99,6 +82,4 @@ public class FileUploadServlet extends HttpServlet {
         }
         return "";
     }
-
-
 }

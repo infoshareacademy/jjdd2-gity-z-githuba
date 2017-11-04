@@ -1,17 +1,14 @@
 package pl.infoshareacademy.Web;
 
 import pl.infoshareacademy.service.LogDAO;
-
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.http.HTTPException;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 @WebServlet(urlPatterns = "/checkFiles")
@@ -26,7 +23,7 @@ public class FileCheckServlet extends HttpServlet {
         File fileSaveDir = new File(absolutePathToUpload);
         if (!fileSaveDir.exists()) {
             logDAO.saveLogToDatabase("WARNING", "Upload folder does not exist");
-            req.setAttribute("Error", "UPLOAD FOLDER DOES NOT EXISTS!");
+            req.setAttribute("Error", "UPLOAD FOLDER DOES NOT EXIST!");
             req.getRequestDispatcher("/shared/check_files.jsp").forward(req, resp);
         }
         File[] listOfFilesInUploadFolder = fileSaveDir.listFiles();
