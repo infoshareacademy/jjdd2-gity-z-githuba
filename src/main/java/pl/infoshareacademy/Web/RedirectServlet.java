@@ -17,6 +17,7 @@ import com.google.api.services.gmail.model.MessagePartHeader;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -77,7 +78,8 @@ public class RedirectServlet extends HttpServlet {
                     object.setMessage(message.getSnippet());
 //                    object.setFileName(message.getPayload().getFilename());
 //                    object.setMimeType(message.getPayload().getMimeType());
-                    object.setDate(message.getInternalDate());
+                    Date d = new Date(message.getInternalDate()* 1000);
+                    object.setDate(d);
                     emails.add(object);
 
                 } catch (Exception e) {

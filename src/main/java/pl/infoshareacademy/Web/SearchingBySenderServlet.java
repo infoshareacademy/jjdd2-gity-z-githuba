@@ -35,7 +35,7 @@ public class SearchingBySenderServlet extends HttpServlet {
         String fourAnswer = req.getParameter("sender");
 
         addSearchingWordtoArrayBean(fourAnswer);
-        doTranslate("KEY");
+        doTranslate("AIzaSyBBA8MWaqJbghdmVE6ven-yX6Oma0OSZ3A");
 
         resp.sendRedirect("display");
     }
@@ -59,6 +59,7 @@ public class SearchingBySenderServlet extends HttpServlet {
         filePath.setCheckboxEmails(req.getParameter("Emails"));
     }
     private List<String>  doTranslate(String API_KEY) {
+        if (toLanguage == null) { }
         GoogleTranslate googleTranslate = new GoogleTranslate(API_KEY);
         List<String> listOfSearchKeywords = new ArrayList<>();
         for (String list:listOfSearchKeywords) {
