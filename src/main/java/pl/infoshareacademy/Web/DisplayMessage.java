@@ -2,14 +2,11 @@ package pl.infoshareacademy.Web;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pl.infoshareacademy.TranslateAPI.GoogleTranslate;
 import pl.infoshareacademy.mail.ContactFinder;
 import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.StatisticBean;
 import pl.infoshareacademy.mail.TempFilePath;
-import pl.infoshareacademy.mail.mailparser.EmlParser;
 import pl.infoshareacademy.mail.mailparser.MailBox;
-import pl.infoshareacademy.mail.mailparser.MboxParser;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -18,8 +15,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
@@ -40,12 +35,12 @@ public class DisplayMessage extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        if (filePath.getTempFilePath().endsWith("mbox")) {
-            MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
-            mboxParser.run(mailBox);
-        } else if (filePath.getTempFilePath().endsWith("eml")) {
-            EmlParser.parseEml(filePath.getTempFilePath(), mailBox);
-        }
+//        if (filePath.getTempFilePath().endsWith("mbox")) {
+//            MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
+//            mboxParser.run(mailBox);
+//        } else if (filePath.getTempFilePath().endsWith("eml")) {
+//            EmlParser.parseEml(filePath.getTempFilePath(), mailBox);
+//        }
 
         ContactFinder finder = new ContactFinder();
         List<String> lista = filePath.getKeywordsFromServletForm();
@@ -67,8 +62,6 @@ public class DisplayMessage extends HttpServlet {
         req.setAttribute("keywords", lista);
         req.setAttribute("file", filePath.getTempFilePath());
 
-        HttpSession session = req.getSession();
-        session.setAttribute("isAdmin","Admin");
 
         filePath.setNullforCheckbox();
         RequestDispatcher dispatcher = getServletContext()

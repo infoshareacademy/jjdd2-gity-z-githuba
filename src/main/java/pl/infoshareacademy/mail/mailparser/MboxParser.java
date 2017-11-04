@@ -62,7 +62,7 @@ public class MboxParser {
         MessageBuilder builder = new DefaultMessageBuilder();
         Message message = builder.parseMessage(messageBytes);
         Email email = new Email();
-        Optional<String> reply =Optional.ofNullable(message.getBody().toString());
+        Optional<String> reply = Optional.ofNullable(message.getBody().toString());
         Optional<String> from = Optional.ofNullable((message.getFrom().toString()));
         Optional<String> to = Optional.ofNullable((message.getTo().toString()));
         Optional<Mailbox> senderObject = Optional.ofNullable(message.getSender());

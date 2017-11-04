@@ -26,8 +26,8 @@ public class SearchingBySenderServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        setCheckBox(req);
-        String toLanguage = req.getParameter("toLanguage");
+        setCheckBox(req);
+        String toLanguage = req.getParameter("tolanguage");
         String fourAnswer = req.getParameter("sender");
         addSearchingWordtoArrayBean(fourAnswer);
         doTranslate("AIzaSyBBA8MWaqJbghdmVE6ven-yX6Oma0OSZ3A",fourAnswer,toLanguage);

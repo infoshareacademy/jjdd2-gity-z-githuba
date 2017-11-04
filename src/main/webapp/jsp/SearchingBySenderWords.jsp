@@ -96,9 +96,9 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="selectbasic">To language</label>
                                     <div class="col-md-4">
-                                        <select id="selectbasic" name="selectbasic" class="form-control">
-                                            <option value="1">Option one</option>
-                                            <option value="2">Option two</option>
+                                        <select id="selectbasic" name="tolanguage" class="form-control">
+                                            <option value="no">Do not translate</option>
+                                            <option value="pl">Option two</option>
                                         </select>
                                     </div>
                                 </div>

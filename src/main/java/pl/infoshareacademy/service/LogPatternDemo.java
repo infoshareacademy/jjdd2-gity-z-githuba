@@ -1,6 +1,7 @@
 package pl.infoshareacademy.service;
 
 import pl.infoshareacademy.model.Log;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,7 +27,7 @@ public class LogPatternDemo {
         em.remove(log);
     }
 
-    public List<Log>  getAllLogs() {
+    public List<Log> getAllLogs() {
         return em.createQuery("FROM Log").getResultList();
 
     }

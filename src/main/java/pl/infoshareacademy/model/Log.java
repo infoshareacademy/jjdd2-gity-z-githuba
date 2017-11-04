@@ -21,7 +21,6 @@ public class Log {
     String message;
 
 
-
     public Log() {
     }
 

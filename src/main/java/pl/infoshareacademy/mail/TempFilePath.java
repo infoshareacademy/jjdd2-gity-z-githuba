@@ -1,11 +1,9 @@
 package pl.infoshareacademy.mail;
 
-import javax.ejb.Singleton;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @SessionScoped
 public class TempFilePath implements Serializable {

@@ -15,7 +15,7 @@ public class LogDAOImpl implements LogDAO {
     }
 
     @Override
-    public Log getLogById(Integer id){
+    public Log getLogById(Integer id) {
         /*Log log = em.find(Log.class, id);
         return log;*/
         Log log = (Log) em.createQuery("SELECT id, message, time FROM Log WHERE id=" + id);
@@ -48,7 +48,7 @@ public class LogDAOImpl implements LogDAO {
     }
 
     @Override
-    public Integer deleteLogById(Integer id){
+    public Integer deleteLogById(Integer id) {
         Log log = em.find(Log.class, id);
         em.remove(log);
         return id;

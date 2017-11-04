@@ -1,33 +1,29 @@
 package pl.infoshareacademy.Web;
 
 import com.google.api.client.auth.oauth2.Credential;
-import java.io.IOException;
+import com.google.api.client.auth.oauth2.TokenResponse;
+import com.google.api.services.gmail.model.ListMessagesResponse;
+import com.google.api.services.gmail.model.Message;
+import com.google.api.services.gmail.model.MessagePartHeader;
+import com.sun.org.apache.xml.internal.security.utils.Base64;
+import pl.infoshareacademy.mail.Email;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.crypto.Data;
-
-import com.google.api.client.auth.oauth2.TokenResponse;
-import com.google.api.services.gmail.model.ListMessagesResponse;
-import com.google.api.services.gmail.model.Message;
-import com.google.api.services.gmail.model.MessagePartHeader;
-import com.sun.org.apache.xml.internal.security.utils.Base64;
-import java.io.PrintWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import pl.infoshareacademy.mail.Email;
 
 @WebServlet(urlPatterns = {"/redirect-servlet"})
 public class RedirectServlet extends HttpServlet {
 
     private static final String APPLICATION_NAME = "EMailApp";
-    private String redirectUri = "http://localhost:8080/EMailApp/redirect-servlet";
+    private String redirectUri = "http://localhost:4040/EMailApp/redirect-servlet";
     Credential credential;
     private static com.google.api.services.gmail.Gmail client;
 
@@ -56,8 +52,6 @@ public class RedirectServlet extends HttpServlet {
             System.out.println(req.getParameter("state"));
             String query = new String(Base64.decode(req.getParameter("state").getBytes()));
             ListMessagesResponse MsgResponse = client.users().messages().list(userId).setQ(query).execute();
-
-            System.out.println("Total messages found " + MsgResponse.getMessages().size());
             for (Message msg : MsgResponse.getMessages()) {
                 try {
                     Message message = client.users().messages().get(userId, msg.getId()).execute();
@@ -78,7 +72,7 @@ public class RedirectServlet extends HttpServlet {
                     object.setMessage(message.getSnippet());
 //                    object.setFileName(message.getPayload().getFilename());
 //                    object.setMimeType(message.getPayload().getMimeType());
-                    Date d = new Date(message.getInternalDate()* 1000);
+                    Date d = new Date(message.getInternalDate() * 1000);
                     object.setDate(d);
                     emails.add(object);
 
@@ -88,7 +82,6 @@ public class RedirectServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(emails.toString());
         req.setAttribute("question",emails);
 
         RequestDispatcher dispatcher = getServletContext()

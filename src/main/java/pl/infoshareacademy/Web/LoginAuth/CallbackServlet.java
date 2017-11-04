@@ -21,12 +21,11 @@ import java.io.UnsupportedEncodingException;
 @WebServlet("/callback")
 public class CallbackServlet extends HttpServlet {
     private static final Logger logger = LogManager.getLogger(CallbackServlet.class.getName());
-
+    @Inject
+    StatisticBean statisticBean;
     private String redirectOnSuccess = "portal/index";
     private String redirectOnFail = "/login";
     private AuthenticationController authenticationController;
-    @Inject
-    StatisticBean statisticBean;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -55,10 +54,10 @@ public class CallbackServlet extends HttpServlet {
             Tokens tokens = authenticationController.handle(req);
             SessionUtils.set(req, "accessToken", tokens.getAccessToken());
             SessionUtils.set(req, "idToken", tokens.getIdToken());
-            String token =tokens.getIdToken();
+            String token = tokens.getIdToken();
             statisticBean.addAdmintoList();
             if (statisticBean.isAdmin(ParseToken.parseId(token))) {
-                req.getSession().setAttribute("isAdmin","true");
+                req.getSession().setAttribute("isAdmin", "true");
             }
             res.sendRedirect(redirectOnSuccess);
         } catch (IdentityVerificationException e) {
