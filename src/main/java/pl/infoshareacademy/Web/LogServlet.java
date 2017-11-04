@@ -45,13 +45,14 @@ public class LogServlet extends HttpServlet {
             case "deletebyid":
                 Integer deleteId = Integer.parseInt(req.getParameter("id"));
                 logDAO.deleteLogById(deleteId);
+                resp.sendError(200, "Log has been deleted.");
                 break;
             case "deleteall":
-                Log log = new Log();
-                log.setTime(LocalTime.now());
-                log.setLevel("WARNING");
-                log.setMessage("Custom LOG");
-                logDAO.saveLogToDatabase(log);
+                logDAO.deleteAllLogs();
+                resp.sendError(200, "All logs has been deleted.");
+                break;
+            default :
+                resp.sendError(200, "Unexpected action! Are you really trying to break me? :(");
                 break;
         }
     }

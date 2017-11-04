@@ -2,9 +2,11 @@ package pl.infoshareacademy.service;
 
 import pl.infoshareacademy.model.Log;
 
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,10 +48,14 @@ public class LogDAO {
     }
 
     public void deleteAllLogs() {
-        /*em.createQuery("DELETE FROM Log").executeUpdate();*/
+        em.createQuery("DELETE FROM Log").executeUpdate();
     }
 
-    public void saveLogToDatabase(Log log) {
+    public void saveLogToDatabase(String level, String message) {
+        Log log = new Log();
+        log.setLevel(level);
+        log.setMessage(message);
+        log.setTime(LocalTime.now());
         em.persist(log);
     }
 }
