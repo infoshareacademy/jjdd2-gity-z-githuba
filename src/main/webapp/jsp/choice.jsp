@@ -43,12 +43,11 @@
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                <h4>Great! What do you want next?</h4>
                 <div class="btn-group-vertical">
                     <a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp" class="btn btn-primary" type="button">Show me messages with certain word</a>
                     <a href="${pageContext.request.contextPath}/jsp/keywords.jsp"class="btn btn-primary" type="button">What keywords should I use to find my email?</a>
-                    <a href="${pageContext.request.contextPath}/jsp/file_upload.jsp"class="btn btn-primary" type="button">Let me upload another file</a><br><br>
-                    <a href="${pageContext.request.contextPath}/stats" class="btn btn-primary" type="button">Show me statistics</a>
+                    <a href="${pageContext.request.contextPath}/jsp/file_upload.jsp"class="btn btn-primary" type="button">Let me upload another file</a>
+                    <a href="${pageContext.request.contextPath}/stats"class="btn btn-primary" type="button">Show me statistics</a>
                 </div>
             </div>
             <div class="col-md-4"></div>
