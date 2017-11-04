@@ -1,21 +1,21 @@
 package pl.infoshareacademy.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table
 public class Log {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
     @Column
-    LocalDate time;
+    LocalTime time;
 
     @Column
-    String Level;
+    String level;
 
     @Column
     String message;
@@ -23,7 +23,7 @@ public class Log {
     public Log() {
     }
 
-    public Log(String message, LocalDate date) {
+    public Log(String message, LocalTime date) {
         this.message = message;
         this.time = date;
     }
@@ -44,19 +44,19 @@ public class Log {
         this.message = message;
     }
 
-    public LocalDate getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
-    public void setTime(LocalDate time) {
+    public void setTime(LocalTime time) {
         this.time = time;
     }
 
-    public String getLevel() {
-        return Level;
+    public void setLevel(String level) {
+        this.level = level;
     }
 
-    public void setLevel(String level) {
-        Level = level;
+    public String getLevel() {
+        return level;
     }
 }

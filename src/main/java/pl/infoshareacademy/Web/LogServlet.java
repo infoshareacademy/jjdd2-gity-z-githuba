@@ -24,18 +24,24 @@ public class LogServlet extends HttpServlet {
                 System.out.println("Mam atrybuty: " + action + getId);
                 req.setAttribute("header", "Get by id result:" + getId);
                 req.setAttribute("body", logDAO.getLogById(Integer.parseInt(getId)));
-                req.getRequestDispatcher("jsp/logresponse.jsp").include(req, resp);
+                req.getRequestDispatcher("jsp/logresponse_single.jsp").forward(req, resp);
                 break;
             case "getbyrange":
-                Integer idMin = Integer.parseInt(req.getParameter("getbyrangemin"));
-                Integer idMax = Integer.parseInt(req.getParameter("getbyrangemax"));
-                logDAO.getLogsByIdRange(idMin, idMax);
+                String idMin = req.getParameter("getbyrangemin");
+                String idMax = req.getParameter("getbyrangemax");
+                System.out.println();
+                System.out.println("              " + idMin + "    " + idMax);
+                req.setAttribute("header", "Get Logs by range " + idMin + " - " + idMax);
+                req.setAttribute("body", logDAO.getLogsByIdRange((Integer.parseInt(idMin)), (Integer.parseInt(idMax))));
+                req.getRequestDispatcher("jsp/logresponse_multi.jsp").include(req, resp);
                 break;
             case "getall":
-                logDAO.getAllLogs();
+                req.setAttribute("body", logDAO.getAllLogs());
+                req.setAttribute("header", "Get all logs:");
+                req.getRequestDispatcher("jsp/logresponse_multi.jsp").forward(req, resp);
                 break;
             case "deletebyid":
-                Integer deleteId = Integer.parseInt(req.getParameter("deletebyid"));
+                Integer deleteId = Integer.parseInt(req.getParameter("id"));
                 logDAO.deleteLogById(deleteId);
             case "deleteall":
                 logDAO.deleteAllLogs();

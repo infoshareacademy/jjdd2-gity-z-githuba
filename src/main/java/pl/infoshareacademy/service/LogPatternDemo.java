@@ -4,7 +4,7 @@ import pl.infoshareacademy.model.Log;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class LogPatternDemo {
 
     public void saveLog() {
         for (int i = 0; i < 100; i++) {
-            LocalDate date = LocalDate.now();
+            LocalTime date = LocalTime.now();
             Log log = new Log("Log number: " + i, date);
             em.persist(log);
         }

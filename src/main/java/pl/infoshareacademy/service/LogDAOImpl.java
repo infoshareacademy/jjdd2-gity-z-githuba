@@ -4,7 +4,7 @@ import pl.infoshareacademy.model.Log;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LogDAOImpl implements LogDAO {
@@ -27,7 +27,7 @@ public class LogDAOImpl implements LogDAO {
 
     @Override
     public List<Log> getLogsByIdRange(Integer min, Integer max) {
-        List<Log> result = Collections.emptyList();
+        List<Log> result = new ArrayList<>();
         for (int i = min; i <= max; i++) {
             Log log = em.find(Log.class, i);
             result.add(log);
@@ -53,6 +53,13 @@ public class LogDAOImpl implements LogDAO {
     @Override
     public void deleteAllLogs() {
         em.createQuery("DELETE FROM Log").executeUpdate();
+    }
+
+    public void addLog() {
+        Log log = new Log();
+        log.setMessage("Test msg");
+        log.setLevel("INFO");
+        em.persist(log);
     }
 }
 
