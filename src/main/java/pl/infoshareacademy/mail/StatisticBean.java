@@ -13,6 +13,7 @@ public class StatisticBean {
     private Map<String, Integer> mapPhone = new HashMap<>();
     private Map<String, Integer> mapEmails = new HashMap<>();
     private List<String> adminPannelAccessUsers = new ArrayList<>();
+    private String listofgmailwords;
     private final Logger logger = LogManager.getLogger(getClass());
 
 
@@ -73,5 +74,13 @@ public class StatisticBean {
 
     public Map<String, Integer> getMapEmails() {
         return mapEmails;
+    }
+
+    public String getListofgmailwords() {
+        return listofgmailwords;
+    }
+
+    public void setListofgmailwords(String listofgmailwords) {
+        this.listofgmailwords = listofgmailwords;
     }
 }

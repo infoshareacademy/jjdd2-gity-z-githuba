@@ -9,7 +9,9 @@ import com.google.api.services.gmail.GmailScopes;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import pl.infoshareacademy.mail.StatisticBean;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,6 +31,8 @@ public class OauthServlet extends HttpServlet {
     private String clientId = "904227267851-34jmqkr6rtovh3qs4m6alqmlk08sqgn8.apps.googleusercontent.com";
 
     GoogleClientSecrets clientSecrets;
+    @Inject
+    StatisticBean statisticBean;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -43,6 +47,8 @@ public class OauthServlet extends HttpServlet {
         }
         redirectUri.append(request.getContextPath()).append("/redirect-servlet");
         String srch = request.getParameter("srch");
+        statisticBean.setListofgmailwords(srch);
+
         AuthorizationCodeRequestUrl authorizationUrl;
         if (Constants.flow == null) {
             try {
