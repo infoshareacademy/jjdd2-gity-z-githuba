@@ -57,9 +57,7 @@
             <jsp:include page="modalofConfigPanel.jsp"/>
         </div>
 </div>
-
     </fieldset>
 </form>
-
 </body>
 </html>

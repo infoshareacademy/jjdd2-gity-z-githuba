@@ -25,7 +25,7 @@
         }
     </style>
 </head>
-<body>
+<body onload="openNav()">
 <jsp:include page="../shared/menu.jsp"/>
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
 <p></p>
