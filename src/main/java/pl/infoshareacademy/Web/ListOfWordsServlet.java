@@ -63,7 +63,6 @@ public class ListOfWordsServlet extends HttpServlet {
                 break;
         }
         listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
-
         resp.sendRedirect("display");
 
     }
