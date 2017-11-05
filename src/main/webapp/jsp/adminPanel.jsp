@@ -35,8 +35,8 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="Logs">Logs</label>
             <div class="col-md-4">
-                <a href="${pageContext.request.contextPath}/jsp/log.jsp" class="btn btn-default" type="button">Show
-                    me logs</a>
+                <a href="${pageContext.request.contextPath}/jsp/log.jsp" class="btn btn-default"
+                   type="button">Show me logs</a>
 
                 </button>
             </div>
