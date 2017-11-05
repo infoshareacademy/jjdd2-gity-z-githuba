@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <form class="form-horizontal">
-
     <fieldset>
 
         <!-- Form Name -->
@@ -39,7 +38,5 @@
                 </div>
             </div>
         </div>
-
-
     </fieldset>
 </form>
