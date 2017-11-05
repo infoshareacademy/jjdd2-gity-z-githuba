@@ -22,7 +22,6 @@ public class SearchingBySenderServlet extends HttpServlet {
     @Inject
     TempFilePath listOfKeywords;
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         setCheckBox(req);

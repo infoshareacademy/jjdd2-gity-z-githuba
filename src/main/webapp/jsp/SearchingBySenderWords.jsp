@@ -50,8 +50,6 @@
                     $this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
                 }
             })
-
-
         });
 
     </script>
@@ -60,8 +58,6 @@
 <jsp:include page="../shared/menu.jsp"/>
 <div id="main">
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
-
-
     <div class="container">
         <div class="row">
             <form method="post" action="../sender" class="form-horizontal">

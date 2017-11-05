@@ -20,6 +20,7 @@ import java.io.UnsupportedEncodingException;
 @WebServlet("/callback")
 public class CallbackServlet extends HttpServlet {
     private static final Logger logger = LogManager.getLogger(CallbackServlet.class.getName());
+
     @Inject
     StatisticBean statisticBean;
     private String redirectOnSuccess = "portal/index";

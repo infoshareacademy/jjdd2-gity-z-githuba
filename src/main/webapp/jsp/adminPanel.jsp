@@ -6,7 +6,6 @@
 </c:if>
 <html>
 <head>
-    <title>Title</title>
     <title></title>
     <script src="../js/menu.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">

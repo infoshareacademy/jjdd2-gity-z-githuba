@@ -69,7 +69,6 @@
             </div>
             <div class="col-md-4"></div>
         </div>
-        <%--<div class="row"><jsp:include page="../shared/footer.jsp"/></div>--%>
     </div>
 </div>
 </body>

@@ -1,7 +1,6 @@
 package pl.infoshareacademy.Web.LoginAuth;
 
 import com.auth0.AuthenticationController;
-
 import javax.servlet.ServletConfig;
 import java.io.UnsupportedEncodingException;
 

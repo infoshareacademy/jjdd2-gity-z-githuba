@@ -48,10 +48,6 @@
                 sentences.html(text);
             });
 
-            sentences.click(function () {
-                /* location.reload();*/
-            });
-
             $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
                 $("#success-alert").slideUp(500);
             });
@@ -68,8 +64,6 @@
                     $this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
                 }
             })
-
-
         });
 
     </script>
@@ -116,7 +110,7 @@
                     <c:if test="${not empty question}">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Message</h3>
+                                <h3 class="panel-title">Messages</h3>
                                 <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
                             </div>
                             <div class="panel-body">
@@ -188,12 +182,6 @@
                                                                         class="text-primary">${quest.to}</p></div>
 
                                                             </div>
-                                                                <%--<div class="row" style="margin-top:5px">--%>
-                                                                <%--<div class="col-sm-4">Reply</div>--%>
-                                                                <%--<div class="col-sm-8"><p--%>
-                                                                <%--class="text-primary">${quest.reply}</p></div>--%>
-
-                                                                <%--</div>--%>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default"
@@ -243,7 +231,7 @@
                                 </div>
                                 <div class="panel-body">
                                     <div id="keywords">
-                                        <c:forEach var="foundEmails" items="${foundPhone}" varStatus="loop">
+                                        <c:forEach var="foundPhone" items="${foundPhone}" varStatus="loop">
                                             <c:out value="[${loop.index+1}]"/>
                                             :
                                             <c:out value="${foundPhone}"/>
@@ -265,7 +253,7 @@
                                 </div>
                                 <div class="panel-body">
                                     <div id="keywords">
-                                        <c:forEach var="foundEmails" items="${foundWebsites}" varStatus="loop">
+                                        <c:forEach var="foundWebsites" items="${foundWebsites}" varStatus="loop">
                                             <c:out value="[${loop.index+1}]"/>
                                             :
                                             <c:out value="${foundWebsites}"/>

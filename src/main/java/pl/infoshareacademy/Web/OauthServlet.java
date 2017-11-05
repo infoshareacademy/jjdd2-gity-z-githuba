@@ -7,6 +7,10 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets.Details;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.services.gmail.GmailScopes;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import pl.infoshareacademy.Web.LoginAuth.CallbackServlet;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +22,8 @@ import java.util.Collections;
 
 @WebServlet(urlPatterns = {"/oauth"})
 public class OauthServlet extends HttpServlet {
+
+    private static final Logger logger = LogManager.getLogger(OauthServlet.class.getName());
 
     private String redirectUri = "http://localhost:4040/EMailApp/redirect-servlet";
     private String clientSecret = "xKQQmLnzjgKiNfm-7kZ2Ytup";
@@ -40,7 +46,7 @@ public class OauthServlet extends HttpServlet {
                 Constants.flow = new GoogleAuthorizationCodeFlow.Builder(Constants.httpTransport, Constants.JSON_FACTORY, clientSecrets,
                         Collections.singleton(GmailScopes.GMAIL_READONLY)).build();
             } catch (GeneralSecurityException ex) {
-                ex.printStackTrace();
+                logger.info(ex);
             }
         }
         authorizationUrl = Constants.flow.newAuthorizationUrl().setRedirectUri(redirectUri).setState(Base64.encode(srch.getBytes()));
