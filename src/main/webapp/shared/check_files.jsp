@@ -31,7 +31,7 @@
 <p></p>
 <div class="container">
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-4">
             <h2 class="color-white">Valid files:</h2>
             <c:choose>
                 <c:when test="${empty requestScope.fileOK}">
@@ -45,7 +45,7 @@
                 </c:otherwise>
             </c:choose>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
             <h3 class="color-white">Invalid Files:</h3>
             <c:choose>
                 <c:when test="${empty requestScope.fileNotOK}">
@@ -59,8 +59,8 @@
                 </c:otherwise>
             </c:choose>
         </div>
-        <div class="col-md-5">
-            <h2 class="color-white">Warnings:</h2>
+        <div class="col-md-4">
+            <h3 class="color-white">Warnings:</h3>
             <c:choose>
                 <c:when test="${empty requestScope.fileWarn}">
                     <h3 class="color-green">No warnings</h3>
