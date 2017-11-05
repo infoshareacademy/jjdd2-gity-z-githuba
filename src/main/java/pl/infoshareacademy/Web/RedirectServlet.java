@@ -23,13 +23,14 @@ import java.util.List;
 public class RedirectServlet extends HttpServlet {
 
     private static final String APPLICATION_NAME = "EMailApp";
-    private String redirectUri = "http://localhost:4040/EMailApp/redirect-servlet";
     Credential credential;
     private static com.google.api.services.gmail.Gmail client;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
+        String redirectUri = req.getPathInfo() + req.getServletContext().getContextPath() + "/redirect-servlet";
+
         res.setContentType("application/json");
         ArrayList<Email> emails = new ArrayList();
         try {
