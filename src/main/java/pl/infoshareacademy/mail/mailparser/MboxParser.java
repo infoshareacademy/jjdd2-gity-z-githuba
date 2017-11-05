@@ -61,15 +61,14 @@ public class MboxParser {
         try {
             message = builder.parseMessage(messageBytes);
         } catch (IOException eio) {
-            logger.fatal("IO exception cant parse message or header", eio);
+            logger.fatal("IO exception can't parse message or header", eio);
         } catch (MimeException emime) {
-            logger.fatal("Mime exception cant parse message or header, probably incorrect structure of file", emime);
+            logger.fatal("Mime exception can't parse message or header, probably incorrect structure of file", emime);
         } catch (NullPointerException enp) {
-            logger.warn("NullPointer exception cant parse file",enp);
+            logger.warn("NullPointer exception can't parse file",enp);
         }
 
         Email email = new Email();
-        //TODO if message.get != null only then .toString
         if (message != null) {
             Optional<String> reply = Optional.ofNullable(message.getBody().toString());
             Optional<String> from = Optional.ofNullable(message.getFrom().toString());

@@ -28,6 +28,7 @@ public class StatisticBean {
                                             + 1);
                         } catch (NullPointerException ex) {
                             logger.warn("Empty map {} {}",list,listofWords);
+                            logger.warn(ex);
                         }
                     }
                 } else {
