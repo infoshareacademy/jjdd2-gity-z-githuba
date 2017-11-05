@@ -21,7 +21,7 @@ public class StartingServlet extends HttpServlet {
             req.setAttribute("userId", idToken);
         }
         RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher("/jsp/welcome.jsp");
+                .getRequestDispatcher("/jsp/file_upload.jsp");
         dispatcher.forward(req, resp);
     }
 }
