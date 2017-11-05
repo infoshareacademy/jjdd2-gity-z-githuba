@@ -41,7 +41,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Upload File Response</title>
 </head>
-<
+
 <body onload="openNav()">
 <jsp:include page="../shared/menu.jsp"/>
 <div id="main">

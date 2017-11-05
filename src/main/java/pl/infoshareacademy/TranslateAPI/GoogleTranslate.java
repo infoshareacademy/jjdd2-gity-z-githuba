@@ -11,37 +11,34 @@ import javax.ws.rs.core.Form;
 import javax.ws.rs.core.Response;
 
 public class GoogleTranslate {
- 
-     private final String API_KEY;
- 
-     public GoogleTranslate(String API_KEY) {
-         this.API_KEY = API_KEY;
-     }
 
-     public String translate(String input, String source, String target) {
+    private final String API_KEY;
 
-         String url = "https://translation.googleapis.com/language/translate/v2";
+    public GoogleTranslate(String API_KEY) {
+        this.API_KEY = API_KEY;
+    }
 
-         Form form = new Form();
-         form.param("key", API_KEY);
-         form.param("q", input);
-         form.param("target", target);
-         form.param("source", source);
+    public String translate(String input, String source, String target) {
 
-         Client client = ClientBuilder.newClient();
-         WebTarget webTarget = client.target(url);
-         Response response = webTarget.request().post(Entity.form(form));
+        String url = "https://translation.googleapis.com/language/translate/v2";
+        Form form = new Form();
+        form.param("key", API_KEY);
+        form.param("q", input);
+        form.param("target", target);
+        form.param("source", source);
+        Client client = ClientBuilder.newClient();
+        WebTarget webTarget = client.target(url);
+        Response response = webTarget.request().post(Entity.form(form));
 
-         if (response.getStatus() >= 400) {
-             ErrorResponseContainer errorResponseContainer = response
-                 .readEntity(ErrorResponseContainer.class);
-             response.close();
-             return errorResponseContainer.getError().getErrors().get(0).getMessage();
-         } else {
-             //String responseValue = response.readEntity(String.class);
-             ResponseContainer responseContainer = response.readEntity(ResponseContainer.class);
-             response.close();
-             return responseContainer.getData().getTranslations().get(0).getTranslatedText();
-         }
-     }
- }
+        if (response.getStatus() >= 400) {
+            ErrorResponseContainer errorResponseContainer = response
+                    .readEntity(ErrorResponseContainer.class);
+            response.close();
+            return errorResponseContainer.getError().getErrors().get(0).getMessage();
+        } else {
+            ResponseContainer responseContainer = response.readEntity(ResponseContainer.class);
+            response.close();
+            return responseContainer.getData().getTranslations().get(0).getTranslatedText();
+        }
+    }
+}

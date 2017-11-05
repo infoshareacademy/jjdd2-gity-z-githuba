@@ -277,6 +277,27 @@
                         </div>
                         <br/>
                     </c:if>
+                    <c:if test="${not empty goodcontact}">
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Good contact</h3>
+                                    <span class="pull-right clickable"><i
+                                            class="glyphicon glyphicon-chevron-up"></i></span>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="contact">
+                                        <c:forEach var="goodcontact" items="${goodcontact}" varStatus="loop">
+                                            Key: <c:out value="${goodcontact.key}"/>
+                                            Value: <c:out value="${goodcontact.value}"/>
+                                            <br>
+                                        </c:forEach>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                    </c:if>
                     <a href="${pageContext.request.contextPath}/jsp/choice.jsp" class="btn btn-default" type="button">Go
                         to home</a>
                 </div>
