@@ -2,6 +2,7 @@ package pl.infoshareacademy.Web.LoginAuth;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +20,7 @@ public class LogoutServlet extends HttpServlet {
             logger.info("User has logged out!");
             request.getSession().invalidate();
         }
-        response.sendRedirect("jsp/exit.jsp");
+        request.getSession().invalidate();
+        request.getRequestDispatcher("jsp/exit.jsp").include(request, response);
     }
 }

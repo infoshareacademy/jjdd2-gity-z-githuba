@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -63,12 +64,15 @@
                         email?</a>
                     <a href="${pageContext.request.contextPath}/jsp/file_upload.jsp"
                        class="btn btn-default margin-5 size-150vh" type="button">Let me upload another file</a><br><br>
-                    <a href="${pageContext.request.contextPath}/stats" class="btn btn-default margin-5 size-150vh"
-                       type="button">Show me statistics</a>
+                    <c:if test="${isAdmin}">
+                        <a href="${pageContext.request.contextPath}/stats" class="btn btn-default margin-5 size-150vh"
+                           type="button">Show me statistics</a>
+                    </c:if>
                 </div>
             </div>
             <div class="col-md-4"></div>
         </div>
+        <%--<div class="row"><jsp:include page="../shared/footer.jsp"/></div>--%>
     </div>
 </div>
 </body>

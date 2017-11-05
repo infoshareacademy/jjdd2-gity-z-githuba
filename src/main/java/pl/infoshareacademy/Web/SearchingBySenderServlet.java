@@ -2,6 +2,7 @@ package pl.infoshareacademy.Web;
 
 import pl.infoshareacademy.TranslateAPI.GoogleTranslate;
 import pl.infoshareacademy.mail.TempFilePath;
+
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +22,7 @@ public class SearchingBySenderServlet extends HttpServlet {
 
     @Inject
     TempFilePath listOfKeywords;
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

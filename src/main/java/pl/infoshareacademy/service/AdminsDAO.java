@@ -18,9 +18,6 @@ public class AdminsDAO {
                 .setParameter("token", token)
                 .setMaxResults(5)
                 .getResultList();
-        if (result.isEmpty()) {
-            return false;
-        }
-        return true;
+        return !result.isEmpty();
     }
 }

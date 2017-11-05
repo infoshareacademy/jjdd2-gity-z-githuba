@@ -1,6 +1,7 @@
 package pl.infoshareacademy.Web;
 
 import pl.infoshareacademy.service.LogDAO;
+
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

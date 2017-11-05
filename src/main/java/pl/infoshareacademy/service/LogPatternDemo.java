@@ -1,6 +1,7 @@
 package pl.infoshareacademy.service;
 
 import pl.infoshareacademy.model.Log;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

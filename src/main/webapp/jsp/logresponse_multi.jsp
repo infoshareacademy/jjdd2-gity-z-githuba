@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <body>
 <table>
     <thead>
@@ -11,14 +11,14 @@
     </tr>
     </thead>
     <tbody>
-        <c:forEach items="${requestScope.body}" var="Log">
-            <tr>
-                <td><strong>${Log.id}</strong></td>
-                <td>${Log.time}</td>
-                <td>${Log.level}</td>
-                <td>${Log.message}</td>
-            </tr>
-        </c:forEach>
+    <c:forEach items="${requestScope.body}" var="Log">
+        <tr>
+            <td><strong>${Log.id}</strong></td>
+            <td>${Log.time}</td>
+            <td>${Log.level}</td>
+            <td>${Log.message}</td>
+        </tr>
+    </c:forEach>
 
     </tbody>
 </table>
@@ -67,7 +67,7 @@
         }
 
         th:after {
-            background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.08));
+            background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, .08));
             content: '';
             display: block;
             height: 25%;

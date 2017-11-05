@@ -30,10 +30,9 @@
                 sentences.html(text);
             });
 
-            sentences.click(function () {
-                location.reload();
-            });
-
+            if (word === '') {
+                word = event.target.innerText;
+            }
             $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
                 $("#success-alert").slideUp(500);
             });
@@ -49,8 +48,10 @@
                     $this.removeClass('panel-collapsed');
                     $this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
                 }
-            })
-        });
+            });
+
+
+        );
 
     </script>
 </head>
@@ -58,7 +59,10 @@
 <jsp:include page="../shared/menu.jsp"/>
 <div id="main">
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+
+
     <div class="container">
+        <%--<div class="row"><jsp:include page="../shared/menu.jsp"/></div>--%>
         <div class="row">
             <form method="post" action="../sender" class="form-horizontal">
                 <fieldset>
@@ -98,24 +102,24 @@
                                     </div>
                                 </div>
 
-                                <!-- Multiple Checkboxes (inline) -->
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="checkboxes">Search also</label>
-                                    <div class="col-md-4">
-                                        <label class="checkbox-inline" for="checkboxes-0">
-                                            <input name="Websites" id="checkboxes-0" value="1" type="checkbox">
-                                            Websites
-                                        </label>
-                                        <label class="checkbox-inline" for="checkboxes-1">
-                                            <input name="Phonenumbers" id="checkboxes-1" value="2" type="checkbox">
-                                            Phone numbers
-                                        </label>
-                                        <label class="checkbox-inline" for="checkboxes-2">
-                                            <input name="Emails" id="checkboxes-2" value="3" type="checkbox">
-                                            Emails
-                                        </label>
-                                    </div>
-                                </div>
+                                <%--<!-- Multiple Checkboxes (inline) -->--%>
+                                <%--<div class="form-group">--%>
+                                <%--<label class="col-md-4 control-label" for="checkboxes">Search also</label>--%>
+                                <%--<div class="col-md-4">--%>
+                                <%--<label class="checkbox-inline" for="checkboxes-0">--%>
+                                <%--<input name="Websites" id="checkboxes-0" value="1" type="checkbox">--%>
+                                <%--Websites--%>
+                                <%--</label>--%>
+                                <%--<label class="checkbox-inline" for="checkboxes-1">--%>
+                                <%--<input name="Phonenumbers" id="checkboxes-1" value="2" type="checkbox">--%>
+                                <%--Phone numbers--%>
+                                <%--</label>--%>
+                                <%--<label class="checkbox-inline" for="checkboxes-2">--%>
+                                <%--<input name="Emails" id="checkboxes-2" value="3" type="checkbox">--%>
+                                <%--Emails--%>
+                                <%--</label>--%>
+                                <%--</div>--%>
+                                <%--</div>--%>
 
                                 <!-- Button -->
                                 <div class="form-group">
@@ -140,6 +144,8 @@
                 <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
             </div>
             <div class="panel-body">
+                <%--<div class="row">--%>
+                <%--<form class="form-horizontal">--%>
                 <fieldset>
 
                     <!-- Search input-->
@@ -161,6 +167,7 @@
                     </div>
                 </fieldset>
 </form>
+<%--<div class="row"><jsp:include page="../shared/footer.jsp"/></div>--%>
 </div>
 
 </form>

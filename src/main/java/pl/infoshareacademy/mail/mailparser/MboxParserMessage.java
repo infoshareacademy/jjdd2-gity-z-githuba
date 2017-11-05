@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.EmptyFileException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

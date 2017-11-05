@@ -20,25 +20,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @WebServlet(urlPatterns = {"/pieChart"})
 public class PieChartServlet extends HttpServlet {
+    @Inject
+    StatisticBean statisticBean;
 
     static JFreeChart chart;
     static BufferedImage bufferedImage;
-    @Inject
-    StatisticBean statisticBean;
 
     public PieChartServlet() {
         super();
 
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp); //To change body of generated methods, choose Tools | Templates.
     }
 
     private static HashMap<String, Integer> fitToMax(HashMap<String, Integer> hashMap, int max) {
@@ -74,6 +80,66 @@ public class PieChartServlet extends HttpServlet {
         return temp;
     }
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+
+        try {
+
+            List<File> files = new ArrayList<>();
+            List<HashMap> hashMaps = new ArrayList<>();
+
+            HashMap<String, Integer> map = (HashMap<String, Integer>) statisticBean.getMapEmails();
+            hashMaps.add(map);
+            HashMap<String, Integer> map2 = (HashMap<String, Integer>) statisticBean.getMapKeyWords();
+            hashMaps.add(map2);
+            HashMap<String, Integer> map3 = (HashMap<String, Integer>) statisticBean.getMapPhone();
+            hashMaps.add(map3);
+            HashMap<String, Integer> map4 = (HashMap<String, Integer>) statisticBean.getMapWebsite();
+            hashMaps.add(map4);
+
+            String to = "gityzgithuba@gmail.com";
+            String from = "gityzgithuba@gmail.com";
+            String body = "";
+
+            String title = "Report";
+            final int WIDTH = 500;
+            final int HEIGHT = 400;
+            BufferedImage chartsImage = new BufferedImage(
+                    WIDTH, (HEIGHT * hashMaps.size()),
+                    BufferedImage.TYPE_INT_RGB);
+            Graphics g = chartsImage.getGraphics();
+            int x = 0, y = 0;
+            for (int i = 0; i < 4; i++) {
+
+                chart = createChart(createDatasetFromHMap(hashMaps.get(i), 5), title);
+
+                try {
+                    File pieChart = new File("chart" + String.valueOf(i + 1) + ".png");
+                    files.add(pieChart);
+                    ChartUtilities.saveChartAsJPEG(pieChart, chart, WIDTH, HEIGHT);
+                    try (InputStream imageInputStream = new FileInputStream(pieChart)) {
+
+                        BufferedImage bi = ImageIO.read(imageInputStream);
+                        g.drawImage(bi, 0, y, null);
+
+                        y += bi.getHeight();
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(PieChartServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+            MailUtilGmail.sendMail(to, from, title, body, true, files);
+            ServletOutputStream os = response.getOutputStream();
+            response.setContentType("image/jpg");
+            ImageIO.write(chartsImage, "png", os);
+            os.flush();
+            os.close();
+        } catch (MessagingException | UnsupportedEncodingException ex) {
+            Logger.getLogger(PieChartServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     private static PieDataset createDatasetFromHMap(HashMap<String, Integer> hashMap, int max) {
 
         DefaultPieDataset dataset = new DefaultPieDataset();
@@ -106,56 +172,6 @@ public class PieChartServlet extends HttpServlet {
         plot.setLabelGap(0.02);
         return chart;
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-
-        HashMap<String, Integer> map = new HashMap<>();
-        map.put("A1", 10);
-        map.put("A2", 60);
-        map.put("A3", 90);
-        map.put("A4", 50);
-        map.put("A5", 30);
-        map.put("A6", 80);
-        map.put("A7", 20);
-        map.put("A8", 70);
-        map.put("A9", 40);
-
-        String title = "Chart from HashMap";
-
-        chart = createChart(createDatasetFromHMap(map, 5), title);
-        bufferedImage = chart.createBufferedImage(600, 800);
-
-        RenderedImage chartImage = chart.createBufferedImage(800, 600);
-        ServletOutputStream os = response.getOutputStream();
-        ImageIO.write(chartImage, "png", os);
-
-        File pieChart = new File("PieChart.jpeg");
-        try {
-            ChartUtilities.saveChartAsJPEG(pieChart, chart, 800, 600);
-            InputStream imageInputStream = new FileInputStream(pieChart);
-
-            String to = "gityzgithuba@gmail.com";
-            String from = "gityzgithuba@gmail.com";
-            String body = "";
-            try {
-                MailUtilGmail.sendMail(to, from, title, body, true, pieChart);
-                pieChart.delete();
-            } catch (MessagingException | UnsupportedEncodingException ex) {
-                Logger.getLogger(PieChartServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(PieChartServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        os.flush();
-        os.close();
     }
 
 }

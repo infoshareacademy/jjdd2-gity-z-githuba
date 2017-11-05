@@ -2,6 +2,7 @@ package pl.infoshareacademy.TranslateAPI;
 
 import pl.infoshareacademy.TranslateAPI.model.ResponseContainer;
 import pl.infoshareacademy.TranslateAPI.model.error.ErrorResponseContainer;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;

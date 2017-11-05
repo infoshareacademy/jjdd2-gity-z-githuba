@@ -1,6 +1,7 @@
 package pl.infoshareacademy.mail.mailparser;
 
 import pl.infoshareacademy.mail.Email;
+
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
