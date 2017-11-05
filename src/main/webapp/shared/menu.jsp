@@ -56,7 +56,7 @@
     <a href="${pageContext.request.contextPath}/jsp/file_upload.jsp">Upload Files</a>
     <a href="${pageContext.request.contextPath}/checkFiles">Check files</a>
     <a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp">Search</a>
-    <a href="${pageContext.request.contextPath}/portal/logout">Logout</a>
+    <a href="${pageContext.request.contextPath}/logout">Logout</a>
     <c:if test="${isAdmin}">
         <a href="${pageContext.request.contextPath}/jsp/adminPanel.jsp">Admin Panel</a>
     </c:if>
