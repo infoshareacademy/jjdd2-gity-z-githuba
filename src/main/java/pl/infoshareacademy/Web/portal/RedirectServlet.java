@@ -23,18 +23,26 @@ import java.util.List;
 public class RedirectServlet extends HttpServlet {
 
     private static final String APPLICATION_NAME = "EMailApp";
-    private String redirectUri = "http://localhost:4040/EMailApp/redirect-servlet";
     Credential credential;
     private static com.google.api.services.gmail.Gmail client;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
+//        String redirectUri = req.getPathInfo() + req.getServletContext().getContextPath() + "/redirect-servlet";
+
+        StringBuilder redirectUri = new StringBuilder();
+        redirectUri.append(req.getScheme()).append("://");
+        redirectUri.append(req.getServerName());
+        if (req.getServerPort() != 80) {
+            redirectUri.append(":").append(req.getServerPort());
+        }
+        redirectUri.append(req.getContextPath()).append("/redirect-servlet");
         res.setContentType("application/json");
         ArrayList<Email> emails = new ArrayList();
         try {
             String code = req.getParameter("code");
-            TokenResponse response = Constants.flow.newTokenRequest(code).setRedirectUri(redirectUri).execute();
+            TokenResponse response = Constants.flow.newTokenRequest(code).setRedirectUri(String.valueOf(redirectUri)).execute();
             credential = Constants.flow.createAndStoreCredential(response, "userID");
 
             client = new com.google.api.services.gmail.Gmail.Builder(Constants.httpTransport, Constants.JSON_FACTORY, credential)

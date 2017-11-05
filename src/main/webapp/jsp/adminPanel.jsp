@@ -36,6 +36,7 @@
             <label class="col-md-4 control-label" for="Logs">Logs</label>
             <div class="col-md-4">
                 <jsp:include page="log.jsp"/>
+                </button>
             </div>
         </div>
 
