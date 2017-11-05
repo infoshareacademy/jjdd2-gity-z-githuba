@@ -2,7 +2,6 @@ package pl.infoshareacademy.TranslateAPI;
 
 import pl.infoshareacademy.TranslateAPI.model.ResponseContainer;
 import pl.infoshareacademy.TranslateAPI.model.error.ErrorResponseContainer;
-
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -19,7 +18,6 @@ public class GoogleTranslate {
     }
 
     public String translate(String input, String source, String target) {
-
         String url = "https://translation.googleapis.com/language/translate/v2";
         Form form = new Form();
         form.param("key", API_KEY);

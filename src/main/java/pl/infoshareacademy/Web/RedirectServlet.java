@@ -7,7 +7,6 @@ import com.google.api.services.gmail.model.Message;
 import com.google.api.services.gmail.model.MessagePartHeader;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 import pl.infoshareacademy.mail.Email;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,15 +26,6 @@ public class RedirectServlet extends HttpServlet {
     Credential credential;
     private static com.google.api.services.gmail.Gmail client;
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param req servlet request
-     * @param res servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-**/
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
@@ -70,8 +60,6 @@ public class RedirectServlet extends HttpServlet {
                     }
                     object.setReply(message.getId());
                     object.setMessage(message.getSnippet());
-//                    object.setFileName(message.getPayload().getFilename());
-//                    object.setMimeType(message.getPayload().getMimeType());
                     Date d = new Date(message.getInternalDate() * 1000);
                     object.setDate(d);
                     emails.add(object);
@@ -88,19 +76,9 @@ public class RedirectServlet extends HttpServlet {
                 .getRequestDispatcher("/jsp/display.jsp");
         dispatcher.forward(req, res);}
 
-     /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }
-
-
 }

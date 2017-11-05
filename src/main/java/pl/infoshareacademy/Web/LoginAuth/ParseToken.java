@@ -3,8 +3,7 @@ package pl.infoshareacademy.Web.LoginAuth;
 import org.apache.commons.codec.binary.Base64;
 
 public class ParseToken {
-
-
+    
     public static String parseId(String jwtToken) {
         String[] split_string = jwtToken.split("\\.");
         String base64EncodedBody = split_string[1];

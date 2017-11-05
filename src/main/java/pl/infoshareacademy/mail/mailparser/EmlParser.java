@@ -3,7 +3,6 @@ package pl.infoshareacademy.mail.mailparser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pl.infoshareacademy.mail.Email;
-
 import javax.mail.Address;
 import javax.mail.MessagingException;
 import javax.mail.Session;

@@ -16,7 +16,7 @@
 <div class="container main-container">
     <div class="container-fluid bg-1 text-center">
         <div class="jumbotron">
-            <h3>Thank you for your time!</h3>
+            <h3>Come back soon!</h3>
         </div>
         <img src="${pageContext.request.contextPath}/shared/good-bye.jpeg" alt="Bye" width="20%" height="20%">
         <br>

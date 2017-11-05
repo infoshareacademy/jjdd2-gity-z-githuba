@@ -1,6 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <style>
 
     .sidenav {
@@ -59,11 +57,8 @@
     <a href="${pageContext.request.contextPath}/checkFiles">Check files</a>
     <a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp">Keywords</a>
     <a href="${pageContext.request.contextPath}/jsp/keywords.jsp">Helper</a>
-    <a href="${pageContext.request.contextPath}/portal/logout">Logout</a>
     <c:if test="${isAdmin}">
-        <a href="${pageContext.request.contextPath}/jsp/adminPanel.jsp">Admin Panel</a>
-
-
+        <a href="${pageContext.request.contextPath}/jsp/adminPanel.jsp">Helper</a>
     </c:if>
 </div>
 <script>
@@ -71,7 +66,6 @@
     function openNav() {
         document.getElementById("mySidenav").style.width = "250px";
         document.getElementById("main").style.marginLeft = "250px";
-        //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
     }
 
     function closeNav() {

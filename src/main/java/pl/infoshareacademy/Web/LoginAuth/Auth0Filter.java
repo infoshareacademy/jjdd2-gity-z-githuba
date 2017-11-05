@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
 @WebFilter("/portal/*")
 public class Auth0Filter implements Filter {
     private static final Logger logger = LogManager.getLogger(Auth0Filter.class.getName());
@@ -29,7 +28,7 @@ public class Auth0Filter implements Filter {
             res.sendRedirect(request.getServletContext().getContextPath() + "/login");
             return;
         }
-        logger.info("Access granted!");
+        logger.info("User with id token:{} Access granted with {} !", idToken, accessToken);
         next.doFilter(request, response);
     }
 

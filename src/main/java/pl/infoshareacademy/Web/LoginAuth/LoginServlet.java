@@ -34,7 +34,6 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse res) throws ServletException, IOException {
-
         StringBuilder redirectUri = new StringBuilder();
         redirectUri.append(req.getScheme()).append("://");
         redirectUri.append(req.getServerName());

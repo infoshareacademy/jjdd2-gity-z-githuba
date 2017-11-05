@@ -1,19 +1,21 @@
 package pl.infoshareacademy.mailsender;
 
-
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MailUtilGmail {
 
-    public static void sendMail(String to, String from, String subject, String body, boolean bodyIsHTML, List<File> attachments)
+    public MailUtilGmail() {
+    }
+
+
+    public static void sendMail(String to, String from, String subject, String body, boolean bodyIsHTML, File attachment)
             throws javax.mail.MessagingException, java.io.UnsupportedEncodingException {
         try {
             Properties props = new Properties();
@@ -39,19 +41,19 @@ public class MailUtilGmail {
 
             BodyPart messageBodyPart1 = new MimeBodyPart();
             messageBodyPart1.setText(body);
+
+            MimeBodyPart messageBodyPart2 = new MimeBodyPart();
+            String filename = attachment.getName();
+
+            messageBodyPart2.attachFile(attachment);
+
             Multipart multipart = new javax.mail.internet.MimeMultipart();
             multipart.addBodyPart(messageBodyPart1);
-
-            for (File attachment : attachments) {
-                MimeBodyPart imageBodyPart = new MimeBodyPart();
-                String filename = attachment.getName();
-                imageBodyPart.attachFile(attachment);
-                multipart.addBodyPart(imageBodyPart);
-            }
+            multipart.addBodyPart(messageBodyPart2);
 
             message.setContent(multipart);
 
-            Address fromAddress = new InternetAddress(from, "Report from site");
+            Address fromAddress = new InternetAddress(from, "Chart App");
             Address toAddress = new InternetAddress(to);
             message.setFrom(fromAddress);
             message.setRecipient(javax.mail.Message.RecipientType.TO, toAddress);
@@ -64,4 +66,5 @@ public class MailUtilGmail {
             Logger.getLogger(MailUtilGmail.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }
