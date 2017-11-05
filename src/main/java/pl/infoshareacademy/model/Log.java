@@ -20,7 +20,6 @@ public class Log {
     @Column
     String message;
 
-
     public Log() {
     }
 

@@ -11,7 +11,6 @@ import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.EmptyFileException;
 import pl.infoshareacademy.mail.mailparser.mail.util.CharBufferWrapper;
 import pl.infoshareacademy.mail.mailparser.mail.util.MboxIterator;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;

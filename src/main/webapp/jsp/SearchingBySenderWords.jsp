@@ -63,7 +63,6 @@
 
 
     <div class="container">
-        <%--<div class="row"><jsp:include page="../shared/menu.jsp"/></div>--%>
         <div class="row">
             <form method="post" action="../sender" class="form-horizontal">
                 <fieldset>
@@ -145,8 +144,6 @@
                 <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
             </div>
             <div class="panel-body">
-                <%--<div class="row">--%>
-                <%--<form class="form-horizontal">--%>
                 <fieldset>
 
                     <!-- Search input-->
@@ -168,7 +165,6 @@
                     </div>
                 </fieldset>
 </form>
-<%--<div class="row"><jsp:include page="../shared/footer.jsp"/></div>--%>
 </div>
 
 </form>

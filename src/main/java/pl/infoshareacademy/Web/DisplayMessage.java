@@ -7,7 +7,6 @@ import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.StatisticBean;
 import pl.infoshareacademy.mail.TempFilePath;
 import pl.infoshareacademy.mail.mailparser.MailBox;
-
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,16 +30,7 @@ public class DisplayMessage extends HttpServlet {
     private static final Logger logger = LogManager.getLogger(FileUploadServlet.class.getName());
 
     @Override
-
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
-//        if (filePath.getTempFilePath().endsWith("mbox")) {
-//            MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
-//            mboxParser.run(mailBox);
-//        } else if (filePath.getTempFilePath().endsWith("eml")) {
-//            EmlParser.parseEml(filePath.getTempFilePath(), mailBox);
-//        }
 
         ContactFinder finder = new ContactFinder();
         List<String> lista = filePath.getKeywordsFromServletForm();
@@ -54,14 +44,12 @@ public class DisplayMessage extends HttpServlet {
             statisticBean.countWords(foundPhone, statisticBean.getMapPhone());
             statisticBean.countWords(foundEmails, statisticBean.getMapEmails());
 
-
         req.setAttribute("question", displaylist);
         req.setAttribute("foundEmails", foundEmails);
         req.setAttribute("foundWebsites", foundWebsites);
         req.setAttribute("foundPhone", foundPhone);
         req.setAttribute("keywords", lista);
         req.setAttribute("file", filePath.getTempFilePath());
-
 
         filePath.setNullforCheckbox();
         RequestDispatcher dispatcher = getServletContext()
@@ -70,7 +58,6 @@ public class DisplayMessage extends HttpServlet {
     }
 
     private Set<Email> returnSearchWords(ContactFinder finder, List<String> lista) {
-
         Set<Email> displaylist = new HashSet<>();
         if (filePath.getCheckboxWord() != "null") {
             for (int i = 0; i < lista.size(); i++) {
@@ -110,5 +97,4 @@ public class DisplayMessage extends HttpServlet {
             return phone;
         }
     }
-
 }

@@ -2,7 +2,6 @@ package pl.infoshareacademy.Web;
 
 import pl.infoshareacademy.mail.QuestionsAndAnswers;
 import pl.infoshareacademy.mail.TempFilePath;
-
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,8 +60,6 @@ public class ListOfWordsServlet extends HttpServlet {
                 break;
         }
         listOfKeywords.setKeywordsFromServletForm(listOfSearchKeywords);
-
         resp.sendRedirect("display");
-
     }
 }
