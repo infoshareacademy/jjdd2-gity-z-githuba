@@ -51,4 +51,57 @@ public class ContactFinderTest {
         assertThat(foundMails).hasSize(1);
         assertThat(foundMails).containsExactly(testEmail);
     }
+
+    @Test
+    public void shouldFindOnePhoneNoInSingleElementMailboxByMessageText() throws Exception {
+        // given
+        String testPhoneNo = "+48600900700";
+        Email email = mock(Email.class);
+        when(email.getMessage()).thenReturn("test email message with some phone number " + testPhoneNo + " email end");
+        when(mailBox.getMailbox()).thenReturn(Stream.of(email).collect(Collectors.toList()));
+
+        // when
+        Set<String> foundPhoneNo = sut.findPhoneNo(mailBox);
+
+        // then
+        assertThat(foundPhoneNo).isNotEmpty();
+        assertThat(foundPhoneNo).hasSize(1);
+        assertThat(foundPhoneNo).containsExactly(testPhoneNo);
+    }
+
+    @Test
+    public void shouldFindOneWebsiteInSingleElementMailboxByMessageText() throws Exception {
+        // given
+        String testWebsiteAddress = "www.someawesomesite.com/application/";
+        Email email = mock(Email.class);
+        when(email.getMessage()).thenReturn("test email message with some website adress " +
+                                            testWebsiteAddress + " email end");
+        when(mailBox.getMailbox()).thenReturn(Stream.of(email).collect(Collectors.toList()));
+
+        // when
+        Set<String> foundWebsites = sut.findWebsite(mailBox);
+
+        // then
+        assertThat(foundWebsites).isNotEmpty();
+        assertThat(foundWebsites).hasSize(1);
+        assertThat(foundWebsites).containsExactly(testWebsiteAddress);
+    }
+
+    @Test
+    public void shouldFindOneMailInSingleElementMailboxByMessageText() throws Exception {
+        // given
+        String testKeyword = "urgent";
+        Email email = mock(Email.class);
+        when(email.getMessage()).thenReturn("test email message with some keyword in it " + testKeyword + " email end");
+        when(mailBox.getMailbox()).thenReturn(Stream.of(email).collect(Collectors.toList()));
+        String searchkeywords = "urgent";
+
+        // when
+        Set<String> foundMessagesWithKeyword = sut.findQA(mailBox, searchkeywords);
+
+        // then
+        assertThat(foundMessagesWithKeyword).isNotEmpty();
+        assertThat(foundMessagesWithKeyword).hasSize(1);
+        assertThat(foundMessagesWithKeyword.hashCode()).isEqualTo(email.hashCode());
+    }
 }

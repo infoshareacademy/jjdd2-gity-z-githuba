@@ -33,10 +33,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-4 control-label" for="Report">Report</label>
+            <label class="col-md-4 control-label" for="Logs">Logs</label>
             <div class="col-md-4">
-                <a href="${pageContext.request.contextPath}/jsp/log.jsp" class="btn btn-default" type="button">Show
-                    me messages with certain word</a>
+                <a href="${pageContext.request.contextPath}/jsp/log.jsp" class="btn btn-default"
+                   type="button">Show me logs</a>
 
                 </button>
             </div>
@@ -57,9 +57,7 @@
             <jsp:include page="modalofConfigPanel.jsp"/>
         </div>
 </div>
-
     </fieldset>
 </form>
-
 </body>
 </html>
