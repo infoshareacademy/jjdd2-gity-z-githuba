@@ -80,13 +80,6 @@
             </div>
             <br/>
         </c:if>
-        <c:if test="${file==''}">
-            <div class="alert alert-danger">
-                <strong>WARNING!</strong> Upload file.<a href="${pageContext.request.contextPath}/jsp/choice.jsp"> Go to
-                home</a>
-            </div>
-            <br/>
-        </c:if>
         <div class="row">
             <div class="col-md-offset-0"></div>
             <div class="col-md-offset-0">
