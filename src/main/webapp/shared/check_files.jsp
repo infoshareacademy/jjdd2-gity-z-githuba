@@ -73,6 +73,14 @@
                 </c:otherwise>
             </c:choose>
         </div>
+        <div id="keywords">
+            <c:forEach var="fileOK" items="${fileOK}" varStatus="loop">
+                <c:out value="[${loop.index+1}]"/>
+                :
+                <c:out value="${fileOK}"/>
+            </c:forEach>
+        </div>
+
     </div>
     <div class="row"></div>
     <div class="row"></div>

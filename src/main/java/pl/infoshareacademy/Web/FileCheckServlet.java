@@ -1,5 +1,6 @@
 package pl.infoshareacademy.Web;
 
+import pl.infoshareacademy.mail.TempFilePath;
 import pl.infoshareacademy.service.LogDAO;
 
 import javax.inject.Inject;
@@ -14,12 +15,17 @@ import java.util.ArrayList;
 
 @WebServlet(urlPatterns = "/checkFiles")
 public class FileCheckServlet extends HttpServlet {
+
+    @Inject
+    TempFilePath filePath;
+
     @Inject
     LogDAO logDAO;
 
     private static final String UPLOAD_DIR = "/uploads";
+
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String absolutePathToUpload = getServletContext().getRealPath(UPLOAD_DIR);
+        /*String absolutePathToUpload = getServletContext().getRealPath(UPLOAD_DIR);
         File fileSaveDir = new File(absolutePathToUpload);
         if (!fileSaveDir.exists()) {
             logDAO.saveLogToDatabase("WARNING", "Upload folder does not exist");
@@ -41,9 +47,10 @@ public class FileCheckServlet extends HttpServlet {
             } else {
                 negativeFiles.add(listOfFilesInUploadFolder[i].getName());
             }
-        }
-        req.setAttribute("positiveFiles", positiveFiles);
-        req.setAttribute("negativeFiles", negativeFiles);
+        }*/
+        req.setAttribute("fileOK", filePath.getUploadStatusOK());
+        req.setAttribute("fileNotOK", filePath.getUploadStatusNotOK());
+        req.setAttribute("fileWarn", filePath.getUploadStatusOKButWarn());
         getServletContext().getRequestDispatcher("/shared/check_files.jsp").forward(req, resp);
     }
 }

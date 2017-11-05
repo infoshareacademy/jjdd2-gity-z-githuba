@@ -39,6 +39,7 @@ public class FileUploadServlet extends HttpServlet {
 
     @Inject
     TempFilePath filePath;
+
     @Inject
     MailBox mailBox;
 
@@ -71,10 +72,13 @@ public class FileUploadServlet extends HttpServlet {
                 }
             }
         }
+        filePath.setUploadStatusOK(uploadStatusOK);
+        filePath.setUploadStatusOKButWarn(uploadStatusOKButWarn);
+        filePath.setUploadStatusNotOK(uploadStatusNotOK);
         filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
-        request.setAttribute("fileOK", uploadStatusOK);
+/*        request.setAttribute("fileOK", uploadStatusOK);
         request.setAttribute("fileNotOK", uploadStatusNotOK);
-        request.setAttribute("fileWarn", uploadStatusOKButWarn);
+        request.setAttribute("fileWarn", uploadStatusOKButWarn);*/
         getServletContext().getRequestDispatcher("/shared/check_files.jsp").forward(
                 request, response);
     }
