@@ -72,7 +72,8 @@ public class ContactFinderTest {
         // given
         String testWebsiteAddress = "www.someawesomesite.com/application/";
         Email email = mock(Email.class);
-        when(email.getMessage()).thenReturn("test email message with some website adress " + testWebsiteAddress + " email end");
+        when(email.getMessage()).thenReturn("test email message with some website adress " +
+                                            testWebsiteAddress + " email end");
         when(mailBox.getMailbox()).thenReturn(Stream.of(email).collect(Collectors.toList()));
 
         // when
