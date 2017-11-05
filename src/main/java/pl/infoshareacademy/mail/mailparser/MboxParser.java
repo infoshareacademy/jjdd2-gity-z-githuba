@@ -9,10 +9,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.EmptyFileException;
-import pl.infoshareacademy.mail.Main;
 import pl.infoshareacademy.mail.mailparser.mail.util.CharBufferWrapper;
 import pl.infoshareacademy.mail.mailparser.mail.util.MboxIterator;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -24,7 +22,7 @@ import java.util.Date;
 import java.util.Optional;
 
 public class MboxParser {
-    private static final Logger logger = LogManager.getLogger(Main.class.getName());
+    private static final Logger logger = LogManager.getLogger(MboxParser.class.getName());
     private final static CharsetEncoder ENCODER = Charset.forName("UTF-8").newEncoder();
     String path;
     File mbox;
@@ -65,7 +63,7 @@ public class MboxParser {
         } catch (MimeException emime) {
             logger.fatal("Mime exception can't parse message or header, probably incorrect structure of file", emime);
         } catch (NullPointerException enp) {
-            logger.warn("NullPointer exception can't parse file",enp);
+            logger.warn("NullPointer exception can't parse file", enp);
         }
 
         Email email = new Email();

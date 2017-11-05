@@ -26,9 +26,8 @@ public class LogPatternDemo {
         em.remove(log);
     }
 
-    public List<Log>  getAllLogs() {
+    public List<Log> getAllLogs() {
         return em.createQuery("FROM Log").getResultList();
-
     }
 
     public List<Log> getLogRange(int start, int end) {

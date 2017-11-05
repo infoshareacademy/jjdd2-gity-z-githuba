@@ -1,5 +1,4 @@
-<%@ page language="welcome.jspjava" contentType="text/html; charset=UTF-8"
-         pageEncoding="ISO-8859-1" %>
+<%@ page language="welcome.jspjava" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -14,16 +13,17 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="container main-container">
-        <div class="container-fluid bg-1 text-center">
-            <div class="jumbotron">
-                <h3>Thank you for your time!</h3>
-            </div>
-            <img src="${pageContext.request.contextPath}/shared/good-bye.jpeg" alt="Bye" width="20%" height="20%">
-            <br>
-            <br>
-            <a href="${pageContext.request.contextPath}/portal/index" class="btn btn-primary btn-md" type="button">Login again</a>
+<div class="container main-container">
+    <div class="container-fluid bg-1 text-center">
+        <div class="jumbotron">
+            <h3>Come back soon!</h3>
         </div>
+        <img src="${pageContext.request.contextPath}/shared/good-bye.jpeg" alt="Bye" width="20%" height="20%">
+        <br>
+        <br>
+        <a href="${pageContext.request.contextPath}/portal/index" class="btn btn-primary btn-md" type="button">Login
+            again</a>
     </div>
+</div>
 </body>
 </html>

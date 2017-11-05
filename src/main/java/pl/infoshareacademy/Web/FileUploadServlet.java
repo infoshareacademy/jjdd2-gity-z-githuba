@@ -79,7 +79,7 @@ public class FileUploadServlet extends HttpServlet {
     }
 
     private boolean isValidMailFile(Part part) {
-        if(part.getSubmittedFileName() == null) {
+        if (part.getSubmittedFileName() == null) {
             uploadStatusNotOK.add("File to upload not selected");
             logger.info("upload with no file selected");
             return false;

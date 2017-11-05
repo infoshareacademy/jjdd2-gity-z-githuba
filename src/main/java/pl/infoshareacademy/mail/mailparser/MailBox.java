@@ -1,12 +1,12 @@
 package pl.infoshareacademy.mail.mailparser;
 
 import pl.infoshareacademy.mail.Email;
-
-import javax.ejb.Singleton;
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-@Singleton
-public class MailBox {
+@SessionScoped
+public class MailBox implements Serializable{
     List<Email> Mailbox = new ArrayList<>();
 
     public List<Email> getMailbox() {

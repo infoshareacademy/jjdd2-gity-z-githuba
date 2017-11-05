@@ -1,7 +1,7 @@
 package pl.infoshareacademy.Web;
 
+import pl.infoshareacademy.TranslateAPI.GoogleTranslate;
 import pl.infoshareacademy.mail.TempFilePath;
-
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,8 +25,11 @@ public class SearchingBySenderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         setCheckBox(req);
+        String toLanguage = req.getParameter("tolanguage");
         String fourAnswer = req.getParameter("sender");
         addSearchingWordtoArrayBean(fourAnswer);
+        doTranslate("AIzaSyBBA8MWaqJbghdmVE6ven-yX6Oma0OSZ3A",fourAnswer,toLanguage);
+
         resp.sendRedirect("display");
     }
 
@@ -47,5 +50,14 @@ public class SearchingBySenderServlet extends HttpServlet {
         filePath.setCheckboxWebsite(req.getParameter("Websites"));
         filePath.setCheckboxPhone(req.getParameter("Phonenumbers"));
         filePath.setCheckboxEmails(req.getParameter("Emails"));
+    }
+    private void doTranslate(String API_KEY, String word,String toLanguage) {
+        if (toLanguage.equals("no")) {
+        }else {
+            GoogleTranslate googleTranslate = new GoogleTranslate(API_KEY);
+            List<String> keywordsFromServletForm = listOfKeywords.getKeywordsFromServletForm();
+            keywordsFromServletForm.add(googleTranslate.translate(word,"",toLanguage));
+            listOfKeywords.setKeywordsFromServletForm(keywordsFromServletForm);
+        }
     }
 }

@@ -6,15 +6,20 @@
  1.3.1
  */
 
-(function() {
+(function () {
     "use strict";
     var $, Animation, Growl,
-        bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+        bind = function (fn, me) {
+            return function () {
+                return fn.apply(me, arguments);
+            };
+        };
 
     $ = jQuery;
 
-    Animation = (function() {
-        function Animation() {}
+    Animation = (function () {
+        function Animation() {
+        }
 
         Animation.transitions = {
             "webkitTransition": "webkitTransitionEnd",
@@ -23,7 +28,7 @@
             "transition": "transitionend"
         };
 
-        Animation.transition = function($el) {
+        Animation.transition = function ($el) {
             var el, ref, result, type;
             el = $el[0];
             ref = this.transitions;
@@ -39,7 +44,7 @@
 
     })();
 
-    Growl = (function() {
+    Growl = (function () {
         Growl.settings = {
             namespace: 'growl',
             duration: 3200,
@@ -50,7 +55,7 @@
             delayOnHover: true
         };
 
-        Growl.growl = function(settings) {
+        Growl.growl = function (settings) {
             if (settings == null) {
                 settings = {};
             }
@@ -58,7 +63,7 @@
             return new Growl(settings);
         };
 
-        Growl.initialize = function() {
+        Growl.initialize = function () {
             return $("body:not(:has(#growls))").append('<div id="growls" />');
         };
 
@@ -89,7 +94,7 @@
             this.render();
         }
 
-        Growl.prototype.render = function() {
+        Growl.prototype.render = function () {
             var $growl;
             $growl = this.$growl();
             this.$growls().append($growl);
@@ -100,7 +105,7 @@
             }
         };
 
-        Growl.prototype.bind = function($growl) {
+        Growl.prototype.bind = function ($growl) {
             if ($growl == null) {
                 $growl = this.$growl();
             }
@@ -112,7 +117,7 @@
             return $growl.on("contextmenu", this.close).find("." + this.settings.namespace + "-close").on("click", this.close);
         };
 
-        Growl.prototype.unbind = function($growl) {
+        Growl.prototype.unbind = function ($growl) {
             if ($growl == null) {
                 $growl = this.$growl();
             }
@@ -124,17 +129,17 @@
             return $growl.off("contextmenu", this.close).find("." + this.settings.namespace + "-close").off("click", this.close);
         };
 
-        Growl.prototype.mouseEnter = function(event) {
+        Growl.prototype.mouseEnter = function (event) {
             var $growl;
             $growl = this.$growl();
             return $growl.stop(true, true);
         };
 
-        Growl.prototype.mouseLeave = function(event) {
+        Growl.prototype.mouseLeave = function (event) {
             return this.waitAndDismiss();
         };
 
-        Growl.prototype.click = function(event) {
+        Growl.prototype.click = function (event) {
             if (this.settings.url != null) {
                 event.preventDefault();
                 event.stopPropagation();
@@ -142,7 +147,7 @@
             }
         };
 
-        Growl.prototype.close = function(event) {
+        Growl.prototype.close = function (event) {
             var $growl;
             event.preventDefault();
             event.stopPropagation();
@@ -150,38 +155,38 @@
             return $growl.stop().queue(this.dismiss).queue(this.remove);
         };
 
-        Growl.prototype.cycle = function() {
+        Growl.prototype.cycle = function () {
             var $growl;
             $growl = this.$growl();
             return $growl.queue(this.present).queue(this.waitAndDismiss());
         };
 
-        Growl.prototype.waitAndDismiss = function() {
+        Growl.prototype.waitAndDismiss = function () {
             var $growl;
             $growl = this.$growl();
             return $growl.delay(this.settings.duration).queue(this.dismiss).queue(this.remove);
         };
 
-        Growl.prototype.present = function(callback) {
+        Growl.prototype.present = function (callback) {
             var $growl;
             $growl = this.$growl();
             this.bind($growl);
             return this.animate($growl, this.settings.namespace + "-incoming", 'out', callback);
         };
 
-        Growl.prototype.dismiss = function(callback) {
+        Growl.prototype.dismiss = function (callback) {
             var $growl;
             $growl = this.$growl();
             this.unbind($growl);
             return this.animate($growl, this.settings.namespace + "-outgoing", 'in', callback);
         };
 
-        Growl.prototype.remove = function(callback) {
+        Growl.prototype.remove = function (callback) {
             this.$growl().remove();
             return callback();
         };
 
-        Growl.prototype.animate = function($element, name, direction, callback) {
+        Growl.prototype.animate = function ($element, name, direction, callback) {
             var transition;
             if (direction == null) {
                 direction = 'in';
@@ -200,23 +205,23 @@
             }
         };
 
-        Growl.prototype.$growls = function() {
+        Growl.prototype.$growls = function () {
             return this.$_growls != null ? this.$_growls : this.$_growls = $('#growls');
         };
 
-        Growl.prototype.$growl = function() {
+        Growl.prototype.$growl = function () {
             return this.$_growl != null ? this.$_growl : this.$_growl = $(this.html());
         };
 
-        Growl.prototype.html = function() {
+        Growl.prototype.html = function () {
             return this.container(this.content());
         };
 
-        Growl.prototype.content = function() {
+        Growl.prototype.content = function () {
             return "<div class='" + this.settings.namespace + "-close'>" + this.settings.close + "</div>\n<div class='" + this.settings.namespace + "-title'>" + this.settings.title + "</div>\n<div class='" + this.settings.namespace + "-message'>" + this.settings.message + "</div>";
         };
 
-        Growl.prototype.container = function(content) {
+        Growl.prototype.container = function (content) {
             return "<div class='" + this.settings.namespace + " " + this.settings.namespace + "-" + this.settings.style + " " + this.settings.namespace + "-" + this.settings.size + "'>\n  " + content + "\n</div>";
         };
 
@@ -226,14 +231,14 @@
 
     this.Growl = Growl;
 
-    $.growl = function(options) {
+    $.growl = function (options) {
         if (options == null) {
             options = {};
         }
         return Growl.growl(options);
     };
 
-    $.growl.error = function(options) {
+    $.growl.error = function (options) {
         var settings;
         if (options == null) {
             options = {};
@@ -245,7 +250,7 @@
         return $.growl($.extend(settings, options));
     };
 
-    $.growl.notice = function(options) {
+    $.growl.notice = function (options) {
         var settings;
         if (options == null) {
             options = {};
@@ -257,7 +262,7 @@
         return $.growl($.extend(settings, options));
     };
 
-    $.growl.warning = function(options) {
+    $.growl.warning = function (options) {
         var settings;
         if (options == null) {
             options = {};

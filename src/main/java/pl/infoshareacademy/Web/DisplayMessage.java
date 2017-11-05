@@ -39,10 +39,10 @@ public class DisplayMessage extends HttpServlet {
         Set<String> foundWebsites = returnWebsite(finder);
         Set<String> foundPhone = returnPhone(finder);
 
-        statisticBean.countWords(lista, statisticBean.getMapKeyWords());
-        statisticBean.countWords(foundWebsites, statisticBean.getMapWebsite());
-        statisticBean.countWords(foundPhone, statisticBean.getMapPhone());
-        statisticBean.countWords(foundEmails, statisticBean.getMapEmails());
+            statisticBean.countWords(lista, statisticBean.getMapKeyWords());
+            statisticBean.countWords(foundWebsites, statisticBean.getMapWebsite());
+            statisticBean.countWords(foundPhone, statisticBean.getMapPhone());
+            statisticBean.countWords(foundEmails, statisticBean.getMapEmails());
 
         req.setAttribute("question", displaylist);
         req.setAttribute("foundEmails", foundEmails);
@@ -58,7 +58,6 @@ public class DisplayMessage extends HttpServlet {
     }
 
     private Set<Email> returnSearchWords(ContactFinder finder, List<String> lista) {
-
         Set<Email> displaylist = new HashSet<>();
         if (filePath.getCheckboxWord() != "null") {
             for (int i = 0; i < lista.size(); i++) {
@@ -98,5 +97,4 @@ public class DisplayMessage extends HttpServlet {
             return phone;
         }
     }
-
 }
