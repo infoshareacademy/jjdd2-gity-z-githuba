@@ -1,6 +1,7 @@
 package pl.infoshareacademy.service;
 
 import pl.infoshareacademy.model.Log;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,7 +14,7 @@ public class LogDAO {
     @PersistenceContext(unitName = "gity-db")
     EntityManager em;
 
-    public Log getLogById(Integer id){
+    public Log getLogById(Integer id) {
         Log log = em.find(Log.class, id);
         return log;
     }
@@ -38,7 +39,7 @@ public class LogDAO {
         return result;
     }
 
-    public Integer deleteLogById(Integer id){
+    public Integer deleteLogById(Integer id) {
         Log log = em.find(Log.class, id);
         em.remove(log);
         return id;

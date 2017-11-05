@@ -7,6 +7,7 @@ import com.google.api.services.gmail.model.Message;
 import com.google.api.services.gmail.model.MessagePartHeader;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 import pl.infoshareacademy.mail.Email;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

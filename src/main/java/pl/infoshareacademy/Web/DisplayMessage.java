@@ -7,6 +7,7 @@ import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.StatisticBean;
 import pl.infoshareacademy.mail.TempFilePath;
 import pl.infoshareacademy.mail.mailparser.MailBox;
+
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

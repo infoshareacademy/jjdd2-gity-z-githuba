@@ -47,7 +47,7 @@ public class LogServlet extends HttpServlet {
                 logDAO.deleteAllLogs();
                 resp.sendError(200, "All logs has been deleted.");
                 break;
-            default :
+            default:
                 resp.sendError(200, "Unexpected action! Are you really trying to break me? :(");
                 break;
         }

@@ -9,7 +9,6 @@ import com.google.api.services.gmail.GmailScopes;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pl.infoshareacademy.Web.LoginAuth.CallbackServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

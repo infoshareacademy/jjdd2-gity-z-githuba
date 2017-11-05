@@ -30,9 +30,8 @@
                 sentences.html(text);
             });
 
-            sentences.click(function () {
-                location.reload();
-            });
+            if (word === '') {
+                word = event.target.innerText;
 
             $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
                 $("#success-alert").slideUp(500);
