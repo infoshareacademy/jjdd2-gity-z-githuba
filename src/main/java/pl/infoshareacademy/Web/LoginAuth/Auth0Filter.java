@@ -28,7 +28,6 @@ public class Auth0Filter implements Filter {
             res.sendRedirect(request.getServletContext().getContextPath() + "/login");
             return;
         }
-        System.out.println("id token: " + idToken + "access token" + accessToken);
         logger.info("User with id token:{} Access granted with {} !", idToken, accessToken);
         next.doFilter(request, response);
     }
