@@ -4,7 +4,7 @@
          id="WebApp_ID" version="3.0">
     <servlet>
         <servlet-name>Upload Servlet</servlet-name>
-        <servlet-class>pl.infoshareacademy.Web.FileUploadServlet</servlet-class>
+        <servlet-class>pl.infoshareacademy.Web.portal.FileUploadServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>upload</servlet-name>

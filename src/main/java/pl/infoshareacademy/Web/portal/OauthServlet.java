@@ -1,4 +1,4 @@
-package pl.infoshareacademy.Web;
+package pl.infoshareacademy.Web.portal;
 
 import com.google.api.client.auth.oauth2.AuthorizationCodeRequestUrl;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
