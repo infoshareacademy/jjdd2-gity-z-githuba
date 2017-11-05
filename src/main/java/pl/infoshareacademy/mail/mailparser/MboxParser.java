@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.EmptyFileException;
+import pl.infoshareacademy.mail.Main;
 import pl.infoshareacademy.mail.mailparser.mail.util.CharBufferWrapper;
 import pl.infoshareacademy.mail.mailparser.mail.util.MboxIterator;
 
@@ -23,7 +24,7 @@ import java.util.Date;
 import java.util.Optional;
 
 public class MboxParser {
-    private static final Logger logger = LogManager.getLogger(MboxParser.class.getName());
+    private static final Logger logger = LogManager.getLogger(Main.class.getName());
     private final static CharsetEncoder ENCODER = Charset.forName("UTF-8").newEncoder();
     String path;
     File mbox;
@@ -44,40 +45,50 @@ public class MboxParser {
             }
         } catch (EmptyFileException e) {
             logger.warn("Empty file");
-        } catch (MimeException e) {
-            logger.warn("Incorrect structure of file");
         } catch (IllegalArgumentException e) {
             logger.warn("Incorrect structure of file");
         } catch (FileNotFoundException e) {
             logger.warn("File not found");
         } catch (IOException e) {
             logger.error("Stream error");
-        } catch (Exception e) {
-            logger.fatal("Can't parse file");
         }
     }
 
-    private void messageSummary(InputStream messageBytes) throws IOException, MimeException {
+    private void messageSummary(InputStream messageBytes) {
 
         MessageBuilder builder = new DefaultMessageBuilder();
-        Message message = builder.parseMessage(messageBytes);
+        Message message = null;
+        try {
+            message = builder.parseMessage(messageBytes);
+        } catch (IOException eio) {
+            logger.fatal("IO exception can't parse message or header", eio);
+        } catch (MimeException emime) {
+            logger.fatal("Mime exception can't parse message or header, probably incorrect structure of file", emime);
+        } catch (NullPointerException enp) {
+            logger.warn("NullPointer exception can't parse file",enp);
+        }
+
         Email email = new Email();
-        Optional<String> reply = Optional.ofNullable(message.getBody().toString());
-        Optional<String> from = Optional.ofNullable((message.getFrom().toString()));
-        Optional<String> to = Optional.ofNullable((message.getTo().toString()));
-        Optional<Mailbox> senderObject = Optional.ofNullable(message.getSender());
-        String sender = senderObject.map(v -> v.toString()).orElse("Not found");
-        Optional<Date> date = Optional.ofNullable(message.getDate());
-        Optional<String> subject = Optional.ofNullable(message.getSubject());
+        if (message != null) {
+            Optional<String> reply = Optional.ofNullable(message.getBody().toString());
+            Optional<String> from = Optional.ofNullable(message.getFrom().toString());
+            Optional<String> to = Optional.ofNullable(message.getTo().toString());
+            Optional<Mailbox> senderObject = Optional.ofNullable(message.getSender());
+            String sender = senderObject.map(v -> v.toString()).orElse("Not found");
+            Optional<Date> date = Optional.ofNullable(message.getDate());
+            Optional<String> subject = Optional.ofNullable(message.getSubject());
 
-        email.setFrom(from.orElse("Not found"));
-        email.setTo(to.orElse("Not found"));
-        email.setSender(sender);
-        email.setDate(date.orElse(new Date()));
-        email.setSubject(subject.orElse("Not found"));
-        email.setReply(reply.orElse("Not found"));
-        supportmailbox.add(email);
-
+            email.setFrom(from.orElse("Not found"));
+            email.setTo(to.orElse("Not found"));
+            email.setSender(sender);
+            email.setDate(date.orElse(new Date()));
+            email.setSubject(subject.orElse("Not found"));
+            email.setReply(reply.orElse("Not found"));
+            supportmailbox.add(email);
+        } else {
+            email.setMessage("Could not parse file");
+            logger.error("Encountered problem with parsing message");
+        }
     }
 
     private void addMessage(MailBox mailBox) throws FileNotFoundException, EmptyFileException {

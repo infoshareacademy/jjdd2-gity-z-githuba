@@ -42,6 +42,5 @@ public class EmlParser {
         } catch (Exception e) {
             logger.fatal("Can't parse file");
         }
-
     }
 }
