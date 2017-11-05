@@ -27,7 +27,6 @@ public class FileUploadServlet extends HttpServlet {
 
     private static final long serialVersionUID = 205242440643911308L;
     private static final String UPLOAD_DIR = "uploads";
-    private static final Logger logger = LogManager.getLogger(FileUploadServlet.class.getName());
 
     @Inject
     TempFilePath filePath;
@@ -43,7 +42,7 @@ public class FileUploadServlet extends HttpServlet {
         String uploadFilePath = applicationPath + File.separator + UPLOAD_DIR;
         File fileSaveDir = new File(uploadFilePath);
         if (!fileSaveDir.exists()) {
-            logDAO.saveLogToDatabase("INFO", "Upload folder does not exist. Creating new one");
+            logDAO.saveLogToDatabase("INFO", "Upload folder does not exist. Creating new one " + UPLOAD_DIR);
             fileSaveDir.mkdirs();
         }
         String fileName = null;
