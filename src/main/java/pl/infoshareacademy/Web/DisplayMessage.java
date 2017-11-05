@@ -6,10 +6,7 @@ import pl.infoshareacademy.mail.ContactFinder;
 import pl.infoshareacademy.mail.Email;
 import pl.infoshareacademy.mail.StatisticBean;
 import pl.infoshareacademy.mail.TempFilePath;
-import pl.infoshareacademy.mail.mailparser.EmlParser;
 import pl.infoshareacademy.mail.mailparser.MailBox;
-import pl.infoshareacademy.mail.mailparser.MboxParser;
-
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,15 +30,7 @@ public class DisplayMessage extends HttpServlet {
     private static final Logger logger = LogManager.getLogger(FileUploadServlet.class.getName());
 
     @Override
-
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-/*        if (filePath.getTempFilePath().endsWith("mbox")) {
-            MboxParser mboxParser = new MboxParser(filePath.getTempFilePath());
-            mboxParser.run(mailBox);
-        } else if (filePath.getTempFilePath().endsWith("eml")) {
-            EmlParser.parseEml(filePath.getTempFilePath(), mailBox);
-        }*/
 
         ContactFinder finder = new ContactFinder();
         List<String> lista = filePath.getKeywordsFromServletForm();
@@ -50,11 +39,10 @@ public class DisplayMessage extends HttpServlet {
         Set<String> foundWebsites = returnWebsite(finder);
         Set<String> foundPhone = returnPhone(finder);
 
-            statisticBean.countWords(lista, statisticBean.getMapKeyWords());
-            statisticBean.countWords(foundWebsites, statisticBean.getMapWebsite());
-            statisticBean.countWords(foundPhone, statisticBean.getMapPhone());
-            statisticBean.countWords(foundEmails, statisticBean.getMapEmails());
-
+        statisticBean.countWords(lista, statisticBean.getMapKeyWords());
+        statisticBean.countWords(foundWebsites, statisticBean.getMapWebsite());
+        statisticBean.countWords(foundPhone, statisticBean.getMapPhone());
+        statisticBean.countWords(foundEmails, statisticBean.getMapEmails());
 
         req.setAttribute("question", displaylist);
         req.setAttribute("foundEmails", foundEmails);

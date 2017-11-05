@@ -70,7 +70,7 @@ public class FileUploadServlet extends HttpServlet {
                     logger.info("Saved {} on upload directory!", fileName);
                     tryToParse();
                 } catch (FileAlreadyExistsException e) {
-                    uploadStatusNotOK.add(part.getSubmittedFileName().toUpperCase() +
+                    uploadStatusNotOK.add(part.getSubmittedFileName() +
                             ": that file is already on the list");
                 }
             }
@@ -83,7 +83,6 @@ public class FileUploadServlet extends HttpServlet {
         request.setAttribute("fileWarn", uploadStatusOKButWarn);
         getServletContext().getRequestDispatcher("/shared/check_files.jsp").forward(
                 request, response);
-        response.sendRedirect("shared/check_files.jsp");
     }
 
     private boolean isValidMailFile(Part part) {
@@ -94,18 +93,18 @@ public class FileUploadServlet extends HttpServlet {
         }
 
         if (!((part.getContentType().contains("mbox")) || (part.getContentType().contains("rfc822")))) {
-            uploadStatusNotOK.add(part.getSubmittedFileName().toUpperCase() + ": is not an mbox/eml file type");
+            uploadStatusNotOK.add(part.getSubmittedFileName() + ": is not an mbox/eml file type");
             logger.info("Added {} to NotOK:not an mbox/eml file type!", part.getSubmittedFileName());
             return false;
         }
 
         if (part.getSize() == 0) {
-            uploadStatusNotOK.add(part.getSubmittedFileName().toUpperCase() + ": is empty");
+            uploadStatusNotOK.add(part.getSubmittedFileName() + ": is empty");
             logger.info("Added {} to NotOK:empty", part.getSubmittedFileName());
             return false;
         }
 
-        uploadStatusOK.add(part.getSubmittedFileName().toUpperCase() + ": uploaded");
+        uploadStatusOK.add(part.getSubmittedFileName() + ": uploaded");
         return true;
     }
 

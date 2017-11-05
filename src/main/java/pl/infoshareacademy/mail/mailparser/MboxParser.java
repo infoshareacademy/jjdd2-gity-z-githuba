@@ -51,9 +51,7 @@ public class MboxParser {
             logger.warn("File not found");
         } catch (IOException e) {
             logger.error("Stream error");
-        } /*catch (Exception e) {
-            logger.fatal("Can't parse file",e);
-        }*/
+        }
     }
 
     private void messageSummary(InputStream messageBytes) {
@@ -71,7 +69,7 @@ public class MboxParser {
         }
 
         Email email = new Email();
-        //TODO if message.get != null dopiero wtedy .toString
+        //TODO if message.get != null only then .toString
         if (message != null) {
             Optional<String> reply = Optional.ofNullable(message.getBody().toString());
             Optional<String> from = Optional.ofNullable(message.getFrom().toString());
@@ -90,7 +88,7 @@ public class MboxParser {
             supportmailbox.add(email);
         } else {
             email.setMessage("Could not parse file");
-            logger.fatal("Encountered problem with parsing message");
+            logger.error("Encountered problem with parsing message");
         }
     }
 

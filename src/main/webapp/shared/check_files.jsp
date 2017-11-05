@@ -12,17 +12,25 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!-- Custom CSS section -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu_css.css">
-        <style>.color-orange {
-            color: orange;
-        }</style>
+        <style>
+            .color-orange {
+                color: orange;
+            }
+            .color-green {
+                color: green;
+            }
+            .color-red {
+                color: firebrick;
+            }
+        </style>
     </head>
 <body>
 <jsp:include page="menu.jsp"/>
-<p>Files uploaded: </p>
+<p></p>
 <div class="container">
     <div class="row">
         <div class="col-md-5">
-            <b>Valid files:</b>
+            <h3>Valid files:</h3>
             <c:choose>
                 <c:when test="${empty requestScope.fileOK}">
                     <b class="color-red">There is no proper files</b>
@@ -35,8 +43,8 @@
                 </c:otherwise>
             </c:choose>
         </div>
-        <div class="col-md-4">
-            <b>Invalid Files:</b>
+        <div class="col-md-5">
+            <h3>Invalid Files:</h3>
             <c:choose>
             <c:when test="${empty requestScope.fileNotOK}">
                 <b class="color-green">There is no invalid files</b>
@@ -49,8 +57,8 @@
             </c:otherwise>
             </c:choose>
         </div>
-        <div class="col-md-3">
-            <b>Warnings:</b>
+        <div class="col-md-5">
+            <h3>Warnings:</h3>
             <c:choose>
                 <c:when test="${empty requestScope.fileWarn}">
                 <b class="color-green">No warnings</b>
