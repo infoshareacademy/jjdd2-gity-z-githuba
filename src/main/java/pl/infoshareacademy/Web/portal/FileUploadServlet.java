@@ -1,4 +1,4 @@
-package pl.infoshareacademy.Web;
+package pl.infoshareacademy.Web.portal;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
