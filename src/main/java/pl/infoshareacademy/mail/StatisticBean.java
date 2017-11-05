@@ -46,7 +46,6 @@ public class StatisticBean {
                             mapToCount.put(list.toLowerCase(), mapToCount.get(list.toLowerCase()) + 1);
                         } catch (NullPointerException ex) {
                             logger.warn("Empty set {} {}",list,listofWords);
-                            ex.printStackTrace();
                         }
                     }
                 } else {
