@@ -34,11 +34,11 @@
         <div class="col-md-4">
             <h2 class="color-white">Valid files:</h2>
             <c:choose>
-                <c:when test="${empty requestScope.fileOK}">
+                <c:when test="${empty sessionScope.fileOK}">
                     <h3 class="color-red">There is no proper files</h3>
                 </c:when>
                 <c:otherwise>
-                    <c:forTokens items="${requestScope.fileOK}"
+                    <c:forTokens items="${sessionScope.fileOK}"
                                  delims="," var="fileName">
                         <h3 class="color-green"><c:out value="${fileName}"/></h3>
                     </c:forTokens>

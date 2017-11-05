@@ -12,10 +12,7 @@ import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
@@ -72,13 +69,17 @@ public class FileUploadServlet extends HttpServlet {
                 }
             }
         }
+
         filePath.setUploadStatusOK(uploadStatusOK);
         filePath.setUploadStatusOKButWarn(uploadStatusOKButWarn);
         filePath.setUploadStatusNotOK(uploadStatusNotOK);
+        filePath.setIsParsableCheck(isParsableCheck);
         filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
-/*        request.setAttribute("fileOK", uploadStatusOK);
-        request.setAttribute("fileNotOK", uploadStatusNotOK);
-        request.setAttribute("fileWarn", uploadStatusOKButWarn);*/
+
+        HttpSession session = request.getSession();
+        session.setAttribute("fileOK", uploadStatusOK);
+        session.setAttribute("fileNotOK", uploadStatusNotOK);
+        session.setAttribute("fileWarn", uploadStatusOKButWarn);
         getServletContext().getRequestDispatcher("/shared/check_files.jsp").forward(
                 request, response);
     }
@@ -107,7 +108,7 @@ public class FileUploadServlet extends HttpServlet {
     }
 
     private void tryToParse() {
-        for (String pathToParse : isParsableCheck) {
+        for (String pathToParse : filePath.getIsParsableCheck()) {
             File f = new File(pathToParse);
             if (pathToParse.endsWith("mbox")) {
                 MboxParser mboxParser = new MboxParser(pathToParse);

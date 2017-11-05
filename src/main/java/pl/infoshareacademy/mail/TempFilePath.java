@@ -21,6 +21,17 @@ public class TempFilePath implements Serializable {
     Set<String> uploadStatusNotOK = new HashSet<>();
     Set<String> uploadStatusOKButWarn = new HashSet<>();
 
+    public Set<String> getIsParsableCheck() {
+        return isParsableCheck;
+    }
+
+    public void setIsParsableCheck(Set<String> isParsableCheck) {
+        this.isParsableCheck = isParsableCheck;
+    }
+
+    Set<String> isParsableCheck = new HashSet<>();
+
+
     public List<String> getKeywordsFromServletForm() {
         return keywordsFromServletForm;
     }
