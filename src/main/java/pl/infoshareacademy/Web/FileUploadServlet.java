@@ -6,6 +6,7 @@ import pl.infoshareacademy.mail.TempFilePath;
 import pl.infoshareacademy.mail.mailparser.EmlParser;
 import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
+import pl.infoshareacademy.service.LogDAO;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -27,10 +28,6 @@ import java.util.Set;
 public class FileUploadServlet extends HttpServlet {
 
     private static final long serialVersionUID = 205242440643911308L;
-    /**
-     * Directory where uploaded files will be saved, its relative to
-     * the web application directory.
-     */
     private static final String UPLOAD_DIR = "uploads";
     private static final Logger logger = LogManager.getLogger(FileUploadServlet.class.getName());
 
@@ -44,22 +41,21 @@ public class FileUploadServlet extends HttpServlet {
     @Inject
     MailBox mailBox;
 
+    @Inject
+    LogDAO logDAO;
+
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
-
-        // gets absolute path of the web application
         String applicationPath = request.getServletContext().getRealPath("");
-        // constructs path of the directory to save uploaded file
+        logDAO.saveLogToDatabase("INFO", "Aplication Path: " + applicationPath);
         String uploadFilePath = applicationPath + File.separator + UPLOAD_DIR;
-        // creates the save directory if it does not exists
         File fileSaveDir = new File(uploadFilePath);
         if (!fileSaveDir.exists()) {
+            logDAO.saveLogToDatabase("INFO", "Upload folder does not exist. Creating new one");
             fileSaveDir.mkdirs();
-            logger.warn("Folder {} does not exist! Creating new one...", UPLOAD_DIR);
         }
 
         String fileName = null;
-        //Get all the parts from request and write it to the file on server
         for (Part part : request.getParts()) {
             fileName = getFileName(part);
             if (isValidMailFile(part)) {
@@ -74,9 +70,7 @@ public class FileUploadServlet extends HttpServlet {
                 }
             }
         }
-
         filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
-
         request.setAttribute("fileOK", uploadStatusOK);
         request.setAttribute("fileNotOK", uploadStatusNotOK);
         request.setAttribute("fileWarn", uploadStatusOKButWarn);
@@ -129,9 +123,6 @@ public class FileUploadServlet extends HttpServlet {
         }
     }
 
-    /**
-     * Utility method to get file name from HTTP header content-disposition
-     */
     private String getFileName(Part part) {
         String contentDisp = part.getHeader("content-disposition");
         System.out.println("content-disposition header= "+contentDisp);
