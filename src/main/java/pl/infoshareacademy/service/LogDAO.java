@@ -1,8 +1,6 @@
 package pl.infoshareacademy.service;
 
 import pl.infoshareacademy.model.Log;
-
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +12,6 @@ import java.util.List;
 public class LogDAO {
     @PersistenceContext(unitName = "gity-db")
     EntityManager em;
-
 
     public Log getLogById(Integer id){
         Log log = em.find(Log.class, id);

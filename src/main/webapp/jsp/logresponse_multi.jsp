@@ -28,7 +28,6 @@
     <title>Log Display</title>
     <style>
         body {
-            background: #fafafa url(https://jackrugile.com/images/misc/noise-diagonal.png);
             color: #444;
             font: 100%/30px 'Helvetica Neue', helvetica, arial, sans-serif;
             text-shadow: 0 1px 0 #fff;
@@ -54,7 +53,7 @@
         }
 
         th {
-            background: url(https://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(#777, #444);
+            background: linear-gradient(#777, #444);
             border-left: 1px solid #555;
             border-right: 1px solid #777;
             border-top: 1px solid #555;
@@ -107,14 +106,6 @@
             box-shadow: inset -1px 0 0 #fff;
         }
 
-        tr {
-            background: url(https://jackrugile.com/images/misc/noise-diagonal.png);
-        }
-
-        tr:nth-child(odd) td {
-            background: #f1f1f1 url(https://jackrugile.com/images/misc/noise-diagonal.png);
-        }
-
         tr:last-of-type td {
             box-shadow: inset 0 -1px 0 #fff;
         }
@@ -138,18 +129,5 @@
         }
     </style>
 </head>
-<%--<body>
-<h1>${requestScope.header}</h1><br><br>
-<table>
-    <c:forEach items="${requestScope.body}" var="Log" >
-        <tr>
-            <th>${Log.id}</th>
-            <th>${Log.time}</th>
-            <th>${Log.level}</th>
-            <th>${Log.message}</th>
-        </tr>
-    </c:forEach>
-</table>
-</body>--%>
 </html>
 
