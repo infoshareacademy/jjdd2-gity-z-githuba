@@ -2,7 +2,6 @@ package pl.infoshareacademy.model;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table
 public class Files {

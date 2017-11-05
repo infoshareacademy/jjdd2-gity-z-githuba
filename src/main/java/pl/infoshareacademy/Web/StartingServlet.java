@@ -1,6 +1,10 @@
 package pl.infoshareacademy.Web;
 
 import com.auth0.SessionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import pl.infoshareacademy.service.LogPatternDemo;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +15,12 @@ import java.io.IOException;
 
 @WebServlet("/portal/index")
 public class StartingServlet extends HttpServlet {
+
+    /*private Logger log = LoggerFactory.getLogger(StartingServlet.class);
+
+    @Inject
+    LogPatternDemo logPatternDemo;*/
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String accessToken = (String) SessionUtils.get(req, "accessToken");
