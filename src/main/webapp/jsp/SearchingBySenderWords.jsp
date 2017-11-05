@@ -83,9 +83,9 @@
                                         words</label>
                                     <div class="col-md-4">
                                         <div class="input-group">
-              <span class="input-group-addon">
-                  <input type="checkbox" name="searchword" value="searchword">
-              </span>
+                                            <%--<span class="input-group-addon">--%>
+                                            <%--<input type="checkbox" name="searchword" value="searchword">--%>
+                                            <%--</span>--%>
                                             <input id="prependedcheckbox" name="sender" class="form-control"
                                                    placeholder="Your word here" type="text">
                                         </div>
@@ -97,7 +97,12 @@
                                     <div class="col-md-4">
                                         <select id="selectbasic" name="tolanguage" class="form-control">
                                             <option value="no">Do not translate</option>
-                                            <option value="pl">Option two</option>
+                                            <option value="pl">Polish</option>
+                                            <option value="en">English</option>
+                                            <option value="it">Italian</option>
+                                            <option value="sp">Spain</option>
+                                            <option value="el">Greek</option>
+                                            <option value="fr">French</option>
                                         </select>
                                     </div>
                                 </div>

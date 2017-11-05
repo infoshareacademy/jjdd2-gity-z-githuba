@@ -42,11 +42,6 @@ public class OauthServlet extends HttpServlet {
             redirectUri.append(":").append(request.getServerPort());
         }
         redirectUri.append(request.getContextPath()).append("/redirect-servlet");
-
-
-
-
-
         String srch = request.getParameter("srch");
         AuthorizationCodeRequestUrl authorizationUrl;
         if (Constants.flow == null) {
