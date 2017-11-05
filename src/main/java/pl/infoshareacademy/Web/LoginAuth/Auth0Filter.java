@@ -3,12 +3,12 @@ package pl.infoshareacademy.Web.LoginAuth;
 import com.auth0.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
 
 @WebFilter("/portal/*")
 public class Auth0Filter implements Filter {
@@ -28,7 +28,7 @@ public class Auth0Filter implements Filter {
             res.sendRedirect(request.getServletContext().getContextPath() + "/login");
             return;
         }
-        logger.info("Access granted!" );
+        logger.info("User with id token:{} Access granted with {} !", idToken, accessToken);
         next.doFilter(request, response);
     }
 

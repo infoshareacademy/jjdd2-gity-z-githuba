@@ -1,6 +1,7 @@
 package pl.infoshareacademy.Web;
 
 import com.auth0.SessionUtils;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,12 @@ import java.io.IOException;
 
 @WebServlet("/portal/index")
 public class StartingServlet extends HttpServlet {
+
+    /*private Logger log = LoggerFactory.getLogger(StartingServlet.class);
+
+    @Inject
+    LogPatternDemo logPatternDemo;*/
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String accessToken = (String) SessionUtils.get(req, "accessToken");
@@ -21,7 +28,7 @@ public class StartingServlet extends HttpServlet {
             req.setAttribute("userId", idToken);
         }
         RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher("/jsp/welcome.jsp");
+                .getRequestDispatcher("/jsp/file_upload.jsp");
         dispatcher.forward(req, resp);
     }
 }

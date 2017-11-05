@@ -1,27 +1,18 @@
 package pl.infoshareacademy.mail;
 
-import javax.ejb.Singleton;
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-@Singleton
-public class TempFilePath {
+@SessionScoped
+public class TempFilePath implements Serializable {
 
-    String tempFilePath="";
+    String tempFilePath;
     String checkboxWord ;
     String checkboxWebsite;
     String checkboxPhone ;
     String checkboxEmails;
-
-    public String getTempFilePath() {
-        return tempFilePath;
-    }
-
-    public void setTempFilePath(String tempFilePath) {
-        this.tempFilePath = tempFilePath;
-    }
-
     List<String> keywordsFromServletForm = new ArrayList<>();
 
     public List<String> getKeywordsFromServletForm() {
@@ -68,5 +59,13 @@ public class TempFilePath {
         checkboxWebsite=null;
         checkboxPhone=null;
         checkboxEmails=null;
+    }
+
+    public String getTempFilePath() {
+        return tempFilePath;
+    }
+
+    public void setTempFilePath(String tempFilePath) {
+        this.tempFilePath = tempFilePath;
     }
 }
