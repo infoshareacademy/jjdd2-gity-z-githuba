@@ -1,46 +1,59 @@
 package pl.infoshareacademy.Web;
 
-import pl.infoshareacademy.service.LogDAOImpl;
-
+import pl.infoshareacademy.model.Log;
+import pl.infoshareacademy.service.LogDAO;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.QueryParam;
 import java.io.IOException;
+import java.time.LocalTime;
 
 @WebServlet("/LogServlet")
 public class LogServlet extends HttpServlet {
 
     @Inject
-    LogDAOImpl logDAO;
-
-    @QueryParam("action") public String action;
-    @QueryParam("getbyid_ID") int getId;
-    @QueryParam("getbyrangemin") int idMin;
-    @QueryParam("getbyrangemax") int idMax;
-    @QueryParam("id") int deleteId;*/
+    private LogDAO logDAO;
 
     protected void doGet(HttpServletRequest req,
                          HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Atrbuted i got" + action + getId);
-        req.getAttribute("id");
+        String action = req.getParameter("action");
         switch (action) {
             case "getbyid":
+                String getId = req.getParameter("getbyid_ID");
+                System.out.println("Mam atrybuty: " + action + getId);
                 req.setAttribute("header", "Get by id result:" + getId);
-                req.setAttribute("body", logDAO.getLogById(getId));
-                req.getRequestDispatcher("/logresponse.jsp").include(req, resp);
+                req.setAttribute("body", logDAO.getLogById(Integer.parseInt(getId)));
+                req.getRequestDispatcher("jsp/logresponse_single.jsp").forward(req, resp);
+                break;
             case "getbyrange":
-                logDAO.getLogsByIdRange(idMin, idMax);
+                String idMin = req.getParameter("getbyrangemin");
+                String idMax = req.getParameter("getbyrangemax");
+                System.out.println();
+                System.out.println("              " + idMin + "    " + idMax);
+                req.setAttribute("header", "Get Logs by range " + idMin + " - " + idMax);
+                req.setAttribute("body", logDAO.getLogsByIdRange((Integer.parseInt(idMin)), (Integer.parseInt(idMax))));
+                req.getRequestDispatcher("jsp/logresponse_multi.jsp").include(req, resp);
+                break;
             case "getall":
-                logDAO.getAllLogs();
+                req.setAttribute("body", logDAO.getAllLogs());
+                req.setAttribute("header", "Get all logs:");
+                req.getRequestDispatcher("jsp/logresponse_multi.jsp").forward(req, resp);
+                break;
             case "deletebyid":
+                Integer deleteId = Integer.parseInt(req.getParameter("id"));
                 logDAO.deleteLogById(deleteId);
+                resp.sendError(200, "Log has been deleted.");
+                break;
             case "deleteall":
                 logDAO.deleteAllLogs();
+                resp.sendError(200, "All logs has been deleted.");
+                break;
+            default :
+                resp.sendError(200, "Unexpected action! Are you really trying to break me? :(");
+                break;
         }
-
     }
 }

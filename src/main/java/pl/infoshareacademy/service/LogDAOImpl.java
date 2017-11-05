@@ -1,10 +1,10 @@
+/*
 package pl.infoshareacademy.service;
 
 import pl.infoshareacademy.model.Log;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LogDAOImpl implements LogDAO {
@@ -16,27 +16,23 @@ public class LogDAOImpl implements LogDAO {
 
     @Override
     public Log getLogById(Integer id){
-        /*Log log = em.find(Log.class, id);
-        return log;*/
-        Log log = (Log) em.createQuery("SELECT id, message, time FROM Log WHERE id=" + id);
+        Log log = em.find(Log.class, id);
         return log;
     }
 
     @Override
     public List<Log> getAllLogs() {
         return em.createQuery("FROM Log").getResultList();
-
     }
 
     @Override
     public List<Log> getLogsByIdRange(Integer min, Integer max) {
-        List<Log> result = Collections.emptyList();
+        List<Log> result = new ArrayList<>();
         for (int i = min; i <= max; i++) {
             Log log = em.find(Log.class, i);
             result.add(log);
         }
         return result;
-
     }
 
     @Override
@@ -56,7 +52,20 @@ public class LogDAOImpl implements LogDAO {
 
     @Override
     public void deleteAllLogs() {
-        em.createQuery("DELETE FROM Log").executeUpdate();
+        */
+/*em.createQuery("DELETE FROM Log").executeUpdate();*//*
+
+
+    }
+
+    public void addLog() {
+        Log log = new Log();
+        log.setMessage("Test msg");
+        log.setLevel("INFO");
+
+        em.joinTransaction();
+        em.persist(log);
     }
 }
 
+*/
