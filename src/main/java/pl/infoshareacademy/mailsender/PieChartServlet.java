@@ -101,6 +101,7 @@ public class PieChartServlet extends HttpServlet {
             String from = "gityzgithuba@gmail.com";
             String body = "";
 
+            String title = "Report";
             final int WIDTH = 500;
             final int HEIGHT = 400;
             BufferedImage chartsImage = new BufferedImage(
@@ -109,7 +110,6 @@ public class PieChartServlet extends HttpServlet {
             Graphics g = chartsImage.getGraphics();
             int x = 0, y = 0;
             for (int i = 0; i < 4; i++) {
-                String title = "Report";
 
                 chart = createChart(createDatasetFromHMap(hashMaps.get(i), 5), title);
 
@@ -129,16 +129,14 @@ public class PieChartServlet extends HttpServlet {
                 }
 
             }
-            MailUtilGmail.sendMail(to, from, "Report", body, true, files);
+            MailUtilGmail.sendMail(to, from, title, body, true, files);
             ServletOutputStream os = response.getOutputStream();
             response.setContentType("image/jpg");
             ImageIO.write(chartsImage, "png", os);
             os.flush();
             os.close();
-            response.sendRedirect("display");
         } catch (MessagingException | UnsupportedEncodingException ex) {
             Logger.getLogger(PieChartServlet.class.getName()).log(Level.SEVERE, null, ex);
-            response.sendRedirect("display");
         }
     }
 

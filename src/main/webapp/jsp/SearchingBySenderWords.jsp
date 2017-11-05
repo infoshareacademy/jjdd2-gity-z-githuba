@@ -32,7 +32,7 @@
 
             if (word === '') {
                 word = event.target.innerText;
-
+            }
             $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
                 $("#success-alert").slideUp(500);
             });
@@ -48,10 +48,10 @@
                     $this.removeClass('panel-collapsed');
                     $this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
                 }
-            })
+            });
 
 
-        });
+        );
 
     </script>
 </head>
