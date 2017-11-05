@@ -59,8 +59,6 @@
     <a href="${pageContext.request.contextPath}/jsp/keywords.jsp">Helper</a>
     <c:if test="${isAdmin}">
         <a href="${pageContext.request.contextPath}/jsp/adminPanel.jsp">Helper</a>
-
-
     </c:if>
 </div>
 <script>
