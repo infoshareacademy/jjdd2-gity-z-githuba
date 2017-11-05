@@ -81,19 +81,19 @@ public class FileUploadServlet extends HttpServlet {
     private boolean isValidMailFile(Part part) {
         if (part.getSubmittedFileName() == null) {
             uploadStatusNotOK.add("File to upload not selected");
-            logger.info("upload with no file selected");
+            logDAO.saveLogToDatabase("WARNING", "Upload with no files selected");
             return false;
         }
 
         if (!((part.getContentType().contains("mbox")) || (part.getContentType().contains("rfc822")))) {
             uploadStatusNotOK.add(part.getSubmittedFileName() + ": is not an mbox/eml file type");
-            logger.info("Added {} to NotOK:not an mbox/eml file type!", part.getSubmittedFileName());
+            logDAO.saveLogToDatabase("INFO", "Added {} to NotOK:not an mbox/eml file type!" + part.getSubmittedFileName() );
             return false;
         }
 
         if (part.getSize() == 0) {
             uploadStatusNotOK.add(part.getSubmittedFileName() + ": is empty");
-            logger.info("Added {} to NotOK:empty", part.getSubmittedFileName());
+            logDAO.saveLogToDatabase("INFO", "Added {} to NotOK:empty" + part.getSubmittedFileName());
             return false;
         }
 
@@ -109,14 +109,14 @@ public class FileUploadServlet extends HttpServlet {
                 try {
                     mboxParser.run(mailBox);
                 } catch (Exception ebox) {
-                    logger.warn("cant parse mbox " + f.getName(), ebox);
+                    logDAO.saveLogToDatabase("WARNING", "cant parse mbox " + f.getName());
                     uploadStatusOKButWarn.add(f.getName() + ": contains some lock markers that can cause our program to display messages incorrectly");
                 }
             } else if (pathToParse.endsWith("eml")) {
                 try {
                     EmlParser.parseEml(pathToParse, mailBox);
                 } catch (Exception eeml) {
-                    logger.warn("cant parse eml " + f.getName(), eeml);
+                    logDAO.saveLogToDatabase("WARNING", "cant parse eml " + f.getName());
                     uploadStatusOKButWarn.add(f.getName() + ": contains some lock markers that can cause our program to display messages incorrectly");
                 }
             }

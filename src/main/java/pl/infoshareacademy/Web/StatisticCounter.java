@@ -38,5 +38,4 @@ public class StatisticCounter extends HttpServlet {
                 .getRequestDispatcher("/jsp/Displayreport.jsp");
         dispatcher.forward(req, resp);
     }
-
 }
