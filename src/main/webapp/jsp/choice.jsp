@@ -16,12 +16,6 @@
         .navbar-toggle {
             z-index:3;
         }
-        .color-green{
-            color: lawngreen;
-        }
-        .color-red {
-            color: red;
-        }
         p {
             padding-top: 70px;
             color: #d7ceb2;
@@ -52,7 +46,6 @@
             </div>
             <div class="col-md-4"></div>
         </div>
-        <%--<div class="row"><jsp:include page="../shared/footer.jsp"/></div>--%>
     </div>
 </body>
 </html>

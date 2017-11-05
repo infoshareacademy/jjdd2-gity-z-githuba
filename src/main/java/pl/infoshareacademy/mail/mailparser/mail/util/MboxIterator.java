@@ -19,7 +19,12 @@ package pl.infoshareacademy.mail.mailparser.mail.util;
  * under the License.                                           *
  ****************************************************************/
 
-import java.io.*;
+import java.io.CharConversionException;
+import java.io.Closeable;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.Buffer;
 import java.nio.CharBuffer;
 import java.nio.MappedByteBuffer;
