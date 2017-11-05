@@ -1,9 +1,6 @@
 package pl.infoshareacademy.Web;
 
 import com.auth0.SessionUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import pl.infoshareacademy.service.LogPatternDemo;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

@@ -7,6 +7,7 @@ import pl.infoshareacademy.mail.mailparser.EmlParser;
 import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
 import pl.infoshareacademy.service.LogDAO;
+
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -79,7 +80,7 @@ public class FileUploadServlet extends HttpServlet {
     }
 
     private boolean isValidMailFile(Part part) {
-        if(part.getSubmittedFileName() == null) {
+        if (part.getSubmittedFileName() == null) {
             uploadStatusNotOK.add("File to upload not selected");
             logDAO.saveLogToDatabase("WARNING", "Upload with no files selected");
             return false;
@@ -87,7 +88,7 @@ public class FileUploadServlet extends HttpServlet {
 
         if (!((part.getContentType().contains("mbox")) || (part.getContentType().contains("rfc822")))) {
             uploadStatusNotOK.add(part.getSubmittedFileName() + ": is not an mbox/eml file type");
-            logDAO.saveLogToDatabase("INFO", "Added {} to NotOK:not an mbox/eml file type!" + part.getSubmittedFileName() );
+            logDAO.saveLogToDatabase("INFO", "Added {} to NotOK:not an mbox/eml file type!" + part.getSubmittedFileName());
             return false;
         }
 

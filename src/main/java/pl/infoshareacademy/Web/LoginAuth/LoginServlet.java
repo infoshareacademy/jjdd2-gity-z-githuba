@@ -3,6 +3,7 @@ package pl.infoshareacademy.Web.LoginAuth;
 import com.auth0.AuthenticationController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,7 +34,6 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse res) throws ServletException, IOException {
-
         StringBuilder redirectUri = new StringBuilder();
         redirectUri.append(req.getScheme()).append("://");
         redirectUri.append(req.getServerName());

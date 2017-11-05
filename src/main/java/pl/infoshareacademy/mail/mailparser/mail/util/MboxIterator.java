@@ -19,12 +19,7 @@ package pl.infoshareacademy.mail.mailparser.mail.util;
  * under the License.                                           *
  ****************************************************************/
 
-import java.io.CharConversionException;
-import java.io.Closeable;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.nio.Buffer;
 import java.nio.CharBuffer;
 import java.nio.MappedByteBuffer;
@@ -71,7 +66,7 @@ public class MboxIterator implements Iterable<CharBufferWrapper>, Closeable {
                          final String regexpPattern,
                          final int regexpFlags,
                          final int MAX_MESSAGE_SIZE)
-            throws FileNotFoundException, IOException, CharConversionException {
+            throws IOException {
         //TODO: do better exception handling - try to process some of them maybe?
         this.maxMessageSize = MAX_MESSAGE_SIZE;
         this.MESSAGE_START = Pattern.compile(regexpPattern, regexpFlags);
@@ -255,7 +250,7 @@ public class MboxIterator implements Iterable<CharBufferWrapper>, Closeable {
             return this;
         }
 
-        public MboxIterator build() throws FileNotFoundException, IOException {
+        public MboxIterator build() throws IOException {
             return new MboxIterator(file, charset, regexpPattern, flags, maxMessageSize);
         }
     }

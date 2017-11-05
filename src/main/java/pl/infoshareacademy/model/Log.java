@@ -52,11 +52,11 @@ public class Log {
         this.time = time;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
     public String getLevel() {
         return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 }

@@ -4,10 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.ejb.Singleton;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Singleton
 public class StatisticBean {
@@ -15,46 +12,50 @@ public class StatisticBean {
     private Map<String, Integer> mapWebsite = new HashMap<>();
     private Map<String, Integer> mapPhone = new HashMap<>();
     private Map<String, Integer> mapEmails = new HashMap<>();
+    private List<String> adminPannelAccessUsers = new ArrayList<>();
     private final Logger logger = LogManager.getLogger(getClass());
 
+
     public void countWords(List<String> listofWords, Map<String, Integer> mapToCount) {
-        if (!listofWords.isEmpty()) {
-            for (String list : listofWords) {
-                if (mapToCount.containsKey(list.toLowerCase())) {
-                    if (!listofWords.contains("Empty")){
-                        try {
-                            mapToCount.put(list.toLowerCase(),
-                                    mapToCount.get(list.toLowerCase())
-                                            + 1);
-                        } catch (NullPointerException ex) {
-                            logger.warn("Empty map {} {}",list,listofWords);
-                            logger.warn(ex);
-                        }
-                    }
-                } else {
-                    mapToCount.put(list.toLowerCase(), 1);
+        for (String list : listofWords) {
+            if (mapToCount.containsKey(list.toLowerCase())) {
+                try {
+                    mapToCount.put(list.toLowerCase(), mapToCount.get(list) + 1);
+                } catch (NullPointerException ex) {
+                    logger.warn("Empty map {} {}", list, listofWords);
                 }
+            } else {
+                mapToCount.put(list.toLowerCase(), 1);
             }
         }
     }
 
     public void countWords(Set<String> listofWords, Map<String, Integer> mapToCount) {
-        if (!listofWords.isEmpty()) {
-            for (String list : listofWords) {
-                if (mapToCount.containsKey(list.toLowerCase())) {
-                    if (!listofWords.contains("Empty")){
-                        try {
-                            mapToCount.put(list.toLowerCase(), mapToCount.get(list.toLowerCase()) + 1);
-                        } catch (NullPointerException ex) {
-                            logger.warn("Empty set {} {}",list,listofWords);
-                            logger.warn(ex);
-                        }
-                    }
-                } else {
-                    mapToCount.put(list.toLowerCase(), 1);
+        for (String list : listofWords) {
+            if (mapToCount.containsKey(list.toLowerCase())) {
+                try {
+                    mapToCount.put(list.toLowerCase(), mapToCount.get(list) + 1);
+                } catch (NullPointerException ex) {
+                    logger.warn("Empty map {} {}", list, listofWords);
                 }
+            } else {
+                mapToCount.put(list.toLowerCase(), 1);
             }
         }
+    }
+
+    public List<String> getAdminPannelAccessUsers() {
+        return adminPannelAccessUsers;
+    }
+
+    public void setAdminPannelAccessUsers(List<String> adminPannelAccessUsers) {
+        this.adminPannelAccessUsers = adminPannelAccessUsers;
+    }
+    public void addAdmintoList(){
+        adminPannelAccessUsers.add("google-oauth2|113092233730131915485");
+    }
+    public boolean isAdmin(String user){
+        return adminPannelAccessUsers.contains(user);
     }
 
     public Map<String, Integer> getMapKeyWords() {

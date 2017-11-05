@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:if test="${empty isAdmin}">
+    <c:redirect url="sender"/>
+</c:if>
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -8,8 +11,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
+        google.charts.load('current', {'packages': ['corechart']});
         google.charts.setOnLoadCallback(drawChart);
+
         function drawChart() {
 
             var data = google.visualization.arrayToDataTable([
@@ -29,8 +33,9 @@
         }
     </script>
     <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
+        google.charts.load('current', {'packages': ['corechart']});
         google.charts.setOnLoadCallback(drawChart);
+
         function drawChart() {
 
             var data = google.visualization.arrayToDataTable([
@@ -50,7 +55,7 @@
         }
     </script>
     <script type="text/javascript">
-        google.charts.load("current", {packages:["corechart"]});
+        google.charts.load("current", {packages: ["corechart"]});
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
@@ -70,8 +75,9 @@
         }
     </script>
     <script type="text/javascript">
-        google.charts.load("current", {packages:["corechart"]});
+        google.charts.load("current", {packages: ["corechart"]});
         google.charts.setOnLoadCallback(drawChart);
+
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
                 ['Website', 'Quantity'],
@@ -91,11 +97,15 @@
     </script>
 </head>
 <body>
-<p></p>
-<div class="row"><jsp:include page="../shared/menu.jsp"/></div>
-<div id="pieWord" style="width: 900px; height: 500px; float: left"></div>
-    <div id="pieEmails" style="width: 900px; height: 500px; float: left"></div>
-    <div id="piePhones" style="width: 900px; height: 500px; float: left"></div>
-    <div id="pieWebsites" style="width: 900px; height: 500px; float: left"></div>
+<jsp:include page="../shared/menu.jsp"/>
+<div id="main">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+    <div class="container">
+        <div id="pieWord" style="width: 900px; height: 500px; float: left"></div>
+        <div id="pieEmails" style="width: 900px; height: 500px; float: left"></div>
+        <div id="piePhones" style="width: 900px; height: 500px; float: left"></div>
+        <div id="pieWebsites" style="width: 900px; height: 500px; float: left"></div>
+    </div>
+</div>
 </body>
 </html>

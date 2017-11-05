@@ -21,7 +21,7 @@ services:
       - DATASOURCE_NAME=java:jboss/datasources/gity-db
     ports:
       - 4040:8080
-      - 4041:9990
+      - 4044:9990
     depends_on:
       - jjdd2-stub-db
     links:
