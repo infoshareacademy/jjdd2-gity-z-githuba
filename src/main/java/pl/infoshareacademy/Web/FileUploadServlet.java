@@ -6,6 +6,7 @@ import pl.infoshareacademy.mail.TempFilePath;
 import pl.infoshareacademy.mail.mailparser.EmlParser;
 import pl.infoshareacademy.mail.mailparser.MailBox;
 import pl.infoshareacademy.mail.mailparser.MboxParser;
+
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -85,7 +86,7 @@ public class FileUploadServlet extends HttpServlet {
     }
 
     private boolean isValidMailFile(Part part) {
-        if(part.getSubmittedFileName() == null) {
+        if (part.getSubmittedFileName() == null) {
             uploadStatusNotOK.add("File to upload not selected");
             logger.info("upload with no file selected");
             return false;
