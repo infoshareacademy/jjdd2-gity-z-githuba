@@ -9,10 +9,17 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
-@WebFilter("/portal/*")
+@WebFilter("/*")
 public class Auth0Filter implements Filter {
     private static final Logger logger = LogManager.getLogger(Auth0Filter.class.getName());
+
+    private static final Set<String> ALLOWED_PATHS = Collections.unmodifiableSet(new HashSet<>(
+            Arrays.asList("", "/", "/login", "/callback", "/logout", "/shared/email-logo.jpg", "/shared/good-bye.jpeg")));
 
     public void init(FilterConfig filterConfig) throws ServletException {
     }
@@ -23,13 +30,16 @@ public class Auth0Filter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         String accessToken = (String) SessionUtils.get(req, "accessToken");
         String idToken = (String) SessionUtils.get(req, "idToken");
-        if (accessToken == null && idToken == null) {
+        String path = ((HttpServletRequest) request).getRequestURI().substring(((HttpServletRequest) request).getContextPath().length()).replaceAll("[/]+$", "");
+        boolean allowedPath = ALLOWED_PATHS.contains(path);
+        boolean IsNotLogged = accessToken == null && idToken == null;
+        if (IsNotLogged && !allowedPath) {
             logger.info("Anonymous user. Redirected to login menu.");
             res.sendRedirect(request.getServletContext().getContextPath() + "/login");
             return;
         }
-        logger.info("User with id token:{} Access granted with {} !", idToken, accessToken);
         next.doFilter(request, response);
+        logger.info("User with id token:{} Access granted with {} !", idToken, accessToken);
     }
 
     public void destroy() {
