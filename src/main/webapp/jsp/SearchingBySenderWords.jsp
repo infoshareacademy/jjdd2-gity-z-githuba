@@ -103,24 +103,24 @@
                                     </div>
                                 </div>
 
-                                <!-- Multiple Checkboxes (inline) -->
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="checkboxes">Search also</label>
-                                    <div class="col-md-4">
-                                        <label class="checkbox-inline" for="checkboxes-0">
-                                            <input name="Websites" id="checkboxes-0" value="1" type="checkbox">
-                                            Websites
-                                        </label>
-                                        <label class="checkbox-inline" for="checkboxes-1">
-                                            <input name="Phonenumbers" id="checkboxes-1" value="2" type="checkbox">
-                                            Phone numbers
-                                        </label>
-                                        <label class="checkbox-inline" for="checkboxes-2">
-                                            <input name="Emails" id="checkboxes-2" value="3" type="checkbox">
-                                            Emails
-                                        </label>
-                                    </div>
-                                </div>
+                                <%--<!-- Multiple Checkboxes (inline) -->--%>
+                                <%--<div class="form-group">--%>
+                                <%--<label class="col-md-4 control-label" for="checkboxes">Search also</label>--%>
+                                <%--<div class="col-md-4">--%>
+                                <%--<label class="checkbox-inline" for="checkboxes-0">--%>
+                                <%--<input name="Websites" id="checkboxes-0" value="1" type="checkbox">--%>
+                                <%--Websites--%>
+                                <%--</label>--%>
+                                <%--<label class="checkbox-inline" for="checkboxes-1">--%>
+                                <%--<input name="Phonenumbers" id="checkboxes-1" value="2" type="checkbox">--%>
+                                <%--Phone numbers--%>
+                                <%--</label>--%>
+                                <%--<label class="checkbox-inline" for="checkboxes-2">--%>
+                                <%--<input name="Emails" id="checkboxes-2" value="3" type="checkbox">--%>
+                                <%--Emails--%>
+                                <%--</label>--%>
+                                <%--</div>--%>
+                                <%--</div>--%>
 
                                 <!-- Button -->
                                 <div class="form-group">

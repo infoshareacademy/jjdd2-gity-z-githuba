@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet({"/logout"})
+@WebServlet({"portal/logout"})
 public class LogoutServlet extends HttpServlet {
     private static final Logger logger = LogManager.getLogger(LogoutServlet.class.getName());
 
