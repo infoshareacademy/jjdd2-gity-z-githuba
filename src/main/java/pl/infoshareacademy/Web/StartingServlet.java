@@ -16,11 +16,6 @@ import java.io.IOException;
 @WebServlet("/portal/index")
 public class StartingServlet extends HttpServlet {
 
-    /*private Logger log = LoggerFactory.getLogger(StartingServlet.class);
-
-    @Inject
-    LogPatternDemo logPatternDemo;*/
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String accessToken = (String) SessionUtils.get(req, "accessToken");

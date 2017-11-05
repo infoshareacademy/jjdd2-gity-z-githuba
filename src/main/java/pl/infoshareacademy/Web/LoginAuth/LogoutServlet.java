@@ -1,7 +1,7 @@
 package pl.infoshareacademy.Web.LoginAuth;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import pl.infoshareacademy.service.LogDAO;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,12 +11,14 @@ import java.io.IOException;
 
 @WebServlet({"/logout"})
 public class LogoutServlet extends HttpServlet {
-    private static final Logger logger = LogManager.getLogger(LogoutServlet.class.getName());
+
+    @Inject
+    LogDAO logDAO;
 
     @Override
     protected void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession() != null) {
-            logger.info("User has logged out!");
+            logDAO.saveLogToDatabase("INFO", "User has logged out!");
             request.getSession().invalidate();
         }
         response.sendRedirect("jsp/exit.jsp");
