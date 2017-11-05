@@ -80,6 +80,7 @@
             </div>
             <br/>
         </c:if>
+        <c:if test="${not empty keywords}">
         <div class="row">
             <div class="col-md-offset-0"></div>
             <div class="col-md-offset-0">
@@ -100,6 +101,25 @@
                         </div>
                     </div>
                     <br/>
+                    </c:if>
+                    <c:if test="${empty question}">
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Emails</h3>
+                                    <span class="pull-right clickable"><i
+                                            class="glyphicon glyphicon-chevron-up"></i></span>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="keywords">
+                                        <p>Input searching word</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                    </c:if>
+
                     <c:if test="${not empty question}">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -208,6 +228,23 @@
                                             <c:out value="${foundEmails}"/>
                                             <br>
                                         </c:forEach>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                    </c:if>
+                    <c:if test="${empty question}">
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Emails</h3>
+                                    <span class="pull-right clickable"><i
+                                            class="glyphicon glyphicon-chevron-up"></i></span>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="keywords">
+                                        <p>Message not found</p>
                                     </div>
                                 </div>
                             </div>

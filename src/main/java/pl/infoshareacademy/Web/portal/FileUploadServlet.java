@@ -135,4 +135,14 @@ public class FileUploadServlet extends HttpServlet {
         }
         return "";
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        req.setAttribute("fileOK", uploadStatusOK);
+        req.setAttribute("fileNotOK", uploadStatusNotOK);
+        req.setAttribute("fileWarn", uploadStatusOKButWarn);
+        getServletContext().getRequestDispatcher("/shared/check_files.jsp").forward(
+                req, resp);
+    }
 }
