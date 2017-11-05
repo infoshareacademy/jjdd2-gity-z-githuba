@@ -52,13 +52,13 @@
 </style>
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="${pageContext.request.contextPath}/jsp/index3.jsp">Home</a></li>
+    <a href="${pageContext.request.contextPath}/jsp/choice.jsp">Home</a></li>
     <a href="${pageContext.request.contextPath}/jsp/file_upload.jsp">Upload Files</a>
     <a href="${pageContext.request.contextPath}/checkFiles">Check files</a>
-    <a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp">Keywords</a>
-    <a href="${pageContext.request.contextPath}/jsp/keywords.jsp">Helper</a>
+    <a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp">Search</a>
+    <a href="${pageContext.request.contextPath}/portal/logout">Logout</a>
     <c:if test="${isAdmin}">
-        <a href="${pageContext.request.contextPath}/jsp/adminPanel.jsp">Helper</a>
+        <a href="${pageContext.request.contextPath}/jsp/adminPanel.jsp">Admin Panel</a>
     </c:if>
 </div>
 <script>
