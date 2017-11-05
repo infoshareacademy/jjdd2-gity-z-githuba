@@ -1,4 +1,4 @@
-package pl.infoshareacademy.Web;
+package pl.infoshareacademy.Web.portal;
 
 import pl.infoshareacademy.TranslateAPI.GoogleTranslate;
 import pl.infoshareacademy.mail.TempFilePath;

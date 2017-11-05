@@ -1,4 +1,4 @@
-package pl.infoshareacademy.Web;
+package pl.infoshareacademy.Web.portal;
 
 import com.google.api.client.auth.oauth2.AuthorizationCodeRequestUrl;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
@@ -24,7 +24,7 @@ public class OauthServlet extends HttpServlet {
 
     private static final Logger logger = LogManager.getLogger(OauthServlet.class.getName());
 
-    private String redirectUri = "http://localhost:4040/EMailApp/redirect-servlet";
+
     private String clientSecret = "xKQQmLnzjgKiNfm-7kZ2Ytup";
     private String clientId = "904227267851-34jmqkr6rtovh3qs4m6alqmlk08sqgn8.apps.googleusercontent.com";
 
@@ -33,6 +33,20 @@ public class OauthServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+//        String redirectUri = request.getScheme()+request.getServerName() +request.getServletContext().getContextPath() + "/login";
+        StringBuilder redirectUri = new StringBuilder();
+        redirectUri.append(request.getScheme()).append("://");
+        redirectUri.append(request.getServerName());
+        if (request.getServerPort() != 80) {
+            redirectUri.append(":").append(request.getServerPort());
+        }
+        redirectUri.append(request.getContextPath()).append("/redirect-servlet");
+
+
+
+
+
         String srch = request.getParameter("srch");
         AuthorizationCodeRequestUrl authorizationUrl;
         if (Constants.flow == null) {
@@ -48,7 +62,7 @@ public class OauthServlet extends HttpServlet {
                 logger.info(ex);
             }
         }
-        authorizationUrl = Constants.flow.newAuthorizationUrl().setRedirectUri(redirectUri).setState(Base64.encode(srch.getBytes()));
+        authorizationUrl = Constants.flow.newAuthorizationUrl().setRedirectUri(String.valueOf(redirectUri)).setState(Base64.encode(srch.getBytes()));
         response.sendRedirect(authorizationUrl.build());
     }
 
