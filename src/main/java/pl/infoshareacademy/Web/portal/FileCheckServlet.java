@@ -62,6 +62,7 @@ public class FileCheckServlet extends HttpServlet {
                     uploadStatusOKButWarn.add(f.getName() + ": contains some lock markers that can cause our program to display messages incorrectly");
                 }
             }
+            f.delete();
         }
     }
 }
