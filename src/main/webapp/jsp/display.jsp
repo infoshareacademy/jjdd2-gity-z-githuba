@@ -80,6 +80,7 @@
             </div>
             <br/>
         </c:if>
+        <c:if test="${not empty keywords}">
         <div class="row">
             <div class="col-md-offset-0"></div>
             <div class="col-md-offset-0">
@@ -100,20 +101,39 @@
                         </div>
                     </div>
                     <br/>
+                    </c:if>
+                    <c:if test="${empty keywods}">
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Keywords</h3>
+                                    <span class="pull-right clickable"><i
+                                            class="glyphicon glyphicon-chevron-up"></i></span>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="keywords">
+                                        <p>Input searching word</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                    </c:if>
+
                     <c:if test="${not empty question}">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Messages matching criteria:</h3>
+                                <h3 class="panel-title">Message</h3>
                                 <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
                             </div>
                             <div class="panel-body">
                                 <div id="sentences">
-                                    <table class="table table-striped">
+                                    <table class="table table-striped" style="width:100%;table-layout:fixed">
                                         <thead>
                                         <tr>
-                                            <th scope="col">From</th>
-                                            <th scope="col">Subject</th>
-                                            <th scope="col">Message</th>
+                                            <th scope="col" style="width:30%">From</th>
+                                            <th scope="col" style="width:30%">Subject</th>
+                                            <th scope="col" style="width:70%">Message</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -125,7 +145,7 @@
                                                 <td>
                                                     <c:out value="${quest.subject}"/>
                                                 </td>
-                                                <td>
+                                                <td style="word-wrap:break-word">
                                                     <c:out value="${quest.message}"/>
                                                 </td>
                                             </tr>
@@ -136,43 +156,49 @@
                                                             <button type="button" class="close" data-dismiss="modal">
                                                                 &times;
                                                             </button>
-                                                            <h4 class="modal-title">Message</h4>
+                                                            <h4 class="modal-title">Modal Header</h4>
                                                         </div>
                                                         <div class="modal-body" id="orderDetails">
                                                             <div class="row" style="margin-top:5px">
                                                                 <div class="col-sm-4">From</div>
-                                                                <div class="col-sm-8"><p
+                                                                <div class="col-sm-8 wordwrap"><p
                                                                         class="text-primary">${quest.from}</p></div>
 
                                                             </div>
                                                             <div class="row" style="margin-top:5px">
                                                                 <div class="col-sm-4">Subject</div>
-                                                                <div class="col-sm-8"><p
+                                                                <div class="col-sm-8 wordwrap"><p
                                                                         class="text-primary">${quest.subject}</p></div>
 
                                                             </div>
                                                             <div class="row" style="margin-top:5px">
                                                                 <div class="col-sm-4">Message</div>
-                                                                <div class="col-sm-8"><p
+                                                                <div class="col-sm-8 wordwrap"><p
                                                                         class="text-primary">${quest.message}</p></div>
 
                                                             </div>
                                                             <div class="row" style="margin-top:5px">
                                                                 <div class="col-sm-4">Sender</div>
-                                                                <div class="col-sm-8"><p
+                                                                <div class="col-sm-8 wordwrap"><p
                                                                         class="text-primary">${quest.sender}</p></div>
 
                                                             </div>
                                                             <div class="row" style="margin-top:5px">
                                                                 <div class="col-sm-4">Date</div>
-                                                                <div class="col-sm-8"><p
+                                                                <div class="col-sm-8 wordwrap"><p
                                                                         class="text-primary">${quest.date}</p></div>
 
                                                             </div>
                                                             <div class="row" style="margin-top:5px">
                                                                 <div class="col-sm-4">To</div>
-                                                                <div class="col-sm-8"><p
+                                                                <div class="col-sm-8 wordwrap"><p
                                                                         class="text-primary">${quest.to}</p></div>
+
+                                                            </div>
+                                                            <div class="row" style="margin-top:5px">
+                                                                <div class="col-sm-4">Reply</div>
+                                                                <div class="col-sm-8 wordwrap "><p
+                                                                        class="text-primary">${quest.reply}</p></div>
 
                                                             </div>
                                                         </div>
@@ -208,6 +234,23 @@
                                             <c:out value="${foundEmails}"/>
                                             <br>
                                         </c:forEach>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                    </c:if>
+                    <c:if test="${empty question}">
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Emails</h3>
+                                    <span class="pull-right clickable"><i
+                                            class="glyphicon glyphicon-chevron-up"></i></span>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="keywords">
+                                        <p>Message not found</p>
                                     </div>
                                 </div>
                             </div>

@@ -35,8 +35,6 @@ public class FileUploadServlet extends HttpServlet {
     @Inject
     LogDAO logDAO;
 
-
-
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
 

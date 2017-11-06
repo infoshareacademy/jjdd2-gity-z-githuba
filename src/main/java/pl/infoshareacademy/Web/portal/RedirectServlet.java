@@ -7,7 +7,9 @@ import com.google.api.services.gmail.model.Message;
 import com.google.api.services.gmail.model.MessagePartHeader;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 import pl.infoshareacademy.mail.Email;
+import pl.infoshareacademy.mail.StatisticBean;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +27,8 @@ public class RedirectServlet extends HttpServlet {
     private static final String APPLICATION_NAME = "EMailApp";
     Credential credential;
     private static com.google.api.services.gmail.Gmail client;
-
+    @Inject
+    StatisticBean statisticBean;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
@@ -80,6 +83,7 @@ public class RedirectServlet extends HttpServlet {
             e.printStackTrace();
         }
         req.setAttribute("question",emails);
+        req.setAttribute("keywords", statisticBean.getListofgmailwords());
 
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/jsp/display.jsp");
