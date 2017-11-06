@@ -48,7 +48,7 @@
                                     </select>
                                     <br>
                                 </div>
-                                <button class="btn btn-default" type="submit">Give me the list of keywords!</button>
+                                <button class="btn btn-default" type="submit">Find email</button>
                             </form>
                         </div>
                         <div class="col-md-4"></div>

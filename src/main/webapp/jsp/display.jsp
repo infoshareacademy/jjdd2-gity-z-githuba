@@ -86,7 +86,7 @@
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Keywords</h3>
+                            <h3 class="panel-title">Keywords based on your answers:</h3>
                             <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
                         </div>
                         <div class="panel-body">
@@ -103,7 +103,7 @@
                     <c:if test="${not empty question}">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Messages</h3>
+                                <h3 class="panel-title">Messages matching criteria:</h3>
                                 <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
                             </div>
                             <div class="panel-body">
