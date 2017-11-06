@@ -82,7 +82,8 @@
 
     <div class="container">
         <div class="row">
-            <div method="post" action="../sender" class="form-horizontal">
+                <form method="post" action="../sender" class="form-horizontal">
+            <%--<div method="post" action="../sender" class="form-horizontal">--%>
                 <fieldset>
 
                     <!-- Form Name -->
@@ -135,7 +136,8 @@
                 </fieldset>
                 </form>
             </div>
-
+        </div>
+        <div class="container">
 
             <form method="get" action="../oauth">
                 <div class="panel-group">
@@ -173,6 +175,7 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>
