@@ -16,10 +16,11 @@ import java.util.Set;
 
 @WebFilter("/*")
 public class Auth0Filter implements Filter {
+
     private static final Logger logger = LogManager.getLogger(Auth0Filter.class.getName());
 
     private static final Set<String> ALLOWED_PATHS = Collections.unmodifiableSet(new HashSet<>(
-            Arrays.asList("", "/", "/login", "/callback", "/logout", "/shared/email-logo.jpg", "/shared/good-bye.jpeg")));
+            Arrays.asList("", "/", "/login", "/callback", "/logout", "/shared/email-logo.jpg", "/img/bg-img.jpeg", "/css/common.css")));
 
     public void init(FilterConfig filterConfig) throws ServletException {
     }
