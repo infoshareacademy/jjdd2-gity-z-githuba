@@ -3,7 +3,9 @@ package pl.infoshareacademy.mail;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @SessionScoped
 public class TempFilePath implements Serializable {
@@ -14,6 +16,21 @@ public class TempFilePath implements Serializable {
     String checkboxPhone ;
     String checkboxEmails;
     List<String> keywordsFromServletForm = new ArrayList<>();
+
+    Set<String> uploadStatusOK = new HashSet<>();
+    Set<String> uploadStatusNotOK = new HashSet<>();
+    Set<String> uploadStatusOKButWarn = new HashSet<>();
+
+    public Set<String> getIsParsableCheck() {
+        return isParsableCheck;
+    }
+
+    public void setIsParsableCheck(Set<String> isParsableCheck) {
+        this.isParsableCheck = isParsableCheck;
+    }
+
+    Set<String> isParsableCheck = new HashSet<>();
+
 
     public List<String> getKeywordsFromServletForm() {
         return keywordsFromServletForm;
@@ -49,6 +66,30 @@ public class TempFilePath implements Serializable {
 
     public String getCheckboxEmails() {
         return checkboxEmails;
+    }
+
+    public Set<String> getUploadStatusOK() {
+        return uploadStatusOK;
+    }
+
+    public void setUploadStatusOK(Set<String> uploadStatusOK) {
+        this.uploadStatusOK = uploadStatusOK;
+    }
+
+    public Set<String> getUploadStatusNotOK() {
+        return uploadStatusNotOK;
+    }
+
+    public void setUploadStatusNotOK(Set<String> uploadStatusNotOK) {
+        this.uploadStatusNotOK = uploadStatusNotOK;
+    }
+
+    public Set<String> getUploadStatusOKButWarn() {
+        return uploadStatusOKButWarn;
+    }
+
+    public void setUploadStatusOKButWarn(Set<String> uploadStatusOKButWarn) {
+        this.uploadStatusOKButWarn = uploadStatusOKButWarn;
     }
 
     public void setCheckboxEmails(String checkboxEmails) {

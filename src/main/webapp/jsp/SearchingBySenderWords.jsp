@@ -62,7 +62,6 @@
 
 
     <div class="container">
-        <%--<div class="row"><jsp:include page="../shared/menu.jsp"/></div>--%>
         <div class="row">
             <form method="post" action="../sender" class="form-horizontal">
                 <fieldset>
@@ -73,7 +72,7 @@
                     <!-- Prepended checkbox -->
                     <div class="panel-group">
                         <div class="panel panel-default">
-                            <div class="panel-heading"><h3 class="panel-title">Website</h3>
+                            <div class="panel-heading"><h3 class="panel-title">Keywords</h3>
                                 <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
                             </div>
                             <div class="panel-body">
@@ -83,9 +82,6 @@
                                         words</label>
                                     <div class="col-md-4">
                                         <div class="input-group">
-              <span class="input-group-addon">
-                  <input type="checkbox" name="searchword" value="searchword">
-              </span>
                                             <input id="prependedcheckbox" name="sender" class="form-control"
                                                    placeholder="Your word here" type="text">
                                         </div>
@@ -97,30 +93,15 @@
                                     <div class="col-md-4">
                                         <select id="selectbasic" name="tolanguage" class="form-control">
                                             <option value="no">Do not translate</option>
-                                            <option value="pl">Option two</option>
+                                            <option value="pl">Polish</option>
+                                            <option value="en">English</option>
+                                            <option value="it">Italian</option>
+                                            <option value="sp">Spain</option>
+                                            <option value="el">Greek</option>
+                                            <option value="fr">French</option>
                                         </select>
                                     </div>
                                 </div>
-
-                                <%--<!-- Multiple Checkboxes (inline) -->--%>
-                                <%--<div class="form-group">--%>
-                                <%--<label class="col-md-4 control-label" for="checkboxes">Search also</label>--%>
-                                <%--<div class="col-md-4">--%>
-                                <%--<label class="checkbox-inline" for="checkboxes-0">--%>
-                                <%--<input name="Websites" id="checkboxes-0" value="1" type="checkbox">--%>
-                                <%--Websites--%>
-                                <%--</label>--%>
-                                <%--<label class="checkbox-inline" for="checkboxes-1">--%>
-                                <%--<input name="Phonenumbers" id="checkboxes-1" value="2" type="checkbox">--%>
-                                <%--Phone numbers--%>
-                                <%--</label>--%>
-                                <%--<label class="checkbox-inline" for="checkboxes-2">--%>
-                                <%--<input name="Emails" id="checkboxes-2" value="3" type="checkbox">--%>
-                                <%--Emails--%>
-                                <%--</label>--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
-
                                 <!-- Button -->
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="singlebutton"></label>
@@ -144,8 +125,6 @@
                 <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
             </div>
             <div class="panel-body">
-                <%--<div class="row">--%>
-                <%--<form class="form-horizontal">--%>
                 <fieldset>
 
                     <!-- Search input-->
@@ -167,7 +146,6 @@
                     </div>
                 </fieldset>
 </form>
-<%--<div class="row"><jsp:include page="../shared/footer.jsp"/></div>--%>
 </div>
 
 </form>

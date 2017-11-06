@@ -19,7 +19,7 @@
     <div class="container">
         <div class="panel-group">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3 class="panel-title">Website</h3>
+                <div class="panel-heading"><h3 class="panel-title">Helper</h3>
                     <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
                 </div>
                 <div class="panel-body">
@@ -48,7 +48,7 @@
                                     </select>
                                     <br>
                                 </div>
-                                <button class="btn btn-default" type="submit">Give me the list of keywords!</button>
+                                <button class="btn btn-default" type="submit">Find email</button>
                             </form>
                         </div>
                         <div class="col-md-4"></div>

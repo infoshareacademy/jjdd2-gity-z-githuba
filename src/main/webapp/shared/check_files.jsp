@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -9,7 +9,7 @@
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
     <style>
         .color-orange {
-            color: orange;
+            color: orangered;
         }
 
         .color-green {
@@ -17,7 +17,7 @@
         }
 
         .color-red {
-            color: indianred;
+            color: tomato;
         }
 
         .color-white {
@@ -32,13 +32,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <h2 class="color-white">Valid files:</h2>
+            <h3 class="color-white">Valid files:</h3>
             <c:choose>
-                <c:when test="${empty requestScope.fileOK}">
+                <c:when test="${empty sessionScope.fileOK}">
                     <h3 class="color-red">There is no proper files</h3>
                 </c:when>
                 <c:otherwise>
-                    <c:forTokens items="${requestScope.fileOK}"
+                    <c:forTokens items="${sessionScope.fileOK}"
                                  delims="," var="fileName">
                         <h3 class="color-green"><c:out value="${fileName}"/></h3>
                     </c:forTokens>
@@ -74,8 +74,8 @@
             </c:choose>
         </div>
     </div>
-    <div class="row"></div>
-    <div class="row"></div>
 </div>
+<div class="row"></div>
+<div class="row"></div>
 </body>
 </html>

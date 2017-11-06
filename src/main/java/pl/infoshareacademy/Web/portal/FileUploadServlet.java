@@ -12,10 +12,7 @@ import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
@@ -32,23 +29,20 @@ public class FileUploadServlet extends HttpServlet {
     private static final String UPLOAD_DIR = "uploads";
     private static final Logger logger = LogManager.getLogger(FileUploadServlet.class.getName());
 
-    Set<String> uploadStatusOK = new HashSet<>();
-    Set<String> uploadStatusNotOK = new HashSet<>();
-    Set<String> uploadStatusOKButWarn = new HashSet<>();
-    Set<String> isParsableCheck = new HashSet<>();
-
     @Inject
     TempFilePath filePath;
 
     @Inject
-    MailBox mailBox;
-
-    @Inject
     LogDAO logDAO;
-
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
+
+        Set<String> uploadStatusOK = new HashSet<>();
+        Set<String> uploadStatusNotOK = new HashSet<>();
+        Set<String> uploadStatusOKButWarn = new HashSet<>();
+        Set<String> isParsableCheck = new HashSet<>();
+
         String applicationPath = request.getServletContext().getRealPath("");
         logDAO.saveLogToDatabase("INFO", "Aplication Path: " + applicationPath);
         String uploadFilePath = applicationPath + File.separator + UPLOAD_DIR;
@@ -61,27 +55,34 @@ public class FileUploadServlet extends HttpServlet {
         String fileName = null;
         for (Part part : request.getParts()) {
             fileName = getFileName(part);
-            if (isValidMailFile(part)) {
+            if (isValidMailFile(part, uploadStatusNotOK, uploadStatusOK)) {
                 try {
                     part.write(uploadFilePath + File.separator + fileName);
                     isParsableCheck.add(uploadFilePath + File.separator + fileName);
                     logger.info("Saved {} on upload directory!", fileName);
-                    tryToParse();
                 } catch (FileAlreadyExistsException e) {
                     uploadStatusNotOK.add(part.getSubmittedFileName() +
                             ": that file is already on the list");
                 }
             }
         }
+
+        filePath.setUploadStatusOK(uploadStatusOK);
+        filePath.setUploadStatusOKButWarn(uploadStatusOKButWarn);
+        filePath.setUploadStatusNotOK(uploadStatusNotOK);
+        filePath.setIsParsableCheck(isParsableCheck);
         filePath.setTempFilePath(uploadFilePath + File.separator + fileName);
-        request.setAttribute("fileOK", uploadStatusOK);
-        request.setAttribute("fileNotOK", uploadStatusNotOK);
-        request.setAttribute("fileWarn", uploadStatusOKButWarn);
-        getServletContext().getRequestDispatcher("/shared/check_files.jsp").forward(
-                request, response);
+
+        HttpSession session = request.getSession();
+        session.setAttribute("fileOK", uploadStatusOK);
+        session.setAttribute("fileNotOK", uploadStatusNotOK);
+        session.setAttribute("fileWarn", uploadStatusOKButWarn);
+//        getServletContext().getRequestDispatcher("/shared/check_files.jsp").forward(
+//                request, response);
+        response.sendRedirect("checkFiles");
     }
 
-    private boolean isValidMailFile(Part part) {
+    private boolean isValidMailFile(Part part, Set<String> uploadStatusNotOK, Set<String> uploadStatusOK) {
         if (part.getSubmittedFileName() == null) {
             uploadStatusNotOK.add("File to upload not selected");
             logDAO.saveLogToDatabase("WARNING", "Upload with no files selected");
@@ -104,28 +105,6 @@ public class FileUploadServlet extends HttpServlet {
         return true;
     }
 
-    private void tryToParse() {
-        for (String pathToParse : isParsableCheck) {
-            File f = new File(pathToParse);
-            if (pathToParse.endsWith("mbox")) {
-                MboxParser mboxParser = new MboxParser(pathToParse);
-                try {
-                    mboxParser.run(mailBox);
-                } catch (Exception ebox) {
-                    logDAO.saveLogToDatabase("WARNING", "cant parse mbox " + f.getName());
-                    uploadStatusOKButWarn.add(f.getName() + ": contains some lock markers that can cause our program to display messages incorrectly");
-                }
-            } else if (pathToParse.endsWith("eml")) {
-                try {
-                    EmlParser.parseEml(pathToParse, mailBox);
-                } catch (Exception eeml) {
-                    logDAO.saveLogToDatabase("WARNING", "cant parse eml " + f.getName());
-                    uploadStatusOKButWarn.add(f.getName() + ": contains some lock markers that can cause our program to display messages incorrectly");
-                }
-            }
-        }
-    }
-
     private String getFileName(Part part) {
         String contentDisp = part.getHeader("content-disposition");
         System.out.println("content-disposition header= "+contentDisp);
@@ -137,4 +116,5 @@ public class FileUploadServlet extends HttpServlet {
         }
         return "";
     }
+
 }
