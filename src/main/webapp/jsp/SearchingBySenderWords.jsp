@@ -5,9 +5,28 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
+    <style>
+        .row {
+            margin-top: 40px;
+            padding: 0 10px;
+        }
+
+        .clickable {
+            cursor: pointer;
+        }
+
+        .panel-heading span {
+            margin-top: -20px;
+            font-size: 15px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/highLineEmails.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
     <title>Upload File Response</title>
     <script language="JavaScript">
 
@@ -63,7 +82,7 @@
 
     <div class="container">
         <div class="row">
-            <form method="post" action="../sender" class="form-horizontal">
+            <div method="post" action="../sender" class="form-horizontal">
                 <fieldset>
 
                     <!-- Form Name -->
@@ -72,8 +91,8 @@
                     <!-- Prepended checkbox -->
                     <div class="panel-group">
                         <div class="panel panel-default">
-                            <div class="panel-heading"><h3 class="panel-title">Keywords</h3>
-                                <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+                            <div class="panel-heading"><h3 class="panel-title">Search in file</h3>
+                                <span class="pull-right clickable"></span>
                             </div>
                             <div class="panel-body">
 
@@ -110,45 +129,50 @@
                                         </button>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
                 </fieldset>
+                </form>
+            </div>
+
+
+            <form method="get" action="../oauth">
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h3 class="panel-title">Gmail search</h3>
+                            <span class="pull-right clickable"></span>
+                        </div>
+                        <div class="panel-body">
+                            <fieldset>
+
+                                <!-- Search input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="searchinput">Search in Gmail</label>
+                                    <div class="col-md-4">
+                                        <input id="searchinput" name="srch" placeholder="keyword"
+                                               class="form-control input-md"
+                                               type="search">
+
+                                    </div>
+                                </div>
+
+                                <!-- Button -->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="singlebutton"></label>
+                                    <div class="col-md-4">
+                                        <br>
+                                        <button id="singlebutton" name="singlebutton" class="btn btn-default">Send
+                                        </button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
-</div>
-</div>
-
-
-<form method="get" action="../oauth" class="form-horizontal">
-    <div class="panel-group">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">Website</h3>
-                <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
-            </div>
-            <div class="panel-body">
-                <fieldset>
-
-                    <!-- Search input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="searchinput">Search in Gmail</label>
-                        <div class="col-md-4">
-                            <input id="searchinput" name="srch" placeholder="keyword" class="form-control input-md"
-                                   type="search">
-
-                        </div>
-                    </div>
-
-                    <!-- Button -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="singlebutton"></label>
-                        <div class="col-md-4">
-                            <button id="singlebutton" name="singlebutton" class="btn btn-default">Send</button>
-                        </div>
-                    </div>
-                </fieldset>
-</form>
-</div>
-
-</form>
 </div>
 </body>
 </html>

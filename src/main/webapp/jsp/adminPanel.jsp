@@ -24,14 +24,23 @@
 
         <!-- Button -->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="Report">Report</label>
+            <label class="col-md-4 control-label" for="Report">Show statistic</label>
             <div class="col-md-4">
-                <a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp" class="btn btn-default"
-                   type="button">Show me messages with certain word</a>
-
+                <a href="${pageContext.request.contextPath}/jsp/Displayreport.jsp" class="btn btn-default"
+                   type="button">Show statistic</a>
                 </button>
             </div>
         </div>
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="Top5">Show TOP 5 </label>
+            <div class="col-md-4">
+                <a href="${pageContext.request.contextPath}/pieChart" class="btn btn-default"
+                   type="button">Show me top 5 statistic</a>
+                </button>
+            </div>
+        </div>
+
         <div class="form-group">
             <label class="col-md-4 control-label" for="Logs">Logs</label>
             <div class="col-md-4">
