@@ -11,7 +11,7 @@
 </head>
 <body>
 <table>
-    <tr>
+    <%--<tr>
 <form action=${pageContext.request.contextPath}/LogServlet>
     <td>
         <button class="btn btn-sm btn-default block" type="submit"><i class="glyphicon glyphicon-floppy-save">Get By
@@ -36,7 +36,7 @@
                maxlength="5"></td>
     <input type="hidden" class="block" name="action" value="getbyrange">
 </form>
-    </tr>
+    </tr>--%>
 
     <tr>
 <form action="${pageContext.request.contextPath}/LogServlet">
@@ -48,7 +48,7 @@
 </form>
     </tr>
 
-    <tr>
+    <%--<tr>
 <form action="${pageContext.request.contextPath}/LogServlet">
     <td>
         <button class="btn btn-sm btn-default block" type="submit"><i class="glyphicon glyphicon-floppy-remove">Delete
@@ -58,7 +58,7 @@
     <td><input type="number" min="0" max="999" class="block" name="id" placeholder="ID" size="5" maxlength="5"></td>
     <input type="hidden" class="block" name="action" value="deletebyid">
 </form>
-    </tr>
+    </tr>--%>
 
     <tr>
 <form action="${pageContext.request.contextPath}/LogServlet">
