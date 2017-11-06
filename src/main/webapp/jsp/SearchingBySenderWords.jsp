@@ -72,7 +72,7 @@
                     <!-- Prepended checkbox -->
                     <div class="panel-group">
                         <div class="panel panel-default">
-                            <div class="panel-heading"><h3 class="panel-title">Website</h3>
+                            <div class="panel-heading"><h3 class="panel-title">Keywords</h3>
                                 <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
                             </div>
                             <div class="panel-body">
