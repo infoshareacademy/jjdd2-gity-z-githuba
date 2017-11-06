@@ -51,6 +51,8 @@ public class CallbackServlet extends HttpServlet {
             Tokens tokens = authenticationController.handle(req);
             SessionUtils.set(req, "accessToken", tokens.getAccessToken());
             SessionUtils.set(req, "idToken", tokens.getIdToken());
+            logger.info("Authenticated as id={}", tokens.getIdToken());
+            logger.info("AccessToken={}", tokens.getAccessToken());
             res.sendRedirect(redirectOnSuccess);
         } catch (IdentityVerificationException e) {
             logger.warn("Identity Verification Failed!", e);
