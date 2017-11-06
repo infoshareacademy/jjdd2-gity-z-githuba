@@ -87,7 +87,7 @@
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Keywor:</h3>
+                            <h3 class="panel-title">Searched keywords:</h3>
                             <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
                         </div>
                         <div class="panel-body">
@@ -123,7 +123,7 @@
                     <c:if test="${not empty question}">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Message</h3>
+                                <h3 class="panel-title">Messages containing searched keywords</h3>
                                 <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
                             </div>
                             <div class="panel-body">
@@ -222,7 +222,7 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Emails</h3>
+                                    <h3 class="panel-title">Found email adresses</h3>
                                     <span class="pull-right clickable"><i
                                             class="glyphicon glyphicon-chevron-up"></i></span>
                                 </div>
@@ -244,13 +244,13 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Emails</h3>
+                                    <h3 class="panel-title">Message not found</h3>
                                     <span class="pull-right clickable"><i
                                             class="glyphicon glyphicon-chevron-up"></i></span>
                                 </div>
                                 <div class="panel-body">
                                     <div id="keywords">
-                                        <p>Message not found</p>
+                                        <p>Sorry there are no matching messages</p>
                                     </div>
                                 </div>
                             </div>
@@ -261,7 +261,7 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Phone</h3>
+                                    <h3 class="panel-title">Phone numbers found</h3>
                                     <span class="pull-right clickable"><i
                                             class="glyphicon glyphicon-chevron-up"></i></span>
                                 </div>
@@ -283,7 +283,7 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Website</h3>
+                                    <h3 class="panel-title">Websites and links found</h3>
                                     <span class="pull-right clickable"><i
                                             class="glyphicon glyphicon-chevron-up"></i></span>
                                 </div>
