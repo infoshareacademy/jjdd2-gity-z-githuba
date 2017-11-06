@@ -55,13 +55,11 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-7">
-                <h4>Great! What do you want next?</h4>
                 <div class="btn-group-vertical">
                     <a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp"
                        class="btn btn-default margin-5 size-150vh" type="button">Show me messages with certain word</a>
                     <a href="${pageContext.request.contextPath}/jsp/keywords.jsp"
-                       class="btn btn-default margin-5 size-150vh" type="button">What keywords should I use to find my
-                        email?</a>
+                       class="btn btn-default margin-5 size-150vh" type="button">I'm not really sure what keyword I should choose</a>
                     <a href="${pageContext.request.contextPath}/jsp/file_upload.jsp"
                        class="btn btn-default margin-5 size-150vh" type="button">Let me upload another file</a><br><br>
                     <c:if test="${isAdmin}">
@@ -72,7 +70,6 @@
             </div>
             <div class="col-md-4"></div>
         </div>
-        <%--<div class="row"><jsp:include page="../shared/footer.jsp"/></div>--%>
     </div>
 </div>
 </body>

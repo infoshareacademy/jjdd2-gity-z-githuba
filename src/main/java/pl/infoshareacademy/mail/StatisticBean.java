@@ -53,6 +53,7 @@ public class StatisticBean {
     }
     public void addAdmintoList(){
         adminPannelAccessUsers.add("google-oauth2|113092233730131915485");
+        adminPannelAccessUsers.add("google-oauth2|101939476130838913705");
     }
     public boolean isAdmin(String user){
         return adminPannelAccessUsers.contains(user);
