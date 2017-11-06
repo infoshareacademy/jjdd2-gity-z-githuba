@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Files {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     @Column(name = "table_name")

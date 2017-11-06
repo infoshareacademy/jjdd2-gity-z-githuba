@@ -35,6 +35,7 @@ public class FileUploadServlet extends HttpServlet {
     @Inject
     LogDAO logDAO;
 
+    @Override
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
 
@@ -57,6 +58,7 @@ public class FileUploadServlet extends HttpServlet {
             fileName = getFileName(part);
             if (isValidMailFile(part, uploadStatusNotOK, uploadStatusOK)) {
                 try {
+
                     part.write(uploadFilePath + File.separator + fileName);
                     isParsableCheck.add(uploadFilePath + File.separator + fileName);
                     logger.info("Saved {} on upload directory!", fileName);
