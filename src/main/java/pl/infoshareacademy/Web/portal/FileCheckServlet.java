@@ -35,11 +35,11 @@ public class FileCheckServlet extends HttpServlet {
 
         Set<String> uploadStatusOKButWarn = new HashSet<>();
         tryToParse(uploadStatusOKButWarn);
-        filePath.setUploadStatusOKButWarn(uploadStatusOKButWarn);
+       // filePath.setUploadStatusOKButWarn(uploadStatusOKButWarn);
 
         req.setAttribute("fileOK", filePath.getUploadStatusOK());
         req.setAttribute("fileNotOK", filePath.getUploadStatusNotOK());
-        req.setAttribute("fileWarn", filePath.getUploadStatusOKButWarn());
+        req.setAttribute("fileWarn", uploadStatusOKButWarn);
         getServletContext().getRequestDispatcher("/shared/check_files.jsp").forward(req, resp);
     }
 
