@@ -26,7 +26,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="Report">Show statistic</label>
             <div class="col-md-4">
-                <a href="${pageContext.request.contextPath}/jsp/Displayreport.jsp" class="btn btn-default"
+                <a href="${pageContext.request.contextPath}/stats" class="btn btn-default"
                    type="button">Show statistic</a>
                 </button>
             </div>
