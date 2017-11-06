@@ -17,7 +17,7 @@ public class Log {
     @Column
     String level;
 
-    @Column
+    @Column(length = 1000)
     String message;
 
     public Log() {
