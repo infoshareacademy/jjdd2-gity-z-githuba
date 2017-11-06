@@ -9,7 +9,7 @@
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
     <style>
         .color-orange {
-            color: orange;
+            color: orangered;
         }
 
         .color-green {
@@ -17,7 +17,7 @@
         }
 
         .color-red {
-            color: indianred;
+            color: tomato;
         }
 
         .color-white {
@@ -32,7 +32,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <h2 class="color-white">Valid files:</h2>
+            <h3 class="color-white">Valid files:</h3>
             <c:choose>
                 <c:when test="${empty sessionScope.fileOK}">
                     <h3 class="color-red">There is no proper files</h3>
@@ -77,6 +77,5 @@
 </div>
 <div class="row"></div>
 <div class="row"></div>
-</div>
 </body>
 </html>
