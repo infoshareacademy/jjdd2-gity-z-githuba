@@ -55,7 +55,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="${pageContext.request.contextPath}/jsp/choice.jsp">Home</a></li>
     <a href="${pageContext.request.contextPath}/jsp/file_upload.jsp">Upload Files</a>
-    <a href="${pageContext.request.contextPath}/shared/check_files.jsp">Check files</a>
+    <a href="${pageContext.request.contextPath}/checkFiles">Check files</a>
     <a href="${pageContext.request.contextPath}/jsp/SearchingBySenderWords.jsp">Keywords</a>
     <a href="${pageContext.request.contextPath}/jsp/keywords.jsp">Helper</a>
     <a href="${pageContext.request.contextPath}/logout">Logout</a>

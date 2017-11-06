@@ -87,7 +87,7 @@
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Keywords based on your answers:</h3>
+                            <h3 class="panel-title">Keywor:</h3>
                             <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
                         </div>
                         <div class="panel-body">
@@ -102,7 +102,7 @@
                     </div>
                     <br/>
                     </c:if>
-                    <c:if test="${empty keywods}">
+                    <c:if test="${empty keywords}">
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">

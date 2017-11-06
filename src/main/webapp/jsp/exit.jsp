@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/menu_css.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 </head>
 <body>
 <div class="container main-container">
@@ -16,12 +16,11 @@
         <div class="jumbotron">
             <h3>Come back soon!</h3>
         </div>
-        <img src="${pageContext.request.contextPath}/shared/good-bye.jpeg" alt="Bye" width="20%" height="20%">
         <br>
         <br>
-        <a href="${pageContext.request.contextPath}/portal/index" class="btn btn-primary btn-md" type="button">Login
+        <a href="${pageContext.request.contextPath}/portal/index" class="btn btn-default" type="button">Login
             again</a>
-    </div>
+</div>
 </div>
 </body>
 </html>
