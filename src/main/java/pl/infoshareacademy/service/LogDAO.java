@@ -46,7 +46,7 @@ public class LogDAO {
     }
 
     public void deleteAllLogs() {
-        em.createQuery("DELETE FROM Log").executeUpdate();
+        em.createQuery("DELETE e FROM Log").executeUpdate();
     }
 
     public void saveLogToDatabase(String level, String message) {
