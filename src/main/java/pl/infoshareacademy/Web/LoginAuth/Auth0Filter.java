@@ -3,7 +3,9 @@ package pl.infoshareacademy.Web.LoginAuth;
 import com.auth0.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import pl.infoshareacademy.service.LogDAO;
 
+import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +18,10 @@ import java.util.Set;
 
 @WebFilter("/*")
 public class Auth0Filter implements Filter {
+
+    @Inject
+    LogDAO logDAO;
+
     private static final Logger logger = LogManager.getLogger(Auth0Filter.class.getName());
 
     private static final Set<String> ALLOWED_PATHS = Collections.unmodifiableSet(new HashSet<>(
@@ -34,12 +40,12 @@ public class Auth0Filter implements Filter {
         boolean allowedPath = ALLOWED_PATHS.contains(path);
         boolean IsNotLogged = accessToken == null && idToken == null;
         if (IsNotLogged && !allowedPath) {
-            logger.info("Anonymous user. Redirected to login menu.");
+            logDAO.saveLogToDatabase("Info", "Anonymous user. Redirected to login menu.");
             res.sendRedirect(request.getServletContext().getContextPath() + "/login");
             return;
         }
         next.doFilter(request, response);
-        logger.info("User with id token:{} Access granted with {} !", idToken, accessToken);
+        logDAO.saveLogToDatabase("INFO", "User with id token:{} Access granted with {} ! " + idToken + " " + accessToken );
     }
 
     public void destroy() {

@@ -39,11 +39,13 @@ public class FileUploadServlet extends HttpServlet {
 
     @Inject
     TempFilePath filePath;
+
     @Inject
     MailBox mailBox;
 
     @Inject
     LogDAO logDAO;
+
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
