@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -73,17 +73,10 @@
                 </c:otherwise>
             </c:choose>
         </div>
-        <div id="keywords">
-            <c:forEach var="fileOK" items="${fileOK}" varStatus="loop">
-                <c:out value="[${loop.index+1}]"/>
-                :
-                <c:out value="${fileOK}"/>
-            </c:forEach>
-        </div>
-
     </div>
-    <div class="row"></div>
-    <div class="row"></div>
+</div>
+<div class="row"></div>
+<div class="row"></div>
 </div>
 </body>
 </html>

@@ -33,13 +33,13 @@ public class FileUploadServlet extends HttpServlet {
     TempFilePath filePath;
 
     @Inject
-    MailBox mailBox;
-
-    @Inject
     LogDAO logDAO;
+
+
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
+
         Set<String> uploadStatusOK = new HashSet<>();
         Set<String> uploadStatusNotOK = new HashSet<>();
         Set<String> uploadStatusOKButWarn = new HashSet<>();
@@ -62,7 +62,6 @@ public class FileUploadServlet extends HttpServlet {
                     part.write(uploadFilePath + File.separator + fileName);
                     isParsableCheck.add(uploadFilePath + File.separator + fileName);
                     logger.info("Saved {} on upload directory!", fileName);
-                    tryToParse(uploadStatusOKButWarn);
                 } catch (FileAlreadyExistsException e) {
                     uploadStatusNotOK.add(part.getSubmittedFileName() +
                             ": that file is already on the list");
@@ -105,28 +104,6 @@ public class FileUploadServlet extends HttpServlet {
 
         uploadStatusOK.add(part.getSubmittedFileName() + ": uploaded");
         return true;
-    }
-
-    private void tryToParse(Set<String> uploadStatusOKButWarn) {
-        for (String pathToParse : filePath.getIsParsableCheck()) {
-            File f = new File(pathToParse);
-            if (pathToParse.endsWith("mbox")) {
-                MboxParser mboxParser = new MboxParser(pathToParse);
-                try {
-                    mboxParser.run(mailBox);
-                } catch (Exception ebox) {
-                    logDAO.saveLogToDatabase("WARNING", "cant parse mbox " + f.getName());
-                    uploadStatusOKButWarn.add(f.getName() + ": contains some lock markers that can cause our program to display messages incorrectly");
-                }
-            } else if (pathToParse.endsWith("eml")) {
-                try {
-                    EmlParser.parseEml(pathToParse, mailBox);
-                } catch (Exception eeml) {
-                    logDAO.saveLogToDatabase("WARNING", "cant parse eml " + f.getName());
-                    uploadStatusOKButWarn.add(f.getName() + ": contains some lock markers that can cause our program to display messages incorrectly");
-                }
-            }
-        }
     }
 
     private String getFileName(Part part) {
