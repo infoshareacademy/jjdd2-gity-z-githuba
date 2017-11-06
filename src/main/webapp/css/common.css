@@ -14,3 +14,8 @@ body {
 .size-150vh{
 	width: 100vh !important;
 }
+
+.wordwrap {
+
+    word-wrap: break-word;
+}
