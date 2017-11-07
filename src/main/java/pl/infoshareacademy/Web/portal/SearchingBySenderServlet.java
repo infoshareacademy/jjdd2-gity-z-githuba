@@ -30,7 +30,7 @@ public class SearchingBySenderServlet extends HttpServlet {
         String toLanguage = req.getParameter("tolanguage");
         String fourAnswer = req.getParameter("sender");
         addSearchingWordtoArrayBean(fourAnswer);
-        doTranslate("AIzaSyBBA8MWaqJbghdmVE6ven-yX6Oma0OSZ3A",fourAnswer,toLanguage);
+        doTranslate("AIzaSyBnHp-b7KQJEBJ4v12q_ASrBCWMwUkYEpI", fourAnswer, toLanguage);
 
         resp.sendRedirect("display");
     }
